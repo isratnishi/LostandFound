@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.Registration.CameraFragment">
+
+    <LinearLayout
+        android:id="@+id/llnid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/camera_request"
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="15dp"/>
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_camera"
+            android:tint="@color/cardview_dark_background"/>
+
+        <Button
+            android:id="@+id/button1"
+            style="@style/ButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="20dp"
+            android:text="@string/next"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</FrameLayout>

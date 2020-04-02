@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".GeneralPeople.Main2Activity">
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/mainGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:horizontalSpacing="10dp"
+        android:paddingTop="1dp"
+        android:paddingRight="1dp"
+        android:verticalSpacing="10dp"
+        app:alignmentMode="alignMargins"
+        app:columnCount="2"
+        app:columnOrderPreserved="false"
+        app:rowCount="4"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="278dp">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvFinishedFebric"
+            style="@style/HomeItemCard"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="8dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <!-- <ImageView
+                     android:id="@+id/ivFinishedFebric"
+                     android:layout_width="50dp"
+                     android:layout_height="50dp"
+                     android:layout_gravity="center_horizontal" />-->
+
+                <TextView
+                    style="@style/HomeTextStyle"
+                    android:gravity="center"
+                    android:text="অভিযোগ"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvGrayFebric"
+            style="@style/HomeItemCard"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="8dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <!--<ImageView
+                    android:id="@+id/ivGrayFebric"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal" />-->
+
+                <TextView
+                    style="@style/HomeTextStyle"
+                    android:gravity="center"
+                    android:text="বাতিল" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvFinishedFebric1"
+            style="@style/HomeItemCard"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="8dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <!--       <ImageView
+                           android:id="@+id/ivFinishedFebric1"
+                           android:layout_width="50dp"
+                           android:layout_height="50dp"
+                           android:layout_gravity="center_horizontal" />-->
+
+                <TextView
+                    style="@style/HomeTextStyle"
+                    android:text="তদন্তাধীন"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvGrayFebric1"
+            style="@style/HomeItemCard"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="8dp"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <!--    <ImageView
+                        android:id="@+id/ivGrayFebric1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal" />-->
+
+                <TextView
+                    style="@style/HomeTextStyle"
+                    android:gravity="center"
+                    android:text="নিস্পত্তি"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="236dp"
+        android:layout_margin="10dp"
+        android:layout_weight="6"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners"
+                android:gravity="center"
+                android:text="Date"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners"
+                android:gravity="center"
+                android:text="Tracking Number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners"
+                android:gravity="center"
+                android:text="Status"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners"
+                android:gravity="center"
+                android:text="Report"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners"
+                android:gravity="center"
+                android:text="01-Feb-2020"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners"
+                android:gravity="center"
+                android:text="154682"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners"
+                android:gravity="center"
+                android:text="Solved"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners"
+                android:gravity="center"
+                android:src="@drawable/ic_view"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp"
+                android:tint="@android:color/black" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners"
+                android:gravity="center"
+                android:text="22-Feb-2020"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners"
+                android:gravity="center"
+                android:text="542682"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners"
+                android:gravity="center"
+                android:text="Pending"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_corners"
+                android:gravity="center"
+                android:src="@drawable/ic_view"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16dp"
+                android:tint="@android:color/black" />
+
+
+        </TableRow>
+
+
+    </TableLayout>
+
+    <RelativeLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/button1"
+            style="@style/ButtonStyle"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="তথ্য এন্ট্রি "
+           android:layout_alignParentLeft="true" />
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/ButtonStyle"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="তথ্য সার্চ "
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+</LinearLayout>
