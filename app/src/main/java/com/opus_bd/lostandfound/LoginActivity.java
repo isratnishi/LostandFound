@@ -1,6 +1,5 @@
-package com.opus_bd.lostandfound.GeneralPeople;
+package com.opus_bd.lostandfound;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -8,31 +7,22 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
@@ -40,13 +30,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.google.android.material.textfield.TextInputEditText;
-import com.opus_bd.lostandfound.HomeActivity;
-import com.opus_bd.lostandfound.R;
-import com.opus_bd.lostandfound.RegistrationProcessActivity;
 import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
-import com.opus_bd.lostandfound.WelcomeActivity;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText;
 
@@ -67,8 +52,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     boolean isChecked = true;
     @BindView(R.id.tvLangugeName)
     Button tvLangugeName;
-    @BindView(R.id.tvappname)
-    TextView tvappname;
     @BindView(R.id.etPassword)
     ShowHidePasswordEditText etPassword;
     int c = 0;
@@ -95,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         //Animation rightEnter = AnimationUtils.loadAnimation(this, R.animator.fragment_slide_right_enter);
         Animation leftEnter = AnimationUtils.loadAnimation(this, R.anim.left_enter);
 
-        tvappname.startAnimation(leftEnter);
+        //tvappname.startAnimation(leftEnter);
     }
 
     @Override

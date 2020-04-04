@@ -5,10 +5,10 @@
     <string name="welcome_to">Welcome To bangla</string>
     <string name="bangla">বাংলা</string>
     <string name="english">English</string>
-    <string name="location_request">*** আপনার লোকেশন অবশ্যই চালু রাখুন ***</string>
+    <string name="location_request">আপনার লোকেশন অবশ্যই চালু রাখুন</string>
 
-    <string name="id_request">***নিবন্ধনের জন্য নিচের যেকোনো একটি অপশন সিলেক্ট করুন .***</string>
-    <string name="camera_request">*** নিচের ক্যামেরা ট্যাপ করে আপনার ছবি তুলুন.***</string>
+    <string name="id_request">নিবন্ধনের জন্য নিচের যেকোনো একটি অপশন সিলেক্ট করুন .</string>
+    <string name="camera_request">নিচের ক্যামেরা ট্যাপ করে আপনার ছবি তুলুন.</string>
 
     <string name="address_verification_request">জাতীয় পরিচয় পত্রের ঠিকানাটা কি আপনি বর্তমান ঠিকানা হিসেবে ব্যবহার করবেন?</string>
     <string name="foreigner">বিদেশী</string>
@@ -37,7 +37,7 @@
     <string name="phnno">ফোন নম্বর</string>
     <string name="otp_confirmation"> ও টি পি নিশ্চিতকরণ</string>
     <string name="otp_confirmation_text">ও টি পি কোড প্রবেশ করান</string>
-    <string name="otp_warning">***৪ অংকের ও টি পি কোড আপনার মোবাইলে পাঠানো হয়েছে .***</string>
+    <string name="otp_warning">৪ অংকের ও টি পি কোড আপনার মোবাইলে পাঠানো হয়েছে .</string>
     <string name="help">সাহায্য</string>
     <string name="gps_network_not_enabled">gps_network_not_enabled</string>
     <string name="open_location_settings">open_location_settings</string>

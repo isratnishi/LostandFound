@@ -6,9 +6,9 @@
     <string name="welcome_to">Welcome To</string>
     <string name="bangla">বাংলা</string>
     <string name="english">English</string>
-    <string name="location_request">*** Keep your location on ***</string>
+    <string name="location_request">Keep your location on</string>
     <string name="id_request">Select one of the options below for registration.</string>
-    <string name="camera_request">***Take your picture by tapping the camera below.***</string>
+    <string name="camera_request">Take your picture by tapping the camera below.</string>
     <string name="address_verification_request">Will you use the National ID card as your current address?</string>
     <string name="foreigner">Foreigner</string>
     <string name="citizen">Citizen</string>

@@ -41,7 +41,7 @@ public class OTPFragment extends Fragment {
         return v;
     }
 
-    @OnClick(R.id.button1)
+    @OnClick(R.id.textNext)
     public void btnLogIn() {
         Intent intent = new Intent(getContext(), Main2Activity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_TOP);

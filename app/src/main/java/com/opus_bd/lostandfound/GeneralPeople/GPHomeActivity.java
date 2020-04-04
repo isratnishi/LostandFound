@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.opus_bd.lostandfound.HomeActivity;
+import com.opus_bd.lostandfound.LoginActivity;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;

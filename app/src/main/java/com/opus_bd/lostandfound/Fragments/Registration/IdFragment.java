@@ -58,7 +58,7 @@ int iid;
         return v;
     }
 
-    @OnClick(R.id.cvNID)
+    @OnClick({R.id.cvNID,R.id.textNext})
     public void button1() {
         InputFragment idFragment=new InputFragment();
         idFragment.setInputID(1);

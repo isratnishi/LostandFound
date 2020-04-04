@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Gray shadow. -->
+   <item  android:bottom="350dp" >
+       <shape>
+           <solid android:color="#F7F7F7"/>
+
+       </shape>
+   </item>
+   <!-- Gray shadow. -->
   <!--  <item  android:bottom="350dp" >
         <shape>
             <solid android:color="#A7DCF4"/>
@@ -48,7 +54,7 @@
 
         android:top="450dp">
 
-        <bitmap android:src="@drawable/app_bg"
+        <bitmap android:src="@drawable/app_bg_crop"
 
             />
     </item>
