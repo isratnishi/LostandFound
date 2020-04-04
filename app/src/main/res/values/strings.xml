@@ -25,6 +25,7 @@
     <string name="binnum">Birth registration number</string>
     <string name="passnum">Passport number</string>
     <string name="expirydate">Expiration date</string>
+    <string name="dashboardView">Dashboard</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

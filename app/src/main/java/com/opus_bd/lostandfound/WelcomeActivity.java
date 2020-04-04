@@ -14,12 +14,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-import com.opus_bd.lostandfound.GeneralPeople.LoginActivity;
-import com.opus_bd.lostandfound.Utils.GifImageView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class WelcomeActivity extends AppCompatActivity {
     @BindView(R.id.textView)
@@ -28,7 +24,7 @@ public class WelcomeActivity extends AppCompatActivity {
     @BindView(R.id.textView1)
     TextView textView1;
 
-    private static int SPLASH_TIME_OUT = 30000;
+    private static int SPLASH_TIME_OUT = 3000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
