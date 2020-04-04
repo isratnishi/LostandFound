@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -53,8 +52,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     boolean isChecked = true;
     @BindView(R.id.tvLangugeName)
     Button tvLangugeName;
-    @BindView(R.id.tvappname)
-    TextView tvappname;
     @BindView(R.id.etPassword)
     ShowHidePasswordEditText etPassword;
     int c = 0;
@@ -81,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         //Animation rightEnter = AnimationUtils.loadAnimation(this, R.animator.fragment_slide_right_enter);
         Animation leftEnter = AnimationUtils.loadAnimation(this, R.anim.left_enter);
 
-        tvappname.startAnimation(leftEnter);
+        //tvappname.startAnimation(leftEnter);
     }
 
     @Override

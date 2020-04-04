@@ -34,7 +34,7 @@ public class CitizenFragment extends Fragment {
         EventBus.getDefault().post(new MessageEvent(true));
         return v;
     }
-      @OnClick(R.id.cvCitizen)
+      @OnClick({R.id.cvCitizen,R.id.textNext})
     public void btnLogIn() {
         IdFragment idFragment=new IdFragment();
         idFragment.setIid(1);

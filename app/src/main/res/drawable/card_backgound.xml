@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Gray shadow. -->
-    <item  android:bottom="15dp" >
+ <!--   <item  android:bottom="15dp" >
         <shape>
             <solid android:color="#DDD9D9"/>
             <corners
                 android:topRightRadius="15dp"
                 android:topLeftRadius="15dp"/>
         </shape>
-    </item>
+    </item>-->
     <!-- White foreground. -->
     <item android:top="10dp" >
         <shape android:shape="rectangle">

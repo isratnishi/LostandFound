@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.opus_bd.lostandfound.Fragments.Registration.CitizenFragment;
+import com.opus_bd.lostandfound.Fragments.Registration.IdFragment;
 import com.opus_bd.lostandfound.GeneralPeople.RegistrationActivity;
 import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
@@ -29,8 +30,10 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RegistrationProcessActivity extends AppCompatActivity {
+    int c=0;
     @BindView(R.id.fragmentContainer)
     FrameLayout fragmentContainer;
 

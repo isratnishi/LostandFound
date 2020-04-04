@@ -9,6 +9,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -35,22 +37,22 @@ import butterknife.OnClick;
  */
 public class InputFragment extends Fragment {
     @BindView(R.id.etNidNum)
-    TextInputEditText etNidNum;
+    EditText etNidNum;
     @BindView(R.id.etbinNum)
-    TextInputEditText etbinNum;
+   EditText etbinNum;
     @BindView(R.id.etPassNum)
-    TextInputEditText etPassNum;
+    EditText etPassNum;
     @BindView(R.id.etExpary)
-    TextInputEditText etExpary;
+  EditText etExpary;
 
-    @BindView(R.id.tNidNum)
-    TextInputLayout tNidNum;
-    @BindView(R.id.tbinNum)
-    TextInputLayout tbinNum;
-    @BindView(R.id.tPassNum)
-    TextInputLayout tPassNum;
-    @BindView(R.id.tExpary)
-    TextInputLayout tExpary;
+    @BindView(R.id.rrNid)
+    RelativeLayout tNidNum;
+    @BindView(R.id.rrbinNum)
+    RelativeLayout tbinNum;
+    @BindView(R.id.rrPassNum)
+    RelativeLayout tPassNum;
+    @BindView(R.id.rrExpary)
+    RelativeLayout tExpary;
     int inputID;
 
     public void setInputID(int inputID) {
@@ -73,6 +75,7 @@ public class InputFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_input, container, false);
+
         ButterKnife.bind(this, v);
         RegistrationProcessActivity.Step=3;
 
@@ -100,7 +103,7 @@ public class InputFragment extends Fragment {
             tExpary.setVisibility(View.VISIBLE);
         }
     }
-    @OnClick(R.id.button1)
+    @OnClick(R.id.textNext)
     public void btnLogIn() {
         /*IdFragment idFragment=new IdFragment();
         idFragment.setId(1);*/
