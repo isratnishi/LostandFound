@@ -13,8 +13,7 @@
      app:layout_constraintStart_toStartOf="parent"
      app:layout_constraintEnd_toEndOf="parent"
      android:gravity="center"
-     android:padding="10dp"
-     android:layout_margin="10dp"
+     android:layout_margin="20dp"
    android:orientation="vertical">
    <TextView
        android:id="@+id/textView2"
@@ -94,7 +93,7 @@
              android:layout_height="50dp"
              android:layout_gravity="center_horizontal"
              android:tint="@color/colorPrimaryDark"
-             android:src="@drawable/ic_nid" />
+             android:src="@drawable/birth" />
 
          <TextView
              style="@style/HomeTextStyle"

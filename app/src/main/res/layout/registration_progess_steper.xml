@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:gravity="center"
+    android:layout_marginTop="10dp"
     android:orientation="horizontal">
 
     <ImageView
@@ -12,7 +13,7 @@
         android:layout_height="45dp"
         android:background="@drawable/oval_shape"
         android:backgroundTint="@android:color/darker_gray"
-               android:padding="10dp"
+        android:padding="10dp"
         android:scaleType="fitXY"
 
         android:src="@drawable/ic_nationality"

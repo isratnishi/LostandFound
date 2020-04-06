@@ -36,7 +36,7 @@ public class RegFragment extends Fragment {
         EventBus.getDefault().post(new MessageEvent(true));
         return v;
     }
-    @OnClick(R.id.button1)
+    @OnClick(R.id.textNext)
     public void btnLogIn() {
        /* IdFragment idFragment=new IdFragment();
         idFragment.setId(1);*/

@@ -32,11 +32,18 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="phnno">Phone Number</string>
-    <string name="otp_confirmation"> OTP Confirmation</string>
-    <string name="otp_confirmation_text">Enter the OTP code</string>
-    <string name="otp_warning">A 4-digit OTP code has been sent to your mobile.</string>
+    <string name="otp_confirmation"> One Time Password Confirmation</string>
+    <string name="otp_confirmation_text">Enter the One Time Password code</string>
+    <string name="otp_warning">A 4-digit One Time Password code has been sent to your mobile.</string>
     <string name="help">Help</string>
     <string name="gps_network_not_enabled">gps_network_not_enabled</string>
     <string name="open_location_settings">open_location_settings</string>
     <string name="Cancel">Cancel</string>
+    <string name="allegation">Allegation</string>
+
+    <string name="investigation">Investigation</string>
+    <string name="disposal">Disposal</string>
+
+
+
 </resources>

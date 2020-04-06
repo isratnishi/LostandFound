@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RegistrationProcessActivity;
@@ -15,6 +16,7 @@ import com.opus_bd.lostandfound.Utils.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -22,6 +24,8 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class AddressVerificationFragment extends Fragment {
+    @BindView(R.id.llnid2)
+    LinearLayout llnid2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +38,7 @@ public class AddressVerificationFragment extends Fragment {
         return v;
     }
 
-    @OnClick(R.id.buttonYes)
+    @OnClick({R.id.buttonYes,R.id.textNext})
     public void btnLogIn() {
        /* IdFragment idFragment=new IdFragment();
         idFragment.setId(1);*/
@@ -44,5 +48,10 @@ public class AddressVerificationFragment extends Fragment {
                 R.animator.fragment_slide_left_exit);
         ft.replace(R.id.fragmentContainer, new RegFragment(), "NewFragmentTag");
         ft.commit();
+    }
+
+    @OnClick(R.id.buttonNo)
+    public void buttonNo() {
+        llnid2.setVisibility(View.VISIBLE);
     }
 }
