@@ -33,7 +33,7 @@ public class Main2Activity extends AppCompatActivity {
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
 
-    @OnClick(R.id.button1)
+    /*@OnClick(R.id.button1)
     public void button1() {
         Intent intent = new Intent(Main2Activity.this, InformationEntryActivity.class);
 
@@ -43,5 +43,5 @@ public class Main2Activity extends AppCompatActivity {
         Intent intent = new Intent(Main2Activity.this, InformationSearchActivity.class);
 
         startActivity(intent);
-    }
+    }*/
 }

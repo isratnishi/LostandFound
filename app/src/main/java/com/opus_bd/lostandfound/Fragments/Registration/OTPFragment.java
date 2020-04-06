@@ -5,10 +5,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.google.android.gms.vision.text.Text;
 import com.opus_bd.lostandfound.GeneralPeople.Main2Activity;
 import com.opus_bd.lostandfound.GeneralPeople.RegistrationActivity;
 import com.opus_bd.lostandfound.R;
@@ -17,6 +20,7 @@ import com.opus_bd.lostandfound.Utils.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -24,6 +28,9 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class OTPFragment extends Fragment {
+
+    @BindView(R.id.tvTimer)
+    TextView tvTimer;
 
     public OTPFragment() {
         // Required empty public constructor
@@ -38,6 +45,21 @@ public class OTPFragment extends Fragment {
         RegistrationProcessActivity.Step=7;
 
         EventBus.getDefault().post(new MessageEvent(true));
+
+
+        new CountDownTimer(30000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                tvTimer.setText("00:" + millisUntilFinished / 1000);
+                //here you can have your logic to set text to edittext
+            }
+
+            public void onFinish() {
+                tvTimer.setText("00:00");
+
+            }
+
+        }.start();
         return v;
     }
 

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".GeneralPeople.GPHomeActivity">
 <RelativeLayout
+
+    android:layout_margin="20dp"
     android:id="@+id/rr1"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
@@ -34,7 +36,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_citizen" />
+                android:src="@drawable/ic_citizen"
+                android:tint="@color/colorPrimary"/>
 
             <TextView
                 style="@style/HomeTextStyle"
@@ -71,6 +74,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
+                android:tint="@color/colorPrimary"
                 android:src="@drawable/ic_foreiner" />
 
             <TextView

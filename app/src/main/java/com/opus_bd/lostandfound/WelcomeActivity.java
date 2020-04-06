@@ -28,7 +28,7 @@ public class WelcomeActivity extends AppCompatActivity {
     @BindView(R.id.ivappLogo)
     ImageView ivappLogo;
 
-    private static int SPLASH_TIME_OUT = 10000;
+    private static int SPLASH_TIME_OUT = 8000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +37,9 @@ public class WelcomeActivity extends AppCompatActivity {
         Animation rightEnter = AnimationUtils.loadAnimation(this, R.anim.right_enter);
         Animation leftEnter = AnimationUtils.loadAnimation(this, R.anim.left_enter);
         textView.startAnimation(rightEnter);
-        ivappLogo.startAnimation(rightEnter);
+        Animation zoomOutAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in);
+        ivappLogo.startAnimation(zoomOutAnimation);
+      //  .startAnimation(rightEnter);
 
         new Handler().postDelayed(new Runnable() {
 

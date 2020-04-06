@@ -35,7 +35,7 @@
         <activity android:name=".GeneralPeople.vehicleActivity" />
         <activity android:name=".GeneralPeople.MobileSearchActivity" />
         <activity android:name=".GeneralPeople.InformationSearchActivity" />
-        <activity android:name=".GeneralPeople.Main2Activity" />
+        <activity android:name=".GeneralPeople.Main2Activity"   android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />

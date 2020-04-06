@@ -30,6 +30,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.opus_bd.lostandfound.GeneralPeople.Main2Activity;
 import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
@@ -167,8 +168,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-    @OnClick(R.id.tvResigtration)
+    @OnClick(R.id.btnLogIn)
     public void btnLogIn() {
+        Intent intent = new Intent(LoginActivity.this, Main2Activity.class);
+
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.tvResigtration)
+    public void tvResigtration() {
         Intent intent = new Intent(LoginActivity.this, RegistrationProcessActivity.class);
 
         startActivity(intent);
