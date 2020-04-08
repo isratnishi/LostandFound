@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.animation.Animation;
@@ -191,9 +192,27 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     @OnClick(R.id.btnLogIn)
     public void btnLogIn() {
-       submitToServer();
+        if (!validatedForm())
+            return;
+        submitToServer();
     }
 
+
+
+
+    private boolean validatedForm() {
+        if (TextUtils.isEmpty(etUserName.getText().toString())) {
+            etUserName.setError(getResources().getString(R.string.field_null_error));
+            Toast.makeText(this, "Contact field can not be empty!", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (TextUtils.isEmpty(etPassword.getText().toString())) {
+            etPassword.setError(getResources().getString(R.string.field_null_error));
+            Toast.makeText(this, "Password field can not be empty!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
     @OnClick(R.id.tvResigtration)
     public void tvResigtration() {
         Intent intent = new Intent(LoginActivity.this, RegistrationProcessActivity.class);

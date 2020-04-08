@@ -45,6 +45,7 @@
     <string name="disposal">Disposal</string>
     <string name="logout">Logout</string>
     <string name="email">Email (Optional)</string>
+    <string name="field_null_error">This field can not be empty</string>
 
 
 </resources>

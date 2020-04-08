@@ -45,5 +45,7 @@
     <string name="allegation">অভিযোগ</string>
     <string name="investigation">তদন্তাধীন</string>
     <string name="disposal">নিষ্পত্তি</string>
-    <string name="email">Email</string>
+    <string name="logout">Logout</string>
+    <string name="email">Email (Optional)</string>
+    <string name="field_null_error">This field can not be empty</string>
 </resources>
