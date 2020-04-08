@@ -11,12 +11,19 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
@@ -31,8 +38,13 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.opus_bd.lostandfound.GeneralPeople.Main2Activity;
+import com.opus_bd.lostandfound.Model.User.UserAuthModel;
+import com.opus_bd.lostandfound.Model.User.UserLoginModel;
+import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
+import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
 import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
+import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText;
 
@@ -42,6 +54,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.KEY_State;
 import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.SHARED_PREF_NAME;
@@ -51,10 +66,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         LocationListener {
     private Location mylocation;
     boolean isChecked = true;
+    boolean isPassChecked = true;
+
     @BindView(R.id.tvLangugeName)
     Button tvLangugeName;
     @BindView(R.id.etPassword)
-    ShowHidePasswordEditText etPassword;
+    EditText etPassword;      @BindView(R.id.etUserName)
+    EditText etUserName;    @BindView(R.id.ivpassShow)
+    ImageView ivpassShow;
     int c = 0;
     private GoogleApiClient googleApiClient;
     private final static int REQUEST_CHECK_SETTINGS_GPS = 0x1;
@@ -80,6 +99,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         Animation leftEnter = AnimationUtils.loadAnimation(this, R.anim.left_enter);
 
         //tvappname.startAnimation(leftEnter);
+
+
     }
 
     @Override
@@ -170,9 +191,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     @OnClick(R.id.btnLogIn)
     public void btnLogIn() {
-        Intent intent = new Intent(LoginActivity.this, Main2Activity.class);
-
-        startActivity(intent);
+       submitToServer();
     }
 
     @OnClick(R.id.tvResigtration)
@@ -182,20 +201,21 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         startActivity(intent);
     }
 
-   /* @OnClick(R.id.etPassword)
+    @OnClick(R.id.ivpassShow)
     public void Passwordshow() {
-        // show password
-        c++;
-        if (c == 1) {
-            etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            c = 0;
-        } else {
 
+        if (isPassChecked) {
+            // show password
+            etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            Glide.with(this).load(R.drawable.ic_visibility_off).into(ivpassShow);
+            isPassChecked=false;
+        } else {
             // hide password
             etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            c = 0;
+            Glide.with(this).load(R.drawable.ic_view).into(ivpassShow);
+            isPassChecked=true;
         }
-    }*/
+    }
 
     // location cHeck
 
@@ -347,6 +367,46 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+
+    private void submitToServer() {
+//        Utilities.showProgress(this);
+        SharedPrefManager.getInstance(LoginActivity.this).clearToken();
+        final UserLoginModel userModel = new UserLoginModel(etUserName.getText().toString(), etPassword.getText().toString());
+
+        //SharedPrefManager.getInstance(this).saveUserName(etUserName.getText().toString());
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<UserAuthModel> registrationRequest = retrofitService.login(userModel);
+        registrationRequest.enqueue(new Callback<UserAuthModel>() {
+            @Override
+            public void onResponse(Call<UserAuthModel> call, Response<UserAuthModel> response) {
+                //              Utilities.hideProgress(LoginActivity.this);
+                try {
+                    if (response.body() != null) {
+                        SharedPrefManager.getInstance(LoginActivity.this).saveToken(response.body().getAuthToken());
+                        Toast.makeText(LoginActivity.this, "Successfully Logged in!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, Main2Activity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(LoginActivity.this, "Something went Wrong! Please try again later", Toast.LENGTH_SHORT).show();
+                }
+                //            showProgressBar(false);
+            }
+
+            @Override
+            public void onFailure(Call<UserAuthModel> call, Throwable t) {
+               // Utilities.hideProgress(LoginActivity.this);
+                Toast.makeText(LoginActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 }
 

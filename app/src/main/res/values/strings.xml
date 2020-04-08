@@ -11,7 +11,7 @@
     <string name="camera_request">Take your picture by tapping the camera below.</string>
     <string name="address_verification_request">Will you use the National ID card as your current address?</string>
     <string name="foreigner">Foreigner</string>
-    <string name="citizen">Citizen</string>
+    <string name="citizen">Bangladeshi</string>
     <string name="log_in">Log In</string>
     <string name="registration">Registration</string>
     <string name="password_forget">Password forget</string>
@@ -43,7 +43,8 @@
 
     <string name="investigation">Investigation</string>
     <string name="disposal">Disposal</string>
-
+    <string name="logout">Logout</string>
+    <string name="email">Email (Optional)</string>
 
 
 </resources>

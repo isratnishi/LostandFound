@@ -24,7 +24,8 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class AddressVerificationFragment extends Fragment {
-    @BindView(R.id.llnid2)
+    @BindView(R.id.llnid)
+    LinearLayout llnid;  @BindView(R.id.llnid2)
     LinearLayout llnid2;
 
     @Override
@@ -53,5 +54,6 @@ public class AddressVerificationFragment extends Fragment {
     @OnClick(R.id.buttonNo)
     public void buttonNo() {
         llnid2.setVisibility(View.VISIBLE);
+        llnid.setVisibility(View.GONE);
     }
 }

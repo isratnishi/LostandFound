@@ -12,7 +12,7 @@
 
     <string name="address_verification_request">জাতীয় পরিচয় পত্রের ঠিকানাটা কি আপনি বর্তমান ঠিকানা হিসেবে ব্যবহার করবেন?</string>
     <string name="foreigner">বিদেশী</string>
-    <string name="citizen">নাগরিক</string>
+    <string name="citizen">বাংলাদেশী</string>
 
     <string name="log_in">লগইন</string>
     <string name="registration">নিবন্ধন</string>
@@ -45,4 +45,5 @@
     <string name="allegation">অভিযোগ</string>
     <string name="investigation">তদন্তাধীন</string>
     <string name="disposal">নিষ্পত্তি</string>
+    <string name="email">Email</string>
 </resources>

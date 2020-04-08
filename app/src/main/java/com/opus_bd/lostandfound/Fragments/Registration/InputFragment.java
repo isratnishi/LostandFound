@@ -52,11 +52,17 @@ public class InputFragment extends Fragment {
     @BindView(R.id.rrPassNum)
     RelativeLayout tPassNum;
     @BindView(R.id.rrExpary)
-    RelativeLayout tExpary;
-    int inputID;
+    RelativeLayout tExpary;   @BindView(R.id.rrEmail)
+    RelativeLayout rrEmail;   @BindView(R.id.rrCountryCode)
+    RelativeLayout rrCountryCode;
+    int inputID,passId;
 
     public void setInputID(int inputID) {
         this.inputID = inputID;
+    }
+
+    public void setPassId(int passId) {
+        this.passId = passId;
     }
 
     @Override
@@ -81,26 +87,34 @@ public class InputFragment extends Fragment {
 
         EventBus.getDefault().post(new MessageEvent(true));
         Utilities.showLogcatMessage(" inputId 1"+ RegistrationActivity.inputid);
-        setView(inputID);
+        setView(inputID,passId);
+        Utilities.showLogcatMessage("passid 2"+passId);
         return v;
     }
 
-    public void setView(int i) {
-        if(i==1){
+    public void setView(int i,int pass) {
+        if(i==1 && pass==1){
             tNidNum.setVisibility(View.VISIBLE);
             tbinNum.setVisibility(View.GONE);
             tPassNum.setVisibility(View.GONE);
             tExpary.setVisibility(View.GONE);
-        }else if(i==2){
+        }else if(i==2 & pass==1){
             tNidNum.setVisibility(View.GONE);
             tbinNum.setVisibility(View.VISIBLE);
             tPassNum.setVisibility(View.GONE);
             tExpary.setVisibility(View.GONE);
-        }else if(i==3){
+        }else if(i==3 & pass==1){
             tNidNum.setVisibility(View.GONE);
             tbinNum.setVisibility(View.GONE);
             tPassNum.setVisibility(View.VISIBLE);
             tExpary.setVisibility(View.VISIBLE);
+        }else if(i==3 && pass==2){
+            tNidNum.setVisibility(View.GONE);
+            tbinNum.setVisibility(View.GONE);
+            tPassNum.setVisibility(View.VISIBLE);
+            tExpary.setVisibility(View.VISIBLE);
+            rrEmail.setVisibility(View.VISIBLE);
+            rrCountryCode.setVisibility(View.VISIBLE);
         }
     }
     @OnClick(R.id.textNext)

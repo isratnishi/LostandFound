@@ -171,7 +171,6 @@
    </androidx.cardview.widget.CardView>
  </LinearLayout>
   <RelativeLayout
-
       android:background="@color/colorPrimaryDark"
       android:id="@+id/rr2"
       android:padding="10dip"
@@ -181,6 +180,7 @@
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent">
     <TextView
+        android:visibility="gone"
         android:id="@+id/textNext"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
