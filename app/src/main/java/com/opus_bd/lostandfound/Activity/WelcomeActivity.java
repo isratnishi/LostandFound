@@ -1,4 +1,4 @@
-package com.opus_bd.lostandfound;
+package com.opus_bd.lostandfound.Activity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,9 +20,9 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -35,7 +35,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText;
+import com.opus_bd.lostandfound.R;
+import com.opus_bd.lostandfound.Utils.Utilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +61,7 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
 
     @BindView(R.id.ivappLogo)
     ImageView ivappLogo;
-
+    AlertDialog.Builder builder;
     private static int SPLASH_TIME_OUT = 3000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,8 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
         textView.startAnimation(rightEnter);
         Animation zoomOutAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_out);
         ivappLogo.startAnimation(zoomOutAnimation);
-      //  .startAnimation(rightEnter);
+        builder = new AlertDialog.Builder(this);
+        //  .startAnimation(rightEnter);
 
         new Handler().postDelayed(new Runnable() {
 
@@ -149,6 +151,32 @@ public void LocationCheck(){
 
 // location cHeck
 
+    public void showDialog() {
+
+        //Uncomment the below code to Set the message and title from the strings.xml file
+        //Setting message manually and performing action on button click
+        builder.setMessage("Please open your mobile location(GPS) for continue \n \n" +
+                "চালিয়ে যাওয়ার জন্য দয়া করে আপনার মোবাইল লোকেশন(GPS) খুলুন")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        getMyLocation();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //  Action for 'NO' Button
+                        dialog.cancel();
+                        finish();
+                    }
+                });
+        //Creating dialog box
+        AlertDialog alert = builder.create();
+        //Setting the title manually
+        alert.setTitle("Location Request");
+        alert.show();
+    }
 
     private synchronized void setUpGClient() {
         googleApiClient = new GoogleApiClient.Builder(this)
@@ -172,6 +200,8 @@ public void LocationCheck(){
             finish();
         }
         else {
+            Utilities.showLogcatMessage(" No Thanks 2");
+           // showDialog();
             finish();
         }
        /* if (mylocation != null) {
@@ -274,7 +304,9 @@ public void LocationCheck(){
                         getMyLocation();
                         break;
                     case Activity.RESULT_CANCELED:
-                        finish();
+                        Utilities.showLogcatMessage(" No Thanks 1");
+                        //finish();
+                        showDialog();
                         break;
                 }
                 break;

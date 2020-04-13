@@ -1,5 +1,6 @@
 package com.opus_bd.lostandfound.GeneralPeople;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,10 +20,14 @@ import com.opus_bd.lostandfound.Fragments.Registration.IdFragment;
 import com.opus_bd.lostandfound.Fragments.Registration.InputFragment;
 import com.opus_bd.lostandfound.Fragments.Registration.OTPFragment;
 import com.opus_bd.lostandfound.Fragments.Registration.RegFragment;
-import com.opus_bd.lostandfound.LoginActivity;
+import com.opus_bd.lostandfound.Activity.LoginActivity;
+import com.opus_bd.lostandfound.Model.Documentaion.NationalIdentityTypesModel;
 import com.opus_bd.lostandfound.R;
+import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
+import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
 import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
+import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
@@ -31,6 +36,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegistrationActivity extends AppCompatActivity {
     private static final int MAX_STEP = 6;
@@ -46,6 +54,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         ButterKnife.bind(this);
+        getAllList();
         setupViewPager(viewPager);
         mIndicator = findViewById(R.id.indicator);
         mIndicator.setViewPager(viewPager);
@@ -67,8 +76,8 @@ public class RegistrationActivity extends AppCompatActivity {
         adapter.addFragment(new InputFragment(), "3");
         adapter.addFragment(new CameraFragment(), "4");
         adapter.addFragment(new AddressVerificationFragment(), "5");
-        adapter.addFragment(new RegFragment(), "6");
-        adapter.addFragment(new OTPFragment(), "7");
+        adapter.addFragment(new RegFragment(getApplicationContext()), "6");
+        adapter.addFragment(new OTPFragment(getApplicationContext()), "7");
         viewPager.setAdapter(adapter);
     }
 
@@ -208,4 +217,52 @@ public class RegistrationActivity extends AppCompatActivity {
             dots[current_index].setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
         }
     }*/
+
+
+    public void getAllList() {
+        Utilities.showLogcatMessage("Responce");
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        //  Call<LoginResponce> registrationRequest = retrofitService.GetFinishFabricReceivedList(userModel);
+        String token = SharedPrefManager.getInstance(RegistrationActivity.this).getToken();
+
+        if (token != null) {
+            Call<List<NationalIdentityTypesModel>> registrationRequest = retrofitService.GetNationalIdentityTypes();
+
+            try {
+                registrationRequest.enqueue(new Callback<List<NationalIdentityTypesModel>>() {
+                    @Override
+                    public void onResponse(Call<List<NationalIdentityTypesModel>> call, @NonNull Response<List<NationalIdentityTypesModel>> response) {
+
+                        Utilities.showLogcatMessage(" Response 1"+response);
+                        if (response.body() != null) {
+                            for(int i=0;i<response.body().size();i++){
+                                Utilities.showLogcatMessage(" Response "+response.body().get(i).getNationalIdentityName());
+                            }
+
+
+                        } else {
+                            //Toasty.error(RegistrationActivity.this, "SESSION_EXPIRED", Toast.LENGTH_SHORT).show();
+                           /* Intent intent = new Intent(RegistrationActivity.this, List2Activity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);*/
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<NationalIdentityTypesModel>> call, Throwable t) {
+                        Utilities.showLogcatMessage("error " + t.toString());
+                    }
+                });
+
+            } catch (Exception e) {
+            }
+        } else {
+           // Toasty.error(RegistrationActivity.this, "SESSION_EXPIRED", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
 }

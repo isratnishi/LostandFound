@@ -14,17 +14,17 @@
     <string name="citizen">Bangladeshi</string>
     <string name="log_in">Log In</string>
     <string name="registration">Registration</string>
-    <string name="password_forget">Password forget</string>
+    <string name="password_forget">Password Forget</string>
     <string name="remember_password">Remember Password</string>
     <string name="password">Password</string>
     <string name="password_confirmation">Confirm Password</string>
     <string name="user_id">User ID</string>
     <string name="login">Login</string>
-    <string name="or_new_user">Or new user?</string>
-    <string name="nidnum">National ID number</string>
-    <string name="binnum">Birth registration number</string>
-    <string name="passnum">Passport number</string>
-    <string name="expirydate">Expiration date</string>
+    <string name="or_new_user">Or New User?</string>
+    <string name="nidnum">National ID Number</string>
+    <string name="binnum">Birth registration Number</string>
+    <string name="passnum">Passport Number</string>
+    <string name="expirydate">Expire Date</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -46,6 +46,9 @@
     <string name="logout">Logout</string>
     <string name="email">Email (Optional)</string>
     <string name="field_null_error">This field can not be empty</string>
+    <string name="please_choose_one_of_below">Please Choose One of below</string>
+    <string name="purpose_of_visit">Purpose of Visit</string>
+    <string name="please_fill_up_your_imigartion_address">Please fill up your imigartion address</string>
 
 
 </resources>

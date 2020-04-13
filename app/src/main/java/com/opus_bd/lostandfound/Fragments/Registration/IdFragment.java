@@ -13,8 +13,7 @@ import android.widget.TextView;
 
 import com.opus_bd.lostandfound.GeneralPeople.RegistrationActivity;
 import com.opus_bd.lostandfound.R;
-import com.opus_bd.lostandfound.RegistrationProcessActivity;
-import com.opus_bd.lostandfound.Utils.Constants;
+import com.opus_bd.lostandfound.Activity.RegistrationProcessActivity;
 import com.opus_bd.lostandfound.Utils.MessageEvent;
 import com.opus_bd.lostandfound.Utils.Utilities;
 
@@ -88,7 +87,7 @@ public class IdFragment extends Fragment {
 
           EventBus.getDefault().post(new MessageEvent(true));
           ((RegistrationActivity) getActivity()).selectPage(1);*/
-
+RegistrationProcessActivity.NationalIdentityType="1";
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.setCustomAnimations(R.animator.fragment_slide_left_enter,
                 R.animator.fragment_slide_left_exit);
@@ -106,7 +105,7 @@ public class IdFragment extends Fragment {
 
           EventBus.getDefault().post(new MessageEvent(true));
           ((RegistrationActivity) getActivity()).selectPage(1);*/
-
+        RegistrationProcessActivity.NationalIdentityType="2";
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.setCustomAnimations(R.animator.fragment_slide_left_enter,
                 R.animator.fragment_slide_left_exit);
@@ -120,6 +119,7 @@ public class IdFragment extends Fragment {
         idFragment.setInputID(3);
         idFragment.setPassId(passid);
         Utilities.showLogcatMessage("passid 1"+passid);
+        RegistrationProcessActivity.NationalIdentityType="3";
         /*  RegistrationActivity.id=1;
 
           EventBus.getDefault().post(new MessageEvent(true));

@@ -14,10 +14,10 @@ public class SharedPrefManager {
     private static SharedPrefManager mInstance;
     private Context mCtx;
     private static final String KEY_TOKEN = "token";
-    private static final String KEY_ORDERS = "orders";
+    private static final String KEY_OTP = "otp";
+    private static final String KEY_USER = "User";
     public static final String BEARER = "Bearer ";
     public static final String KEY_State = "state";
-
 
 
     private SharedPrefManager(Context context) {
@@ -51,6 +51,46 @@ public class SharedPrefManager {
         return sharedPreferences.getString(KEY_TOKEN, null);
     }
 
+    public void saveotp(String token) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_OTP, token);
+        editor.apply();
+    }
+
+    public void clearotp() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
+                Context.MODE_PRIVATE);
+        sharedPreferences.edit().remove(KEY_OTP).apply();
+    }
+
+    public String getotp() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
+                Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_OTP, null);
+    }
+
+    public void saveUser(String token) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_USER, token);
+        editor.apply();
+    }
+
+    public void clearUser() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
+                Context.MODE_PRIVATE);
+        sharedPreferences.edit().remove(KEY_USER).apply();
+    }
+
+    public String getUser() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
+                Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER, null);
+    }
+
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
                 Context.MODE_PRIVATE);
@@ -82,7 +122,7 @@ public class SharedPrefManager {
 
     /*public ArrayList<SaleModel> getSavedSales() {
         List<SaleModel> tempOrders = new ArrayList<>();
-
+1111111111111111111111111111
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
                 Context.MODE_PRIVATE);
 
@@ -100,9 +140,5 @@ public class SharedPrefManager {
         return (ArrayList<SaleModel>) tempOrders;
     }*/
 
-    public void clearSales() {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
-                Context.MODE_PRIVATE);
-        sharedPreferences.edit().remove(KEY_ORDERS).apply();
-    }
+
 }

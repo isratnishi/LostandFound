@@ -30,12 +30,11 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.opus_bd.lostandfound.GeneralPeople.Main2Activity;
+import com.opus_bd.lostandfound.Activity.RegistrationProcessActivity;
+import com.opus_bd.lostandfound.Activity.DashboardActivity;
 import com.opus_bd.lostandfound.Utils.Constants;
-import com.opus_bd.lostandfound.Utils.LocaleHelper;
 import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
-import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +46,6 @@ import butterknife.OnClick;
 
 import static com.opus_bd.lostandfound.Utils.LocaleHelper.setLocale;
 import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.KEY_State;
-import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.SHARED_PREF_NAME;
 
 public class Login2Activity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -202,7 +200,7 @@ public class Login2Activity extends AppCompatActivity implements GoogleApiClient
 
     @OnClick(R.id.btnLogIn)
     public void btnLogIn() {
-        Intent intent = new Intent(Login2Activity.this, Main2Activity.class);
+        Intent intent = new Intent(Login2Activity.this, DashboardActivity.class);
 
         startActivity(intent);
     }
