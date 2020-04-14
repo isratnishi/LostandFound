@@ -1,19 +1,25 @@
 package com.opus_bd.lostandfound.Fragments.Registration;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.location.LocationListener;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Activity.RegistrationProcessActivity;
 import com.opus_bd.lostandfound.Utils.MessageEvent;
+import com.opus_bd.lostandfound.Utils.Utilities;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -24,7 +30,11 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddressVerificationFragment extends Fragment {
+public class AddressVerificationFragment extends Fragment{
+
+
+
+
     @BindView(R.id.llnid)
     LinearLayout llnid;
     @BindView(R.id.llnid2)
@@ -45,7 +55,9 @@ public class AddressVerificationFragment extends Fragment {
             llnid.setVisibility(View.GONE);
         }
         return v;
+
     }
+
 
     @OnClick({R.id.buttonYes, R.id.textNext})
     public void btnLogIn() {

@@ -1,6 +1,7 @@
 package com.opus_bd.lostandfound.RetrofitService;
 
 
+import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.NationalIdentityTypesModel;
 import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.Model.User.UserAuthModel;
@@ -28,4 +29,11 @@ public interface RetrofitService {
 //Documentation
     @GET("api/DocumentMaster/GetNationalIdentityTypes")
     Call<List<NationalIdentityTypesModel>> GetNationalIdentityTypes();
+
+
+    //Dashboard
+    @POST("api/LostFound/SaveGDInformation")
+    Call<String> SaveGDInformation(@Header("Authorization") String token,@Body GDInformationModel gdInformationModel);
+
+
 }
