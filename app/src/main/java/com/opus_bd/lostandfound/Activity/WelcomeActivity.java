@@ -162,12 +162,12 @@ public void LocationCheck(){
 
     public void showDialog() {
 
-        //Uncomment the below code to Set the message and title from the strings.xml file
+        //Uncomment the below code to Set the message and title from the strings.xm
+        // /l file
         //Setting message manually and performing action on button click
-        builder.setMessage("THANKS For connected with us, For more information contact in the customer  care. \n \n" +
-                "আমাদের সাথে সংযুক্ত থাকার জন্য, গ্রাহক যত্নে আরও তথ্যের যোগাযোগের জন্য ধন্যবাদ \n \nJuel Rana\n" +
+        builder.setMessage("Thanks for being connected with Bangladesh Police.  Contact for facing any problems related to the software application \n \n" +
+                "বাংলাদেশ পুলিশের সাথে যুক্ত থাকার জন্য ধন্যবাদ। অ্যাপলিকেশনের যাবতীয় সমস্যার জন্য যোগাযোগ করুন " +
                 "Bangladesh Police\n" +
-                "Crime Investigation Branch \n" +
                 "01737366028.")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
