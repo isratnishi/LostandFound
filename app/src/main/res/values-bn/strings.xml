@@ -12,7 +12,7 @@
 
     <string name="address_verification_request">জাতীয় পরিচয় পত্রের ঠিকানাটা কি আপনি বর্তমান ঠিকানা হিসেবে ব্যবহার করবেন?</string>
     <string name="foreigner">বিদেশী</string>
-    <string name="citizen">নাগরিক</string>
+    <string name="citizen">বাংলাদেশী</string>
 
     <string name="log_in">লগইন</string>
     <string name="registration">নিবন্ধন</string>
@@ -45,4 +45,11 @@
     <string name="allegation">অভিযোগ</string>
     <string name="investigation">তদন্তাধীন</string>
     <string name="disposal">নিষ্পত্তি</string>
+    <string name="logout">Logout</string>
+    <string name="email">ইমেল (Optional)</string>
+    <string name="field_null_error">This field can not be empty</string>
+
+    <string name="please_choose_one_of_below">Please Choose One of below</string>
+    <string name="purpose_of_visit">Purpose of Visit</string>
+    <string name="please_fill_up_your_imigartion_address">আপনার ইমিগ্রেশন ঠিকানা পূরণ করুন</string>
 </resources>

@@ -52,7 +52,7 @@
     </item>-->
     <item
 
-        android:top="450dp">
+        android:top="350dp">
 
         <bitmap android:src="@drawable/app_bg_crop"
 

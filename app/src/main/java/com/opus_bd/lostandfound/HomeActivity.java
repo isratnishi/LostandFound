@@ -5,15 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 
-import com.opus_bd.lostandfound.GeneralPeople.GPHomeActivity;
 import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
-import com.opus_bd.lostandfound.Utils.Utilities;
-
-import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -67,9 +62,9 @@ public class HomeActivity extends AppCompatActivity {
         changeLanguage(Constants.BANGLA);
          /*setLocal(Constants.BANGLA);
         loadLocal();*/
-        Intent intent = new Intent(HomeActivity.this, GPHomeActivity.class);
+        //Intent intent = new Intent(HomeActivity.this, GPHomeActivity.class);
 
-        startActivity(intent);
+      //  startActivity(intent);
     }
 
     @OnClick(R.id.button2)
@@ -81,8 +76,8 @@ public class HomeActivity extends AppCompatActivity {
         changeLanguage(Constants.ENGLISH);
         /*setLocal(Constants.ENGLISH);
         loadLocal();*/
-        Intent intent = new Intent(HomeActivity.this, GPHomeActivity.class);
-        startActivity(intent);
+        /*Intent intent = new Intent(HomeActivity.this, GPHomeActivity.class);
+        startActivity(intent);*/
     }
 
    /* private void setLocal(String lang) {

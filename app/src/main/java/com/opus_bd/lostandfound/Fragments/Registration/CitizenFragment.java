@@ -4,16 +4,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.opus_bd.lostandfound.Fragments.Registration.IdFragment;
-import com.opus_bd.lostandfound.GeneralPeople.RegistrationActivity;
 import com.opus_bd.lostandfound.R;
-import com.opus_bd.lostandfound.RegistrationProcessActivity;
+import com.opus_bd.lostandfound.Activity.RegistrationProcessActivity;
 import com.opus_bd.lostandfound.Utils.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -38,6 +35,7 @@ public class CitizenFragment extends Fragment {
     public void btnLogIn() {
         IdFragment idFragment=new IdFragment();
         idFragment.setIid(1);
+        RegistrationProcessActivity.citizen="Bangladeshi";
         /*  RegistrationActivity.id=1;
 
           EventBus.getDefault().post(new MessageEvent(true));
@@ -54,6 +52,8 @@ public class CitizenFragment extends Fragment {
 
         IdFragment idFragment=new IdFragment();
         idFragment.setIid(2);
+        RegistrationProcessActivity.citizen="Foreigner";
+
         /*  RegistrationActivity.id=1;
 
           EventBus.getDefault().post(new MessageEvent(true));
