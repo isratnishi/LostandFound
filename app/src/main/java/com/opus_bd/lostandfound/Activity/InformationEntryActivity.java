@@ -90,7 +90,8 @@ public class InformationEntryActivity extends AppCompatActivity {
     @BindView(R.id.cvItems)
     CardView cvItems;
     @BindView(R.id.etUserName)
-    EditText etUserName;  @BindView(R.id.etNumber)
+    EditText etUserName;
+    @BindView(R.id.etNumber)
     EditText etNumber;
     @BindView(R.id.cvInput)
     CardView cvInput;
@@ -162,7 +163,7 @@ public class InformationEntryActivity extends AppCompatActivity {
         LLInputForOthers.setVisibility(View.GONE);
         // llEntry.setVisibility(View.GONE);
         cvItems.setVisibility(View.VISIBLE);
-      LLItems.setVisibility(View.VISIBLE);
+        LLItems.setVisibility(View.VISIBLE);
         iv3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         v2.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
 
@@ -190,7 +191,9 @@ public class InformationEntryActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
-    } @OnClick(R.id.btnEntryInput)
+    }
+
+    @OnClick(R.id.btnEntryInput)
     public void btnEntryInput() {
         submitToServer();
        /* Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
@@ -214,7 +217,7 @@ public class InformationEntryActivity extends AppCompatActivity {
 
 
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-        Call<String> registrationRequest = retrofitService.SaveGDInformation(token,gdInformationModel);
+        Call<String> registrationRequest = retrofitService.SaveGDInformation(token, gdInformationModel);
         registrationRequest.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -261,13 +264,12 @@ public class InformationEntryActivity extends AppCompatActivity {
             }
         });
     }
-    
-    
-    
+
+
     //Spinner 
 
     public void getAllDocument() {
-        
+
         String token = SharedPrefManager.getInstance(this).getToken();
         if (token != null) {
             RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
@@ -280,10 +282,9 @@ public class InformationEntryActivity extends AppCompatActivity {
 
                         documentTypeArrayList.clear();
                         documentTypeArrayList.addAll(response.body());
-                        Utilities.showLogcatMessage(" Div Size "+response.body().size());
-                        for(int i=0;i<response.body().size();i++)
-                        {
-                            Utilities.showLogcatMessage(" Div ID"+response.body().get(i).getId());
+                        Utilities.showLogcatMessage(" Div Size " + response.body().size());
+                        for (int i = 0; i < response.body().size(); i++) {
+                            Utilities.showLogcatMessage(" Div ID" + response.body().get(i).getId());
                         }
 
                         addDocumentTypeNamePresentSpinnerData(response.body());
@@ -305,13 +306,13 @@ public class InformationEntryActivity extends AppCompatActivity {
 
 
     public void addDocumentTypeNamePresentSpinnerData(final List<DocumentType> body) {
-        List<String> scheduleList = new ArrayList<>();
+        List<String> documentList = new ArrayList<>();
         for (int i = 0; i < body.size(); i++) {
-            scheduleList.add(body.get(i).getDocumentTypeName());
+            documentList.add(body.get(i).getDocumentTypeName());
         }
 
 
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, scheduleList);
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, documentList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnDocumentType.setAdapter(dataAdapter2);
         spnDocumentType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
