@@ -2,6 +2,7 @@ package com.opus_bd.lostandfound.Activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
@@ -10,6 +11,8 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,12 +20,16 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
+import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
 import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -94,6 +101,13 @@ public class InformationEntryActivity extends AppCompatActivity {
 
     @BindView(R.id.fabOther)
     FloatingActionButton fabOther;
+    //Spinner
+    @BindView(R.id.spnDocumentType)
+    AppCompatSpinner spnDocumentType;
+
+    ArrayList<DocumentType> documentTypeArrayList = new ArrayList<>();
+    public int SELECTED_DOCUMENT_ID;
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -105,6 +119,10 @@ public class InformationEntryActivity extends AppCompatActivity {
         LLInputForOthers.setVisibility(View.GONE);
         llEntry.setVisibility(View.GONE);
         iv1.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
+
+
+        //Spinner
+        getAllDocument();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -190,7 +208,7 @@ public class InformationEntryActivity extends AppCompatActivity {
 
         gdInformationModel.setGdFor("2");
         gdInformationModel.setGdDate("2020-04-14");
-        gdInformationModel.setDocumentTypeId(1);
+        gdInformationModel.setDocumentTypeId(SELECTED_DOCUMENT_ID);
         gdInformationModel.setIdentityNo(etNumber.getText().toString());
         // registrationModel.setOtpCode(etNidNum.getText().toString());
 
@@ -218,7 +236,7 @@ public class InformationEntryActivity extends AppCompatActivity {
                             Toast.makeText(context, "Something went Wrong! Please try again later", Toast.LENGTH_SHORT).show();
                         }*/
 
-                        Toast.makeText(InformationEntryActivity.this, "Successfully Registered in!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(InformationEntryActivity.this, "Successfully Done!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -239,6 +257,76 @@ public class InformationEntryActivity extends AppCompatActivity {
                 Utilities.showLogcatMessage("Fail to connect " + t.toString());
                 // Utilities.hideProgress(LoginActivity.this);
                 Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+    
+    
+    
+    //Spinner 
+
+    public void getAllDocument() {
+        
+        String token = SharedPrefManager.getInstance(this).getToken();
+        if (token != null) {
+            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+            Call<List<DocumentType>> registrationRequest = retrofitService.GetAllDocumentType();
+            registrationRequest.enqueue(new Callback<List<DocumentType>>() {
+                @Override
+                public void onResponse(Call<List<DocumentType>> call, Response<List<DocumentType>> response) {
+
+                    if (response.body() != null) {
+
+                        documentTypeArrayList.clear();
+                        documentTypeArrayList.addAll(response.body());
+                        Utilities.showLogcatMessage(" Div Size "+response.body().size());
+                        for(int i=0;i<response.body().size();i++)
+                        {
+                            Utilities.showLogcatMessage(" Div ID"+response.body().get(i).getId());
+                        }
+
+                        addDocumentTypeNamePresentSpinnerData(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<DocumentType>> call, Throwable t) {
+                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+
+
+    public void addDocumentTypeNamePresentSpinnerData(final List<DocumentType> body) {
+        List<String> scheduleList = new ArrayList<>();
+        for (int i = 0; i < body.size(); i++) {
+            scheduleList.add(body.get(i).getDocumentTypeName());
+        }
+
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, scheduleList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnDocumentType.setAdapter(dataAdapter2);
+        spnDocumentType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_DOCUMENT_ID = body.get(i).getId();
+
+                } else {
+                    SELECTED_DOCUMENT_ID = 1;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
