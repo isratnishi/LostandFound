@@ -6,18 +6,30 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
+import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.R;
+import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
+import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
+import com.opus_bd.lostandfound.Utils.Utilities;
+import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class InformationEntryActivity extends AppCompatActivity {
     @BindView(R.id.llVOwn)
@@ -70,6 +82,9 @@ public class InformationEntryActivity extends AppCompatActivity {
 
     @BindView(R.id.cvItems)
     CardView cvItems;
+    @BindView(R.id.etUserName)
+    EditText etUserName;  @BindView(R.id.etNumber)
+    EditText etNumber;
     @BindView(R.id.cvInput)
     CardView cvInput;
     @BindView(R.id.fabOwn)
@@ -159,10 +174,73 @@ public class InformationEntryActivity extends AppCompatActivity {
 
     } @OnClick(R.id.btnEntryInput)
     public void btnEntryInput() {
-        Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
+        submitToServer();
+       /* Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        startActivity(intent);*/
 
+    }
+
+
+    private void submitToServer() {
+
+        String token = SharedPrefManager.getInstance(this).getToken();
+        final GDInformationModel gdInformationModel = new GDInformationModel();
+
+        gdInformationModel.setGdFor("2");
+        gdInformationModel.setGdDate("2020-04-14");
+        gdInformationModel.setDocumentTypeId(1);
+        gdInformationModel.setIdentityNo(etNumber.getText().toString());
+        // registrationModel.setOtpCode(etNidNum.getText().toString());
+
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<String> registrationRequest = retrofitService.SaveGDInformation(token,gdInformationModel);
+        registrationRequest.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                try {
+                    if (response.body() != null) {
+                        Utilities.showLogcatMessage("responce");
+
+
+                     /*   try{
+                            String auth=response.body().getJwt().replace("{\"auth_token\":\"","");
+                            String auth1=auth.replace("\"}","");
+                            Utilities.showLogcatMessage(" "+auth1);
+                            SharedPrefManager.getInstance(context).saveToken(auth1);
+                            SharedPrefManager.getInstance(context).saveotp(response.body().getOtpCode());
+                            SharedPrefManager.getInstance(context).saveotp(response.body().getUserInfo().getUserName());
+                        }
+                        catch (Exception e) {
+                            Utilities.showLogcatMessage("Exception 1"+e.toString());
+                            Toast.makeText(context, "Something went Wrong! Please try again later", Toast.LENGTH_SHORT).show();
+                        }*/
+
+                        Toast.makeText(InformationEntryActivity.this, "Successfully Registered in!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+
+                    } else {
+                        Toast.makeText(InformationEntryActivity.this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage("Exception 2" + e.toString());
+                    Toast.makeText(InformationEntryActivity.this, "Something went Wrong! Please try again later", Toast.LENGTH_SHORT).show();
+                }
+                //            showProgressBar(false);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Utilities.showLogcatMessage("Fail to connect " + t.toString());
+                // Utilities.hideProgress(LoginActivity.this);
+                Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 }

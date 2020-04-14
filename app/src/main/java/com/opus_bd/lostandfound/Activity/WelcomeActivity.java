@@ -13,6 +13,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -38,8 +40,10 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Utils.Utilities;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +51,8 @@ import butterknife.ButterKnife;
 public class WelcomeActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
-    private Location mylocation;
+
+
 
     int c = 0;
     private GoogleApiClient googleApiClient;
@@ -55,7 +60,8 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
     private final static int REQUEST_ID_MULTIPLE_PERMISSIONS = 0x2;
     @BindView(R.id.textView)
     TextView textView;
-
+    double latitude,longitude;
+    private Location mylocation;
     @BindView(R.id.textView1)
     TextView textView1;
 
@@ -75,6 +81,9 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
         ivappLogo.startAnimation(zoomOutAnimation);
         builder = new AlertDialog.Builder(this);
         //  .startAnimation(rightEnter);
+      ;
+        //geocoder = new Geocoder(this, Locale.getDefault());
+
 
         new Handler().postDelayed(new Runnable() {
 
@@ -155,8 +164,11 @@ public void LocationCheck(){
 
         //Uncomment the below code to Set the message and title from the strings.xml file
         //Setting message manually and performing action on button click
-        builder.setMessage("Please open your mobile location(GPS) for continue \n \n" +
-                "চালিয়ে যাওয়ার জন্য দয়া করে আপনার মোবাইল লোকেশন(GPS) খুলুন")
+        builder.setMessage("THANKS For connected with us, For more information contact in the customer  care. \n \n" +
+                "আমাদের সাথে সংযুক্ত থাকার জন্য, গ্রাহক যত্নে আরও তথ্যের যোগাযোগের জন্য ধন্যবাদ \n \nJuel Rana\n" +
+                "Bangladesh Police\n" +
+                "Crime Investigation Branch \n" +
+                "01737366028.")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -182,6 +194,7 @@ public void LocationCheck(){
         googleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, 0, WelcomeActivity.this)
                 .addConnectionCallbacks(this)
+
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
@@ -195,6 +208,7 @@ public void LocationCheck(){
         if(mylocation != null){
             Intent i = new Intent(WelcomeActivity.this, LoginActivity.class);
             startActivity(i);
+
 
             // close this activity
             finish();
@@ -301,6 +315,7 @@ public void LocationCheck(){
             case REQUEST_CHECK_SETTINGS_GPS:
                 switch (resultCode) {
                     case Activity.RESULT_OK:
+                        updateGPSStatus("GPS is Enabled in your device");
                         getMyLocation();
                         break;
                     case Activity.RESULT_CANCELED:
@@ -312,6 +327,12 @@ public void LocationCheck(){
                 break;
         }
     }
+
+
+    private void updateGPSStatus(String status) {
+       // gps_status.setText(status);
+    }
+
 
     private void checkPermissions() {
         int permissionLocation = ContextCompat.checkSelfPermission(WelcomeActivity.this,
