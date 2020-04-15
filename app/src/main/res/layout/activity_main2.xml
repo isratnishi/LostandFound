@@ -33,10 +33,25 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:contentInsetStartWithNavigation="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:subtitle="welcome to Lost and found"
-                app:subtitleTextAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                app:subtitleTextColor="@color/grey_10"
-                app:title="Hi, User" />
+                 >
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:layout_width="50dp"
+                    android:layout_margin="5dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/card_backgound"/>
+                <TextView
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:text="Hi, User"
+                    android:layout_margin="5dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@color/grey_10"
+                    />
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_home"/>
+            </androidx.appcompat.widget.Toolbar>
 
             <LinearLayout
                 android:layout_width="match_parent"

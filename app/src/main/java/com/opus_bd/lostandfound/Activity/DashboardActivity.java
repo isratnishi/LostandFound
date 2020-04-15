@@ -104,11 +104,11 @@ public class DashboardActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_menu,menu);
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
     /*@OnClick(R.id.button1)
     public void button1() {
         Intent intent = new Intent(Main2Activity.this, InformationEntryActivity.class);

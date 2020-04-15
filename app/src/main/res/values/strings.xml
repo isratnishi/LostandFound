@@ -44,11 +44,17 @@
     <string name="investigation">Investigation</string>
     <string name="disposal">Disposal</string>
     <string name="logout">Logout</string>
-    <string name="email">Email (Optional)</string>
+    <string name="email_op">Email (Optional)</string>
+    <string name="email">Email</string>
     <string name="field_null_error">This field can not be empty</string>
     <string name="please_choose_one_of_below">Please Choose One of below</string>
     <string name="purpose_of_visit">Purpose of Visit</string>
     <string name="please_fill_up_your_imigartion_address">Please fill up your imigartion address</string>
+    <string name="support">Support</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="live_chat">Live Chat</string>
+    <string name="live_call">Live Call</string>
+
 
 
 </resources>
