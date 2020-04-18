@@ -16,11 +16,14 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
+import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
+import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
 import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
@@ -30,6 +33,7 @@ import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -63,7 +67,6 @@ public class InformationEntryActivity extends AppCompatActivity {
     @BindView(R.id.iv4)
     ImageView iv4;
 
-
     @BindView(R.id.v1)
     View v1;
     @BindView(R.id.v2)
@@ -71,29 +74,35 @@ public class InformationEntryActivity extends AppCompatActivity {
     @BindView(R.id.v3)
     View v3;
 
-
-
-
    /* @BindView(R.id.cvVOwn)
     CardView cvVOwn;
 
     @BindView(R.id.cvVOthers)
     CardView cvVOthers;
 
-
-
-
-
     @BindView(R.id.cvEntry)
     CardView cvEntry;*/
 
+    @BindView(R.id.etModel)
+    EditText etModel;
+
+//    @BindView(R.id.etBrand)
+//    EditText etBrand;
+
+    @BindView(R.id.etRegNoName)
+    EditText etRegNoName;
+
+    @BindView(R.id.etEngineNo)
+    EditText etEngineNo;
+
     @BindView(R.id.cvItems)
     CardView cvItems;
-    @BindView(R.id.etUserName)
-    EditText etUserName;
+    /*@BindView(R.id.etUserName)
+    EditText etUserName;*/
     @BindView(R.id.etNumber)
     EditText etNumber;
     @BindView(R.id.cvInput)
+
     CardView cvInput;
     @BindView(R.id.fabOwn)
     FloatingActionButton fabOwn;
@@ -106,9 +115,20 @@ public class InformationEntryActivity extends AppCompatActivity {
     @BindView(R.id.spnDocumentType)
     AppCompatSpinner spnDocumentType;
 
-    ArrayList<DocumentType> documentTypeArrayList = new ArrayList<>();
-    public int SELECTED_DOCUMENT_ID;
+    @BindView(R.id.spnVehicleType)
+    AppCompatSpinner spnVehicleType;
 
+    @BindView(R.id.spnMadeBy)
+    AppCompatSpinner spnMadeBy;
+
+    ArrayList<DocumentType> documentTypeArrayList = new ArrayList<>();
+    ArrayList<VehicleType> vehicleTypeArrayList = new ArrayList<>();
+    ArrayList<VehicleModel> VehicleModelArrayList = new ArrayList<>();
+    public int SELECTED_DOCUMENT_ID;
+    public int SELECTED_VEHICLETYPE_ID;
+    public String SELECTED_VEHICLEMODEL_Name;
+
+    //private Spinner spinner2;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -124,6 +144,8 @@ public class InformationEntryActivity extends AppCompatActivity {
 
         //Spinner
         getAllDocument();
+        getAllVehicleType();
+        //addItemsOnSpinner2();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -209,10 +231,20 @@ public class InformationEntryActivity extends AppCompatActivity {
         String token = SharedPrefManager.getInstance(this).getToken();
         final GDInformationModel gdInformationModel = new GDInformationModel();
 
+      ////  gdInformationModel.setUserName(etUserName.toString());
         gdInformationModel.setGdFor("2");
         gdInformationModel.setGdDate("2020-04-14");
-        gdInformationModel.setDocumentTypeId(SELECTED_DOCUMENT_ID);
         gdInformationModel.setIdentityNo(etNumber.getText().toString());
+        gdInformationModel.setGDTypeId(1);
+        gdInformationModel.setProductTypeId(1);
+
+        gdInformationModel.setDocumentTypeId(SELECTED_DOCUMENT_ID);
+        gdInformationModel.setDocumentDescription("");
+
+        gdInformationModel.setVehicleTypeId(SELECTED_VEHICLETYPE_ID);
+        gdInformationModel.setModelNo(etModel.getText().toString());
+        gdInformationModel.setEngineNo(etEngineNo.getText().toString());
+        gdInformationModel.setMadeBy(SELECTED_VEHICLEMODEL_Name);
         // registrationModel.setOtpCode(etNidNum.getText().toString());
 
 
@@ -332,4 +364,149 @@ public class InformationEntryActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void getAllVehicleType() {
+
+        String token = SharedPrefManager.getInstance(this).getToken();
+        if (token != null) {
+            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+            Call<List<VehicleType>> vehicleTypes = retrofitService.GetVehicleTypes();
+            vehicleTypes.enqueue(new Callback<List<VehicleType>>() {
+                @Override
+                public void onResponse(Call<List<VehicleType>> call, Response<List<VehicleType>> response) {
+
+                    if (response.body() != null) {
+
+                        vehicleTypeArrayList.clear();
+                        vehicleTypeArrayList.addAll(response.body());
+                        Utilities.showLogcatMessage(" Div Size " + response.body().size());
+                        for (int i = 0; i < response.body().size(); i++) {
+                            Utilities.showLogcatMessage(" Div ID" + response.body().get(i).getId());
+                        }
+
+                        addVehicleTypeNamePresentSpinnerData(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<VehicleType>> call, Throwable t) {
+                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+
+    public void addVehicleTypeNamePresentSpinnerData(final List<VehicleType> body) {
+        List<String> vehicleList = new ArrayList<>();
+        //vehicleList.add("যানবাহনের ধরণ");
+        for (int i = 0; i < body.size(); i++) {
+            vehicleList.add(body.get(i).getVehicleTypeName());
+        }
+
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, vehicleList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnVehicleType.setAdapter(dataAdapter2);
+        spnVehicleType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_VEHICLETYPE_ID = body.get(i).getId();
+                    getAllVehicleModel(body.get(i).getId());
+                } else {
+                    SELECTED_VEHICLETYPE_ID = 1;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getAllVehicleModel(int id) {
+
+        String token = SharedPrefManager.getInstance(this).getToken();
+        if (token != null) {
+            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+            Call<List<VehicleModel>> vehicleModels = retrofitService.GetVehicleModelByVehicleId(id);
+            vehicleModels.enqueue(new Callback<List<VehicleModel>>() {
+                @Override
+                public void onResponse(Call<List<VehicleModel>> call, Response<List<VehicleModel>> response) {
+
+                    if (response.body() != null) {
+
+                        VehicleModelArrayList.clear();
+                        VehicleModelArrayList.addAll(response.body());
+                        Utilities.showLogcatMessage(" Div Size " + response.body().size());
+                        for (int i = 0; i < response.body().size(); i++) {
+                            Utilities.showLogcatMessage(" Div ID" + response.body().get(i).getId());
+                        }
+
+                        addVehicleMadyBySpinnerData(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<VehicleModel>> call, Throwable t) {
+                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+
+    public void addVehicleMadyBySpinnerData(final List<VehicleModel> body) {
+        List<String> vehicleMadyBy = new ArrayList<>();
+//        vehicleMadyBy.add("্রান্ডের নাম");
+        for (int i = 0; i < body.size(); i++) {
+            vehicleMadyBy.add(body.get(i).getModelName());
+        }
+
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, vehicleMadyBy);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnMadeBy.setAdapter(dataAdapter2);
+        spnMadeBy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_VEHICLEMODEL_Name = body.get(i).getModelName();
+                } else {
+                    SELECTED_VEHICLEMODEL_Name = "";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    // add items into spinner dynamically
+//    public void addItemsOnSpinner2() {
+//
+//        spinner2 = (Spinner) findViewById(R.id.spinner2);
+//        List<String> list = new ArrayList<String>();
+//        list.add("list 1");
+//        list.add("list 2");
+//        list.add("list 3");
+//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_spinner_item, list);
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner2.setAdapter(dataAdapter);
+//    }
+
+
 }

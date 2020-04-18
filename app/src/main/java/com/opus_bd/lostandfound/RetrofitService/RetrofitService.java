@@ -4,6 +4,8 @@ package com.opus_bd.lostandfound.RetrofitService;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.Model.Documentaion.NationalIdentityTypesModel;
+import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
+import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
 import com.opus_bd.lostandfound.Model.GlobalData.District;
 import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.Model.User.UserAuthModel;
@@ -45,4 +47,11 @@ public interface RetrofitService {
 
     @GET("api/AddressMaster/GetDistrictByDivisionId/{id}")
     Call<List<District>> getAllDistricts(@Path("id") int id);
+
+    @GET("api/DocumentMaster/GetVehicleTypes")
+    Call<List<VehicleType>> GetVehicleTypes();
+
+    @GET("api/DocumentMaster/GetVehicleModelByVehicleId/{id}")
+    Call<List<VehicleModel>> GetVehicleModelByVehicleId(@Path("id") int id);
+
 }
