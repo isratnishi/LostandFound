@@ -79,16 +79,10 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
         checkPermissions();
         checkPermissionsPhn();
         Animation rightEnter = AnimationUtils.loadAnimation(this, R.anim.right_enter);
-        Animation leftEnter = AnimationUtils.loadAnimation(this, R.anim.left_enter);
-        textView.startAnimation(rightEnter);
+         textView.startAnimation(rightEnter);
         Animation zoomOutAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_out);
         ivappLogo.startAnimation(zoomOutAnimation);
         builder = new AlertDialog.Builder(this);
-        //  .startAnimation(rightEnter);
-      ;
-        //geocoder = new Geocoder(this, Locale.getDefault());
-
-
         new Handler().postDelayed(new Runnable() {
 
             /*
@@ -108,68 +102,11 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
         }, SPLASH_TIME_OUT);
     }
 
-public void LocationCheck(){
-    LocationManager lm = (LocationManager)
-            getSystemService(Context. LOCATION_SERVICE ) ;
-    boolean gps_enabled = false;
-    boolean network_enabled = false;
-    try {
-        gps_enabled = lm.isProviderEnabled(LocationManager. GPS_PROVIDER ) ;
-        Intent i = new Intent(WelcomeActivity.this, LoginActivity.class);
-        startActivity(i);
 
-        // close this activity
-        finish();
-    } catch (Exception e) {
-        e.printStackTrace() ;
-    }
-    try {
-        network_enabled = lm.isProviderEnabled(LocationManager. NETWORK_PROVIDER ) ;
-        Intent i = new Intent(WelcomeActivity.this, LoginActivity.class);
-        startActivity(i);
-
-        // close this activity
-        finish();
-    } catch (Exception e) {
-        e.printStackTrace() ;
-    }
-    if (!gps_enabled && !network_enabled) {
-        new AlertDialog.Builder(WelcomeActivity. this )
-                .setMessage( "GPS Enable" )
-                .setPositiveButton( "Settings" , new
-                        DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick (DialogInterface paramDialogInterface , int paramInt) {
-                                startActivity( new Intent(Settings. ACTION_LOCATION_SOURCE_SETTINGS )) ;
-                            }
-                        })
-                .setNegativeButton( "Cancel" , new
-                        DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick (DialogInterface paramDialogInterface , int paramInt) {
-                                finish();
-                               // startActivity( new Intent(Settings. ACTION_LOCATION_SOURCE_SETTINGS )) ;
-                            }
-                        } )
-                .show() ;
-    }
-}
-    /*@OnClick(R.id.rootLayout)
-    public void lorootLayoutgin() {
-        Intent intent = new Intent(WelcomeActivity.this, HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }*/
-
-// location cHeck
 
     public void showDialog() {
 
-        //Uncomment the below code to Set the message and title from the strings.xm
-        // /l file
-        //Setting message manually and performing action on button click
-        builder.setMessage("For any information or assistance regarding Lost and Found Apps, contact a duty representative at the Apps Support Center at: +8801737366028" +
+           builder.setMessage("For any information or assistance regarding Lost and Found Apps, contact a duty representative at the Apps Support Center at: +8801737366028" +
                 "\n \nলষ্ট এ্যান্ড ফাউণ্ড অ্যাপস্\u200C সংক্রান্ত যেকোন তথ্য বা সহায়তার জন্য অ্যাপস্\u200C সাপোর্ট সেন্টারে কর্তব্যরত প্রতিনিধির সাথে নিচের নম্বরে যোগাযোগ করুন-\n" +
                 "+৮৮০১৭৩৭৩৬৬০২৮")
                 .setCancelable(false)
@@ -242,13 +179,7 @@ public void LocationCheck(){
            // showDialog();
             finish();
         }
-       /* if (mylocation != null) {
-            Double latitude = mylocation.getLatitude();
-            Double longitude = mylocation.getLongitude();
-            //Or Do whatever you want with your location
 
-
-        }*/
     }
 
 
@@ -343,8 +274,6 @@ public void LocationCheck(){
                         getMyLocation();
                         break;
                     case Activity.RESULT_CANCELED:
-                        Utilities.showLogcatMessage(" No Thanks 1");
-                        //finish();
                         showDialog();
                         break;
                 }

@@ -10,10 +10,10 @@ public class UserInfo {
     private Integer userTypeId;
     @SerializedName("userType")
     @Expose
-    private Object userType;
+    private String userType;
     @SerializedName("FullName")
     @Expose
-    private Object fullName;
+    private String fullName;
     @SerializedName("Citizenship")
     @Expose
     private String citizenship;
@@ -104,19 +104,19 @@ public class UserInfo {
         this.userTypeId = userTypeId;
     }
 
-    public Object getUserType() {
+    public String getUserType() {
         return userType;
     }
 
-    public void setUserType(Object userType) {
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 
-    public Object getFullName() {
+    public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(Object fullName) {
+    public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 

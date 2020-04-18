@@ -3,6 +3,10 @@
     <string name="app_name">Lost And Found</string>
     <string name="lost_found_apps"><![CDATA[LOST & FOUND APPS]]></string>
     <string name="welcome_to">Welcome To bangla</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="bangla">বাংলা</string>
     <string name="english">English</string>
     <string name="location_request">আপনার লোকেশন অবশ্যই চালু রাখুন</string>
@@ -42,6 +46,7 @@
     <string name="gps_network_not_enabled">gps_network_not_enabled</string>
     <string name="open_location_settings">open_location_settings</string>
     <string name="Cancel">বাতিল</string>
+    <string name="Cancel_item">বাতিল (2)</string>
     <string name="allegation">অভিযোগ</string>
     <string name="investigation">তদন্তাধীন</string>
     <string name="disposal">নিষ্পত্তি</string>
@@ -57,4 +62,25 @@
     <string name="forget_password">পাসওয়ার্ড ভুলে গেছেন</string>
     <string name="live_chat">সরাসরি কথোপকথন</string>
     <string name="live_call">লাইভ কল</string>
+    <string name="welcome_to_lost_and_found_application">"লস্ট এন্ড ফাউন্ড অ্যাপ্লিকেশনে আপনাকে স্বাগতম                                লস্ট এন্ড ফাউন্ড অ্যাপ্লিকেশনে আপনাকে স্বাগতম "</string>
+    <string name="vehicle">যানবাহন</string>
+    <string name="information_entry">তথ্য এন্ট্রি</string>
+    <string name="theft">চুরি</string>
+    <string name="to_lose">হারানো</string>
+    <string name="found">পাওয়া</string>
+    <string name="information_search">তথ্য খোঁজা</string>
+    <string name="man">মানুষ</string>
+    <string name="report_status">রিপোর্ট স্থিতি</string>
+    <string name="others">অন্যান্য</string>
+    <string name="tracking_number">ট্র্যাকিং নম্বর</string>
+    <string name="date">তারিখ</string>
+    <string name="status">স্টেটাস</string>
+    <string name="report">রিপোর্ট</string>
+    <string name="doc_type">ডকুমেন্ট ধরণ</string>
+
+
+    <string name="entry_code">আপনার এন্ট্রি সম্পূর্ণ হয়েছে নিচের কোডটি সংরক্ষণ করুন</string>
+    <string name="entry_code1">তথ্য এন্ট্রির জন্যে ধন্যবাদ পরবর্তীতে আপনার সাথে যোগাযোগ করা হবে</string>
+    <string name="entry_code2">আপনার সহায়তায় সর্বদা বাংলাদেশ পুলিশ নিয়োজিত</string>
+    <string name="entry_code3">যেকোনো সাহায্যের জন্য ৯৯৯ নম্বরে কল করুন</string>
 </resources>

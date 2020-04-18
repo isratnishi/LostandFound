@@ -3,15 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/ihelp"
         android:title="@string/help"
-        android:icon="@drawable/ic_help"
-        app:showAsAction="always"
-        android:titleCondensed="@string/help"/>
+        android:iconTint="@color/colorPrimaryDark"
+        android:icon="@drawable/ic_help"/>
+    <item android:id="@+id/iNotification"
+        android:title="Notification"
+
+        android:iconTint="@color/colorPrimaryDark"
+        android:icon="@drawable/ic_notification"/>
 
     <item android:id="@+id/ilogout"
         android:title="@string/logout"
-        android:icon="@drawable/ic_logout"
-        app:showAsAction="always"
-        android:titleCondensed="Logout"/>
+
+        android:iconTint="@color/colorPrimaryDark"
+        android:icon="@drawable/ic_logout"/>
 <!--
    <group>
        <item android:id="@+id/iadd"

@@ -4,6 +4,9 @@
     <string name="app_name">Lost And Found</string>
     <string name="lost_found_apps"><![CDATA[LOST & FOUND APPS]]></string>
     <string name="welcome_to">Welcome To</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="bangla">বাংলা</string>
     <string name="english">English</string>
     <string name="location_request">Keep your location on</string>
@@ -39,10 +42,11 @@
     <string name="gps_network_not_enabled">gps_network_not_enabled</string>
     <string name="open_location_settings">open_location_settings</string>
     <string name="Cancel">Cancel</string>
-    <string name="allegation">Allegation</string>
+    <string name="Cancel_item">Cancel (2)</string>
+    <string name="allegation">Allegation (2)</string>
 
-    <string name="investigation">Investigation</string>
-    <string name="disposal">Disposal</string>
+    <string name="investigation">Investigation (3)</string>
+    <string name="disposal">Disposal (2)</string>
     <string name="logout">Logout</string>
     <string name="email_op">Email (Optional)</string>
     <string name="email">Email</string>
@@ -54,7 +58,25 @@
     <string name="forget_password">Forget Password</string>
     <string name="live_chat">Live Chat</string>
     <string name="live_call">Live Call</string>
+    <string name="welcome_to_lost_and_found_application">"Welcome to Lost and Found Application                                 Welcome to Lost and Found Application"</string>
 
-
+    <string name="information_entry">Information Entry</string>
+    <string name="theft">Theft</string>
+    <string name="to_lose">To lose</string>
+    <string name="found">Found</string>
+    <string name="information_search">Information Search</string>
+    <string name="man">Man</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="report_status">Report Status</string>
+    <string name="others">Others</string>
+    <string name="tracking_number">Tracking Number</string>
+    <string name="date">Date</string>
+    <string name="status">Status</string>
+    <string name="report">Report</string>
+    <string name="doc_type">ডকুমেন্ট ধরণ</string>
+    <string name="entry_code">Your entry is complete save the code below</string>
+    <string name="entry_code1">Thanks for the information entry You\'ll be contacted later</string>
+    <string name="entry_code2">Bangladesh Police is always deployed with your help</string>
+    <string name="entry_code3">Call 999 for any help</string>
 
 </resources>

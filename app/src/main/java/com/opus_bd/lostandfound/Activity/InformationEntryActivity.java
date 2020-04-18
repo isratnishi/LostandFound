@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -70,23 +71,6 @@ public class InformationEntryActivity extends AppCompatActivity {
     View v2;
     @BindView(R.id.v3)
     View v3;
-
-
-
-
-   /* @BindView(R.id.cvVOwn)
-    CardView cvVOwn;
-
-    @BindView(R.id.cvVOthers)
-    CardView cvVOthers;
-
-
-
-
-
-    @BindView(R.id.cvEntry)
-    CardView cvEntry;*/
-
     @BindView(R.id.cvItems)
     CardView cvItems;
     @BindView(R.id.etUserName)
@@ -104,7 +88,7 @@ public class InformationEntryActivity extends AppCompatActivity {
     FloatingActionButton fabOther;
     //Spinner
     @BindView(R.id.spnDocumentType)
-    AppCompatSpinner spnDocumentType;
+    Spinner spnDocumentType;
 
     ArrayList<DocumentType> documentTypeArrayList = new ArrayList<>();
     public int SELECTED_DOCUMENT_ID;
@@ -271,7 +255,7 @@ public class InformationEntryActivity extends AppCompatActivity {
     public void getAllDocument() {
 
         String token = SharedPrefManager.getInstance(this).getToken();
-        if (token != null) {
+
             RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
             Call<List<DocumentType>> registrationRequest = retrofitService.GetAllDocumentType();
             registrationRequest.enqueue(new Callback<List<DocumentType>>() {
@@ -296,17 +280,19 @@ public class InformationEntryActivity extends AppCompatActivity {
                     Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
-        } else {
+     /*   } else {
             Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-        }
+        }*/
     }
 
 
     public void addDocumentTypeNamePresentSpinnerData(final List<DocumentType> body) {
         List<String> documentList = new ArrayList<>();
+
+        documentList.add(getResources().getString(R.string.doc_type));
         for (int i = 0; i < body.size(); i++) {
             documentList.add(body.get(i).getDocumentTypeName());
         }
@@ -314,6 +300,7 @@ public class InformationEntryActivity extends AppCompatActivity {
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, documentList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         spnDocumentType.setAdapter(dataAdapter2);
         spnDocumentType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
