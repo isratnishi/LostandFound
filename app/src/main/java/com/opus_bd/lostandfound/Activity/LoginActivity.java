@@ -1,17 +1,30 @@
 package com.opus_bd.lostandfound.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.view.Gravity;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -27,6 +40,9 @@ import com.opus_bd.lostandfound.Utils.LocaleHelper;
 import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -37,16 +53,19 @@ import retrofit2.Response;
 import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.KEY_State;
 import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.SHARED_PREF_NAME;
 
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity {
 
+    private final static int REQUEST_ID_MULTIPLE_PERMISSIONS = 0x2;
     boolean isChecked = true;
     boolean isPassChecked = true;
 
     @BindView(R.id.tvLangugeName)
     Button tvLangugeName;
     @BindView(R.id.etPassword)
-    EditText etPassword;      @BindView(R.id.etUserName)
-    EditText etUserName;    @BindView(R.id.ivpassShow)
+    EditText etPassword;
+    @BindView(R.id.etUserName)
+    EditText etUserName;
+    @BindView(R.id.ivpassShow)
     ImageView ivpassShow;
 
     @Override
@@ -62,8 +81,6 @@ public class LoginActivity extends AppCompatActivity{
         } else {
             tvLangugeName.setText(R.string.english);
         }
-
-
 
 
     }
@@ -85,7 +102,6 @@ public class LoginActivity extends AppCompatActivity{
         finish();
 
     }
-
 
 
     private boolean getSharedPrefValue() {
@@ -133,8 +149,6 @@ public class LoginActivity extends AppCompatActivity{
     }
 
 
-
-
     private boolean validatedForm() {
         if (TextUtils.isEmpty(etUserName.getText().toString())) {
             etUserName.setError(getResources().getString(R.string.field_null_error));
@@ -148,17 +162,16 @@ public class LoginActivity extends AppCompatActivity{
 
         return true;
     }
+
     @OnClick(R.id.tvResigtration)
     public void tvResigtration() {
-        try{
+        try {
             Intent intent = new Intent(LoginActivity.this, RegistrationProcessActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-        }
-        catch (Exception e)
-        {
-            Utilities.showLogcatMessage("Exception "+e.toString());
+        } catch (Exception e) {
+            Utilities.showLogcatMessage("Exception " + e.toString());
         }
     }
 
@@ -169,15 +182,18 @@ public class LoginActivity extends AppCompatActivity{
             // show password
             etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             Glide.with(this).load(R.drawable.ic_visibility_off).into(ivpassShow);
-            isPassChecked=false;
+            isPassChecked = false;
         } else {
             // hide password
             etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
             Glide.with(this).load(R.drawable.ic_view).into(ivpassShow);
-            isPassChecked=true;
+            isPassChecked = true;
         }
-    }
+    } @OnClick(R.id.btnSupport)
+    public void btnSupport() {
 
+       customDialog();
+    }
 
 
     private void submitToServer() {
@@ -195,9 +211,9 @@ public class LoginActivity extends AppCompatActivity{
                 try {
                     if (response.body() != null) {
 
-                        String auth=response.body().getJwt().replace("{\"auth_token\":\"","");
-                        String auth1=auth.replace("\"}","");
-                        Utilities.showLogcatMessage(" "+auth1);
+                        String auth = response.body().getJwt().replace("{\"auth_token\":\"", "");
+                        String auth1 = auth.replace("\"}", "");
+                        Utilities.showLogcatMessage(" " + auth1);
                         SharedPrefManager.getInstance(LoginActivity.this).saveToken(auth1);
                         Toast.makeText(LoginActivity.this, "Successfully Logged in!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
@@ -216,11 +232,136 @@ public class LoginActivity extends AppCompatActivity{
 
             @Override
             public void onFailure(Call<UserAuthModel> call, Throwable t) {
-               // Utilities.hideProgress(LoginActivity.this);
+                // Utilities.hideProgress(LoginActivity.this);
                 Toast.makeText(LoginActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
 
             }
         });
+    }
+    private void checkPermissions() {
+        int permissionLocation = ContextCompat.checkSelfPermission(LoginActivity.this,
+                android.Manifest.permission.CALL_PHONE);
+        List<String> listPermissionsNeeded = new ArrayList<>();
+        if (permissionLocation != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(android.Manifest.permission.CALL_PHONE);
+            if (!listPermissionsNeeded.isEmpty()) {
+                ActivityCompat.requestPermissions(this,
+                        listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
+            }
+        } else {
+           // getMyLocation();
+        }
+
+    }
+
+
+    public void customDialog() {
+        final Dialog dialog = new Dialog(LoginActivity.this);
+        dialog.setContentView(R.layout.dialog_custom_support);
+        dialog.setTitle("Select one for Support");
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+
+        wlp.gravity = Gravity.BOTTOM;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        window.setAttributes(wlp);
+        // set the custom dialog components - text, image and button
+        ImageView ivLiveChat = (ImageView) dialog.findViewById(R.id.ivLiveChat);
+        ImageView ivEmail = (ImageView) dialog.findViewById(R.id.ivEmail);
+        ImageView ivCall = (ImageView) dialog.findViewById(R.id.ivCall);
+
+
+        CardView cvLiveChat = (CardView) dialog.findViewById(R.id.cvLiveChat);
+        CardView cvEmail = (CardView) dialog.findViewById(R.id.cvEmail);
+        CardView cvCall = (CardView) dialog.findViewById(R.id.cvCall);
+
+        ivLiveChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+
+                try {
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.police.gov.bd/en/criminal_investigation_department"));
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        cvLiveChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                try {
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.police.gov.bd/en/criminal_investigation_department"));
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+         ivCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                checkPermissions();
+                try {
+                    intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:01737366028"));
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }); cvCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                try {
+                    intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:01737366028"));
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });ivEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                try {
+                    intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_EMAIL, "Juelrananatore@gmail.com");
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Support");
+                    startActivity(Intent.createChooser(intent, "Send Email"));/*
+                    intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
+
+                    startActivity(Intent.createChooser(intent, "Send Email"));*/
+                } catch (ActivityNotFoundException e) {
+                    // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });cvEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                try {
+                    intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_EMAIL, "Juelrananatore@gmail.com");
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Support");
+                    startActivity(Intent.createChooser(intent, "Send Email"));/*
+                    intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
+
+                 */
+                } catch (ActivityNotFoundException e) {
+                    // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+
+        dialog.show();
     }
 }
 

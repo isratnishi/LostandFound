@@ -52,7 +52,13 @@
                 android:layout_width="200dp"
                 android:layout_height="115dp"
                 android:layout_gravity="center"
-                android:src="@drawable/app"/>
+                android:src="@drawable/logo"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="35dp"
+                android:layout_gravity="center"
+                android:text="@string/app_name"/>
             <View
                 android:layout_width="0dp"
                 android:layout_height="@dimen/spacing_mxlarge" />
@@ -160,7 +166,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Forget Password"
+                    android:text="@string/forget_password"
                     android:layout_alignParentRight="true"
                     android:textSize="15sp"
                     android:textColor="@android:color/white"
@@ -248,6 +254,10 @@
             android:textSize="15sp"
             android:textColor="@android:color/white"
             android:textStyle="bold"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_medium" />
+
 
 
 
@@ -337,205 +347,29 @@
 
     </LinearLayout>
 
-  <!--  <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="UselessParent">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
 
-       &lt;!&ndash; <include
-            layout="@layout/progressbar"
-            android:indeterminateDrawable="@drawable/progressbar_background" />&ndash;&gt;
-        <LinearLayout
-            android:id="@+id/rootLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="5dp">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+       android:layout_alignParentStart="true"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentEnd="true"
+       android:layout_alignParentRight="true"
 
-                    <Button
-                        android:id="@+id/tvLangugeName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:background="@drawable/bg_rounded_corners_gradients"
-                       android:layout_alignParentRight="true"
-                        android:textSize="15dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:textColor="@android:color/holo_green_dark"
-                        android:textStyle="bold" />
-                    <Button
-                        android:id="@+id/tvHelp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:background="@drawable/bg_rounded_corners_red"
-                       android:layout_alignParentLeft="true"
-                        android:text="@string/help"
-                        android:drawableRight="@drawable/ic_help"
-                        android:drawableTint="@android:color/holo_red_dark"
-                        android:textSize="15dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:textColor="@android:color/holo_red_dark"
-                        android:textStyle="bold" />
-
-            </RelativeLayout>
-
-            <ImageView
-                android:layout_width="200dp"
-                android:layout_height="115dp"
-                android:layout_gravity="center"
-                android:src="@drawable/logot" />
-            <TextView
-                android:id="@+id/tvappname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:text="Welcome to Lost and Found"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_mxlarge" />
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                app:boxCornerRadiusBottomEnd="35dp"
-                app:boxCornerRadiusTopStart="35dp"
-                app:boxCornerRadiusTopEnd="35dp"
-                app:boxCornerRadiusBottomStart="35dp"
-                android:layout_height="wrap_content"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etUserName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
-                    android:drawableTint="@color/colorAccent"
-                    android:drawableLeft="@drawable/ic_user"
-                    android:hint="@string/user_id"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxCornerRadiusBottomEnd="35dp"
-                app:boxCornerRadiusTopStart="35dp"
-                app:boxCornerRadiusTopEnd="35dp"
-                app:boxCornerRadiusBottomStart="35dp"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
-
-                    android:drawableTint="@color/colorAccent"
-                    android:drawableLeft="@drawable/ic_lock"
-                    android:hint="@string/password"
-                    android:drawableRight="@drawable/ic_view" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/remember_password"/>
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_medium" />
-            <Button
-                android:id="@+id/btnLogIn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_rounded_corners"
-                android:text="@string/log_in"
-                android:layout_gravity="end"
-                android:layout_margin="10dp"
-                android:padding="10dp"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="registration"
-                android:text="@string/or_new_user"
-                android:layout_margin="5dp"
-                android:layout_gravity="center"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                android:textColor="@color/cardview_dark_background" />
-            <Button
-                android:id="@+id/btnReg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_rounded_corners_reg"
-                android:text="@string/registration"
-                android:layout_gravity="end"
-                android:layout_margin="10dp"
-                android:padding="10dp"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"/>
-
-
-           &lt;!&ndash; <RelativeLayout
-                android:layout_width="match_parent"
-                android:padding="20dp"
-                android:layout_height="wrap_content">
-                <Button
-                    android:id="@+id/btnSignIn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/holo_blue_bright"
-                    android:text="@string/password_forget"
-                    android:textAllCaps="false"
-                    android:padding="10dp"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:layout_alignParentRight="true" />
-
-            </RelativeLayout>&ndash;&gt;
-
-
-
-            &lt;!&ndash;  <LinearLayout
-                  android:id="@+id/sign_up_for_account"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="@dimen/spacing_medium"
-                  android:gravity="center"
-                  android:orientation="horizontal">
-
-                  <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:onClick="registration"
-                      android:text="@string/sign_up_for_an_account"
-                      android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                      android:textColor="@color/blue_grey_400" />
-
-
-              </LinearLayout>&ndash;&gt;
-
-&lt;!&ndash;
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_xlarge" />&ndash;&gt;
-
-        </LinearLayout>
-       &lt;!&ndash; <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-        </ScrollView>&ndash;&gt;
-    </FrameLayout>-->
+       android:layout_alignParentBottom="true"
+       android:layout_marginBottom="30dp">
+       <Button
+           android:id="@+id/btnSupport"
+           android:layout_width="wrap_content"
+           android:layout_height="30dp"
+           android:layout_gravity="center"
+           android:background="@drawable/bg_rounded_corners_red"
+           android:text="@string/support"
+           android:textAllCaps="true"
+           android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+           android:textColor="@android:color/white"
+           android:textSize="15sp"
+           android:textStyle="bold" />
+   </LinearLayout>
 </RelativeLayout>

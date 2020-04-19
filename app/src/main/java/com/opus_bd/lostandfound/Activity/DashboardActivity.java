@@ -1,19 +1,28 @@
 package com.opus_bd.lostandfound.Activity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.navigation.NavigationView;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
@@ -23,13 +32,24 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DashboardActivity extends AppCompatActivity {
+import static com.opus_bd.lostandfound.R.string.navigation_drawer_close;
+import static com.opus_bd.lostandfound.R.string.navigation_drawer_open;
+
+public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 /*@BindView(R.id.llSeemore1)
     LinearLayout llSeemore1;@BindView(R.id.ll2)
     LinearLayout ll2;*/
 
+    @BindView(R.id.tvWelcome)
+    TextView tvWelcome;
     @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    Toolbar toolbar;    @BindView(R.id.ivappLogo)
+    ImageView ivappLogo;
+    @BindView(R.id.mDrawerLayout)
+    DrawerLayout mDrawerLayout;
+    private MenuItem item;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,38 +58,17 @@ public class DashboardActivity extends AppCompatActivity {
         BottomAppBar bar = (BottomAppBar) findViewById(R.id.bar);
         setSupportActionBar(bar);
         setSupportActionBar(toolbar);
-      /*  if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Main Page");
-        }*/
-        toolbar.setSubtitle("Test Subtitle");
+        tvWelcome.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        tvWelcome.setSelected(true);
         toolbar.inflateMenu(R.menu.menu);
-        /*bar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Home Clicked",Toast.LENGTH_LONG).show();
-            }
-        });
-
-        bar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.ihelp:
-                        Toast.makeText(getApplicationContext(),"Help Clicked",Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.ilogout:
-
-
-                        Intent intent=new Intent(DashboardActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.contact:
-                        Toast.makeText(getApplicationContext(),"Contact Clicked",Toast.LENGTH_LONG).show();
-                        break;
-                }
-                return false;
-            }
-        });*/
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+    @OnClick(R.id.ivappLogo)
+    public void ivappLogo() {
+        mDrawerLayout.openDrawer(GravityCompat.END);
     }
     @Override
     protected void attachBaseContext(Context base) {
@@ -80,23 +79,44 @@ public class DashboardActivity extends AppCompatActivity {
         else
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
-  /*  @OnClick({R.id.llSeemore,R.id.fabSeemore,R.id.tbSeemore})
-    public void llSeemore() {
-       ll2.setVisibility(View.VISIBLE);
-        llSeemore1.setVisibility(View.VISIBLE);
-       llSeemore.setVisibility(View.GONE);
+
+
+
+    @Override
+    public void onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.END)) {
+            mDrawerLayout.closeDrawer(GravityCompat.END);
+        } else {
+        }
     }
 
 
-    @OnClick({R.id.llHidemore,R.id.fabHidemore,R.id.tvHidemore})
-    public void llHidemore() {
-       ll2.setVisibility(View.GONE);
-        llSeemore1.setVisibility(View.GONE);
-       llSeemore.setVisibility(View.VISIBLE);
-    }*/
+    private void displaySelectedScreen(int itemId) {
+
+        String title;
+        switch (itemId) {
+            case R.id.ihelp:
+
+                break;
+            case R.id.iNotification:
+                break;
+            case R.id.ilogout:
+            {
+                SharedPrefManager.getInstance(this).clearToken();
+                Toast.makeText(this, "Logged out successfully!!", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(this, LoginActivity.class);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+                startActivity(intent2);
+            }
+                break;
 
 
-    @OnClick({R.id.llTheft,R.id.fabTheft})
+        }
+        mDrawerLayout.closeDrawer(GravityCompat.END);
+    }
+
+    @OnClick({R.id.llTheft, R.id.fabTheft,R.id.fablost,R.id.llfablost})
     public void llTheft() {
         Intent intent = new Intent(DashboardActivity.this, InformationEntryActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -104,22 +124,26 @@ public class DashboardActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_menu,menu);
-        return super.onCreateOptionsMenu(menu);
+
+@OnClick({R.id.fablost,R.id.llfablost})
+    public void fablost() {
+        Intent intent = new Intent(DashboardActivity.this, LostInformationEntryActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
-    /*@OnClick(R.id.button1)
-    public void button1() {
-        Intent intent = new Intent(Main2Activity.this, InformationEntryActivity.class);
 
-        startActivity(intent);
-    } @OnClick(R.id.button2)
-    public void button2() {
-        Intent intent = new Intent(Main2Activity.this, InformationSearchActivity.class);
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        //calling the method displayselectedscreen and passing the id of selected menu
+        displaySelectedScreen(item.getItemId());
+        //make this method blank
+        return true;
+    }
 
-        startActivity(intent);
-    }*/
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
 
 }

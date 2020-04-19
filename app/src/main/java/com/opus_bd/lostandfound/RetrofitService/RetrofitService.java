@@ -2,14 +2,12 @@ package com.opus_bd.lostandfound.RetrofitService;
 
 
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
+import com.opus_bd.lostandfound.Model.Dashboard.Vehicle.VehicleModel;
+import com.opus_bd.lostandfound.Model.Dashboard.Vehicle.VehicleType;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.Model.Documentaion.NationalIdentityTypesModel;
-import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
-import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
 import com.opus_bd.lostandfound.Model.GlobalData.District;
-import com.opus_bd.lostandfound.Model.GlobalData.Division;
-import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.Model.User.UserAuthModel;
 import com.opus_bd.lostandfound.Model.User.UserLoginModel;
@@ -46,24 +44,19 @@ public interface RetrofitService {
     @POST("api/LostFound/SaveGDInformation")
     Call<String> SaveGDInformation(@Header("Authorization") String token, @Body GDInformationModel gdInformationModel);
 
-//Global data
-
-    @GET("api/AddressMaster/GetDivisions")
-    Call<List<Division>> GetDivisions();
-
-    @GET("api/AddressMaster/GetDistrictByDivisionId/{id}")
-    Call<List<District>> getAllDistricts(@Path("id") int id);
-
-    @GET("api/AddressMaster/GetThanaByDistrictId/{id}")
-    Call<List<Thana>> GetThanaByDistrictId(@Path("id") int id);
-
-
 
     @GET("api/DocumentMaster/GetVehicleTypes")
     Call<List<VehicleType>> GetVehicleTypes();
 
     @GET("api/DocumentMaster/GetVehicleModelByVehicleId/{id}")
     Call<List<VehicleModel>> GetVehicleModelByVehicleId(@Path("id") int id);
+//Global data
+
+    @GET("api/AddressMaster/GetDistrictByDivisionId/{id}")
+    Call<List<District>> getAllDistricts(@Path("id") int id);
+
+
+
 
     @GET("api/DocumentMaster/GetColors")
     Call<List<Colors>> GetColors();
