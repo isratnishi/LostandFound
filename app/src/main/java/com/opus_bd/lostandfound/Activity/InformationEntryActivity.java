@@ -134,7 +134,7 @@ public class InformationEntryActivity extends AppCompatActivity {
     @BindView(R.id.spnColor)
     AppCompatSpinner spnColor;
 
-    String[] metropoliton,regipartTwo;
+    String[] metropoliton, regipartTwo;
 
     ArrayList<DocumentType> documentTypeArrayList = new ArrayList<>();
     ArrayList<VehicleType> vehicleTypeArrayList = new ArrayList<>();
@@ -259,7 +259,7 @@ public class InformationEntryActivity extends AppCompatActivity {
         String token = SharedPrefManager.getInstance(this).getToken();
         final GDInformationModel gdInformationModel = new GDInformationModel();
 
-      ////  gdInformationModel.setUserName(etUserName.toString());
+        ////  gdInformationModel.setUserName(etUserName.toString());
         gdInformationModel.setGdFor("2");
         gdInformationModel.setGdDate("2020-04-14");
         gdInformationModel.setIdentityNo(etNumber.getText().toString());
@@ -329,7 +329,7 @@ public class InformationEntryActivity extends AppCompatActivity {
     //Spinner
 
     public void getMatropolitonName() {
-        metropoliton=getResources().getStringArray(R.array.matropoliton);
+        metropoliton = getResources().getStringArray(R.array.matropoliton);
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, metropoliton);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -353,7 +353,7 @@ public class InformationEntryActivity extends AppCompatActivity {
     }
 
     public void getRegiSerial() {
-        regipartTwo=getResources().getStringArray(R.array.regiparttwo);
+        regipartTwo = getResources().getStringArray(R.array.regiparttwo);
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, regipartTwo);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -543,8 +543,8 @@ public class InformationEntryActivity extends AppCompatActivity {
     }
 
     public void addVehicleMadyBySpinnerData(final List<VehicleModel> body) {
-        List<String> vehicleMadyBy = new ArrayList<>();
-//        vehicleMadyBy.add("্রান্ডের নাম");
+        List<String> vehicleMadyBy = new ArrayList<>()
+        vehicleMadyBy.add("্রান্ডের নাম");
         for (int i = 0; i < body.size(); i++) {
             vehicleMadyBy.add(body.get(i).getModelName());
         }
