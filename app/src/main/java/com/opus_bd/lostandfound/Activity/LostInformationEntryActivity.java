@@ -26,9 +26,9 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
-import com.opus_bd.lostandfound.Model.Dashboard.Vehicle.VehicleModel;
-import com.opus_bd.lostandfound.Model.Dashboard.Vehicle.VehicleType;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
+import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
+import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
@@ -198,7 +198,8 @@ public class LostInformationEntryActivity extends AppCompatActivity {
         cvItems.setVisibility(View.GONE);
         iv4.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         v3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
-
+        iv3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
+        v2.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
     }
 
     @OnClick(R.id.fab)
