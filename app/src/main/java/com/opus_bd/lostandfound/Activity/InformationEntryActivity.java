@@ -26,6 +26,9 @@ import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
+import com.opus_bd.lostandfound.Model.GlobalData.District;
+import com.opus_bd.lostandfound.Model.GlobalData.Division;
+import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
@@ -118,6 +121,16 @@ public class InformationEntryActivity extends AppCompatActivity {
     @BindView(R.id.fabOther)
     FloatingActionButton fabOther;
     //Spinner
+
+    @BindView(R.id.spnSPDivision)
+    AppCompatSpinner spnSPDivision;
+
+    @BindView(R.id.spnSPDistrict)
+    AppCompatSpinner spnSPDistrict;
+
+    @BindView(R.id.spnSPThana)
+    AppCompatSpinner spnSPThana;
+
     @BindView(R.id.spnDocumentType)
     AppCompatSpinner spnDocumentType;
 
@@ -138,6 +151,11 @@ public class InformationEntryActivity extends AppCompatActivity {
 
     String[] metropoliton, regipartTwo;
 
+    //Address List
+    ArrayList<Division> divisionArrayList = new ArrayList<>();
+    ArrayList<District> districtArrayList = new ArrayList<>();
+    ArrayList<Thana> thanaArrayList = new ArrayList<>();
+
     ArrayList<DocumentType> documentTypeArrayList = new ArrayList<>();
     ArrayList<VehicleType> vehicleTypeArrayList = new ArrayList<>();
     ArrayList<VehicleModel> VehicleModelArrayList = new ArrayList<>();
@@ -148,6 +166,9 @@ public class InformationEntryActivity extends AppCompatActivity {
     public String SELECTED_REGNO_1;
     public String SELECTED_REGNO_2;
     public int SELECTED_COLOR_ID;
+    public int SELECTED_DIVISION_ID;
+    public int SELECTED_DISTRICT_ID;
+    public int SELECTED_THANA_ID;
 
     //private Spinner spinner2;
 
@@ -252,6 +273,7 @@ public class InformationEntryActivity extends AppCompatActivity {
         vehicleDocument.setVisibility(View.GONE);
         llVehiclePlaceTime.setVisibility(View.VISIBLE);
         llEntry.setVisibility(View.GONE);
+        getDivision();
         //submitToServer();
        /* Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -627,6 +649,187 @@ public class InformationEntryActivity extends AppCompatActivity {
                     SELECTED_COLOR_ID = body.get(i).getId();
                 } else {
                     SELECTED_COLOR_ID = 1;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getDivision() {
+
+        String token = SharedPrefManager.getInstance(this).getToken();
+        if (token != null) {
+            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+            Call<List<Division>> divisions = retrofitService.GetDivisions();
+            divisions.enqueue(new Callback<List<Division>>() {
+                @Override
+                public void onResponse(Call<List<Division>> call, Response<List<Division>> response) {
+
+                    if (response.body() != null) {
+
+                        divisionArrayList.clear();
+                        divisionArrayList.addAll(response.body());
+
+                        addDivisionSpinnerData(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Division>> call, Throwable t) {
+                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+
+
+    public void addDivisionSpinnerData(final List<Division> body) {
+        List<String> divisionList = new ArrayList<>();
+        for (int i = 0; i < body.size(); i++) {
+            divisionList.add(body.get(i).getDivisionName());
+        }
+
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, divisionList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnSPDivision.setAdapter(dataAdapter2);
+        spnSPDivision.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_DIVISION_ID = body.get(i).getId();
+                    getDistrict(body.get(i).getId());
+                } else {
+                    SELECTED_DIVISION_ID = 1;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getDistrict(int id) {
+
+        String token = SharedPrefManager.getInstance(this).getToken();
+        if (token != null) {
+            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+            Call<List<District>> divisions = retrofitService.getAllDistricts(id);
+            divisions.enqueue(new Callback<List<District>>() {
+                @Override
+                public void onResponse(Call<List<District>> call, Response<List<District>> response) {
+
+                    if (response.body() != null) {
+
+                        districtArrayList.clear();
+                        districtArrayList.addAll(response.body());
+
+                        addDistrictSpinnerData(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<District>> call, Throwable t) {
+                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+
+
+    public void addDistrictSpinnerData(final List<District> body) {
+        List<String> districtList = new ArrayList<>();
+        for (int i = 0; i < body.size(); i++) {
+            districtList.add(body.get(i).getDistrictName());
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, districtList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnSPDistrict.setAdapter(dataAdapter2);
+        spnSPDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_DISTRICT_ID = body.get(i).getId();
+                    getAllThana(body.get(i).getId());
+                } else {
+                    SELECTED_DISTRICT_ID = 1;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getAllThana(int id) {
+
+        String token = SharedPrefManager.getInstance(this).getToken();
+        if (token != null) {
+            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+            Call<List<Thana>> thana = retrofitService.GetThanaByDistrictId(id);
+            thana.enqueue(new Callback<List<Thana>>() {
+                @Override
+                public void onResponse(Call<List<Thana>> call, Response<List<Thana>> response) {
+
+                    if (response.body() != null) {
+
+                        thanaArrayList.clear();
+                        thanaArrayList.addAll(response.body());
+
+                        addThanaSpinnerData(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Thana>> call, Throwable t) {
+                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+
+
+    public void addThanaSpinnerData(final List<Thana> body) {
+        List<String> thanaList = new ArrayList<>();
+        for (int i = 0; i < body.size(); i++) {
+            thanaList.add(body.get(i).getThanaName());
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, thanaList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnSPThana.setAdapter(dataAdapter2);
+        spnSPThana.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_THANA_ID = body.get(i).getId();
+
+                } else {
+                    SELECTED_THANA_ID = 1;
                 }
             }
 

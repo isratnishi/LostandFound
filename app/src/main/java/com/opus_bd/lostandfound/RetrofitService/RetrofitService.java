@@ -8,6 +8,8 @@ import com.opus_bd.lostandfound.Model.Documentaion.NationalIdentityTypesModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
 import com.opus_bd.lostandfound.Model.GlobalData.District;
+import com.opus_bd.lostandfound.Model.GlobalData.Division;
+import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.Model.User.UserAuthModel;
 import com.opus_bd.lostandfound.Model.User.UserLoginModel;
@@ -46,8 +48,16 @@ public interface RetrofitService {
 
 //Global data
 
+    @GET("api/AddressMaster/GetDivisions")
+    Call<List<Division>> GetDivisions();
+
     @GET("api/AddressMaster/GetDistrictByDivisionId/{id}")
     Call<List<District>> getAllDistricts(@Path("id") int id);
+
+    @GET("api/AddressMaster/GetThanaByDistrictId/{id}")
+    Call<List<Thana>> GetThanaByDistrictId(@Path("id") int id);
+
+
 
     @GET("api/DocumentMaster/GetVehicleTypes")
     Call<List<VehicleType>> GetVehicleTypes();
