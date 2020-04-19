@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/card_backgound"
-    tools:context=".Activity.UnknownManActivity">
+    tools:context=".Activity.VehicleEntryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="@dimen/spacing_middle">
-        <!--Person Information-->
+        <!--Vehicle Information-->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,26 +25,26 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/rlPersonInfromation"
+                    android:id="@+id/rlVehicleInfromation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/grey_10"
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/tvTPersonInfromation"
+                        android:id="@+id/tvVehicleInfromation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
-                        android:text="Person Information"
+                        android:text="Vehicle Information"
                         android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:id="@+id/ivTPersonInfromation"
+                        android:id="@+id/ivVehicleInformation"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_alignParentRight="true"
@@ -53,7 +53,7 @@
                 </RelativeLayout>
 
                 <LinearLayout
-                    android:id="@+id/llPersonInfromation"
+                    android:id="@+id/llVehicleInfromation"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -69,7 +69,7 @@
 
                             <TextView
                                 style="@style/InformationEntryTextView"
-                                android:text="@string/name" />
+                                android:text="@string/vehicleType" />
 
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
@@ -77,7 +77,7 @@
 
                             <EditText
                                 style="@style/InformationEntryEditText"
-                                android:hint="Name" />
+                                android:hint="@string/vehicleType" />
                         </TableRow>
 
                         <TableRow
@@ -86,7 +86,7 @@
 
                             <TextView
                                 style="@style/InformationEntryTextView"
-                                android:text="@string/father_s_name" />
+                                android:text="@string/vehicleBrand" />
 
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
@@ -94,7 +94,7 @@
 
                             <EditText
                                 style="@style/InformationEntryEditText"
-                                android:hint="Name" />
+                                android:hint="@string/vehicleBrand" />
                         </TableRow>
 
 
@@ -104,7 +104,7 @@
 
                             <TextView
                                 style="@style/InformationEntryTextView"
-                                android:text="@string/husband_wife_name" />
+                                android:text="@string/vehicleModel" />
 
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
@@ -112,7 +112,7 @@
 
                             <EditText
                                 style="@style/InformationEntryEditText"
-                                android:hint="Name" />
+                                android:hint="@string/vehicleModel" />
                         </TableRow>
 
                         <TableRow
@@ -121,7 +121,7 @@
 
                             <TextView
                                 style="@style/InformationEntryTextView"
-                                android:text="@string/nidnum" />
+                                android:text="@string/vehicleRegiPart1" />
 
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
@@ -130,8 +130,135 @@
 
                             <EditText
                                 style="@style/InformationEntryEditText"
-                                android:hint="Name" />
+                                android:hint="@string/vehicleRegiPart1" />
                         </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/InformationEntryTextView"
+                                android:text="@string/vehicleRegiPart2" />
+
+                            <TextView
+                                style="@style/InformationEntryTextViewColon"
+                                android:text=":" />
+
+
+                            <EditText
+                                style="@style/InformationEntryEditText"
+                                android:hint="@string/vehicleRegiPart2" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/InformationEntryTextView"
+                                android:text="@string/vehicleRegiNo" />
+
+                            <TextView
+                                style="@style/InformationEntryTextViewColon"
+                                android:text=":" />
+
+
+                            <EditText
+                                style="@style/InformationEntryEditText"
+                                android:hint="@string/vehicleRegiNo" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/InformationEntryTextView"
+                                android:text="@string/engineNo" />
+
+                            <TextView
+                                style="@style/InformationEntryTextViewColon"
+                                android:text=":" />
+
+
+                            <EditText
+                                style="@style/InformationEntryEditText"
+                                android:hint="@string/engineNo" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/InformationEntryTextView"
+                                android:text="@string/chesisNo" />
+
+                            <TextView
+                                style="@style/InformationEntryTextViewColon"
+                                android:text=":" />
+
+
+                            <EditText
+                                style="@style/InformationEntryEditText"
+                                android:hint="@string/chesisNo" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/InformationEntryTextView"
+                                android:text="@string/ccNo" />
+
+                            <TextView
+                                style="@style/InformationEntryTextViewColon"
+                                android:text=":" />
+
+
+                            <EditText
+                                style="@style/InformationEntryEditText"
+                                android:hint="@string/ccNo" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/InformationEntryTextView"
+                                android:text="@string/madeIn" />
+
+                            <TextView
+                                style="@style/InformationEntryTextViewColon"
+                                android:text=":" />
+
+
+                            <EditText
+                                style="@style/InformationEntryEditText"
+                                android:hint="@string/madeIn" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/InformationEntryTextView"
+                                android:text="@string/madeDate" />
+
+                            <TextView
+                                style="@style/InformationEntryTextViewColon"
+                                android:text=":" />
+
+
+                            <EditText
+                            style="@style/InformationEntryEditText"
+                            android:hint="@string/madeDate" />
+                        </TableRow>
+
                     </TableLayout>
 
                     <Button
@@ -143,8 +270,7 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-
-        <!--Person  Idendity Information-->
+        <!--vehicle  Idendity Information-->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -159,26 +285,26 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/rlPersonIdentification"
+                    android:id="@+id/rlVIdentityInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/grey_10"
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/tvTPersonIdentification"
+                        android:id="@+id/tvVIdentityInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
-                        android:text="Person Identification"
+                        android:text="@string/identityInfo"
                         android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:id="@+id/ivTPersonIdentification"
+                        android:id="@+id/ivVIdentityInfo"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_alignParentRight="true"
@@ -187,7 +313,7 @@
                 </RelativeLayout>
 
                 <LinearLayout
-                    android:id="@+id/llPersonIdentification"
+                    android:id="@+id/llVIdentityInfo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -203,7 +329,7 @@
 
                             <TextView
                                 style="@style/InformationEntryTextView"
-                                android:text="@string/religion" />
+                                android:text="@string/colorName" />
 
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
@@ -220,15 +346,15 @@
 
                             <TextView
                                 style="@style/InformationEntryTextView"
-                                android:text="@string/gender" />
+                                android:text="@string/vehicleSign" />
 
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
                                 android:text=":" />
 
-                            <Spinner
+                            <EditText
                                 style="@style/InformationEntryEditText"
-                                android:entries="@array/gender" />
+                                android:hint="@string/vehicleSign" />
                         </TableRow>
 
 
@@ -238,7 +364,7 @@
 
                             <TextView
                                 style="@style/InformationEntryTextView"
-                                android:text="@string/blood_group" />
+                                android:text="@string/documentType" />
 
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
@@ -255,35 +381,19 @@
 
                             <TextView
                                 style="@style/InformationEntryTextView"
-                                android:text="@string/occupation" />
+                                android:text="@string/photo" />
 
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
                                 android:text=":" />
 
 
-                            <Spinner
+                            <EditText
                                 style="@style/InformationEntryEditText"
-                                android:entries="@array/occupations" />
+                                android:hint="@string/photo" />
                         </TableRow>
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
 
-                            <TextView
-                                style="@style/InformationEntryTextView"
-                                android:text="Marital Status" />
-
-                            <TextView
-                                style="@style/InformationEntryTextViewColon"
-                                android:text=":" />
-
-
-                            <Spinner
-                                style="@style/InformationEntryEditText"
-                                android:entries="@array/marital_status" />
-                        </TableRow>
                     </TableLayout>
 
                     <Button
@@ -295,7 +405,7 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <!--Person  Physical Information-->
+        <!--vehicle place and time Information-->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -317,19 +427,19 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/tvTPersonPhysical"
+                        android:id="@+id/tvVSATInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
-                        android:text="Physical Identification"
+                        android:text="@string/placeAndTimeInfo"
                         android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                         android:textColor="@color/colorPrimaryDark"
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:id="@+id/ivTPersonPhysical"
+                        android:id="@+id/ivVPATInfo"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_alignParentRight="true"
@@ -338,7 +448,7 @@
                 </RelativeLayout>
 
                 <LinearLayout
-                    android:id="@+id/llPersonPhysical"
+                    android:id="@+id/llVPATInfo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -354,15 +464,15 @@
 
                             <TextView
                                 style="@style/InformationEntryTextView"
-                                android:text="Eye" />
+                                android:text="@string/division" />
 
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
                                 android:text=":" />
 
-                            <EditText
+                            <Spinner
                                 style="@style/InformationEntryEditText"
-                                 />
+                                android:entries="@array/blood_groups" />
                         </TableRow>
 
                         <TableRow
@@ -371,15 +481,15 @@
 
                             <TextView
                                 style="@style/InformationEntryTextView"
-                                android:text="Nose" />
+                                android:text="@string/district" />
 
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
                                 android:text=":" />
 
-                            <EditText
+                            <Spinner
                                 style="@style/InformationEntryEditText"
-                                 />
+                                android:entries="@array/blood_groups" />
                         </TableRow>
 
 
@@ -389,14 +499,33 @@
 
                             <TextView
                                 style="@style/InformationEntryTextView"
-                                android:text="Height" />
+                                android:text="@string/thana" />
 
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
                                 android:text=":" />
 
+                            <Spinner
+                                style="@style/InformationEntryEditText"
+                                android:entries="@array/blood_groups" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/InformationEntryTextView"
+                                android:text="@string/addressDetails" />
+
+                            <TextView
+                                style="@style/InformationEntryTextViewColon"
+                                android:text=":" />
+
+
                             <EditText
                                 style="@style/InformationEntryEditText"
+                                android:hint="@string/addressDetails"
                                 />
                         </TableRow>
 
@@ -406,7 +535,7 @@
 
                             <TextView
                                 style="@style/InformationEntryTextView"
-                                android:text="Color" />
+                                android:text="@string/date" />
 
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
@@ -415,16 +544,16 @@
 
                             <EditText
                                 style="@style/InformationEntryEditText"
+                                android:hint="@string/date"
                                 />
                         </TableRow>
-
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <TextView
                                 style="@style/InformationEntryTextView"
-                                android:text="Hair" />
+                                android:text="@string/time" />
 
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
@@ -433,7 +562,8 @@
 
                             <EditText
                                 style="@style/InformationEntryEditText"
-                                 />
+                                android:hint="@string/time"
+                                />
                         </TableRow>
                     </TableLayout>
 

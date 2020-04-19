@@ -104,4 +104,32 @@
     <item>Journalist visa</item>
     <item> NGO visa</item>
     </string-array>
+
+
+    <!--    vehicle information-->
+    <string name="vehicleType">যানবাহনের ধরণ</string>
+    <string name="vehicleBrand">ব্রান্ডের নাম</string>
+    <string name="vehicleModel">মডেল</string>
+    <string name="vehicleRegiPart1">মেট্রো অঞ্চল</string>
+    <string name="vehicleRegiPart2">লেভেল</string>
+    <string name="vehicleRegiNo">রেজিস্ট্রেশন নং</string>
+    <string name="engineNo">ইঞ্জিন নং</string>
+    <string name="chesisNo">চেসিস নং</string>
+    <string name="ccNo">সিসি নং</string>
+    <string name="madeIn">তৈরির দেশ</string>
+    <string name="madeDate">উৎপাদন তারিখ</string>
+
+    <!--    vehicle document info-->
+    <string name="identityInfo">সনাক্তকারী তথ্য</string>
+    <string name="colorName">রং</string>
+    <string name="vehicleSign">সনাক্তকারী চিহ্ন</string>
+    <string name="photo">ছবি</string>
+    <string name="documentType">ডকুমেন্ট এর ধরণ</string>
+
+    <!--    vehicle space and time info-->
+    <string name="placeAndTimeInfo">স্থানের ও সময়ের  বিবরণ</string>
+    <string name="division">বিভাগ</string>
+    <string name="addressDetails">স্থানের বিবরণ</string>
+    <string name="time">সময়</string>
+
 </resources>

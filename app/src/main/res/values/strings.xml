@@ -138,4 +138,32 @@
         <item>Others</item>
     </string-array>
 
+<!--    vehicle information-->
+    <string name="vehicleType">Vehicle Type</string>
+    <string name="vehicleBrand">Brand</string>
+    <string name="vehicleModel">Model</string>
+    <string name="vehicleRegiPart1">Matro Area</string>
+    <string name="vehicleRegiPart2">Level</string>
+    <string name="vehicleRegiNo">Regi No</string>
+    <string name="engineNo">Engine No</string>
+    <string name="chesisNo">Chesis No</string>
+    <string name="ccNo">CC No</string>
+    <string name="madeIn">Made In</string>
+    <string name="madeDate">Manufecture Date</string>
+
+    <!--    vehicle document info-->
+    <string name="identityInfo">Identity Information</string>
+    <string name="colorName">Color</string>
+    <string name="vehicleSign">Identity Sign</string>
+    <string name="photo">Photo</string>
+    <string name="documentType">Document Type</string>
+
+    <!--    vehicle space and time info-->
+    <string name="placeAndTimeInfo">Place And Times Information</string>
+    <string name="division">Division</string>
+    <string name="addressDetails">Address Details</string>
+    <string name="time">Time</string>
+
+
+
 </resources>

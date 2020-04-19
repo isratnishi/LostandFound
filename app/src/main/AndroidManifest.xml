@@ -20,9 +20,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.LostInformationEntryActivity"></activity>
-        <activity android:name=".Activity.UnknownManActivity"
-            android:label="Man Information Entry"/>
+        <activity android:name=".Activity.VehicleEntryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.LostInformationEntryActivity" />
+        <activity
+            android:name=".Activity.UnknownManActivity"
+            android:label="Man Information Entry" />
         <activity android:name=".Activity.LostManActivity" />
         <activity android:name=".RegTrialActivity" />
         <activity android:name=".Activity.RegistrationProcessActivity" />
@@ -49,11 +57,7 @@
         <activity
             android:name=".Activity.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
