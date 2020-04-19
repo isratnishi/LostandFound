@@ -528,6 +528,7 @@
                             android:layout_height="0dp" />
 
                         <TextView
+                            android:id="@+id/tvVehicleTitle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -563,12 +564,14 @@
                             android:id="@+id/vType"
                             style="@style/EditTextView"
                             android:layout_toRightOf="@id/ivType"/>
-                        <EditText
-                            android:id="@+id/etType"
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnVehicleType"
                             style="@style/EditTextEditText"
                             android:layout_toRightOf="@id/vType"
-                            android:hint="যানবাহনের ধরণ"
-                            />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
 
                     </RelativeLayout>
                     <RelativeLayout
@@ -585,14 +588,22 @@
                             android:id="@+id/vBrand"
                             style="@style/EditTextView"
                             android:layout_toRightOf="@id/ivBrand"/>
-                        <EditText
-                            android:id="@+id/etBrand"
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnMadeBy"
                             style="@style/EditTextEditText"
                             android:layout_toRightOf="@id/vBrand"
-                            android:hint="ব্রান্ডের নাম"
-                            />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+<!--                        <EditText-->
+<!--                            android:id="@+id/etBrand"-->
+<!--                            style="@style/EditTextEditText"-->
+<!--                            android:layout_toRightOf="@id/vBrand"-->
+<!--                            android:hint="ব্রান্ডের নাম"-->
+<!--                            />-->
 
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_marginBottom="10dp"
@@ -616,11 +627,42 @@
                             />
 
                     </RelativeLayout>
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
+                        <ImageView
+                            android:id="@+id/ivRegNo1"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_home" />
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnRegNoName1"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/ivRegNo1"
+                            android:layout_weight="1"
+                            android:layout_marginTop="10dp" />
+
+
+                        <ImageView
+                            android:id="@+id/ivRegNo2"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_home" />
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnRegNoName2"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/ivRegNo2"
+                            android:layout_weight="1"
+                            android:layout_marginTop="10dp" />
+
+
+                    </LinearLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_marginBottom="10dp"
-
                         android:background="@android:color/white"
                         android:layout_height="wrap_content">
 
@@ -657,7 +699,7 @@
                             style="@style/EditTextView"
                             android:layout_toRightOf="@id/ivuser1"/>
                         <EditText
-                            android:id="@+id/etUserName"
+                            android:id="@+id/etEngineNo"
                             style="@style/EditTextEditText"
                             android:layout_toRightOf="@id/vuser1"
                             android:hint="ইঞ্জিন নম্বর"
@@ -665,15 +707,408 @@
 
                     </RelativeLayout>
 
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivCHNO"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_home" />
+                        <EditText
+                            android:id="@+id/etChesisNo"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/ivCHNO"
+                            android:layout_weight="1"
+                            android:hint="চেসিস নম্বর"
+                            />
+
+
+                        <ImageView
+                            android:id="@+id/ivCCNO"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_home" />
+
+                        <EditText
+                            android:id="@+id/etCCNo"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/ivCCNO"
+                            android:layout_weight="1"
+                            android:hint="সিসি"
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivVehicleYear"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_home" />
+
+                        <EditText
+                            android:id="@+id/etVehicleYear"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/ivVehicleYear"
+                            android:layout_weight="1"
+                            android:hint="তৈরির সাল"
+                            />
+
+
+                        <ImageView
+                            android:id="@+id/ivMadeIn"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_home" />
+
+                        <EditText
+                            android:id="@+id/etMadeIn"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/ivMadeIn"
+                            android:layout_weight="1"
+                            android:hint="তৈরির দেশ"
+                            />
+
+
+                    </LinearLayout>
+
+
+                    <Button
+                        android:id="@+id/btnVehicleEntry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="@color/colorAccent"
+                        android:text="Next"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+
+
+                /////
+                <LinearLayout
+                    android:id="@+id/vehicleDocument"
+                    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="@dimen/spacing_large"
+                            android:layout_height="0dp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Fill the vehicle document information"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                            android:textColor="@android:color/holo_red_dark"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:layout_width="?attr/actionBarSize"
+                            android:layout_height="?attr/actionBarSize"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:tint="@color/colorPrimary"
+                            android:src="@drawable/ic_downarrow" />
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey_10" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/ivColor"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_home" />
+                        <View
+                            android:id="@+id/vColor"
+                            style="@style/EditTextView"
+                            android:layout_toRightOf="@id/ivColor"/>
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnColor"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/vColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/ivIdenSign"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_user" />
+                        <View
+                            android:id="@+id/vIdenSign"
+                            style="@style/EditTextView"
+                            android:layout_toRightOf="@id/ivIdenSign"/>
+                        <EditText
+                            android:id="@+id/etIdenSign"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/vIdenSign"
+                            android:hint="সনাক্তকারী চিহ্ন"
+                            />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="10dp"
+
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/ivVPhoto"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_user" />
+                        <View
+                            android:id="@+id/vVPhoto"
+                            style="@style/EditTextView"
+                            android:layout_toRightOf="@id/ivVPhoto"/>
+                        <TextView
+                            android:id="@+id/etVPhoto"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/vVPhoto"
+                            android:text="ছবি"
+                            />
+                        
+
+
+                    </RelativeLayout>
+
+
+
                     <Button
                         android:id="@+id/btnEntryInput"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:background="@color/colorAccent"
-                        android:text="Done"
+                        android:text="Next"
                         android:textColor="@android:color/white" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llVehiclePlaceTime"
+                    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="@dimen/spacing_large"
+                            android:layout_height="0dp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Fill the place and time information"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                            android:textColor="@android:color/holo_red_dark"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:layout_width="?attr/actionBarSize"
+                            android:layout_height="?attr/actionBarSize"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:tint="@color/colorPrimary"
+                            android:src="@drawable/ic_downarrow" />
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey_10" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/ivSPDivision"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_home" />
+                        <View
+                            android:id="@+id/vSPDivision"
+                            style="@style/EditTextView"
+                            android:layout_toRightOf="@id/ivSPDivision"/>
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnSPDivision"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/vSPDivision"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/ivSPDistrict"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_user" />
+                        <View
+                            android:id="@+id/vSPDistrict"
+                            style="@style/EditTextView"
+                            android:layout_toRightOf="@id/ivSPDistrict"/>
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnSPDistrict"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/vSPDistrict"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="10dp"
+
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/ivSPThana"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_user" />
+                        <View
+                            android:id="@+id/vSPThana"
+                            style="@style/EditTextView"
+                            android:layout_toRightOf="@id/ivSPThana"/>
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnSPThana"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/vSPThana"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="10dp"
+
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/ivAddDetails"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_user" />
+                        <View
+                            android:id="@+id/vAddDetails"
+                            style="@style/EditTextView"
+                            android:layout_toRightOf="@id/ivAddDetails"/>
+
+                        <EditText
+                            android:id="@+id/etAddDetails"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/vAddDetails"
+                            android:hint="স্থানের বিবরণ"
+                            />
+
+                    </RelativeLayout>
+
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivDATE"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_home" />
+
+                        <EditText
+                            android:id="@+id/etDATE"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/ivDATE"
+                            android:layout_weight="1"
+                            android:hint="DD/MM/YYYY"
+                            />
+
+
+                        <ImageView
+                            android:id="@+id/ivTime"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_home" />
+
+                        <EditText
+                            android:id="@+id/etTime"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/ivTime"
+                            android:layout_weight="1"
+                            />
+
+
+                    </LinearLayout>
+
+
+
+                    <Button
+                        android:id="@+id/btnSAT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="@color/colorAccent"
+                        android:text="Next"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>

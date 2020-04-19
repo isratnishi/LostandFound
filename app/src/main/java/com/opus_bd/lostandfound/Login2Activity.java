@@ -180,7 +180,7 @@ public class Login2Activity extends AppCompatActivity implements GoogleApiClient
     }
 
     @OnClick(R.id.tvLangugeName)
-    public void button2() {
+    public void tvLangugeName() {
         isChecked = getSharedPrefValue();
         if (isChecked == true) {
 
