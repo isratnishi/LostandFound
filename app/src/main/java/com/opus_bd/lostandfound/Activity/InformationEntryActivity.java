@@ -62,6 +62,8 @@ public class InformationEntryActivity extends AppCompatActivity {
     LinearLayout llEntry;
     @BindView(R.id.vehicleDocument)
     LinearLayout vehicleDocument;
+    @BindView(R.id.llVehiclePlaceTime)
+    LinearLayout llVehiclePlaceTime;
     @BindView(R.id.iv1)
     ImageView iv1;
     @BindView(R.id.iv2)
@@ -159,6 +161,7 @@ public class InformationEntryActivity extends AppCompatActivity {
         LLInputForOthers.setVisibility(View.GONE);
         llEntry.setVisibility(View.GONE);
         vehicleDocument.setVisibility(View.GONE);
+        llVehiclePlaceTime.setVisibility(View.GONE);
         iv1.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         getMatropolitonName();
         getRegiSerial();
@@ -230,9 +233,10 @@ public class InformationEntryActivity extends AppCompatActivity {
     @OnClick(R.id.btnVehicleEntry)
     public void btnVehicleEntry() {
         vehicleDocument.setVisibility(View.VISIBLE);
+        llVehiclePlaceTime.setVisibility(View.GONE);
         llEntry.setVisibility(View.GONE);
-
     }
+
 
     @OnClick(R.id.fab)
     public void fab() {
@@ -245,7 +249,10 @@ public class InformationEntryActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnEntryInput)
     public void btnEntryInput() {
-        submitToServer();
+        vehicleDocument.setVisibility(View.GONE);
+        llVehiclePlaceTime.setVisibility(View.VISIBLE);
+        llEntry.setVisibility(View.GONE);
+        //submitToServer();
        /* Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -543,8 +550,8 @@ public class InformationEntryActivity extends AppCompatActivity {
     }
 
     public void addVehicleMadyBySpinnerData(final List<VehicleModel> body) {
-        List<String> vehicleMadyBy = new ArrayList<>()
-        vehicleMadyBy.add("্রান্ডের নাম");
+        List<String> vehicleMadyBy = new ArrayList<>();
+       // vehicleMadyBy.add("্রান্ডের নাম");
         for (int i = 0; i < body.size(); i++) {
             vehicleMadyBy.add(body.get(i).getModelName());
         }
