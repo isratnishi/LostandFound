@@ -116,9 +116,18 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         mDrawerLayout.closeDrawer(GravityCompat.END);
     }
 
-    @OnClick({R.id.llTheft, R.id.fabTheft})
+    @OnClick({R.id.llTheft, R.id.fabTheft,R.id.fablost,R.id.llfablost})
     public void llTheft() {
         Intent intent = new Intent(DashboardActivity.this, InformationEntryActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+
+@OnClick({R.id.fablost,R.id.llfablost})
+    public void fablost() {
+        Intent intent = new Intent(DashboardActivity.this, LostInformationEntryActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

@@ -9,8 +9,6 @@ import androidx.core.content.ContextCompat;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -31,7 +29,6 @@ import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Dashboard.Vehicle.VehicleModel;
 import com.opus_bd.lostandfound.Model.Dashboard.Vehicle.VehicleType;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
-import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
@@ -48,7 +45,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InformationEntryActivity extends AppCompatActivity {
+public class LostInformationEntryActivity extends AppCompatActivity {
     @BindView(R.id.llVOwn)
     LinearLayout llVOwn;
 
@@ -125,12 +122,11 @@ public class InformationEntryActivity extends AppCompatActivity {
 
     public int SELECTED_VEHICLETYPE_ID;
     public String SELECTED_VEHICLEMODEL_Name;
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_information_entry);
+        setContentView(R.layout.activity_lost_information_entry);
         ButterKnife.bind(this);
         LLItems.setVisibility(View.GONE);
         LLInputForOthers.setVisibility(View.GONE);
@@ -207,7 +203,7 @@ public class InformationEntryActivity extends AppCompatActivity {
 
     @OnClick(R.id.fab)
     public void fab() {
-        Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
+        Intent intent = new Intent(LostInformationEntryActivity.this, DashboardActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -216,13 +212,23 @@ public class InformationEntryActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnEntryInput)
     public void btnEntryInput() {
-       // submitToServer();
+        // submitToServer();
         llEntry.setVisibility(View.GONE);
         vehicleDocument.setVisibility(View.VISIBLE);
-       /* Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
+       /* Intent intent = new Intent(LostInformationEntryActivity.this, DashboardActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);*/
+
+    }
+ @OnClick({R.id.llVMan,R.id.fabMan})
+    public void llVMan() {
+        // submitToServer();
+     
+        Intent intent = new Intent(LostInformationEntryActivity.this, UnknownManActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
 
     }
 
@@ -231,10 +237,10 @@ public class InformationEntryActivity extends AppCompatActivity {
         vehicleDocument.setVisibility(View.GONE);
         llplaceDocument.setVisibility(View.VISIBLE);
 
-       // submitToServer();
+        // submitToServer();
 
-       // vehicleDocument.setVisibility(View.VISIBLE);
-       /* Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
+        // vehicleDocument.setVisibility(View.VISIBLE);
+       /* Intent intent = new Intent(LostInformationEntryActivity.this, DashboardActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);*/
@@ -244,10 +250,10 @@ public class InformationEntryActivity extends AppCompatActivity {
         llplaceDocument.setVisibility(View.VISIBLE);
         customDialog();
 
-       // submitToServer();
+        // submitToServer();
 
-       // vehicleDocument.setVisibility(View.VISIBLE);
-       /* Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
+        // vehicleDocument.setVisibility(View.VISIBLE);
+       /* Intent intent = new Intent(LostInformationEntryActivity.this, DashboardActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);*/
@@ -255,7 +261,7 @@ public class InformationEntryActivity extends AppCompatActivity {
     }
 
     public void customDialog() {
-        final Dialog dialog = new Dialog(InformationEntryActivity.this);
+        final Dialog dialog = new Dialog(LostInformationEntryActivity.this);
         dialog.setContentView(R.layout.dialog_custom_code_generator);
         Window window = dialog.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
@@ -268,7 +274,7 @@ public class InformationEntryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
+                    Intent intent = new Intent(LostInformationEntryActivity.this, DashboardActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
@@ -357,7 +363,7 @@ public class InformationEntryActivity extends AppCompatActivity {
                     // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
                 }
             }*/
-       /* });*/
+        /* });*/
 
 
 
@@ -408,18 +414,18 @@ public class InformationEntryActivity extends AppCompatActivity {
                             Toast.makeText(context, "Something went Wrong! Please try again later", Toast.LENGTH_SHORT).show();
                         }*/
 
-                        Toast.makeText(InformationEntryActivity.this, "Successfully Done!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
+                        Toast.makeText(LostInformationEntryActivity.this, "Successfully Done!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LostInformationEntryActivity.this, DashboardActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
 
                     } else {
-                        Toast.makeText(InformationEntryActivity.this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LostInformationEntryActivity.this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     Utilities.showLogcatMessage("Exception 2" + e.toString());
-                    Toast.makeText(InformationEntryActivity.this, "Something went Wrong! Please try again later", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LostInformationEntryActivity.this, "Something went Wrong! Please try again later", Toast.LENGTH_SHORT).show();
                 }
                 //            showProgressBar(false);
             }
@@ -428,43 +434,43 @@ public class InformationEntryActivity extends AppCompatActivity {
             public void onFailure(Call<String> call, Throwable t) {
                 Utilities.showLogcatMessage("Fail to connect " + t.toString());
                 // Utilities.hideProgress(LoginActivity.this);
-                Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LostInformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
 
             }
         });
     }
 
 
-    //Spinner 
+    //Spinner
 
     public void getAllDocument() {
 
         String token = SharedPrefManager.getInstance(this).getToken();
 
-            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-            Call<List<DocumentType>> registrationRequest = retrofitService.GetAllDocumentType();
-            registrationRequest.enqueue(new Callback<List<DocumentType>>() {
-                @Override
-                public void onResponse(Call<List<DocumentType>> call, Response<List<DocumentType>> response) {
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<DocumentType>> registrationRequest = retrofitService.GetAllDocumentType();
+        registrationRequest.enqueue(new Callback<List<DocumentType>>() {
+            @Override
+            public void onResponse(Call<List<DocumentType>> call, Response<List<DocumentType>> response) {
 
-                    if (response.body() != null) {
+                if (response.body() != null) {
 
-                        documentTypeArrayList.clear();
-                        documentTypeArrayList.addAll(response.body());
-                        Utilities.showLogcatMessage(" Div Size " + response.body().size());
-                        for (int i = 0; i < response.body().size(); i++) {
-                            Utilities.showLogcatMessage(" Div ID" + response.body().get(i).getId());
-                        }
-
-                        addDocumentTypeNamePresentSpinnerData(response.body());
+                    documentTypeArrayList.clear();
+                    documentTypeArrayList.addAll(response.body());
+                    Utilities.showLogcatMessage(" Div Size " + response.body().size());
+                    for (int i = 0; i < response.body().size(); i++) {
+                        Utilities.showLogcatMessage(" Div ID" + response.body().get(i).getId());
                     }
-                }
 
-                @Override
-                public void onFailure(Call<List<DocumentType>> call, Throwable t) {
-                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                    addDocumentTypeNamePresentSpinnerData(response.body());
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(Call<List<DocumentType>> call, Throwable t) {
+                Toast.makeText(LostInformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
      /*   } else {
             Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, LoginActivity.class);
@@ -528,7 +534,7 @@ public class InformationEntryActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<List<VehicleType>> call, Throwable t) {
-                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LostInformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
@@ -593,7 +599,7 @@ public class InformationEntryActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<List<VehicleModel>> call, Throwable t) {
-                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LostInformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
         } else {

@@ -83,4 +83,25 @@
     <string name="entry_code1">তথ্য এন্ট্রির জন্যে ধন্যবাদ পরবর্তীতে আপনার সাথে যোগাযোগ করা হবে</string>
     <string name="entry_code2">আপনার সহায়তায় সর্বদা বাংলাদেশ পুলিশ নিয়োজিত</string>
     <string name="entry_code3">যেকোনো সাহায্যের জন্য ৯৯৯ নম্বরে কল করুন</string>
+    <string name="district">District</string>
+    <string name="thana">Thana</string>
+    <string name="village">Village</string>
+    <string name="name">Name:</string>
+    <string name="father_s_name">Father\'s Name:</string>
+    <string name="husband_wife_name">Husband/Wife Name:</string>
+    <string name="religion">Religion</string>
+    <string name="occupation">Occupation</string>
+    <string name="blood_group">Blood Group</string>
+
+    <string-array name="purpose_of_visit">
+    <item>ভ্রমণের উদ্দেশ্য</item>
+    <item>Tourist visa</item>
+    <item>Business visa</item>
+    <item>Student visa</item>
+    <item>Employment visa</item>
+    <item> Diplomatic/Official visa</item>
+    <item>Investor visa</item>
+    <item>Journalist visa</item>
+    <item> NGO visa</item>
+    </string-array>
 </resources>

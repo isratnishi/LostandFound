@@ -78,5 +78,64 @@
     <string name="entry_code1">Thanks for the information entry You\'ll be contacted later</string>
     <string name="entry_code2">Bangladesh Police is always deployed with your help</string>
     <string name="entry_code3">Call 999 for any help</string>
+    <string name="district">District</string>
+    <string name="thana">Thana</string>
+    <string name="village">Village</string>
+    <string name="name">Name</string>
+    <string name="father_s_name">Father\'s Name</string>
+    <string name="husband_wife_name">Husband/Wife Name</string>
+    <string name="religion">Religion</string>
+    <string name="gender">Gender</string>
+    <string name="occupation">Occupation</string>
+    <string name="blood_group">Blood Group</string>
+    <string-array name="purpose_of_visit">
+        <item>Purpose of Visit</item>
+        <item>Tourist visa</item>
+        <item>Business visa</item>
+        <item>Student visa</item>
+        <item>Employment visa</item>
+        <item> Diplomatic/Official visa</item>
+        <item>Investor visa</item>
+        <item>Journalist visa</item>
+        <item> NGO visa</item>
+
+
+    </string-array>
+
+    <string-array name="religion">
+        <item>Islam</item>
+        <item>Hindu</item>
+        <item>Cristian</item>
+        <item>Buddhits</item>
+    </string-array>
+
+    <string-array name="blood_groups">
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>O+</item>
+        <item>O-</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="marital_status">
+        <item>single</item>
+        <item>Married</item>
+    </string-array>
+    <string-array name="occupations">
+        <item>Govt. Job</item>
+        <item>Private Job</item>
+        <item>Business</item>
+        <item>Teacher</item>
+        <item>Others</item>
+    </string-array>
 
 </resources>
