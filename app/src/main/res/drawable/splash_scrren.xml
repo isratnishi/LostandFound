@@ -54,7 +54,9 @@
 
         android:top="350dp">
 
+
         <bitmap android:src="@drawable/app_bg_crop"
+
 
             />
     </item>

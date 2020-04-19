@@ -10,7 +10,7 @@ import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -28,9 +28,13 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
-import com.opus_bd.lostandfound.Model.Dashboard.Vehicle.VehicleModel;
-import com.opus_bd.lostandfound.Model.Dashboard.Vehicle.VehicleType;
+import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
+import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
+import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
+import com.opus_bd.lostandfound.Model.GlobalData.District;
+import com.opus_bd.lostandfound.Model.GlobalData.Division;
+import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
@@ -40,6 +44,7 @@ import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,8 +62,42 @@ public class InformationEntryActivity extends AppCompatActivity {
 
     @BindView(R.id.LLInputForOthers)
     LinearLayout LLInputForOthers;
-    @BindView(R.id.llplaceDocument)
-    LinearLayout llplaceDocument;
+
+    @BindView(R.id.LLItems)
+    LinearLayout LLItems;
+    @BindView(R.id.llInput)
+    LinearLayout llInput;
+    @BindView(R.id.llEntry)
+    LinearLayout llEntry;
+    @BindView(R.id.vehicleDocument)
+    LinearLayout vehicleDocument;
+    @BindView(R.id.llVehiclePlaceTime)
+    LinearLayout llVehiclePlaceTime;
+    @BindView(R.id.iv1)
+    ImageView iv1;
+    @BindView(R.id.iv2)
+    ImageView iv2;
+    @BindView(R.id.iv3)
+    ImageView iv3;
+    @BindView(R.id.iv4)
+    ImageView iv4;
+
+    @BindView(R.id.v1)
+    View v1;
+    @BindView(R.id.v2)
+    View v2;
+    @BindView(R.id.v3)
+    View v3;
+
+   /* @BindView(R.id.cvVOwn)
+    CardView cvVOwn;
+
+    @BindView(R.id.cvVOthers)
+    CardView cvVOthers;
+
+    @BindView(R.id.cvEntry)
+    CardView cvEntry;*/
+
     @BindView(R.id.etModel)
     EditText etModel;
 
@@ -75,33 +114,10 @@ public class InformationEntryActivity extends AppCompatActivity {
     CardView cvItems;
     /*@BindView(R.id.etUserName)
     EditText etUserName;*/
-    @BindView(R.id.LLItems)
-    LinearLayout LLItems;
-    @BindView(R.id.llInput)
-    LinearLayout llInput;
-    @BindView(R.id.llEntry)
-    LinearLayout llEntry; @BindView(R.id.vehicleDocument)
-    LinearLayout vehicleDocument;
-    @BindView(R.id.iv1)
-    ImageView iv1;
-    @BindView(R.id.iv2)
-    ImageView iv2;
-    @BindView(R.id.iv3)
-    ImageView iv3;
-    @BindView(R.id.iv4)
-    ImageView iv4;
-
-
-    @BindView(R.id.v1)
-    View v1;
-    @BindView(R.id.v2)
-    View v2;
-    @BindView(R.id.v3)
-    View v3;
-
     @BindView(R.id.etNumber)
     EditText etNumber;
     @BindView(R.id.cvInput)
+
     CardView cvInput;
     @BindView(R.id.fabOwn)
     FloatingActionButton fabOwn;
@@ -111,20 +127,56 @@ public class InformationEntryActivity extends AppCompatActivity {
     @BindView(R.id.fabOther)
     FloatingActionButton fabOther;
     //Spinner
+
+    @BindView(R.id.spnSPDivision)
+    AppCompatSpinner spnSPDivision;
+
+    @BindView(R.id.spnSPDistrict)
+    AppCompatSpinner spnSPDistrict;
+
+    @BindView(R.id.spnSPThana)
+    AppCompatSpinner spnSPThana;
+
     @BindView(R.id.spnDocumentType)
-    Spinner spnDocumentType;
+    AppCompatSpinner spnDocumentType;
+
     @BindView(R.id.spnVehicleType)
     AppCompatSpinner spnVehicleType;
 
     @BindView(R.id.spnMadeBy)
     AppCompatSpinner spnMadeBy;
+
+    @BindView(R.id.spnRegNoName1)
+    AppCompatSpinner spnRegNoName1;
+
+    @BindView(R.id.spnRegNoName2)
+    AppCompatSpinner spnRegNoName2;
+
+    @BindView(R.id.spnColor)
+    AppCompatSpinner spnColor;
+
+    String[] metropoliton, regipartTwo;
+
+    //Address List
+    ArrayList<Division> divisionArrayList = new ArrayList<>();
+    ArrayList<District> districtArrayList = new ArrayList<>();
+    ArrayList<Thana> thanaArrayList = new ArrayList<>();
+
     ArrayList<DocumentType> documentTypeArrayList = new ArrayList<>();
-    public int SELECTED_DOCUMENT_ID;
     ArrayList<VehicleType> vehicleTypeArrayList = new ArrayList<>();
     ArrayList<VehicleModel> VehicleModelArrayList = new ArrayList<>();
-
+    ArrayList<Colors> colorArrayList = new ArrayList<>();
+    public int SELECTED_DOCUMENT_ID;
     public int SELECTED_VEHICLETYPE_ID;
     public String SELECTED_VEHICLEMODEL_Name;
+    public String SELECTED_REGNO_1;
+    public String SELECTED_REGNO_2;
+    public int SELECTED_COLOR_ID;
+    public int SELECTED_DIVISION_ID;
+    public int SELECTED_DISTRICT_ID;
+    public int SELECTED_THANA_ID;
+
+    //private Spinner spinner2;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -136,14 +188,14 @@ public class InformationEntryActivity extends AppCompatActivity {
         LLInputForOthers.setVisibility(View.GONE);
         llEntry.setVisibility(View.GONE);
         vehicleDocument.setVisibility(View.GONE);
-        llplaceDocument.setVisibility(View.GONE);
-
+        llVehiclePlaceTime.setVisibility(View.GONE);
         iv1.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
-
-
+        getMatropolitonName();
+        getRegiSerial();
         //Spinner
         getAllDocument();
         getAllVehicleType();
+        getAllColor();
         //addItemsOnSpinner2();
     }
 
@@ -191,7 +243,7 @@ public class InformationEntryActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @OnClick({R.id.llVVihecal,R.id.fabVihecal})
+    @OnClick({R.id.llVVihecal, R.id.fabVihecal})
     public void llVVihecal() {
 
         fabVihecal.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimaryDark));
@@ -202,8 +254,18 @@ public class InformationEntryActivity extends AppCompatActivity {
         cvItems.setVisibility(View.GONE);
         iv4.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         v3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
+        iv3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
+        v2.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
 
     }
+
+    @OnClick(R.id.btnVehicleEntry)
+    public void btnVehicleEntry() {
+        vehicleDocument.setVisibility(View.VISIBLE);
+        llVehiclePlaceTime.setVisibility(View.GONE);
+        llEntry.setVisibility(View.GONE);
+    }
+
 
     @OnClick(R.id.fab)
     public void fab() {
@@ -216,37 +278,11 @@ public class InformationEntryActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnEntryInput)
     public void btnEntryInput() {
-       // submitToServer();
-        llEntry.setVisibility(View.GONE);
-        vehicleDocument.setVisibility(View.VISIBLE);
-       /* Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);*/
-
-    }
-
-    @OnClick(R.id.btnEntryDocument)
-    public void btnEntryDocument() {
         vehicleDocument.setVisibility(View.GONE);
-        llplaceDocument.setVisibility(View.VISIBLE);
-
-       // submitToServer();
-
-       // vehicleDocument.setVisibility(View.VISIBLE);
-       /* Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);*/
-
-    } @OnClick(R.id.btnPlaceDocument)
-    public void btnPlaceDocument() {
-        llplaceDocument.setVisibility(View.VISIBLE);
-        customDialog();
-
-       // submitToServer();
-
-       // vehicleDocument.setVisibility(View.VISIBLE);
+        llVehiclePlaceTime.setVisibility(View.VISIBLE);
+        llEntry.setVisibility(View.GONE);
+        getDivision();
+        //submitToServer();
        /* Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -254,115 +290,7 @@ public class InformationEntryActivity extends AppCompatActivity {
 
     }
 
-    public void customDialog() {
-        final Dialog dialog = new Dialog(InformationEntryActivity.this);
-        dialog.setContentView(R.layout.dialog_custom_code_generator);
-        Window window = dialog.getWindow();
-        WindowManager.LayoutParams wlp = window.getAttributes();
 
-        wlp.gravity = Gravity.CENTER;
-        wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-        window.setAttributes(wlp);
-        Button btnThanks = (Button) dialog.findViewById(R.id.btnThanks);
-        btnThanks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-       /* // set the custom dialog components - text, image and button
-        ImageView ivLiveChat = (ImageView) dialog.findViewById(R.id.ivLiveChat);
-        ImageView ivEmail = (ImageView) dialog.findViewById(R.id.ivEmail);
-        ImageView ivCall = (ImageView) dialog.findViewById(R.id.ivCall);
-
-
-        CardView cvLiveChat = (CardView) dialog.findViewById(R.id.cvLiveChat);
-        CardView cvEmail = (CardView) dialog.findViewById(R.id.cvEmail);
-      */
-
-       /* ivLiveChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-
-                try {
-                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.police.gov.bd/en/criminal_investigation_department"));
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        cvLiveChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                try {
-                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.police.gov.bd/en/criminal_investigation_department"));
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        cvCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                try {
-                    intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:01737366028"));
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });ivEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                try {
-                    intent = new Intent(Intent.ACTION_SEND);
-                    intent.setType("text/plain");
-                    intent.putExtra(Intent.EXTRA_EMAIL, "Juelrananatore@gmail.com");
-                    intent.putExtra(Intent.EXTRA_SUBJECT, "Support");
-                    startActivity(Intent.createChooser(intent, "Send Email"));*//*
-                    intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
-
-                    startActivity(Intent.createChooser(intent, "Send Email"));*//*
-                } catch (ActivityNotFoundException e) {
-                    // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });cvEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                try {
-                    intent = new Intent(Intent.ACTION_SEND);
-                    intent.setType("text/plain");
-                    intent.putExtra(Intent.EXTRA_EMAIL, "Juelrananatore@gmail.com");
-                    intent.putExtra(Intent.EXTRA_SUBJECT, "Support");
-                    startActivity(Intent.createChooser(intent, "Send Email"));*//*
-                    intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
-
-                 *//*
-                } catch (ActivityNotFoundException e) {
-                    // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
-                }
-            }*/
-       /* });*/
-
-
-
-        dialog.show();
-    }
     private void submitToServer() {
 
         String token = SharedPrefManager.getInstance(this).getToken();
@@ -435,12 +363,60 @@ public class InformationEntryActivity extends AppCompatActivity {
     }
 
 
-    //Spinner 
+    //Spinner
+
+    public void getMatropolitonName() {
+        metropoliton = getResources().getStringArray(R.array.matropoliton);
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, metropoliton);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnRegNoName1.setAdapter(dataAdapter2);
+        spnRegNoName1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_REGNO_1 = metropoliton[i];
+
+                } else {
+                    SELECTED_REGNO_1 = "";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getRegiSerial() {
+        regipartTwo = getResources().getStringArray(R.array.regiparttwo);
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, regipartTwo);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnRegNoName2.setAdapter(dataAdapter2);
+        spnRegNoName2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_REGNO_2 = regipartTwo[i];
+
+                } else {
+                    SELECTED_REGNO_2 = "";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
 
     public void getAllDocument() {
 
         String token = SharedPrefManager.getInstance(this).getToken();
-
+        if (token != null) {
             RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
             Call<List<DocumentType>> registrationRequest = retrofitService.GetAllDocumentType();
             registrationRequest.enqueue(new Callback<List<DocumentType>>() {
@@ -465,19 +441,17 @@ public class InformationEntryActivity extends AppCompatActivity {
                     Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
-     /*   } else {
+        } else {
             Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-        }*/
+        }
     }
 
 
     public void addDocumentTypeNamePresentSpinnerData(final List<DocumentType> body) {
         List<String> documentList = new ArrayList<>();
-
-        documentList.add(getResources().getString(R.string.doc_type));
         for (int i = 0; i < body.size(); i++) {
             documentList.add(body.get(i).getDocumentTypeName());
         }
@@ -485,7 +459,6 @@ public class InformationEntryActivity extends AppCompatActivity {
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, documentList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spnDocumentType.setAdapter(dataAdapter2);
         spnDocumentType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -503,7 +476,9 @@ public class InformationEntryActivity extends AppCompatActivity {
 
             }
         });
-    } public void getAllVehicleType() {
+    }
+
+    public void getAllVehicleType() {
 
         String token = SharedPrefManager.getInstance(this).getToken();
         if (token != null) {
@@ -606,7 +581,7 @@ public class InformationEntryActivity extends AppCompatActivity {
 
     public void addVehicleMadyBySpinnerData(final List<VehicleModel> body) {
         List<String> vehicleMadyBy = new ArrayList<>();
-//        vehicleMadyBy.add("্রান্ডের নাম");
+        vehicleMadyBy.add("্রান্ডের নাম");
         for (int i = 0; i < body.size(); i++) {
             vehicleMadyBy.add(body.get(i).getModelName());
         }
@@ -632,6 +607,252 @@ public class InformationEntryActivity extends AppCompatActivity {
         });
     }
 
+    public void getAllColor() {
+
+        String token = SharedPrefManager.getInstance(this).getToken();
+        if (token != null) {
+            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+            Call<List<Colors>> colors = retrofitService.GetColors();
+            colors.enqueue(new Callback<List<Colors>>() {
+                @Override
+                public void onResponse(Call<List<Colors>> call, Response<List<Colors>> response) {
+
+                    if (response.body() != null) {
+
+                        colorArrayList.clear();
+                        colorArrayList.addAll(response.body());
+
+                        addColorSpinnerData(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Colors>> call, Throwable t) {
+                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+
+    public void addColorSpinnerData(final List<Colors> body) {
+        List<String> colorList = new ArrayList<>();
+        colorList.add("Color");
+        for (int i = 0; i < body.size(); i++) {
+            colorList.add(body.get(i).getColorName());
+        }
+
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, colorList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnColor.setAdapter(dataAdapter2);
+        spnColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_COLOR_ID = body.get(i).getId();
+                } else {
+                    SELECTED_COLOR_ID = 1;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getDivision() {
+
+        String token = SharedPrefManager.getInstance(this).getToken();
+        if (token != null) {
+            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+            Call<List<Division>> divisions = retrofitService.GetDivisions();
+            divisions.enqueue(new Callback<List<Division>>() {
+                @Override
+                public void onResponse(Call<List<Division>> call, Response<List<Division>> response) {
+
+                    if (response.body() != null) {
+
+                        divisionArrayList.clear();
+                        divisionArrayList.addAll(response.body());
+
+                        addDivisionSpinnerData(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Division>> call, Throwable t) {
+                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+
+
+    public void addDivisionSpinnerData(final List<Division> body) {
+        List<String> divisionList = new ArrayList<>();
+        for (int i = 0; i < body.size(); i++) {
+            divisionList.add(body.get(i).getDivisionName());
+        }
+
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, divisionList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnSPDivision.setAdapter(dataAdapter2);
+        spnSPDivision.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_DIVISION_ID = body.get(i).getId();
+                    getDistrict(body.get(i).getId());
+                } else {
+                    SELECTED_DIVISION_ID = 1;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getDistrict(int id) {
+
+        String token = SharedPrefManager.getInstance(this).getToken();
+        if (token != null) {
+            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+            Call<List<District>> divisions = retrofitService.getAllDistricts(id);
+            divisions.enqueue(new Callback<List<District>>() {
+                @Override
+                public void onResponse(Call<List<District>> call, Response<List<District>> response) {
+
+                    if (response.body() != null) {
+
+                        districtArrayList.clear();
+                        districtArrayList.addAll(response.body());
+
+                        addDistrictSpinnerData(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<District>> call, Throwable t) {
+                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+
+
+    public void addDistrictSpinnerData(final List<District> body) {
+        List<String> districtList = new ArrayList<>();
+        for (int i = 0; i < body.size(); i++) {
+            districtList.add(body.get(i).getDistrictName());
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, districtList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnSPDistrict.setAdapter(dataAdapter2);
+        spnSPDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 0) {
+                        SELECTED_DISTRICT_ID = body.get(i).getId();
+                        getAllThana(body.get(i).getId());
+                    } else {
+                        SELECTED_DISTRICT_ID = 1;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getAllThana(int id) {
+
+        String token = SharedPrefManager.getInstance(this).getToken();
+        if (token != null) {
+            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+            Call<List<Thana>> thana = retrofitService.GetThanaByDistrictId(id);
+            thana.enqueue(new Callback<List<Thana>>() {
+                @Override
+                public void onResponse(Call<List<Thana>> call, Response<List<Thana>> response) {
+
+                    if (response.body() != null) {
+
+                        thanaArrayList.clear();
+                        thanaArrayList.addAll(response.body());
+
+                        addThanaSpinnerData(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Thana>> call, Throwable t) {
+                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+
+
+    public void addThanaSpinnerData(final List<Thana> body) {
+        List<String> thanaList = new ArrayList<>();
+        for (int i = 0; i < body.size(); i++) {
+            thanaList.add(body.get(i).getThanaName());
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, thanaList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnSPThana.setAdapter(dataAdapter2);
+        spnSPThana.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_THANA_ID = body.get(i).getId();
+
+                } else {
+                    SELECTED_THANA_ID = 1;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
     // add items into spinner dynamically
 //    public void addItemsOnSpinner2() {
 //
@@ -646,5 +867,43 @@ public class InformationEntryActivity extends AppCompatActivity {
 //        spinner2.setAdapter(dataAdapter);
 //    }
 
+    public void customDialog() {
+        final Dialog dialog = new Dialog(InformationEntryActivity.this);
+        dialog.setContentView(R.layout.dialog_custom_code_generator);
+
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+
+        wlp.gravity = Gravity.CENTER;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        window.setAttributes(wlp);
+        // set the custom dialog components - text, image and button
+        Button btnThanks = (Button) dialog.findViewById(R.id.btnThanks);
+
+
+        btnThanks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                try {
+                    Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+        dialog.show();
+    }
+
+    @OnClick(R.id.btnSAT)
+    public void btnNext2() {
+        customDialog();
+    }
 
 }

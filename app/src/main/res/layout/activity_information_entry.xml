@@ -9,10 +9,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/splash_scrren"
+        android:background="@drawable/card_backgound"
         android:fitsSystemWindows="true"
         android:orientation="vertical">
-<include layout="@layout/entry_process_layout"/>
+        <!--      <androidx.appcompat.widget.Toolbar
+                  android:id="@+id/toolbar"
+                  android:layout_width="match_parent"
+                  android:layout_height="?attr/actionBarSize"
+                  android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                  app:contentInsetStartWithNavigation="0dp"
+                  app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                  app:subtitle="welcome to Lost and found"
+                  app:subtitleTextAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                  app:subtitleTextColor="@color/grey_10"
+
+                  android:background="@color/colorPrimary"
+                  app:title="Hi, User" />-->
+        <include layout="@layout/entry_process_layout"/>
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nested_scroll_view"
             android:layout_width="match_parent"
@@ -232,23 +245,20 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                           <!-- <TextView
-                                android:id="@+id/tvDocType"
+                            <TextView
                                 style="@style/EditTextEditText"
 
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
                                 android:layout_weight="1"
-                                android:text="@string/doc_type"
-                                android:layout_marginLeft="5dp" />-->
+                                android:text="কাগজের ধরণ"
+                                android:layout_marginLeft="5dp" />
 
-                            <Spinner
+                            <androidx.appcompat.widget.AppCompatSpinner
                                 android:id="@+id/spnDocumentType"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:spinnerMode="dropdown"
-                                android:prompt="@string/doc_type"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp" />
 
@@ -278,46 +288,10 @@
                             android:id="@+id/etNumber"
                             style="@style/EditTextEditText"
                             android:layout_toRightOf="@id/vNumber"
-                            android:hint="ডকুমেন্ট নম্বর" />
+                            android:hint="নম্বর" />
 
                     </RelativeLayout>
-                    <RelativeLayout
-                        android:id="@+id/rrEmail"
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="10dp"
 
-                        android:background="@android:color/white"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:id="@+id/ivEmail"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_mail"
-                            android:background="@color/colorPrimary"/>
-                        <View
-                            android:id="@+id/vEmail"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginLeft="-10dp"
-                            android:layout_marginRight="5dp"
-                            android:rotation="45"
-                            android:layout_centerVertical="true"
-                            android:layout_toRightOf="@id/ivEmail"
-                            android:background="@color/colorPrimary"/>
-                        <EditText
-                            android:id="@+id/etEmail"
-                            android:layout_toRightOf="@id/vEmail"
-                            android:hint="@string/email_op"
-                            android:paddingStart="10dp"
-                            android:inputType="textEmailAddress"
-                            android:background="@android:color/white"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:paddingLeft="10dp" />
-
-                    </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -349,7 +323,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:background="@color/colorAccent"
-                        android:text="@string/next"
+                        android:text="Done"
                         android:textColor="@android:color/white" />
 
                 </LinearLayout>
@@ -450,6 +424,38 @@
                                     android:textColor="@color/grey_40" />
 
                             </LinearLayout>
+
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/llVMan"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+                                    android:id="@+id/fabMan"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="true"
+                                    android:src="@drawable/lose"
+                                    android:tint="@android:color/white"
+                                    app:backgroundTint="@color/grey_40"
+                                    app:elevation="0dp"
+                                    app:fabSize="mini"
+                                    app:rippleColor="@android:color/white" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/spacing_medium"
+                                    android:text="Man"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                    android:textColor="@color/grey_40" />
+                            </LinearLayout>
+
                             <LinearLayout
                                 android:id="@+id/llVVivid"
                                 android:layout_width="0dp"
@@ -475,7 +481,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/spacing_medium"
-                                    android:text="@string/others"
+                                    android:text="Others"
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                                     android:textColor="@color/grey_40" />
                             </LinearLayout>
@@ -515,6 +521,7 @@
                             android:layout_height="0dp" />
 
                         <TextView
+                            android:id="@+id/tvVehicleTitle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -589,6 +596,7 @@
                         <!--                            />-->
 
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_marginBottom="10dp"
@@ -612,11 +620,35 @@
                             />
 
                     </RelativeLayout>
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
+                        <ImageView
+                            android:id="@+id/ivRegNo1"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_home" />
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnRegNoName1"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/ivRegNo1"
+                            android:layout_weight="1"
+                            android:layout_marginTop="10dp" />
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnRegNoName2"
+                            style="@style/EditTextEditText"
+                            android:layout_weight="1"
+                            android:layout_marginTop="10dp" />
+
+
+                    </LinearLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_marginBottom="10dp"
-
                         android:background="@android:color/white"
                         android:layout_height="wrap_content">
 
@@ -661,97 +693,80 @@
 
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
+                    <LinearLayout android:layout_width="fill_parent"
                         android:layout_marginBottom="10dp"
-
                         android:background="@android:color/white"
-                        android:layout_height="wrap_content">
-
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/ivCHNO"
                             style="@style/EditTextIcon"
-                            android:src="@drawable/ic_user" />
-                        <View
-                            android:id="@+id/vCHNO"
-                            style="@style/EditTextView"
-                            android:layout_toRightOf="@id/ivCHNO"/>
+                            android:src="@drawable/ic_home" />
                         <EditText
                             android:id="@+id/etChesisNo"
                             style="@style/EditTextEditText"
-                            android:layout_toRightOf="@id/vCHNO"
+                            android:layout_toRightOf="@id/ivCHNO"
+                            android:layout_weight="1"
                             android:hint="চেসিস নম্বর"
                             />
 
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="10dp"
-                        android:background="@android:color/white"
-                        android:layout_height="wrap_content">
 
                         <ImageView
                             android:id="@+id/ivCCNO"
                             style="@style/EditTextIcon"
-                            android:src="@drawable/ic_user" />
-                        <View
-                            android:id="@+id/vCCNO"
-                            style="@style/EditTextView"
-                            android:layout_toRightOf="@id/ivCCNO"/>
+                            android:src="@drawable/ic_home" />
+
                         <EditText
                             android:id="@+id/etCCNo"
                             style="@style/EditTextEditText"
-                            android:layout_toRightOf="@id/vCCNO"
+                            android:layout_toRightOf="@id/ivCCNO"
+                            android:layout_weight="1"
                             android:hint="সিসি"
                             />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
+
+
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="fill_parent"
                         android:layout_marginBottom="10dp"
                         android:background="@android:color/white"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/ivVehicleYear"
                             style="@style/EditTextIcon"
-                            android:src="@drawable/ic_user" />
-                        <View
-                            android:id="@+id/vVehicleYear"
-                            style="@style/EditTextView"
-                            android:layout_toRightOf="@id/ivVehicleYear"/>
+                            android:src="@drawable/ic_home" />
+
                         <EditText
                             android:id="@+id/etVehicleYear"
                             style="@style/EditTextEditText"
-                            android:layout_toRightOf="@id/vVehicleYear"
+                            android:layout_toRightOf="@id/ivVehicleYear"
+                            android:layout_weight="1"
                             android:hint="তৈরির সাল"
                             />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="10dp"
-                        android:background="@android:color/white"
-                        android:layout_height="wrap_content">
+
 
                         <ImageView
                             android:id="@+id/ivMadeIn"
                             style="@style/EditTextIcon"
-                            android:src="@drawable/ic_user" />
-                        <View
-                            android:id="@+id/vMadeIn"
-                            style="@style/EditTextView"
-                            android:layout_toRightOf="@id/ivMadeIn"/>
+                            android:src="@drawable/ic_home" />
+
                         <EditText
                             android:id="@+id/etMadeIn"
                             style="@style/EditTextEditText"
-                            android:layout_toRightOf="@id/vMadeIn"
+                            android:layout_toRightOf="@id/ivMadeIn"
+                            android:layout_weight="1"
                             android:hint="তৈরির দেশ"
                             />
-                    </RelativeLayout>
+
+
+                    </LinearLayout>
 
 
                     <Button
-                        android:id="@+id/btnEntryInput"
+                        android:id="@+id/btnVehicleEntry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
@@ -760,6 +775,8 @@
                         android:textColor="@android:color/white" />
                 </LinearLayout>
 
+
+                /////
                 <LinearLayout
                     android:id="@+id/vehicleDocument"
                     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
@@ -780,7 +797,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Fill the information below"
+                            android:text="Fill the vehicle document information"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                             android:textColor="@android:color/holo_red_dark"
                             android:textStyle="bold" />
@@ -802,7 +819,6 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_marginBottom="10dp"
-
                         android:background="@android:color/white"
                         android:layout_height="wrap_content">
 
@@ -814,19 +830,21 @@
                             android:id="@+id/vColor"
                             style="@style/EditTextView"
                             android:layout_toRightOf="@id/ivColor"/>
-                        <EditText
-                            android:id="@+id/etColor"
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnColor"
                             style="@style/EditTextEditText"
                             android:layout_toRightOf="@id/vColor"
-                            android:hint="রং"
-                            />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+
 
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_marginBottom="10dp"
-
                         android:background="@android:color/white"
                         android:layout_height="wrap_content">
 
@@ -863,32 +881,31 @@
                             android:id="@+id/vVPhoto"
                             style="@style/EditTextView"
                             android:layout_toRightOf="@id/ivVPhoto"/>
-                        <EditText
+                        <TextView
                             android:id="@+id/etVPhoto"
                             style="@style/EditTextEditText"
                             android:layout_toRightOf="@id/vVPhoto"
-                            android:hint="চছবি"
+                            android:text="ছবি"
                             />
+
+
 
                     </RelativeLayout>
 
 
 
-                <Button
-                        android:id="@+id/btnEntryDocument"
+                    <Button
+                        android:id="@+id/btnEntryInput"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:background="@color/colorAccent"
-                        android:text="@string/next"
+                        android:text="Next"
                         android:textColor="@android:color/white" />
                 </LinearLayout>
 
-
-
-
                 <LinearLayout
-                    android:id="@+id/llplaceDocument"
+                    android:id="@+id/llVehiclePlaceTime"
                     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
@@ -907,7 +924,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Fill the information below"
+                            android:text="Fill the place and time information"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                             android:textColor="@android:color/holo_red_dark"
                             android:textStyle="bold" />
@@ -929,131 +946,54 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_marginBottom="10dp"
-
                         android:background="@android:color/white"
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:id="@+id/ivDistric"
+                            android:id="@+id/ivSPDivision"
                             style="@style/EditTextIcon"
                             android:src="@drawable/ic_home" />
                         <View
-                            android:id="@+id/vDistric"
+                            android:id="@+id/vSPDivision"
                             style="@style/EditTextView"
-                            android:layout_toRightOf="@id/ivDistric"/>
-                        <LinearLayout
+                            android:layout_toRightOf="@id/ivSPDivision"/>
 
-                            android:layout_toRightOf="@id/vDistric"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <Spinner
-                                android:id="@+id/spnDistric"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:spinnerMode="dropdown"
-                                android:autofillHints="@string/district"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp" />
-
-                        </LinearLayout>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="10dp"
-
-                        android:background="@android:color/white"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:id="@+id/ivThana"
-                            style="@style/EditTextIcon"
-                            android:src="@drawable/ic_user" />
-                        <View
-                            android:id="@+id/vThana"
-                            style="@style/EditTextView"
-                            android:layout_toRightOf="@id/ivThana"/>
-                        <LinearLayout
-
-                            android:layout_toRightOf="@id/vThana"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <Spinner
-                                android:id="@+id/spnThana"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:spinnerMode="dropdown"
-                                android:autofillHints="@string/thana"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp" />
-
-                        </LinearLayout>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="10dp"
-
-                        android:background="@android:color/white"
-                        android:layout_height="wrap_content">
-
-
-                        <ImageView
-                            android:id="@+id/ivVillage"
-                            style="@style/EditTextIcon"
-                            android:src="@drawable/ic_user" />
-                        <View
-                            android:id="@+id/vVillage"
-                            style="@style/EditTextView"
-                            android:layout_toRightOf="@id/ivVillage"/>
-                        <LinearLayout
-
-                            android:layout_toRightOf="@id/vVillage"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <Spinner
-                                android:id="@+id/spnVillage"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:spinnerMode="dropdown"
-                                android:autofillHints="@string/village"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp" />
-
-                        </LinearLayout>
-
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="10dp"
-
-                        android:background="@android:color/white"
-                        android:layout_height="wrap_content">
-
-
-                        <ImageView
-                            android:id="@+id/ivplace"
-                            style="@style/EditTextIcon"
-                            android:src="@drawable/ic_user" />
-                        <View
-                            android:id="@+id/vplace"
-                            style="@style/EditTextView"
-                            android:layout_toRightOf="@id/ivplace"/>
-                        <EditText
-                            android:id="@+id/etplace"
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnSPDivision"
                             style="@style/EditTextEditText"
-                            android:layout_toRightOf="@id/vplace"
-                            android:hint="Description of Place"
-                            />
+                            android:layout_toRightOf="@id/vSPDivision"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+
 
                     </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/ivSPDistrict"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_user" />
+                        <View
+                            android:id="@+id/vSPDistrict"
+                            style="@style/EditTextView"
+                            android:layout_toRightOf="@id/ivSPDistrict"/>
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnSPDistrict"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/vSPDistrict"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+
+                    </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_marginBottom="10dp"
@@ -1063,32 +1003,98 @@
 
 
                         <ImageView
-                            android:id="@+id/ivDate"
+                            android:id="@+id/ivSPThana"
                             style="@style/EditTextIcon"
                             android:src="@drawable/ic_user" />
                         <View
-                            android:id="@+id/vDate"
+                            android:id="@+id/vSPThana"
                             style="@style/EditTextView"
-                            android:layout_toRightOf="@id/ivDate"/>
-                        <EditText
-                            android:id="@+id/etDate"
+                            android:layout_toRightOf="@id/ivSPThana"/>
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spnSPThana"
                             style="@style/EditTextEditText"
-                            android:layout_toRightOf="@id/vDate"
-                            android:hint="@string/date"
+                            android:layout_toRightOf="@id/vSPThana"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="10dp"
+
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/ivAddDetails"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_user" />
+                        <View
+                            android:id="@+id/vAddDetails"
+                            style="@style/EditTextView"
+                            android:layout_toRightOf="@id/ivAddDetails"/>
+
+                        <EditText
+                            android:id="@+id/etAddDetails"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/vAddDetails"
+                            android:hint="স্থানের বিবরণ"
                             />
 
                     </RelativeLayout>
 
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/white"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                <Button
-                        android:id="@+id/btnPlaceDocument"
+                        <ImageView
+                            android:id="@+id/ivDATE"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_home" />
+
+                        <EditText
+                            android:id="@+id/etDATE"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/ivDATE"
+                            android:layout_weight="1"
+                            android:hint="DD/MM/YYYY"
+                            />
+
+
+                        <ImageView
+                            android:id="@+id/ivTime"
+                            style="@style/EditTextIcon"
+                            android:src="@drawable/ic_home" />
+
+                        <EditText
+                            android:id="@+id/etTime"
+                            style="@style/EditTextEditText"
+                            android:layout_toRightOf="@id/ivTime"
+                            android:layout_weight="1"
+                            />
+
+
+                    </LinearLayout>
+
+
+
+                    <Button
+                        android:id="@+id/btnSAT"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:background="@color/colorAccent"
-                        android:text="Done"
+                        android:text="Next"
                         android:textColor="@android:color/white" />
                 </LinearLayout>
+
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>

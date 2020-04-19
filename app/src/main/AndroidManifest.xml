@@ -21,7 +21,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".Activity.LostInformationEntryActivity"></activity>
-        <activity android:name=".Activity.UnknownManActivity" />
+        <activity android:name=".Activity.UnknownManActivity"
+            android:label="Man Information Entry"/>
         <activity android:name=".Activity.LostManActivity" />
         <activity android:name=".RegTrialActivity" />
         <activity android:name=".Activity.RegistrationProcessActivity" />
