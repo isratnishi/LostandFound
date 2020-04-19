@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
+import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
@@ -58,6 +60,8 @@ public class InformationEntryActivity extends AppCompatActivity {
     LinearLayout llInput;
     @BindView(R.id.llEntry)
     LinearLayout llEntry;
+    @BindView(R.id.vehicleDocument)
+    LinearLayout vehicleDocument;
     @BindView(R.id.iv1)
     ImageView iv1;
     @BindView(R.id.iv2)
@@ -121,12 +125,27 @@ public class InformationEntryActivity extends AppCompatActivity {
     @BindView(R.id.spnMadeBy)
     AppCompatSpinner spnMadeBy;
 
+    @BindView(R.id.spnRegNoName1)
+    AppCompatSpinner spnRegNoName1;
+
+    @BindView(R.id.spnRegNoName2)
+    AppCompatSpinner spnRegNoName2;
+
+    @BindView(R.id.spnColor)
+    AppCompatSpinner spnColor;
+
+    String[] metropoliton,regipartTwo;
+
     ArrayList<DocumentType> documentTypeArrayList = new ArrayList<>();
     ArrayList<VehicleType> vehicleTypeArrayList = new ArrayList<>();
     ArrayList<VehicleModel> VehicleModelArrayList = new ArrayList<>();
+    ArrayList<Colors> colorArrayList = new ArrayList<>();
     public int SELECTED_DOCUMENT_ID;
     public int SELECTED_VEHICLETYPE_ID;
     public String SELECTED_VEHICLEMODEL_Name;
+    public String SELECTED_REGNO_1;
+    public String SELECTED_REGNO_2;
+    public int SELECTED_COLOR_ID;
 
     //private Spinner spinner2;
 
@@ -139,12 +158,14 @@ public class InformationEntryActivity extends AppCompatActivity {
         LLItems.setVisibility(View.GONE);
         LLInputForOthers.setVisibility(View.GONE);
         llEntry.setVisibility(View.GONE);
+        vehicleDocument.setVisibility(View.GONE);
         iv1.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
-
-
+        getMatropolitonName();
+        getRegiSerial();
         //Spinner
         getAllDocument();
         getAllVehicleType();
+        getAllColor();
         //addItemsOnSpinner2();
     }
 
@@ -203,6 +224,13 @@ public class InformationEntryActivity extends AppCompatActivity {
         cvItems.setVisibility(View.GONE);
         iv4.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         v3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
+
+    }
+
+    @OnClick(R.id.btnVehicleEntry)
+    public void btnVehicleEntry() {
+        vehicleDocument.setVisibility(View.VISIBLE);
+        llEntry.setVisibility(View.GONE);
 
     }
 
@@ -298,7 +326,55 @@ public class InformationEntryActivity extends AppCompatActivity {
     }
 
 
-    //Spinner 
+    //Spinner
+
+    public void getMatropolitonName() {
+        metropoliton=getResources().getStringArray(R.array.matropoliton);
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, metropoliton);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnRegNoName1.setAdapter(dataAdapter2);
+        spnRegNoName1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_REGNO_1 = metropoliton[i];
+
+                } else {
+                    SELECTED_REGNO_1 = "";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getRegiSerial() {
+        regipartTwo=getResources().getStringArray(R.array.regiparttwo);
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, regipartTwo);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnRegNoName2.setAdapter(dataAdapter2);
+        spnRegNoName2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_REGNO_2 = regipartTwo[i];
+
+                } else {
+                    SELECTED_REGNO_2 = "";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
 
     public void getAllDocument() {
 
@@ -484,6 +560,66 @@ public class InformationEntryActivity extends AppCompatActivity {
                     SELECTED_VEHICLEMODEL_Name = body.get(i).getModelName();
                 } else {
                     SELECTED_VEHICLEMODEL_Name = "";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getAllColor() {
+
+        String token = SharedPrefManager.getInstance(this).getToken();
+        if (token != null) {
+            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+            Call<List<Colors>> colors = retrofitService.GetColors();
+            colors.enqueue(new Callback<List<Colors>>() {
+                @Override
+                public void onResponse(Call<List<Colors>> call, Response<List<Colors>> response) {
+
+                    if (response.body() != null) {
+
+                        colorArrayList.clear();
+                        colorArrayList.addAll(response.body());
+
+                        addColorSpinnerData(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Colors>> call, Throwable t) {
+                    Toast.makeText(InformationEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+
+    public void addColorSpinnerData(final List<Colors> body) {
+        List<String> colorList = new ArrayList<>();
+        //vehicleList.add("যানবাহনের ধরণ");
+        for (int i = 0; i < body.size(); i++) {
+            colorList.add(body.get(i).getColorName());
+        }
+
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, colorList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnColor.setAdapter(dataAdapter2);
+        spnColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_COLOR_ID = body.get(i).getId();
+                } else {
+                    SELECTED_COLOR_ID = 1;
                 }
             }
 

@@ -2,6 +2,7 @@ package com.opus_bd.lostandfound.RetrofitService;
 
 
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
+import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.Model.Documentaion.NationalIdentityTypesModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
@@ -53,5 +54,8 @@ public interface RetrofitService {
 
     @GET("api/DocumentMaster/GetVehicleModelByVehicleId/{id}")
     Call<List<VehicleModel>> GetVehicleModelByVehicleId(@Path("id") int id);
+
+    @GET("api/DocumentMaster/GetColors")
+    Call<List<Colors>> GetColors();
 
 }
