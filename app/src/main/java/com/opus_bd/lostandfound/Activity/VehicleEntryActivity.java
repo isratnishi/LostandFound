@@ -95,10 +95,10 @@ public class VehicleEntryActivity extends AppCompatActivity {
         if (isllVPATChecked) {
             // show password
             llVIdentityInfo.setVisibility(View.GONE);
-            Glide.with(this).load(R.drawable.ic_drop_up).into(ivVIdentityInfo);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivVIdentityInfo);
             isllVehicleIdentificationChecked = true;
 
-            llVIdentityInfo.setVisibility(View.VISIBLE);
+            llVPATInfo.setVisibility(View.VISIBLE);
             Glide.with(this).load(R.drawable.ic_drop_up).into(ivVPATInfo);
             isllVPATChecked = false;
 

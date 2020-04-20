@@ -152,21 +152,45 @@
                         </TableRow>
 
                         <TableRow
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <TextView
+                                android:gravity="end|center_vertical"
                                 style="@style/InformationEntryTextView"
                                 android:text="@string/vehicleRegiNo" />
 
                             <TextView
+
                                 style="@style/InformationEntryTextViewColon"
                                 android:text=":" />
 
 
-                            <EditText
+                            <LinearLayout
                                 style="@style/InformationEntryEditText"
-                                android:hint="@string/vehicleRegiNo" />
+
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatSpinner
+                                   android:layout_width="100dp"
+                                    android:layout_height="match_parent"
+                                    android:spinnerMode="dialog"
+                                   android:fadingEdge="horizontal"
+
+                                    android:background="@android:color/transparent"
+                                    android:entries="@array/matropoliton"/>
+                                <androidx.appcompat.widget.AppCompatSpinner
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+
+                                    android:background="@android:color/transparent"
+                                    android:entries="@array/regiparttwo"/>
+                                <EditText
+                                    style="@style/InformationEntryEditText"
+                                    android:hint="@string/engineNo" />
+                            </LinearLayout>
                         </TableRow>
 
                         <TableRow
