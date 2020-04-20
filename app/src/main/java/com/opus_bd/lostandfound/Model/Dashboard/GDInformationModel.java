@@ -115,6 +115,79 @@ public class GDInformationModel {
     @Expose
     private String lafTime;
 
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("fatherName")
+    @Expose
+    private String fatherName;
+    @SerializedName("spouseName")
+    @Expose
+    private String spouseName;
+    @SerializedName("manNationalIdentityTypeId")
+    @Expose
+    private Integer manNationalIdentityTypeId;
+    @SerializedName("manIdentityNo")
+    @Expose
+    private String manIdentityNo;
+    @SerializedName("countryId")
+    @Expose
+    private Integer countryId;
+    @SerializedName("manDistrictId")
+    @Expose
+    private Integer manDistrictId;
+    @SerializedName("village")
+    @Expose
+    private String village;
+    @SerializedName("religion")
+    @Expose
+    private String religion;
+    @SerializedName("ageFrom")
+    @Expose
+    private String ageFrom;
+    @SerializedName("ageTo")
+    @Expose
+    private String ageTo;
+    @SerializedName("weightFrom")
+    @Expose
+    private String weightFrom;
+    @SerializedName("weightTo")
+    @Expose
+    private String weightTo;
+    @SerializedName("heightFrom")
+    @Expose
+    private String heightFrom;
+    @SerializedName("heightTo")
+    @Expose
+    private String heightTo;
+    @SerializedName("nose")
+    @Expose
+    private String nose;
+    @SerializedName("ear")
+    @Expose
+    private String ear;
+    @SerializedName("eye")
+    @Expose
+    private String eye;
+    @SerializedName("heir")
+    @Expose
+    private String heir;
+    @SerializedName("beard")
+    @Expose
+    private String beard;
+    @SerializedName("chest")
+    @Expose
+    private String chest;
+    @SerializedName("chew")
+    @Expose
+    private String chew;
+    @SerializedName("throat")
+    @Expose
+    private String throat;
+    @SerializedName("color")
+    @Expose
+    private String color;
+
     public String getUserName() {
         return userName;
     }
@@ -402,5 +475,199 @@ public class GDInformationModel {
     public void setLafTime(String lafTime) {
         this.lafTime = lafTime;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFatherName() {
+        return fatherName;
+    }
+
+    public void setFatherName(String fatherName) {
+        this.fatherName = fatherName;
+    }
+
+    public String getSpouseName() {
+        return spouseName;
+    }
+
+    public void setSpouseName(String spouseName) {
+        this.spouseName = spouseName;
+    }
+
+    public Integer getManNationalIdentityTypeId() {
+        return manNationalIdentityTypeId;
+    }
+
+    public void setManNationalIdentityTypeId(Integer manNationalIdentityTypeId) {
+        this.manNationalIdentityTypeId = manNationalIdentityTypeId;
+    }
+
+    public String getManIdentityNo() {
+        return manIdentityNo;
+    }
+
+    public void setManIdentityNo(String manIdentityNo) {
+        this.manIdentityNo = manIdentityNo;
+    }
+
+    public Integer getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(Integer countryId) {
+        this.countryId = countryId;
+    }
+
+    public Integer getManDistrictId() {
+        return manDistrictId;
+    }
+
+    public void setManDistrictId(Integer manDistrictId) {
+        this.manDistrictId = manDistrictId;
+    }
+
+    public String getVillage() {
+        return village;
+    }
+
+    public void setVillage(String village) {
+        this.village = village;
+    }
+
+    public String getReligion() {
+        return religion;
+    }
+
+    public void setReligion(String religion) {
+        this.religion = religion;
+    }
+
+    public String getAgeFrom() {
+        return ageFrom;
+    }
+
+    public void setAgeFrom(String ageFrom) {
+        this.ageFrom = ageFrom;
+    }
+
+    public String getAgeTo() {
+        return ageTo;
+    }
+
+    public void setAgeTo(String ageTo) {
+        this.ageTo = ageTo;
+    }
+
+    public String getWeightFrom() {
+        return weightFrom;
+    }
+
+    public void setWeightFrom(String weightFrom) {
+        this.weightFrom = weightFrom;
+    }
+
+    public String getWeightTo() {
+        return weightTo;
+    }
+
+    public void setWeightTo(String weightTo) {
+        this.weightTo = weightTo;
+    }
+
+    public String getHeightFrom() {
+        return heightFrom;
+    }
+
+    public void setHeightFrom(String heightFrom) {
+        this.heightFrom = heightFrom;
+    }
+
+    public String getHeightTo() {
+        return heightTo;
+    }
+
+    public void setHeightTo(String heightTo) {
+        this.heightTo = heightTo;
+    }
+
+    public String getNose() {
+        return nose;
+    }
+
+    public void setNose(String nose) {
+        this.nose = nose;
+    }
+
+    public String getEar() {
+        return ear;
+    }
+
+    public void setEar(String ear) {
+        this.ear = ear;
+    }
+
+    public String getEye() {
+        return eye;
+    }
+
+    public void setEye(String eye) {
+        this.eye = eye;
+    }
+
+    public String getHeir() {
+        return heir;
+    }
+
+    public void setHeir(String heir) {
+        this.heir = heir;
+    }
+
+    public String getBeard() {
+        return beard;
+    }
+
+    public void setBeard(String beard) {
+        this.beard = beard;
+    }
+
+    public String getChest() {
+        return chest;
+    }
+
+    public void setChest(String chest) {
+        this.chest = chest;
+    }
+
+    public String getChew() {
+        return chew;
+    }
+
+    public void setChew(String chew) {
+        this.chew = chew;
+    }
+
+    public String getThroat() {
+        return throat;
+    }
+
+    public void setThroat(String throat) {
+        this.throat = throat;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+
 
 }
