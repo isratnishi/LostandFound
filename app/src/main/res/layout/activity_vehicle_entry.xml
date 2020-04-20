@@ -74,10 +74,10 @@
                             <TextView
                                 style="@style/InformationEntryTextViewColon"
                                 android:text=":" />
+                            <Spinner
+                                android:id="@+id/spnVehicleType"
+                                style="@style/InformationEntryEditText" />
 
-                            <EditText
-                                style="@style/InformationEntryEditText"
-                                android:hint="@string/vehicleType" />
                         </TableRow>
 
                         <TableRow
@@ -92,9 +92,9 @@
                                 style="@style/InformationEntryTextViewColon"
                                 android:text=":" />
 
-                            <EditText
-                                style="@style/InformationEntryEditText"
-                                android:hint="@string/vehicleBrand" />
+                            <Spinner
+                                android:id="@+id/spnMadeBy"
+                                style="@style/InformationEntryEditText" />
                         </TableRow>
 
 
@@ -191,7 +191,30 @@
                                     style="@style/InformationEntryEditText"
                                     android:hint="@string/engineNo" />
                             </LinearLayout>
+                            <LinearLayout
+                                style="@style/InformationEntryEditText"
+
+                                android:orientation="horizontal">
+
+                                <Spinner
+                                    android:id="@+id/spnRegNoName1"
+                                    android:layout_width="100dp"
+                                    android:layout_height="match_parent"
+                                    android:spinnerMode="dialog"
+                                    android:fadingEdge="horizontal"
+                                    android:background="@android:color/transparent"/>
+                                <Spinner
+                                    android:id="@+id/spnRegNoName2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent"/>
+                                <EditText
+                                    style="@style/InformationEntryEditText"
+                                    android:hint="@string/vehicleRegiNo" />
+                            </LinearLayout>
                         </TableRow>
+
+
 
                         <TableRow
                             android:layout_width="match_parent"
@@ -360,8 +383,8 @@
                                 android:text=":" />
 
                             <Spinner
-                                style="@style/InformationEntryEditText"
-                                android:entries="@array/religion" />
+                                android:id="@+id/spnColor"
+                                style="@style/InformationEntryEditText"/>
                         </TableRow>
 
                         <TableRow
@@ -395,8 +418,8 @@
                                 android:text=":" />
 
                             <Spinner
-                                style="@style/InformationEntryEditText"
-                                android:entries="@array/blood_groups" />
+                                android:id="@+id/spnDocumentType"
+                                style="@style/InformationEntryEditText"/>
                         </TableRow>
 
                         <TableRow
@@ -495,8 +518,8 @@
                                 android:text=":" />
 
                             <Spinner
-                                style="@style/InformationEntryEditText"
-                                android:entries="@array/blood_groups" />
+                                android:id="@+id/spnSPDivision"
+                                style="@style/InformationEntryEditText"/>
                         </TableRow>
 
                         <TableRow
@@ -512,8 +535,8 @@
                                 android:text=":" />
 
                             <Spinner
-                                style="@style/InformationEntryEditText"
-                                android:entries="@array/blood_groups" />
+                                android:id="@+id/spnSPDistrict"
+                                style="@style/InformationEntryEditText"/>
                         </TableRow>
 
 
@@ -530,8 +553,8 @@
                                 android:text=":" />
 
                             <Spinner
-                                style="@style/InformationEntryEditText"
-                                android:entries="@array/blood_groups" />
+                                android:id="@+id/spnSPThana"
+                                style="@style/InformationEntryEditText"/>
                         </TableRow>
 
                         <TableRow
