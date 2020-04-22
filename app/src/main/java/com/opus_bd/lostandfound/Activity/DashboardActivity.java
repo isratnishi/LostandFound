@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -18,6 +19,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,17 +28,26 @@ import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.navigation.NavigationView;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformation;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
+import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.R;
+import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
+import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
 import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
 import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.opus_bd.lostandfound.R.string.navigation_drawer_close;
 import static com.opus_bd.lostandfound.R.string.navigation_drawer_open;
@@ -161,6 +173,47 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    public void getAllGDInfo() {
+
+        String token = SharedPrefManager.getInstance(this).getToken();
+        String UserName = SharedPrefManager.getInstance(this).getUser();
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<GDInformation>> listCall = retrofitService.GetGDInformationByUser(token,UserName);
+        listCall.enqueue(new Callback<List<GDInformation>>() {
+            @Override
+            public void onResponse(Call<List<GDInformation>> call, Response<List<GDInformation>> response) {
+
+                if (response.body() != null) {
+
+//                    gdInformationArrayList.clear();
+//                    gdInformationArrayList.addAll(response.body());
+//
+//                    for (int i = 0; i < response.body().size(); i++) {
+//
+//                    }
+//
+//                    addDocumentTypeNamePresentSpinnerData(response.body());
+
+//                    List<GDInformation> myData = new ArrayList<>();
+//                    for (int i = 0; i < response.body().size(); i++) {
+//                        myData.add(new GDInformation(
+//
+//                        ));
+//                    }
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GDInformation>> call, Throwable t) {
+                Toast.makeText(DashboardActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
