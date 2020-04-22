@@ -1,17 +1,26 @@
 package com.opus_bd.lostandfound.Activity;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.bumptech.glide.Glide;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
@@ -24,9 +33,20 @@ import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
+
+import com.opus_bd.lostandfound.Utils.Constants;
+import com.opus_bd.lostandfound.Utils.LocaleHelper;
 import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +58,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class VehicleEntryActivity extends AppCompatActivity {
+    private static final int PICK_FILE_REQUEST = 1;
+    private String selectedFilePath;
+    ProgressDialog dialog;
+
+
 
     boolean isllVehicleEntryChecked = true;
     @BindView(R.id.llVehicleInfromation)
@@ -89,6 +114,10 @@ public class VehicleEntryActivity extends AppCompatActivity {
     @BindView(R.id.spnColor)
     Spinner spnColor;
 
+
+    @BindView(R.id.etBlueBook)
+    TextView etBlueBook;
+
     String[] metropoliton, regipartTwo;
 
     //Address List
@@ -125,8 +154,16 @@ public class VehicleEntryActivity extends AppCompatActivity {
         getAllDocument();
         getAllVehicleType();
         getAllColor();
+        getDivision();
     }
-
+    protected void attachBaseContext(Context base) {
+        SharedPreferences tprefs = base.getSharedPreferences(SharedPrefManager.SHARED_PREF_NAME, MODE_PRIVATE);
+        boolean language = tprefs.getBoolean(SharedPrefManager.KEY_State, true);
+        if (language)
+            super.attachBaseContext(LocaleHelper.setLocale(base, Constants.ENGLISH));
+        else
+            super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
+    }
     @OnClick(R.id.ivVehicleInformation)
     public void ivVehicleInformation(){
         if (isllVehicleEntryChecked) {
@@ -170,6 +207,8 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
 
 
+
+
     @OnClick({R.id.ivVPATInfo,R.id.btnNext2})
     public void ivVPATInfo(){
         if (isllVPATChecked) {
@@ -189,25 +228,10 @@ public class VehicleEntryActivity extends AppCompatActivity {
             isllVPATChecked = true;
         }
 
-//        llVIdentityInfo.setVisibility(View.GONE);
-//        llVehicleInfromation.setVisibility(View.GONE);
-//        llVPATInfo.setVisibility(View.VISIBLE);
+       llVPATInfo.setVisibility(View.VISIBLE);
 
     }
 
-    // add items into spinner dynamically
-//    public void addItemsOnSpinner2() {
-//
-//        spinner2 = (Spinner) findViewById(R.id.spinner2);
-//        List<String> list = new ArrayList<String>();
-//        list.add("list 1");
-//        list.add("list 2");
-//        list.add("list 3");
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_spinner_item, list);
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner2.setAdapter(dataAdapter);
-//    }
 
     public void getMatropolitonName() {
         metropoliton = getResources().getStringArray(R.array.matropoliton);
@@ -260,7 +284,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
     public void getAllDocument() {
 
         String token = SharedPrefManager.getInstance(this).getToken();
-        if (token != null) {
+
             RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
             Call<List<DocumentType>> registrationRequest = retrofitService.GetAllDocumentType();
             registrationRequest.enqueue(new Callback<List<DocumentType>>() {
@@ -271,9 +295,9 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
                         documentTypeArrayList.clear();
                         documentTypeArrayList.addAll(response.body());
-                        Utilities.showLogcatMessage(" Div Size " + response.body().size());
+
                         for (int i = 0; i < response.body().size(); i++) {
-                            Utilities.showLogcatMessage(" Div ID" + response.body().get(i).getId());
+
                         }
 
                         addDocumentTypeNamePresentSpinnerData(response.body());
@@ -285,12 +309,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
                     Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
-        } else {
-            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
+
     }
 
 
@@ -324,8 +343,6 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     public void getAllVehicleType() {
 
-        String token = SharedPrefManager.getInstance(this).getToken();
-        if (token != null) {
             RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
             Call<List<VehicleType>> vehicleTypes = retrofitService.GetVehicleTypes();
             vehicleTypes.enqueue(new Callback<List<VehicleType>>() {
@@ -336,9 +353,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
                         vehicleTypeArrayList.clear();
                         vehicleTypeArrayList.addAll(response.body());
-                        Utilities.showLogcatMessage(" Div Size " + response.body().size());
                         for (int i = 0; i < response.body().size(); i++) {
-                            Utilities.showLogcatMessage(" Div ID" + response.body().get(i).getId());
                         }
 
                         addVehicleTypeNamePresentSpinnerData(response.body());
@@ -350,17 +365,12 @@ public class VehicleEntryActivity extends AppCompatActivity {
                     Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
-        } else {
-            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
         }
-    }
+
 
     public void addVehicleTypeNamePresentSpinnerData(final List<VehicleType> body) {
         List<String> vehicleList = new ArrayList<>();
-        vehicleList.add("যানবাহনের ধরণ");
+
         for (int i = 0; i < body.size(); i++) {
             vehicleList.add(body.get(i).getVehicleTypeName());
         }
@@ -389,8 +399,6 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     public void getAllVehicleModel(int id) {
 
-        String token = SharedPrefManager.getInstance(this).getToken();
-        if (token != null) {
             RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
             Call<List<VehicleModel>> vehicleModels = retrofitService.GetVehicleModelByVehicleId(id);
             vehicleModels.enqueue(new Callback<List<VehicleModel>>() {
@@ -401,11 +409,6 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
                         VehicleModelArrayList.clear();
                         VehicleModelArrayList.addAll(response.body());
-                        Utilities.showLogcatMessage(" Div Size " + response.body().size());
-                        for (int i = 0; i < response.body().size(); i++) {
-                            Utilities.showLogcatMessage(" Div ID" + response.body().get(i).getId());
-                        }
-
                         addVehicleMadyBySpinnerData(response.body());
                     }
                 }
@@ -415,17 +418,11 @@ public class VehicleEntryActivity extends AppCompatActivity {
                     Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
-        } else {
-            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
+
     }
 
     public void addVehicleMadyBySpinnerData(final List<VehicleModel> body) {
         List<String> vehicleMadyBy = new ArrayList<>();
-        vehicleMadyBy.add("্রান্ডের নাম");
         for (int i = 0; i < body.size(); i++) {
             vehicleMadyBy.add(body.get(i).getModelName());
         }
@@ -453,8 +450,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     public void getAllColor() {
 
-        String token = SharedPrefManager.getInstance(this).getToken();
-        if (token != null) {
+
             RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
             Call<List<Colors>> colors = retrofitService.GetColors();
             colors.enqueue(new Callback<List<Colors>>() {
@@ -475,12 +471,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
                     Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
-        } else {
-            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
+
     }
 
     public void addColorSpinnerData(final List<Colors> body) {
@@ -639,8 +630,6 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     public void getAllThana(int id) {
 
-        String token = SharedPrefManager.getInstance(this).getToken();
-        if (token != null) {
             RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
             Call<List<Thana>> thana = retrofitService.GetThanaByDistrictId(id);
             thana.enqueue(new Callback<List<Thana>>() {
@@ -661,12 +650,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
                     Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
-        } else {
-            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
+
     }
 
 
@@ -697,5 +681,237 @@ public class VehicleEntryActivity extends AppCompatActivity {
         });
     }
 
+//File Upload
+    
+    public void FileUpload( ) {
+      
 
+            //on upload button Click
+            if (selectedFilePath != null) {
+                dialog = ProgressDialog.show(VehicleEntryActivity.this, "", "Uploading File...", true);
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //creating new thread to handle Http Operations
+                        uploadFile(selectedFilePath);
+                    }
+                }).start();
+            } else {
+                Toast.makeText(VehicleEntryActivity.this, "Please choose a File First", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    @OnClick(R.id.etBlueBook)
+    public void etBlueBook(){
+        try {
+            showFileChooser();
+        }
+        catch (Exception e) {
+            Utilities.showLogcatMessage(" "+e.toString());
+
+        }
+    }
+
+    public void showFileChooser() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        //sets the select file to all types of files
+        intent.setType("*/*");
+        //allows to select data and return it
+        //starts new activity to select file and return data
+        startActivityForResult(intent, 1);
+        Utilities.showLogcatMessage(" File Choose");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try{
+            switch (resultCode) {
+                case 1:
+                    if (resultCode == RESULT_OK) {
+                        String path = data.getData().getPath();
+                        etBlueBook.setText(path);
+                    }
+
+
+                    break;
+
+            }
+        }
+        catch (Exception e){
+            Utilities.showLogcatMessage("onActivityResult "+e.toString());
+
+        }
+
+
+    }
+
+
+    /*    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case 1:
+
+
+                break;
+
+        }
+
+       *//* super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+          *//**//*  if (requestCode == PICK_FILE_REQUEST) {
+                try {
+                    if (data == null) {
+                        //no data present
+                        Utilities.showLogcatMessage(" no data present");
+                        return;
+                    }
+
+
+                    Uri selectedFileUri = data.getData();
+                    String path=data.getData().getPath();
+               *//**//**//**//* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    selectedFilePath = FilePath.getPath(this, selectedFileUri);
+                }*//**//**//**//*
+                    etBlueBook.setText(path);
+                    Utilities.showLogcatMessage("Selected File Path:" + path);
+
+                    if (selectedFilePath != null && !selectedFilePath.equals("")) {
+                        etBlueBook.setText(selectedFilePath);
+                    } else {
+                        Toast.makeText(this, "Cannot upload file to server", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Utilities.showLogcatMessage(" "+e.toString());
+                }
+
+            }*//**//*
+        }*//*
+    }*/
+
+    //android upload file to server
+    public int uploadFile(final String selectedFilePath) {
+
+        int serverResponseCode = 0;
+
+        HttpURLConnection connection;
+        DataOutputStream dataOutputStream;
+        String lineEnd = "\r\n";
+        String twoHyphens = "--";
+        String boundary = "*****";
+
+
+        int bytesRead, bytesAvailable, bufferSize;
+        byte[] buffer;
+        int maxBufferSize = 1 * 1024 * 1024;
+        File selectedFile = new File(selectedFilePath);
+
+
+        String[] parts = selectedFilePath.split("/");
+        final String fileName = parts[parts.length - 1];
+
+        if (!selectedFile.isFile()) {
+            dialog.dismiss();
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    etBlueBook.setText("Source File Doesn't Exist: " + selectedFilePath);
+                }
+            });
+            return 0;
+        } else {
+            try {
+                FileInputStream fileInputStream = new FileInputStream(selectedFile);
+                URL url = new URL("");
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);//Allow Inputs
+                connection.setDoOutput(true);//Allow Outputs
+                connection.setUseCaches(false);//Don't use a cached Copy
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("Connection", "Keep-Alive");
+                connection.setRequestProperty("ENCTYPE", "multipart/form-data");
+                connection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+                connection.setRequestProperty("uploaded_file", selectedFilePath);
+
+                //creating new dataoutputstream
+                dataOutputStream = new DataOutputStream(connection.getOutputStream());
+
+                //writing bytes to data outputstream
+                dataOutputStream.writeBytes(twoHyphens + boundary + lineEnd);
+                dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";filename=\""
+                        + selectedFilePath + "\"" + lineEnd);
+
+                dataOutputStream.writeBytes(lineEnd);
+
+                //returns no. of bytes present in fileInputStream
+                bytesAvailable = fileInputStream.available();
+                //selecting the buffer size as minimum of available bytes or 1 MB
+                bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                //setting the buffer as byte array of size of bufferSize
+                buffer = new byte[bufferSize];
+
+                //reads bytes from FileInputStream(from 0th index of buffer to buffersize)
+                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+
+                //loop repeats till bytesRead = -1, i.e., no bytes are left to read
+                while (bytesRead > 0) {
+                    //write the bytes read from inputstream
+                    dataOutputStream.write(buffer, 0, bufferSize);
+                    bytesAvailable = fileInputStream.available();
+                    bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+                }
+
+                dataOutputStream.writeBytes(lineEnd);
+                dataOutputStream.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+
+                serverResponseCode = connection.getResponseCode();
+                String serverResponseMessage = connection.getResponseMessage();
+
+                Utilities.showLogcatMessage("Server Response is: " + serverResponseMessage + ": " + serverResponseCode);
+
+                //response code of 200 indicates the server status OK
+                if (serverResponseCode == 200) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            etBlueBook.setText("File Upload completed.\n\n You can see the uploaded file here: \n\n" + "http://coderefer.com/extras/uploads/" + fileName);
+                        }
+                    });
+                }
+
+                //closing the input and output streams 
+                fileInputStream.close();
+                dataOutputStream.flush();
+                dataOutputStream.close();
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(VehicleEntryActivity.this, "File Not Found", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                Toast.makeText(VehicleEntryActivity.this, "URL error!", Toast.LENGTH_SHORT).show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(VehicleEntryActivity.this, "Cannot Read/Write File!", Toast.LENGTH_SHORT).show();
+            }
+            dialog.dismiss();
+            return serverResponseCode;
+        }
+
+    }
+    
+    
 }
