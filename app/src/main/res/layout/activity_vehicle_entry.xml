@@ -76,7 +76,7 @@
                                 android:text=":" />
                             <Spinner
                                 android:id="@+id/spnVehicleType"
-                                style="@style/InformationEntryEditText" />
+                                style="@style/InformationEntryEditText"/>
 
                         </TableRow>
 

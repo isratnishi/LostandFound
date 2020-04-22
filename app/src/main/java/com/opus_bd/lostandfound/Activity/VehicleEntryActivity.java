@@ -360,7 +360,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     public void addVehicleTypeNamePresentSpinnerData(final List<VehicleType> body) {
         List<String> vehicleList = new ArrayList<>();
-        vehicleList.add("যানবাহনের ধরণ");
+       // vehicleList.add("যানবাহনের ধরণ");
         for (int i = 0; i < body.size(); i++) {
             vehicleList.add(body.get(i).getVehicleTypeName());
         }
