@@ -111,6 +111,7 @@
                                 android:text=":" />
 
                             <EditText
+                                android:id="@+id/etModel"
                                 style="@style/InformationEntryEditText"
                                 android:hint="@string/vehicleModel" />
                         </TableRow>
@@ -149,6 +150,7 @@
                                     android:layout_height="match_parent"
                                     android:background="@android:color/transparent"/>
                                 <EditText
+                                    android:id="@+id/etRegNoName"
                                     style="@style/InformationEntryEditText"
                                     android:hint="@string/vehicleRegiNo" />
                             </LinearLayout>
@@ -168,6 +170,7 @@
 
 
                             <EditText
+                                android:id="@+id/etEngineNo"
                                 style="@style/InformationEntryEditText"
                                 android:hint="@string/engineNo" />
                         </TableRow>
@@ -186,6 +189,7 @@
 
 
                             <EditText
+                                android:id="@+id/etChesisNo"
                                 style="@style/InformationEntryEditText"
                                 android:hint="@string/chesisNo" />
                         </TableRow>
@@ -204,6 +208,7 @@
 
 
                             <EditText
+                                android:id="@+id/etCCNo"
                                 style="@style/InformationEntryEditText"
                                 android:hint="@string/ccNo" />
                         </TableRow>
@@ -222,6 +227,7 @@
 
 
                             <EditText
+                                android:id="@+id/etMadeIn"
                                 style="@style/InformationEntryEditText"
                                 android:hint="@string/madeIn" />
                         </TableRow>
@@ -240,6 +246,7 @@
 
 
                             <EditText
+                                android:id="@+id/etMadeDate"
                             style="@style/InformationEntryEditText"
                             android:hint="@string/madeDate" />
                         </TableRow>
@@ -338,6 +345,7 @@
                                 android:text=":" />
 
                             <EditText
+                                android:id="@+id/etIdentitySign"
                                 style="@style/InformationEntryEditText"
                                 android:hint="@string/vehicleSign" />
                         </TableRow>
@@ -649,6 +657,7 @@
 
 
                             <EditText
+                                android:id="@+id/etAddressDetails"
                                 style="@style/InformationEntryEditText"
                                 android:hint="@string/addressDetails"
                                 />
@@ -668,6 +677,7 @@
 
 
                             <EditText
+                                android:id="@+id/etVehicleDate"
                                 style="@style/InformationEntryEditText"
                                 android:hint="@string/date"
                                 />
@@ -686,6 +696,7 @@
 
 
                             <EditText
+                                android:id="@+id/etVehicleTime"
                                 style="@style/InformationEntryEditText"
                                 android:hint="@string/time"
                                 />
@@ -697,6 +708,11 @@
                         style="@style/BtnNext" />
 
                 </LinearLayout>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:id="@+id/btnSubmit"
+                    android:text="Submit" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>

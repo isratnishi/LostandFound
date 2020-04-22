@@ -24,7 +24,13 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".Activity.CodeGenerateActivity"></activity>
         <activity android:name=".Activity.OthersItemEntryActivity" />
-        <activity android:name=".Activity.VehicleEntryActivity" />
+        <activity android:name=".Activity.VehicleEntryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Activity.LostInformationEntryActivity" />
         <activity
             android:name=".Activity.UnknownManActivity"
@@ -55,11 +61,7 @@
         <activity
             android:name=".Activity.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

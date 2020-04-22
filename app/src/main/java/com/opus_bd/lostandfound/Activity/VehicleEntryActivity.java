@@ -23,6 +23,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
@@ -61,7 +62,39 @@ public class VehicleEntryActivity extends AppCompatActivity {
     private static final int PICK_FILE_REQUEST = 1;
     private String selectedFilePath;
     ProgressDialog dialog;
+    //Edit Text
+    @BindView(R.id.etModel)
+    EditText etModel;
 
+    @BindView(R.id.etRegNoName)
+    EditText etRegNoName;
+
+    @BindView(R.id.etEngineNo)
+    EditText etEngineNo;
+
+    @BindView(R.id.etChesisNo)
+    EditText etChesisNo;
+
+    @BindView(R.id.etCCNo)
+    EditText etCCNo;
+
+    @BindView(R.id.etMadeIn)
+    EditText etMadeIn;
+
+    @BindView(R.id.etMadeDate)
+    EditText etMadeDate;
+
+    @BindView(R.id.etIdentitySign)
+    EditText etIdentitySign;
+
+    @BindView(R.id.etAddressDetails)
+    EditText etAddressDetails;
+
+    @BindView(R.id.etVehicleDate)
+    EditText etVehicleDate;
+
+    @BindView(R.id.etVehicleTime)
+    EditText etVehicleTime;
 
 
     boolean isllVehicleEntryChecked = true;
@@ -232,6 +265,98 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     }
 
+    private void submitToServer() {
+
+        String token = SharedPrefManager.getInstance(this).getToken();
+        final GDInformationModel gdInformationModel = new GDInformationModel();
+
+        //GD Information
+        gdInformationModel.setUserName("01516146414");
+        gdInformationModel.setGdFor("2");
+        gdInformationModel.setGdDate("2020-04-14");
+        gdInformationModel.setIdentityNo("3453453");
+        gdInformationModel.setGDTypeId(1);
+        gdInformationModel.setProductTypeId(1);
+
+        gdInformationModel.setDocumentTypeId(SELECTED_DOCUMENT_ID);
+        gdInformationModel.setDocumentDescription("");
+
+        //Vehicle Information
+
+        gdInformationModel.setVehicleTypeId(SELECTED_VEHICLETYPE_ID);
+        gdInformationModel.setMadeBy(SELECTED_VEHICLEMODEL_Name);
+        gdInformationModel.setModelNo(etModel.getText().toString());
+        gdInformationModel.setRegNoFirstPart(SELECTED_REGNO_1);
+        gdInformationModel.setRegNoSecondPart(SELECTED_REGNO_1);
+        gdInformationModel.setRegNoThiredPart(etRegNoName.getText().toString());
+        gdInformationModel.setEngineNo(etEngineNo.getText().toString());
+        gdInformationModel.setChasisNo(etChesisNo.getText().toString());
+        gdInformationModel.setCcNo(etCCNo.getText().toString());
+        gdInformationModel.setMadeIn(etMadeIn.getText().toString());
+        gdInformationModel.setModelDate(etMadeDate.getText().toString());
+
+        //Identity Info
+        gdInformationModel.setColorsId(SELECTED_COLOR_ID);
+        gdInformationModel.setIdentifySign(etIdentitySign.getText().toString());
+
+        //Place And Time
+        gdInformationModel.setDivisionId(SELECTED_DIVISION_ID);
+        gdInformationModel.setDistrictId(SELECTED_DISTRICT_ID);
+        gdInformationModel.setThanaId(SELECTED_THANA_ID);
+        gdInformationModel.setPlaceDetails(etAddressDetails.getText().toString());
+        gdInformationModel.setPlaceDetails(etAddressDetails.getText().toString());
+        gdInformationModel.setLafDate(etVehicleDate.getText().toString());
+        gdInformationModel.setLafTime(etVehicleTime.getText().toString());
+
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<String> registrationRequest = retrofitService.SaveGDInformation(token, gdInformationModel);
+        registrationRequest.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                try {
+                    if (response.body() != null) {
+                        Utilities.showLogcatMessage("responce");
+
+
+                     /*   try{
+                            String auth=response.body().getJwt().replace("{\"auth_token\":\"","");
+                            String auth1=auth.replace("\"}","");
+                            Utilities.showLogcatMessage(" "+auth1);
+                            SharedPrefManager.getInstance(context).saveToken(auth1);
+                            SharedPrefManager.getInstance(context).saveotp(response.body().getOtpCode());
+                            SharedPrefManager.getInstance(context).saveotp(response.body().getUserInfo().getUserName());
+                        }
+                        catch (Exception e) {
+                            Utilities.showLogcatMessage("Exception 1"+e.toString());
+                            Toast.makeText(context, "Something went Wrong! Please try again later", Toast.LENGTH_SHORT).show();
+                        }*/
+
+                        Toast.makeText(VehicleEntryActivity.this, "Successfully Done!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(VehicleEntryActivity.this, DashboardActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+
+                    } else {
+                        Toast.makeText(VehicleEntryActivity.this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage("Exception 2" + e.toString());
+                    Toast.makeText(VehicleEntryActivity.this, "Something went Wrong! Please try again later", Toast.LENGTH_SHORT).show();
+                }
+                //            showProgressBar(false);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Utilities.showLogcatMessage("Fail to connect " + t.toString());
+                // Utilities.hideProgress(LoginActivity.this);
+                Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
 
     public void getMatropolitonName() {
         metropoliton = getResources().getStringArray(R.array.matropoliton);
