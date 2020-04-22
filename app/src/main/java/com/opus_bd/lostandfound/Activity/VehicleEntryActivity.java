@@ -63,7 +63,6 @@ public class VehicleEntryActivity extends AppCompatActivity {
     ProgressDialog dialog;
 
 
-
     boolean isllVehicleEntryChecked = true;
     @BindView(R.id.llVehicleInfromation)
     LinearLayout llVehicleInfromation;
@@ -144,6 +143,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_entry);
         ButterKnife.bind(this);
+        Utilities.showLogcatMessage("Constants.GDFOR " + Constants.GDFOR);
         llVehicleInfromation.setVisibility(View.GONE);
         llVIdentityInfo.setVisibility(View.GONE);
         llVPATInfo.setVisibility(View.GONE);
@@ -156,6 +156,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
         getAllColor();
         getDivision();
     }
+
     protected void attachBaseContext(Context base) {
         SharedPreferences tprefs = base.getSharedPreferences(SharedPrefManager.SHARED_PREF_NAME, MODE_PRIVATE);
         boolean language = tprefs.getBoolean(SharedPrefManager.KEY_State, true);
@@ -164,8 +165,9 @@ public class VehicleEntryActivity extends AppCompatActivity {
         else
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
+
     @OnClick(R.id.ivVehicleInformation)
-    public void ivVehicleInformation(){
+    public void ivVehicleInformation() {
         if (isllVehicleEntryChecked) {
             // show password
             llVehicleInfromation.setVisibility(View.VISIBLE);
@@ -180,8 +182,8 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.ivVIdentityInfo,R.id.btnNext1})
-    public void ivVIdentityInfo(){
+    @OnClick({R.id.ivVIdentityInfo, R.id.btnNext1})
+    public void ivVIdentityInfo() {
 
         if (isllVehicleIdentificationChecked) {
             // show password
@@ -206,11 +208,8 @@ public class VehicleEntryActivity extends AppCompatActivity {
     }
 
 
-
-
-
-    @OnClick({R.id.ivVPATInfo,R.id.btnNext2})
-    public void ivVPATInfo(){
+    @OnClick({R.id.ivVPATInfo, R.id.btnNext2})
+    public void ivVPATInfo() {
         if (isllVPATChecked) {
             // show password
             llVIdentityInfo.setVisibility(View.GONE);
@@ -228,7 +227,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
             isllVPATChecked = true;
         }
 
-       llVPATInfo.setVisibility(View.VISIBLE);
+        llVPATInfo.setVisibility(View.VISIBLE);
 
     }
 
@@ -285,30 +284,30 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
         String token = SharedPrefManager.getInstance(this).getToken();
 
-            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-            Call<List<DocumentType>> registrationRequest = retrofitService.GetAllDocumentType();
-            registrationRequest.enqueue(new Callback<List<DocumentType>>() {
-                @Override
-                public void onResponse(Call<List<DocumentType>> call, Response<List<DocumentType>> response) {
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<DocumentType>> registrationRequest = retrofitService.GetAllDocumentType();
+        registrationRequest.enqueue(new Callback<List<DocumentType>>() {
+            @Override
+            public void onResponse(Call<List<DocumentType>> call, Response<List<DocumentType>> response) {
 
-                    if (response.body() != null) {
+                if (response.body() != null) {
 
-                        documentTypeArrayList.clear();
-                        documentTypeArrayList.addAll(response.body());
+                    documentTypeArrayList.clear();
+                    documentTypeArrayList.addAll(response.body());
 
-                        for (int i = 0; i < response.body().size(); i++) {
+                    for (int i = 0; i < response.body().size(); i++) {
 
-                        }
-
-                        addDocumentTypeNamePresentSpinnerData(response.body());
                     }
-                }
 
-                @Override
-                public void onFailure(Call<List<DocumentType>> call, Throwable t) {
-                    Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                    addDocumentTypeNamePresentSpinnerData(response.body());
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(Call<List<DocumentType>> call, Throwable t) {
+                Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -369,6 +368,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
             });
         }
 
+    }
 
     public void addVehicleTypeNamePresentSpinnerData(final List<VehicleType> body) {
         List<String> vehicleList = new ArrayList<>();
@@ -401,25 +401,25 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     public void getAllVehicleModel(int id) {
 
-            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-            Call<List<VehicleModel>> vehicleModels = retrofitService.GetVehicleModelByVehicleId(id);
-            vehicleModels.enqueue(new Callback<List<VehicleModel>>() {
-                @Override
-                public void onResponse(Call<List<VehicleModel>> call, Response<List<VehicleModel>> response) {
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<VehicleModel>> vehicleModels = retrofitService.GetVehicleModelByVehicleId(id);
+        vehicleModels.enqueue(new Callback<List<VehicleModel>>() {
+            @Override
+            public void onResponse(Call<List<VehicleModel>> call, Response<List<VehicleModel>> response) {
 
-                    if (response.body() != null) {
+                if (response.body() != null) {
 
-                        VehicleModelArrayList.clear();
-                        VehicleModelArrayList.addAll(response.body());
-                        addVehicleMadyBySpinnerData(response.body());
-                    }
+                    VehicleModelArrayList.clear();
+                    VehicleModelArrayList.addAll(response.body());
+                    addVehicleMadyBySpinnerData(response.body());
                 }
+            }
 
-                @Override
-                public void onFailure(Call<List<VehicleModel>> call, Throwable t) {
-                    Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            @Override
+            public void onFailure(Call<List<VehicleModel>> call, Throwable t) {
+                Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -453,26 +453,26 @@ public class VehicleEntryActivity extends AppCompatActivity {
     public void getAllColor() {
 
 
-            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-            Call<List<Colors>> colors = retrofitService.GetColors();
-            colors.enqueue(new Callback<List<Colors>>() {
-                @Override
-                public void onResponse(Call<List<Colors>> call, Response<List<Colors>> response) {
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<Colors>> colors = retrofitService.GetColors();
+        colors.enqueue(new Callback<List<Colors>>() {
+            @Override
+            public void onResponse(Call<List<Colors>> call, Response<List<Colors>> response) {
 
-                    if (response.body() != null) {
+                if (response.body() != null) {
 
-                        colorArrayList.clear();
-                        colorArrayList.addAll(response.body());
+                    colorArrayList.clear();
+                    colorArrayList.addAll(response.body());
 
-                        addColorSpinnerData(response.body());
-                    }
+                    addColorSpinnerData(response.body());
                 }
+            }
 
-                @Override
-                public void onFailure(Call<List<Colors>> call, Throwable t) {
-                    Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            @Override
+            public void onFailure(Call<List<Colors>> call, Throwable t) {
+                Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -655,8 +655,9 @@ public class VehicleEntryActivity extends AppCompatActivity {
                 }
             });
 
-    }
+        }
 
+    }
 
     public void addThanaSpinnerData(final List<Thana> body) {
         List<String> thanaList = new ArrayList<>();
@@ -687,32 +688,32 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
 //File Upload
 
-    public void FileUpload( ) {
+    public void FileUpload() {
 
 
-            //on upload button Click
-            if (selectedFilePath != null) {
-                dialog = ProgressDialog.show(VehicleEntryActivity.this, "", "Uploading File...", true);
+        //on upload button Click
+        if (selectedFilePath != null) {
+            dialog = ProgressDialog.show(VehicleEntryActivity.this, "", "Uploading File...", true);
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //creating new thread to handle Http Operations
-                        uploadFile(selectedFilePath);
-                    }
-                }).start();
-            } else {
-                Toast.makeText(VehicleEntryActivity.this, "Please choose a File First", Toast.LENGTH_SHORT).show();
-            }
-
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    //creating new thread to handle Http Operations
+                    uploadFile(selectedFilePath);
+                }
+            }).start();
+        } else {
+            Toast.makeText(VehicleEntryActivity.this, "Please choose a File First", Toast.LENGTH_SHORT).show();
         }
+
+    }
+
     @OnClick(R.id.etBlueBook)
-    public void etBlueBook(){
+    public void etBlueBook() {
         try {
             showFileChooser();
-        }
-        catch (Exception e) {
-            Utilities.showLogcatMessage(" "+e.toString());
+        } catch (Exception e) {
+            Utilities.showLogcatMessage(" " + e.toString());
 
         }
     }
@@ -730,7 +731,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        try{
+        try {
             switch (resultCode) {
                 case 1:
                     if (resultCode == RESULT_OK) {
@@ -742,9 +743,8 @@ public class VehicleEntryActivity extends AppCompatActivity {
                     break;
 
             }
-        }
-        catch (Exception e){
-            Utilities.showLogcatMessage("onActivityResult "+e.toString());
+        } catch (Exception e) {
+            Utilities.showLogcatMessage("onActivityResult " + e.toString());
 
         }
 
@@ -917,5 +917,25 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     }
 
+    //InformationEntryActivity
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, InformationEntryActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        super.onBackPressed();
+    }
+//DashBoard
+
+    @OnClick(R.id.fab)
+    public void fab() {
+        Intent intent = new Intent(this, DashboardActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+
+    }
 
 }

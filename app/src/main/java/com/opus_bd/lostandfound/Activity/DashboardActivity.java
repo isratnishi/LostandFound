@@ -26,6 +26,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
+import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 
 import butterknife.BindView;
@@ -93,7 +94,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
     private void displaySelectedScreen(int itemId) {
 
-        String title;
         switch (itemId) {
             case R.id.ihelp:
 
@@ -102,12 +102,19 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 break;
             case R.id.ilogout:
             {
-                SharedPrefManager.getInstance(this).clearToken();
-                Toast.makeText(this, "Logged out successfully!!", Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(this, LoginActivity.class);
-                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                finish();
-                startActivity(intent2);
+              try {
+                  SharedPrefManager.getInstance(this).clearToken();
+                  Toast.makeText(this, "Logged out successfully!!", Toast.LENGTH_SHORT).show();
+                  Intent intent2 = new Intent(this, LoginActivity.class);
+                  intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                  startActivity(intent2);
+
+              }
+              catch (Exception e)
+              {
+                  Utilities.showLogcatMessage("Logout "+e.toString());
+              }
             }
                 break;
 
@@ -116,8 +123,9 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         mDrawerLayout.closeDrawer(GravityCompat.END);
     }
 
-    @OnClick({R.id.llTheft, R.id.fabTheft,R.id.fablost,R.id.llfablost})
+    @OnClick({R.id.llTheft, R.id.fabTheft})
     public void llTheft() {
+        Constants.ENTRY_TYPE_ID=Constants.THEFT;
         Intent intent = new Intent(DashboardActivity.this, InformationEntryActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -127,7 +135,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
 @OnClick({R.id.fablost,R.id.llfablost})
     public void fablost() {
-        Intent intent = new Intent(DashboardActivity.this, LostInformationEntryActivity.class);
+    Constants.ENTRY_TYPE_ID=Constants.LOST;
+        Intent intent = new Intent(DashboardActivity.this, InformationEntryActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -135,9 +144,14 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        //calling the method displayselectedscreen and passing the id of selected menu
-        displaySelectedScreen(item.getItemId());
-        //make this method blank
+        try {
+            displaySelectedScreen(menuItem.getItemId());
+        }
+        catch (Exception e)
+        {
+            Utilities.showLogcatMessage("Logout "+e.toString());
+        }
+
         return true;
     }
 

@@ -10,6 +10,8 @@ import android.widget.Button;
 
 import com.opus_bd.lostandfound.R;
 
+import butterknife.OnClick;
+
 public class CodeGenerateActivity extends AppCompatActivity {
     Button btnThanks;
     @Override
@@ -34,5 +36,18 @@ public class CodeGenerateActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+
+    //DashBoard
+
+    @OnClick(R.id.fab)
+    public void fab() {
+        Intent intent = new Intent(this, DashboardActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+
     }
 }

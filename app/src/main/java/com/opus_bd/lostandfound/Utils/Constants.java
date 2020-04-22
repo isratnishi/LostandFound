@@ -6,4 +6,25 @@ public class Constants {
     public static String ENGLISH = "en";
     public static String BANGLA = "bn";
 
+
+    //GD For
+    public static String GDFOR;
+    public static String OWN = "OWN";
+    public static String OTHERS = "OTHERS";
+
+    //Product type Id
+    public static int PRODUCT_TYPE_ID;
+    public static int VEHICLE = 1;
+    public static int DOCUMENT = 2;
+    public static int MAN = 4;
+
+
+    //Entry type Id
+    public static int ENTRY_TYPE_ID;
+    public static int THEFT = 1;
+    public static int LOST = 2;
+    public static int FOUND = 3;
+
+
+
 }

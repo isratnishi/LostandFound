@@ -32,7 +32,7 @@
                     android:layout_height="5dp" />
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvInput"
+                    android:id="@+id/cvApplicant"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/spacing_middle"
@@ -44,7 +44,6 @@
                     app:cardElevation="2dp">
 
                     <LinearLayout
-                        android:id="@+id/llInput"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
@@ -439,7 +438,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/spacing_medium"
-                                    android:text="Man"
+                                    android:text="@string/man"
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                                     android:textColor="@color/grey_40" />
                             </LinearLayout>

@@ -1,4 +1,4 @@
-package com.opus_bd.lostandfound.Activity;
+package com.opus_bd.lostandfound;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,11 +27,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.opus_bd.lostandfound.Activity.DashboardActivity;
+import com.opus_bd.lostandfound.Activity.LoginActivity;
+import com.opus_bd.lostandfound.Activity.UnknownManActivity;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
-import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
 import com.opus_bd.lostandfound.Utils.Constants;
@@ -62,10 +64,6 @@ public class LostInformationEntryActivity extends AppCompatActivity {
     LinearLayout llplaceDocument;
     @BindView(R.id.etModel)
     EditText etModel;
-
-//    @BindView(R.id.etBrand)
-//    EditText etBrand;
-
     @BindView(R.id.etRegNoName)
     EditText etRegNoName;
 
@@ -74,8 +72,6 @@ public class LostInformationEntryActivity extends AppCompatActivity {
 
     @BindView(R.id.cvItems)
     CardView cvItems;
-    /*@BindView(R.id.etUserName)
-    EditText etUserName;*/
     @BindView(R.id.LLItems)
     LinearLayout LLItems;
     @BindView(R.id.llInput)
@@ -157,6 +153,7 @@ public class LostInformationEntryActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.llVOwn, R.id.fabOwn})
     public void LlVOwn() {
+        Constants.GDFOR=Constants.OWN;
         fabOwn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimaryDark));
         fabOther.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.grey_40));
         LLInputForOthers.setVisibility(View.GONE);
@@ -174,6 +171,7 @@ public class LostInformationEntryActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.llVOthers, R.id.fabOther})
     public void llVOthers() {
+        Constants.GDFOR=Constants.OTHERS;
         fabOwn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.grey_40));
         fabOther.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimaryDark));
         LLInputForOthers.setVisibility(View.VISIBLE);
@@ -200,7 +198,7 @@ public class LostInformationEntryActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.llVVihecal,R.id.fabVihecal})
     public void llVVihecal() {
-
+        Constants.PRODUCT_TYPE_ID=Constants.VEHICLE;
         fabVihecal.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimaryDark));
         LLInputForOthers.setVisibility(View.GONE);
         llInput.setVisibility(View.GONE);
@@ -224,19 +222,14 @@ public class LostInformationEntryActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnEntryInput)
     public void btnEntryInput() {
-        // submitToServer();
         llEntry.setVisibility(View.GONE);
         vehicleDocument.setVisibility(View.VISIBLE);
-       /* Intent intent = new Intent(LostInformationEntryActivity.this, DashboardActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);*/
 
     }
  @OnClick({R.id.llVMan,R.id.fabMan})
     public void llVMan() {
         // submitToServer();
-     
+     Constants.PRODUCT_TYPE_ID=Constants.MAN;
         Intent intent = new Intent(LostInformationEntryActivity.this, UnknownManActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
