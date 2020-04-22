@@ -23,11 +23,15 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.navigation.NavigationView;
+import com.opus_bd.lostandfound.Model.Dashboard.GDInformation;
+import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
 import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,7 +53,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     @BindView(R.id.mDrawerLayout)
     DrawerLayout mDrawerLayout;
     private MenuItem item;
-
+    ArrayList<GDInformation> gdInformationArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

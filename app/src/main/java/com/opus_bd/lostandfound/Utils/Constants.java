@@ -21,9 +21,9 @@ public class Constants {
 
     //Entry type Id
     public static int ENTRY_TYPE_ID;
-    public static int THEFT = 1;
-    public static int LOST = 2;
-    public static int FOUND = 3;
+    public static int THEFT = 3;
+    public static int LOST = 1;
+    public static int FOUND = 2;
 
 
 

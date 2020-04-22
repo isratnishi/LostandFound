@@ -1,6 +1,7 @@
 package com.opus_bd.lostandfound.RetrofitService;
 
 
+import com.opus_bd.lostandfound.Model.Dashboard.GDInformation;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
@@ -67,7 +68,8 @@ public interface RetrofitService {
 //Global data
 
 
-
+    @GET("api/LostFound/GetGDInformationByUser/{id}")
+    Call<List<GDInformation>> GetGDInformationByUser(@Path("userName") String userName);
 
 
 
