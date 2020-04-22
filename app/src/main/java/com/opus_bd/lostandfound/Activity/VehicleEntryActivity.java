@@ -1,7 +1,9 @@
 package com.opus_bd.lostandfound.Activity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,11 +13,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -48,8 +52,12 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
+import java.util.SimpleTimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -171,6 +179,16 @@ public class VehicleEntryActivity extends AppCompatActivity {
     public int SELECTED_DISTRICT_ID;
     public int SELECTED_THANA_ID;
 
+
+    //date picker
+
+    int mYear, mMonth, mDay;
+    Calendar calendar = Calendar.getInstance();
+
+    //time picker
+    int mHour, mMin, mSec;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -187,7 +205,11 @@ public class VehicleEntryActivity extends AppCompatActivity {
         getAllVehicleType();
         getAllColor();
         getDivision();
+
+        //date picker
+        initializeVariables();
     }
+
     protected void attachBaseContext(Context base) {
         SharedPreferences tprefs = base.getSharedPreferences(SharedPrefManager.SHARED_PREF_NAME, MODE_PRIVATE);
         boolean language = tprefs.getBoolean(SharedPrefManager.KEY_State, true);
@@ -196,8 +218,9 @@ public class VehicleEntryActivity extends AppCompatActivity {
         else
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
+
     @OnClick(R.id.ivVehicleInformation)
-    public void ivVehicleInformation(){
+    public void ivVehicleInformation() {
         if (isllVehicleEntryChecked) {
             // show password
             llVehicleInfromation.setVisibility(View.VISIBLE);
@@ -212,8 +235,8 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.ivVIdentityInfo,R.id.btnNext1})
-    public void ivVIdentityInfo(){
+    @OnClick({R.id.ivVIdentityInfo, R.id.btnNext1})
+    public void ivVIdentityInfo() {
 
         if (isllVehicleIdentificationChecked) {
             // show password
@@ -457,31 +480,30 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     public void getAllVehicleType() {
 
-            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-            Call<List<VehicleType>> vehicleTypes = retrofitService.GetVehicleTypes();
-            vehicleTypes.enqueue(new Callback<List<VehicleType>>() {
-                @Override
-                public void onResponse(Call<List<VehicleType>> call, Response<List<VehicleType>> response) {
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<VehicleType>> vehicleTypes = retrofitService.GetVehicleTypes();
+        vehicleTypes.enqueue(new Callback<List<VehicleType>>() {
+            @Override
+            public void onResponse(Call<List<VehicleType>> call, Response<List<VehicleType>> response) {
 
-                    if (response.body() != null) {
+                if (response.body() != null) {
 
-                        vehicleTypeArrayList.clear();
-                        vehicleTypeArrayList.addAll(response.body());
-                        for (int i = 0; i < response.body().size(); i++) {
+                    vehicleTypeArrayList.clear();
+                    vehicleTypeArrayList.addAll(response.body());
+                    for (int i = 0; i < response.body().size(); i++) {
 
-                        }
-
-                        addVehicleTypeNamePresentSpinnerData(response.body());
                     }
-                }
 
-                @Override
-                public void onFailure(Call<List<VehicleType>> call, Throwable t) {
-                    Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                    addVehicleTypeNamePresentSpinnerData(response.body());
                 }
-            });
-        }
+            }
 
+            @Override
+            public void onFailure(Call<List<VehicleType>> call, Throwable t) {
+                Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 
     public void addVehicleTypeNamePresentSpinnerData(final List<VehicleType> body) {
@@ -746,29 +768,28 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     public void getAllThana(int id) {
 
-            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-            Call<List<Thana>> thana = retrofitService.GetThanaByDistrictId(id);
-            thana.enqueue(new Callback<List<Thana>>() {
-                @Override
-                public void onResponse(Call<List<Thana>> call, Response<List<Thana>> response) {
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<Thana>> thana = retrofitService.GetThanaByDistrictId(id);
+        thana.enqueue(new Callback<List<Thana>>() {
+            @Override
+            public void onResponse(Call<List<Thana>> call, Response<List<Thana>> response) {
 
-                    if (response.body() != null) {
+                if (response.body() != null) {
 
-                        thanaArrayList.clear();
-                        thanaArrayList.addAll(response.body());
+                    thanaArrayList.clear();
+                    thanaArrayList.addAll(response.body());
 
-                        addThanaSpinnerData(response.body());
-                    }
+                    addThanaSpinnerData(response.body());
                 }
+            }
 
-                @Override
-                public void onFailure(Call<List<Thana>> call, Throwable t) {
-                    Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            @Override
+            public void onFailure(Call<List<Thana>> call, Throwable t) {
+                Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        }
-
+    }
 
 
     public void addThanaSpinnerData(final List<Thana> body) {
@@ -818,9 +839,10 @@ public class VehicleEntryActivity extends AppCompatActivity {
             Toast.makeText(VehicleEntryActivity.this, "Please choose a File First", Toast.LENGTH_SHORT).show();
         }
 
-        }
+    }
+
     @OnClick(R.id.etBlueBook)
-    public void etBlueBook(){
+    public void etBlueBook() {
         try {
             showFileChooser();
         } catch (Exception e) {
@@ -854,9 +876,8 @@ public class VehicleEntryActivity extends AppCompatActivity {
                     break;
 
             }
-        }
-        catch (Exception e){
-            Utilities.showLogcatMessage("onActivityResult "+e.toString());
+        } catch (Exception e) {
+            Utilities.showLogcatMessage("onActivityResult " + e.toString());
 
         }
 
@@ -1049,5 +1070,56 @@ public class VehicleEntryActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+//Date Picker
 
+    private void initializeVariables() {
+        mYear = calendar.get(Calendar.YEAR);
+        mMonth = calendar.get(Calendar.MONTH);
+        mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        etVehicleDate.setText(formatter.format(calendar.getTime()));
+        mHour = calendar.get(Calendar.HOUR);
+        mMin = calendar.get(Calendar.MINUTE);
+        mSec = calendar.get(Calendar.SECOND);
+        SimpleDateFormat formatter1 = new SimpleDateFormat("hh:mm", Locale.ENGLISH);
+        etVehicleTime.setText(formatter1.format(calendar.getTime()));
+    }
+
+    @OnClick(R.id.etVehicleDate)
+    public void etDateOnClick() {
+        DatePickerDialog mDatePicker;
+        mDatePicker = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker datepicker, int
+                            selectedYear, int selectedMonth, int selectedDay) {
+                        Calendar saleDateCalender = Calendar.getInstance();
+                        saleDateCalender.set(Calendar.YEAR, selectedYear);
+                        saleDateCalender.set(Calendar.MONTH, selectedMonth);
+                        saleDateCalender.set(Calendar.DAY_OF_MONTH, selectedDay);
+
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+                        etVehicleDate.setText(formatter.format(saleDateCalender.getTime()));
+                    }
+                }, mYear, mMonth, mDay);
+        mDatePicker.setTitle("Select Date");
+        mDatePicker.show();
+    }
+
+
+    @OnClick(R.id.etVehicleTime)
+    public void etVehicleTime() {
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        int second = mcurrentTime.get(Calendar.SECOND);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                etVehicleTime.setText( selectedHour + ":" + selectedMinute);
+            }
+        }, hour, minute, true);//Yes 24 hour time
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
+    }
 }
