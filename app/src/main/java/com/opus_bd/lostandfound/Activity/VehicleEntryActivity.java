@@ -343,6 +343,8 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     public void getAllVehicleType() {
 
+        String token = SharedPrefManager.getInstance(this).getToken();
+        if (token != null) {
             RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
             Call<List<VehicleType>> vehicleTypes = retrofitService.GetVehicleTypes();
             vehicleTypes.enqueue(new Callback<List<VehicleType>>() {
@@ -630,6 +632,8 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     public void getAllThana(int id) {
 
+        String token = SharedPrefManager.getInstance(this).getToken();
+        if (token != null) {
             RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
             Call<List<Thana>> thana = retrofitService.GetThanaByDistrictId(id);
             thana.enqueue(new Callback<List<Thana>>() {
@@ -682,9 +686,9 @@ public class VehicleEntryActivity extends AppCompatActivity {
     }
 
 //File Upload
-    
+
     public void FileUpload( ) {
-      
+
 
             //on upload button Click
             if (selectedFilePath != null) {
@@ -885,7 +889,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
                     });
                 }
 
-                //closing the input and output streams 
+                //closing the input and output streams
                 fileInputStream.close();
                 dataOutputStream.flush();
                 dataOutputStream.close();
@@ -912,6 +916,6 @@ public class VehicleEntryActivity extends AppCompatActivity {
         }
 
     }
-    
-    
+
+
 }
