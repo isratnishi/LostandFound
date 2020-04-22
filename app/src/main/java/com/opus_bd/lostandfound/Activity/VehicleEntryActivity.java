@@ -360,7 +360,6 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     public void addVehicleTypeNamePresentSpinnerData(final List<VehicleType> body) {
         List<String> vehicleList = new ArrayList<>();
-       // vehicleList.add("যানবাহনের ধরণ");
         for (int i = 0; i < body.size(); i++) {
             vehicleList.add(body.get(i).getVehicleTypeName());
         }
@@ -368,6 +367,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, vehicleList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //dataAdapter2.insert("যানবাহনের ধরণ", 0);
         spnVehicleType.setAdapter(dataAdapter2);
         spnVehicleType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
