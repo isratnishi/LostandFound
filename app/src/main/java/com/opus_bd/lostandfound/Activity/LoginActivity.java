@@ -199,7 +199,8 @@ public class LoginActivity extends AppCompatActivity {
     private void submitToServer() {
 //        Utilities.showProgress(this);
         SharedPrefManager.getInstance(LoginActivity.this).clearToken();
-        final UserLoginModel userModel = new UserLoginModel(etUserName.getText().toString(), etPassword.getText().toString());
+       // final UserLoginModel userModel = new UserLoginModel(etUserName.getText().toString(), etPassword.getText().toString());
+        final UserLoginModel userModel = new UserLoginModel("suza", "123456");
 
         //SharedPrefManager.getInstance(this).saveUserName(etUserName.getText().toString());
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);

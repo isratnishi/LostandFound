@@ -8,7 +8,9 @@ import androidx.core.content.ContextCompat;
 
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -32,6 +34,8 @@ import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
+import com.opus_bd.lostandfound.Utils.Constants;
+import com.opus_bd.lostandfound.Utils.LocaleHelper;
 import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 
@@ -142,7 +146,14 @@ public class LostInformationEntryActivity extends AppCompatActivity {
         getAllVehicleType();
         //addItemsOnSpinner2();
     }
-
+    protected void attachBaseContext(Context base) {
+        SharedPreferences tprefs = base.getSharedPreferences(SharedPrefManager.SHARED_PREF_NAME, MODE_PRIVATE);
+        boolean language = tprefs.getBoolean(SharedPrefManager.KEY_State, true);
+        if (language)
+            super.attachBaseContext(LocaleHelper.setLocale(base, Constants.ENGLISH));
+        else
+            super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
+    }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.llVOwn, R.id.fabOwn})
     public void LlVOwn() {

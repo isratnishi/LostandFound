@@ -9,7 +9,9 @@ public class DocumentType {
     private Object documentFor;
     @SerializedName("documentTypeName")
     @Expose
-    private String documentTypeName;
+    private String documentTypeName; @SerializedName("imagePath")
+    @Expose
+    private String imagePath;
     @SerializedName("documentTypeNameBn")
     @Expose
     private Object documentTypeNameBn;
@@ -113,5 +115,13 @@ public class DocumentType {
 
     public void setUpdatedBy(Object updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
