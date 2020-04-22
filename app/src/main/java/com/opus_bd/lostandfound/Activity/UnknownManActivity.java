@@ -22,28 +22,36 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
+import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.R;
+import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
+import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
 import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
+import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UnknownManActivity extends AppCompatActivity {
     @BindView(R.id.llInput)
     LinearLayout llInput;
     @BindView(R.id.llReport)
     LinearLayout llReport;
+    @BindView(R.id.mcvReport)
+    MaterialCardView mcvReport;
     boolean isllPersonInfromationChecked = true;
     @BindView(R.id.llPersonInfromation)
     LinearLayout llPersonInfromation;
-
-
 
 
     @BindView(R.id.ivTPersonInfromation)
@@ -88,7 +96,18 @@ public class UnknownManActivity extends AppCompatActivity {
     Spinner spnBloodGroup;
     @BindView(R.id.spnOcupation)
     Spinner spnOcupation;
-
+    @BindView(R.id.spnMaritalStatus)
+    Spinner spnMaritalStatus;
+    @BindView(R.id.etEye)
+    EditText etEye;
+    @BindView(R.id.etNose)
+    EditText etNose;
+    @BindView(R.id.etHair)
+    EditText etHair;
+    @BindView(R.id.etHeight)
+    EditText etHeight;
+    @BindView(R.id.etColor)
+    EditText etColor;
 
     @BindView(R.id.tvName)
     TextView tvName;
@@ -102,11 +121,22 @@ public class UnknownManActivity extends AppCompatActivity {
     TextView tvReligion;
     @BindView(R.id.tvGender)
     TextView tvGender;
-/*
     @BindView(R.id.tvBloodGroup)
     TextView tvBloodGroup;
     @BindView(R.id.tvOcupation)
-    TextView tvOcupation;*/
+    TextView tvOcupation;
+    @BindView(R.id.tvMaritalStatus)
+    TextView tvMaritalStatus;
+    @BindView(R.id.tvEye)
+    TextView tvEye;
+    @BindView(R.id.tvNose)
+    TextView tvNose;
+    @BindView(R.id.tvHair)
+    TextView tvHair;
+    @BindView(R.id.tvHeight)
+    TextView tvHeight;
+    @BindView(R.id.tvColor)
+    TextView tvColor;
 
 
     @Override
@@ -114,7 +144,7 @@ public class UnknownManActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unknown_man);
         ButterKnife.bind(this);
-        llReport.setVisibility(View.GONE);
+        mcvReport.setVisibility(View.GONE);
         llPersonInfromation.setVisibility(View.VISIBLE);
         Glide.with(this).load(R.drawable.ic_drop_up).into(ivTPersonInfromation);
         mcvPersonIdendityInformation.setVisibility(View.GONE);
@@ -230,23 +260,41 @@ public class UnknownManActivity extends AppCompatActivity {
     @OnClick(R.id.btnNext3)
     public void btnNext2() {
         llInput.setVisibility(View.GONE);
-        llReport.setVisibility(View.VISIBLE);
-        tvName.setText(etName.getText().toString());
-        tvFathersName.setText(etFathersName.getText().toString());
-        tvSpouseName.setText(etSpouseName.getText().toString());
-        tvNidNum.setText(etNidNum.getText().toString());
-        tvReligion.setText(spnReligion.getSelectedItem().toString());
-        tvGender.setText(spnGender.getSelectedItem().toString());
+        mcvReport.setVisibility(View.VISIBLE);
+        try {
+            tvName.setText(etName.getText().toString());
+            tvFathersName.setText(etFathersName.getText().toString());
+            tvSpouseName.setText(etSpouseName.getText().toString());
+            tvNidNum.setText(etNidNum.getText().toString());
+            tvReligion.setText(spnReligion.getSelectedItem().toString());
+            tvGender.setText(spnGender.getSelectedItem().toString());
+            tvBloodGroup.setText(spnBloodGroup.getSelectedItem().toString());
+            tvMaritalStatus.setText(spnMaritalStatus.getSelectedItem().toString());
+            tvOcupation.setText(spnOcupation.getSelectedItem().toString());
+
+            tvHair.setText(etHair.getText().toString());
+            tvNose.setText(etNose.getText().toString());
+            tvHeight.setText(etHeight.getText().toString());
+            tvEye.setText(etEye.getText().toString());
+            tvColor.setText(etColor.getText().toString());
+
+
+        } catch (Exception e) {
+
+        }
+
 
 
        /* Intent intent = new Intent(UnknownManActivity.this, CodeGenerateActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);*/
-    }  @OnClick(R.id.Edit)
+    }
+
+    @OnClick(R.id.Edit)
     public void Edit() {
         llInput.setVisibility(View.VISIBLE);
-        llReport.setVisibility(View.GONE);
+        mcvReport.setVisibility(View.GONE);
        /* tvName.setText(etName.getText().toString());
         tvFathersName.setText(etFathersName.getText().toString());
         tvSpouseName.setText(etSpouseName.getText().toString());
@@ -259,13 +307,93 @@ public class UnknownManActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);*/
     }
+    private void submitToServer() {
 
+        String token = SharedPrefManager.getInstance(this).getToken();
+        String UserName = SharedPrefManager.getInstance(this).getUser();
+
+        final GDInformationModel gdInformationModel = new GDInformationModel();
+
+        //GD Information
+        gdInformationModel.setUserName(UserName);
+        gdInformationModel.setGdFor(Constants.GDFOR);
+        gdInformationModel.setGdDate("2020-04-14");
+        gdInformationModel.setIdentityNo("3453453");
+        gdInformationModel.setGDTypeId(Constants.ENTRY_TYPE_ID);
+        gdInformationModel.setProductTypeId(Constants.PRODUCT_TYPE_ID);
+
+        //gdInformationModel.setDocumentTypeId(SELECTED_DOCUMENT_ID);
+        gdInformationModel.setDocumentDescription("");
+
+        //Man Information
+
+        gdInformationModel.setName(tvName.getText().toString());
+        gdInformationModel.setFatherName(tvFathersName.getText().toString());
+        gdInformationModel.setSpouseName(tvSpouseName.getText().toString());
+        gdInformationModel.setManIdentityNo(tvNidNum.getText().toString());
+        gdInformationModel.setReligion(tvReligion.getText().toString());
+        gdInformationModel.setHeightTo(tvHeight.getText().toString());
+        gdInformationModel.setColor(tvColor.getText().toString());
+        gdInformationModel.setEye(tvEye.getText().toString());
+        gdInformationModel.setHeir(tvHair.getText().toString());
+      /*  gdInformationModel.setMadeIn(etMadeIn.getText().toString());
+        gdInformationModel.setModelDate(etMadeDate.getText().toString());
+*/
+       /* //Identity Info
+        gdInformationModel.setColorsId(SELECTED_COLOR_ID);
+        gdInformationModel.setIdentifySign(etIdentitySign.getText().toString());
+
+        //Place And Time
+        gdInformationModel.setDivisionId(SELECTED_DIVISION_ID);
+        gdInformationModel.setDistrictId(SELECTED_DISTRICT_ID);
+        gdInformationModel.setThanaId(SELECTED_THANA_ID);
+        gdInformationModel.setPlaceDetails(etAddressDetails.getText().toString());
+        gdInformationModel.setPlaceDetails(etAddressDetails.getText().toString());
+        gdInformationModel.setLafDate(etVehicleDate.getText().toString());
+        gdInformationModel.setLafTime(etVehicleTime.getText().toString());*/
+
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<String> registrationRequest = retrofitService.SaveGDInformation(token, gdInformationModel);
+        registrationRequest.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                try {
+                    if (response.body() != null) {
+                        Utilities.showLogcatMessage("responce");
+
+                        Toast.makeText(UnknownManActivity.this, "Successfully Done!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(UnknownManActivity.this, CodeGenerateActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+
+                    } else {
+                        Toast.makeText(UnknownManActivity.this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage("Exception 2" + e.toString());
+                    Toast.makeText(UnknownManActivity.this, "Something went Wrong! Please try again later", Toast.LENGTH_SHORT).show();
+                }
+                //            showProgressBar(false);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Utilities.showLogcatMessage("Fail to connect " + t.toString());
+                // Utilities.hideProgress(LoginActivity.this);
+                Toast.makeText(UnknownManActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
     @OnClick(R.id.Submit)
     public void Submit() {
-        Intent intent = new Intent(UnknownManActivity.this, CodeGenerateActivity.class);
+        submitToServer();
+      /*  Intent intent = new Intent(UnknownManActivity.this, CodeGenerateActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        startActivity(intent);*/
     }
 
 
