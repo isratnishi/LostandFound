@@ -265,6 +265,11 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.btnSubmit)
+    public void btnSubmit() {
+        submitToServer();
+    }
+
     private void submitToServer() {
 
         String token = SharedPrefManager.getInstance(this).getToken();
