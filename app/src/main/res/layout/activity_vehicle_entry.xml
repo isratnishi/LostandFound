@@ -222,6 +222,29 @@
                                     style="@style/InformationEntryEditText"
                                     android:hint="@string/vehicleRegiNo" />
                             </LinearLayout>
+                            <LinearLayout
+                                style="@style/InformationEntryEditText"
+
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatSpinner
+                                   android:layout_width="100dp"
+                                    android:layout_height="match_parent"
+                                    android:spinnerMode="dialog"
+                                   android:fadingEdge="horizontal"
+
+                                    android:background="@android:color/transparent"
+                                    android:entries="@array/matropoliton"/>
+                                <androidx.appcompat.widget.AppCompatSpinner
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+
+                                    android:background="@android:color/transparent"
+                                    android:entries="@array/regiparttwo"/>
+                                <EditText
+                                    style="@style/InformationEntryEditText"
+                                    android:hint="@string/engineNo" />
+                            </LinearLayout>
                         </TableRow>
 
 

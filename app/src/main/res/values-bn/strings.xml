@@ -131,5 +131,19 @@
     <string name="division">বিভাগ</string>
     <string name="addressDetails">স্থানের বিবরণ</string>
     <string name="time">সময়</string>
-
+    <string-array name="matropoliton">
+        <item>ঢাকা মেট্রো</item>
+        <item>চট্ট মেট্রো</item>
+        <item>রাজশাহী মেট্রো</item>
+        <item>কুমিল্লা মেট্রো</item>
+        <item>সিলেট মেট্রো</item>
+        <item>খুলনা মেট্রো</item>
+        <item>বরিশাল মেট্রো</item>
+    </string-array>
+    <string-array name="regiparttwo">
+        <item>ক</item>
+        <item>খ</item>
+        <item>ল</item>
+        <item>স</item>
+    </string-array>
 </resources>
