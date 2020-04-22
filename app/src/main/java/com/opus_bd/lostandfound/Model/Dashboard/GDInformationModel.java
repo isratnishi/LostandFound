@@ -35,7 +35,7 @@ public class GDInformationModel {
     private String gDInformationId;
     @SerializedName("colorsId")
     @Expose
-    private String colorsId;
+    private Integer colorsId;
     @SerializedName("identifySign")
     @Expose
     private String identifySign;
@@ -260,11 +260,11 @@ public class GDInformationModel {
         this.gDInformationId = gDInformationId;
     }
 
-    public String getColorsId() {
+    public Integer getColorsId() {
         return colorsId;
     }
 
-    public void setColorsId(String colorsId) {
+    public void setColorsId(Integer colorsId) {
         this.colorsId = colorsId;
     }
 
