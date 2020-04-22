@@ -216,6 +216,7 @@ public class LoginActivity extends AppCompatActivity {
                         String auth1 = auth.replace("\"}", "");
                         Utilities.showLogcatMessage(" " + auth1);
                         SharedPrefManager.getInstance(LoginActivity.this).saveToken(auth1);
+                        SharedPrefManager.getInstance(LoginActivity.this).saveUser(response.body().getUserInfo().getUserName());
                         Toast.makeText(LoginActivity.this, "Successfully Logged in!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);

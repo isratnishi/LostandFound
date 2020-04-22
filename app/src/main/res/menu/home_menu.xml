@@ -5,8 +5,14 @@
         android:title="@string/help"
         android:iconTint="@color/colorPrimaryDark"
         android:icon="@drawable/ic_help"/>
+    <item android:id="@+id/iSupport"
+        android:title="@string/support"
+
+        android:iconTint="@color/colorPrimaryDark"
+        android:icon="@drawable/ic_support"/>
+
     <item android:id="@+id/iNotification"
-        android:title="Notification"
+        android:title="@string/notification"
 
         android:iconTint="@color/colorPrimaryDark"
         android:icon="@drawable/ic_notification"/>

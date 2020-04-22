@@ -25,21 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class InformationEntryActivity extends AppCompatActivity {
-    @BindView(R.id.llVOwn)
-    LinearLayout llVOwn;
-
-    @BindView(R.id.llVOthers)
-    LinearLayout llVOthers;
-
-    @BindView(R.id.LLInputForOthers)
-    LinearLayout LLInputForOthers;
-
-    @BindView(R.id.LLItems)
-    LinearLayout LLItems;
-    @BindView(R.id.llInput)
-    LinearLayout llInput;
-
-
+    //Stepper
     @BindView(R.id.iv1)
     ImageView iv1;
     @BindView(R.id.iv2)
@@ -57,12 +43,22 @@ public class InformationEntryActivity extends AppCompatActivity {
     View v3;
 
 
+    //Aplicant
+    @BindView(R.id.cvApplicant)
+    CardView cvApplicant;
+
+    @BindView(R.id.llVOwn)
+    LinearLayout llVOwn;
+
+    @BindView(R.id.llVOthers)
+    LinearLayout llVOthers;
+
+    @BindView(R.id.LLInputForOthers)
+    LinearLayout LLInputForOthers;
+
+    //Items
     @BindView(R.id.cvItems)
     CardView cvItems;
-
-    @BindView(R.id.cvInput)
-
-    CardView cvInput;
     @BindView(R.id.fabOwn)
     FloatingActionButton fabOwn;
     @BindView(R.id.fabVihecal)
@@ -70,6 +66,10 @@ public class InformationEntryActivity extends AppCompatActivity {
 
     @BindView(R.id.fabOther)
     FloatingActionButton fabOther;
+    @BindView(R.id.fabMan)
+    FloatingActionButton fabMan;
+    @BindView(R.id.llVMan)
+    LinearLayout llVMan;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -78,10 +78,14 @@ public class InformationEntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information_entry);
         ButterKnife.bind(this);
-        LLItems.setVisibility(View.GONE);
+        cvItems.setVisibility(View.GONE);
         LLInputForOthers.setVisibility(View.GONE);
         iv1.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
+        if (Constants.ENTRY_TYPE_ID == Constants.LOST) {
+            llVMan.setVisibility(View.VISIBLE);
+        }
     }
+
     protected void attachBaseContext(Context base) {
         SharedPreferences tprefs = base.getSharedPreferences(SharedPrefManager.SHARED_PREF_NAME, MODE_PRIVATE);
         boolean language = tprefs.getBoolean(SharedPrefManager.KEY_State, true);
@@ -90,14 +94,12 @@ public class InformationEntryActivity extends AppCompatActivity {
         else
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.llVOwn, R.id.fabOwn})
     public void LlVOwn() {
-        fabOwn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimaryDark));
-        fabOther.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.grey_40));
-        LLInputForOthers.setVisibility(View.GONE);
-        cvInput.setVisibility(View.GONE);
-        LLItems.setVisibility(View.VISIBLE);
+        Constants.GDFOR = Constants.OWN;
+        cvApplicant.setVisibility(View.GONE);
         cvItems.setVisibility(View.VISIBLE);
         iv4.setVisibility(View.GONE);
         v3.setVisibility(View.GONE);
@@ -110,12 +112,9 @@ public class InformationEntryActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.llVOthers, R.id.fabOther})
     public void llVOthers() {
-        fabOwn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.grey_40));
-        fabOther.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimaryDark));
+        Constants.GDFOR = Constants.OTHERS;
+        cvApplicant.setVisibility(View.GONE);
         LLInputForOthers.setVisibility(View.VISIBLE);
-        cvInput.setVisibility(View.GONE);
-        LLItems.setVisibility(View.GONE);
-        cvItems.setVisibility(View.GONE);
         iv2.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         v1.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
 
@@ -125,9 +124,7 @@ public class InformationEntryActivity extends AppCompatActivity {
     @OnClick(R.id.btnOthersInput)
     public void btnOthersInput() {
         LLInputForOthers.setVisibility(View.GONE);
-        // llEntry.setVisibility(View.GONE);
         cvItems.setVisibility(View.VISIBLE);
-        LLItems.setVisibility(View.VISIBLE);
         iv3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         v2.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
 
@@ -136,12 +133,7 @@ public class InformationEntryActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.llVVihecal, R.id.fabVihecal})
     public void llVVihecal() {
-
-        fabVihecal.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimaryDark));
-        LLInputForOthers.setVisibility(View.GONE);
-        llInput.setVisibility(View.GONE);
-        LLItems.setVisibility(View.VISIBLE);
-        cvItems.setVisibility(View.GONE);
+        Constants.PRODUCT_TYPE_ID = Constants.VEHICLE;
         iv4.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         v3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         iv3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
@@ -154,16 +146,25 @@ public class InformationEntryActivity extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @OnClick({R.id.llVMan, R.id.fabMan})
+    public void llVMan() {
+        Constants.PRODUCT_TYPE_ID = Constants.MAN;
+        iv4.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
+        v3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
+        iv3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
+        v2.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
+        Intent intent = new Intent(InformationEntryActivity.this, UnknownManActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.llVVivid, R.id.fabVivid})
     public void llVVivid() {
-
-        fabVihecal.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimaryDark));
-        LLInputForOthers.setVisibility(View.GONE);
-        llInput.setVisibility(View.GONE);
-        LLItems.setVisibility(View.VISIBLE);
-        cvItems.setVisibility(View.GONE);
+        Constants.PRODUCT_TYPE_ID = Constants.DOCUMENT;
         iv4.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         v3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         iv3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
