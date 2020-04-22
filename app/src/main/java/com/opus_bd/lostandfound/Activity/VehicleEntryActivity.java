@@ -269,15 +269,17 @@ public class VehicleEntryActivity extends AppCompatActivity {
     private void submitToServer() {
 
         String token = SharedPrefManager.getInstance(this).getToken();
+        String UserName = SharedPrefManager.getInstance(this).getUser();
+
         final GDInformationModel gdInformationModel = new GDInformationModel();
 
         //GD Information
-        gdInformationModel.setUserName("01516146414");
-        gdInformationModel.setGdFor("2");
+        gdInformationModel.setUserName(UserName);
+        gdInformationModel.setGdFor(Constants.GDFOR);
         gdInformationModel.setGdDate("2020-04-14");
         gdInformationModel.setIdentityNo("3453453");
-        gdInformationModel.setGDTypeId(1);
-        gdInformationModel.setProductTypeId(1);
+        gdInformationModel.setGDTypeId(Constants.ENTRY_TYPE_ID);
+        gdInformationModel.setProductTypeId(Constants.PRODUCT_TYPE_ID);
 
         gdInformationModel.setDocumentTypeId(SELECTED_DOCUMENT_ID);
         gdInformationModel.setDocumentDescription("");
@@ -318,20 +320,6 @@ public class VehicleEntryActivity extends AppCompatActivity {
                 try {
                     if (response.body() != null) {
                         Utilities.showLogcatMessage("responce");
-
-
-                     /*   try{
-                            String auth=response.body().getJwt().replace("{\"auth_token\":\"","");
-                            String auth1=auth.replace("\"}","");
-                            Utilities.showLogcatMessage(" "+auth1);
-                            SharedPrefManager.getInstance(context).saveToken(auth1);
-                            SharedPrefManager.getInstance(context).saveotp(response.body().getOtpCode());
-                            SharedPrefManager.getInstance(context).saveotp(response.body().getUserInfo().getUserName());
-                        }
-                        catch (Exception e) {
-                            Utilities.showLogcatMessage("Exception 1"+e.toString());
-                            Toast.makeText(context, "Something went Wrong! Please try again later", Toast.LENGTH_SHORT).show();
-                        }*/
 
                         Toast.makeText(VehicleEntryActivity.this, "Successfully Done!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(VehicleEntryActivity.this, DashboardActivity.class);
@@ -480,6 +468,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
                         vehicleTypeArrayList.clear();
                         vehicleTypeArrayList.addAll(response.body());
                         for (int i = 0; i < response.body().size(); i++) {
+
                         }
 
                         addVehicleTypeNamePresentSpinnerData(response.body());
@@ -493,7 +482,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
             });
         }
 
-    }
+
 
     public void addVehicleTypeNamePresentSpinnerData(final List<VehicleType> body) {
         List<String> vehicleList = new ArrayList<>();
@@ -780,7 +769,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
         }
 
-    }
+
 
     public void addThanaSpinnerData(final List<Thana> body) {
         List<String> thanaList = new ArrayList<>();
