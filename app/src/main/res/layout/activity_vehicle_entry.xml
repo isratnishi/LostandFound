@@ -1432,9 +1432,11 @@
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
+                        android:paddingTop="10dp"
                         android:id="@+id/btnSubmit"
                         android:background="@color/colorPrimary"
                         android:text="Submit" />
+
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>

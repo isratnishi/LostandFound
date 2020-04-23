@@ -853,12 +853,8 @@
                                 </LinearLayout>
 
                             </LinearLayout>
-                            <TableLayout
-                                android:id="@+id/tblGDData"
-                                android:layout_width="wrap_content"
-                                android:layout_height="300dp">
 
-                            </TableLayout>
+
 
 
                         </androidx.cardview.widget.CardView>
@@ -873,6 +869,8 @@
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
+
+
         </LinearLayout>
 
         <com.google.android.material.navigation.NavigationView

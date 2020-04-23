@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -67,6 +68,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private MenuItem item;
     ArrayList<GDInformation> gdInformationArrayList = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +84,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
     @OnClick(R.id.ivappLogo)
     public void ivappLogo() {
@@ -216,5 +219,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         });
 
     }
+
 
 }
