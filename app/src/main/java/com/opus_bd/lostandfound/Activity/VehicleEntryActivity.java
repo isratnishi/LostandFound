@@ -127,6 +127,13 @@ public class VehicleEntryActivity extends AppCompatActivity {
     @BindView(R.id.ivVPATInfo)
     ImageView ivVPATInfo;
 
+    boolean isllVehicleAttachment = true;
+    @BindView(R.id.llVehicleAttachment)
+    LinearLayout llVehicleAttachment;
+
+    @BindView(R.id.ivVehicleAttachment)
+    ImageView ivVehicleAttachment;
+
     //Spinner
 
     @BindView(R.id.spnSPDivision)
@@ -199,6 +206,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
         llVehicleInfromation.setVisibility(View.GONE);
         llVIdentityInfo.setVisibility(View.GONE);
         llVPATInfo.setVisibility(View.GONE);
+        llVehicleAttachment.setVisibility(View.GONE);
 
         getMatropolitonName();
         getRegiSerial();
@@ -279,20 +287,37 @@ public class VehicleEntryActivity extends AppCompatActivity {
             Glide.with(this).load(R.drawable.ic_drop_down).into(ivVIdentityInfo);
             isllVehicleIdentificationChecked = true;
         }
-
-//        llVIdentityInfo.setVisibility(View.VISIBLE);
-//        llVehicleInfromation.setVisibility(View.GONE);
-//        llVPATInfo.setVisibility(View.GONE);
     }
 
-
-    @OnClick({R.id.ivVPATInfo, R.id.btnNext2})
-    public void ivVPATInfo() {
-        if (isllVPATChecked) {
+    @OnClick({R.id.ivVehicleAttachment, R.id.btnNext2})
+    public void ivVehicleAttachment() {
+        if (isllVehicleAttachment) {
             // show password
             llVIdentityInfo.setVisibility(View.GONE);
             Glide.with(this).load(R.drawable.ic_drop_down).into(ivVIdentityInfo);
             isllVehicleIdentificationChecked = true;
+
+            llVehicleAttachment.setVisibility(View.VISIBLE);
+            Glide.with(this).load(R.drawable.ic_drop_up).into(ivVehicleAttachment);
+            isllVehicleAttachment = false;
+
+        } else {
+            // hide password
+            llVehicleAttachment.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_up).into(ivVehicleAttachment);
+            isllVehicleAttachment = true;
+        }
+
+    }
+
+
+    @OnClick({R.id.ivVPATInfo, R.id.btnNext4})
+    public void ivVPATInfo() {
+        if (isllVPATChecked) {
+            // show password
+            llVehicleAttachment.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_up).into(ivVehicleAttachment);
+            isllVehicleAttachment = true;
 
             llVPATInfo.setVisibility(View.VISIBLE);
             Glide.with(this).load(R.drawable.ic_drop_up).into(ivVPATInfo);
@@ -304,8 +329,6 @@ public class VehicleEntryActivity extends AppCompatActivity {
             Glide.with(this).load(R.drawable.ic_drop_down).into(ivVPATInfo);
             isllVPATChecked = true;
         }
-
-        llVPATInfo.setVisibility(View.VISIBLE);
 
     }
 
