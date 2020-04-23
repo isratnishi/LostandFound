@@ -211,34 +211,15 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
-                            <LinearLayout
+                            <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="?attr/actionBarSize"
                                 android:gravity="center_vertical"
-                                android:orientation="horizontal">
-
-                                <View
-                                    android:layout_width="@dimen/spacing_medium"
-                                    android:layout_height="0dp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="@string/information_entry"
-                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                                    android:textColor="@color/grey_60"
-                                    android:textStyle="bold" />
-
-                                <ImageButton
-                                    android:layout_width="?attr/actionBarSize"
-                                    android:layout_height="?attr/actionBarSize"
-                                    android:background="?attr/selectableItemBackgroundBorderless"
-                                    android:src="@drawable/ic_downarrow"
-                                    android:tint="@color/colorPrimary"
-                                    tools:ignore="ContentDescription" />
-
-                            </LinearLayout>
+                                android:paddingLeft="@dimen/spacing_middle"
+                                android:text="@string/information_entry"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                                android:textColor="@color/grey_60"
+                                android:textStyle="bold" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -367,33 +348,15 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical">
 
-                            <LinearLayout
+                            <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="?attr/actionBarSize"
                                 android:gravity="center_vertical"
-                                android:orientation="horizontal">
-
-                                <View
-                                    android:layout_width="@dimen/spacing_middle"
-                                    android:layout_height="0dp" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="@string/information_search"
-                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                                    android:textColor="@color/grey_60"
-                                    android:textStyle="bold" />
-
-                                <ImageButton
-                                    android:layout_width="?attr/actionBarSize"
-                                    android:layout_height="?attr/actionBarSize"
-                                    android:background="?attr/selectableItemBackgroundBorderless"
-                                    android:src="@drawable/ic_downarrow"
-                                    android:tint="@color/colorPrimary" />
-
-                            </LinearLayout>
+                                android:paddingLeft="@dimen/spacing_middle"
+                                android:text="@string/information_search"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                                android:textColor="@color/grey_60"
+                                android:textStyle="bold" />
 
                             <View
                                 android:layout_width="match_parent"
@@ -530,33 +493,15 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <LinearLayout
+                                <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="?attr/actionBarSize"
                                     android:gravity="center_vertical"
-                                    android:orientation="horizontal">
-
-                                    <View
-                                        android:layout_width="@dimen/spacing_large"
-                                        android:layout_height="0dp" />
-
-                                    <TextView
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:text="@string/report_status"
-                                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                                        android:textColor="@color/grey_60"
-                                        android:textStyle="bold" />
-
-                                    <ImageButton
-                                        android:layout_width="?attr/actionBarSize"
-                                        android:layout_height="?attr/actionBarSize"
-                                        android:background="?attr/selectableItemBackgroundBorderless"
-                                        android:src="@drawable/ic_downarrow"
-                                        android:tint="@color/colorPrimary" />
-
-                                </LinearLayout>
+                                    android:paddingLeft="@dimen/spacing_middle"
+                                    android:text="@string/report_status"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                                    android:textColor="@color/grey_60"
+                                    android:textStyle="bold" />
 
                                 <View
                                     android:layout_width="match_parent"

@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -216,6 +218,29 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
         //date picker
         initializeVariables();
+        etRegNoName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // if user is typing string one character at a time
+                if (count == 1) {
+                    // auto insert dashes while user typing their ssn
+                    if (start == 1 || start == 7) {
+                        etRegNoName.setText(etRegNoName.getText() + "-");
+                        etRegNoName.setSelection(etRegNoName.getText().length());
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     protected void attachBaseContext(Context base) {
@@ -322,7 +347,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
         //GD Information
         gdInformationModel.setUserName(UserName);
         gdInformationModel.setGdFor(Constants.GDFOR);
-        gdInformationModel.setGdDate("2020-04-14");
+        gdInformationModel.setGdDate(etVehicleDate.getText().toString());
         gdInformationModel.setIdentityNo("3453453");
         gdInformationModel.setGDTypeId(Constants.ENTRY_TYPE_ID);
         gdInformationModel.setProductTypeId(Constants.PRODUCT_TYPE_ID);
