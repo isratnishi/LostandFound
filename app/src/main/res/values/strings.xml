@@ -43,7 +43,7 @@
     <string name="open_location_settings">open_location_settings</string>
     <string name="Cancel">Cancel</string>
     <string name="Cancel_item">Cancel (2)</string>
-    <string name="allegation">Allegation (2)</string>
+    <string name="allegation">Allegation</string>
 
     <string name="investigation">Investigation (3)</string>
     <string name="disposal">Disposal (2)</string>
@@ -159,7 +159,7 @@
     <string name="documentType">Document Type</string>
 
     <!--    vehicle space and time info-->
-    <string name="placeAndTimeInfo">Place And Times Information</string>
+    <string name="placeAndTimeInfo">Lost/ Theft Place And Times Information</string>
     <string name="division">Division</string>
     <string name="addressDetails">Address Details</string>
     <string name="time">Time</string>
@@ -176,6 +176,7 @@
     <string name="image">Image</string>
     <string name="applicant">Applicant</string>
     <string name="notification">Notification</string>
+    <string name="insurance_paper">Insurance Paper</string>
 
     <string-array name="matropoliton">
 

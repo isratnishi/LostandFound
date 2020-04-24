@@ -29,6 +29,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.card.MaterialCardView;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
@@ -69,6 +70,21 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class VehicleEntryActivity extends AppCompatActivity {
+// Layout
+    @BindView(R.id.llInput)
+    LinearLayout llInput;
+    @BindView(R.id.mcvReport)
+    MaterialCardView mcvReport;
+
+    // Information View
+    @BindView(R.id.mcvVehicleInformation)
+    MaterialCardView mcvVehicleInformation;
+    @BindView(R.id.mcvVehicleIdendityInformation)
+    MaterialCardView mcvVehicleIdendityInformation;
+    @BindView(R.id.mcvVehicleAttachment)
+    MaterialCardView mcvVehicleAttachment;
+    @BindView(R.id.mcvVehiclePlaceTimeInformation)
+    MaterialCardView mcvVehiclePlaceTimeInformation;
     private static final int PICK_FILE_REQUEST = 1;
     private String selectedFilePath;
     ProgressDialog dialog;
@@ -197,16 +213,74 @@ public class VehicleEntryActivity extends AppCompatActivity {
     //time picker
     int mHour, mMin, mSec;
 
+//Report view textView
+
+    @BindView(R.id.tvModel)
+    TextView tvModel;
+
+    @BindView(R.id.tvRegNoName)
+    TextView tvRegNoName;
+
+    @BindView(R.id.tvEngineNo)
+    TextView tvEngineNo;
+
+    @BindView(R.id.tvChesisNo)
+    TextView tvChesisNo;
+
+    @BindView(R.id.tvCCNo)
+    TextView tvCCNo;
+
+    @BindView(R.id.tvMadeIn)
+    TextView tvMadeIn;
+
+    @BindView(R.id.tvMadeDate)
+    TextView tvMadeDate;
+
+    @BindView(R.id.tvIdentitySign)
+    TextView tvIdentitySign;
+
+    @BindView(R.id.tvAddressDetails)
+    TextView tvAddressDetails;
+
+    @BindView(R.id.tvVehicleDate)
+    TextView tvVehicleDate;
+
+    @BindView(R.id.tvVehicleTime)
+    TextView tvVehicleTime;
+
+    @BindView(R.id.tvSPDivision)
+    TextView tvSPDivision;
+
+    @BindView(R.id.tvSPDistrict)
+    TextView tvSPDistrict;
+
+    @BindView(R.id.tvSPThana)
+    TextView tvSPThana;
+/*
+    @BindView(R.id.tvD)
+    TextView tvDocumentType;*/
+
+    @BindView(R.id.tvVehicleType)
+    TextView tvVehicleType;
+
+    @BindView(R.id.tvMadeBy)
+    TextView tvMadeBy;
+    @BindView(R.id.tvColor)
+    TextView tvColor;
+    @BindView(R.id.tvBlueBook)
+    TextView tvBlueBook;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_entry);
         ButterKnife.bind(this);
-        llVehicleInfromation.setVisibility(View.GONE);
-        llVIdentityInfo.setVisibility(View.GONE);
-        llVPATInfo.setVisibility(View.GONE);
-        llVehicleAttachment.setVisibility(View.GONE);
+        mcvVehicleInformation.setVisibility(View.VISIBLE);
+        mcvVehicleIdendityInformation.setVisibility(View.GONE);
+        mcvVehicleAttachment.setVisibility(View.GONE);
+        mcvVehiclePlaceTimeInformation.setVisibility(View.GONE);
+        mcvReport.setVisibility(View.GONE);
 
         getMatropolitonName();
         getRegiSerial();
@@ -277,6 +351,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
             Glide.with(this).load(R.drawable.ic_drop_down).into(ivVehicleInformation);
             isllVehicleEntryChecked = true;
 
+            mcvVehicleIdendityInformation.setVisibility(View.VISIBLE);
             llVIdentityInfo.setVisibility(View.VISIBLE);
             Glide.with(this).load(R.drawable.ic_drop_up).into(ivVIdentityInfo);
             isllVehicleIdentificationChecked = false;
@@ -297,6 +372,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
             Glide.with(this).load(R.drawable.ic_drop_down).into(ivVIdentityInfo);
             isllVehicleIdentificationChecked = true;
 
+            mcvVehicleAttachment.setVisibility(View.VISIBLE);
             llVehicleAttachment.setVisibility(View.VISIBLE);
             Glide.with(this).load(R.drawable.ic_drop_up).into(ivVehicleAttachment);
             isllVehicleAttachment = false;
@@ -304,21 +380,22 @@ public class VehicleEntryActivity extends AppCompatActivity {
         } else {
             // hide password
             llVehicleAttachment.setVisibility(View.GONE);
-            Glide.with(this).load(R.drawable.ic_drop_up).into(ivVehicleAttachment);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivVehicleAttachment);
             isllVehicleAttachment = true;
         }
 
     }
 
 
-    @OnClick({R.id.ivVPATInfo, R.id.btnNext4})
+    @OnClick({R.id.ivVPATInfo, R.id.btnNext3})
     public void ivVPATInfo() {
         if (isllVPATChecked) {
             // show password
             llVehicleAttachment.setVisibility(View.GONE);
-            Glide.with(this).load(R.drawable.ic_drop_up).into(ivVehicleAttachment);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivVehicleAttachment);
             isllVehicleAttachment = true;
 
+            mcvVehiclePlaceTimeInformation.setVisibility(View.VISIBLE);
             llVPATInfo.setVisibility(View.VISIBLE);
             Glide.with(this).load(R.drawable.ic_drop_up).into(ivVPATInfo);
             isllVPATChecked = false;
@@ -332,9 +409,70 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.btnSubmit)
-    public void btnSubmit() {
-        submitToServer();
+
+    @OnClick(R.id.btnNext4)
+    public void btnNext4() {
+        llInput.setVisibility(View.GONE);
+        mcvReport.setVisibility(View.VISIBLE);
+        try {
+            tvVehicleType.setText(spnVehicleType.getSelectedItem(   ).toString());
+            tvVehicleDate.setText(etVehicleDate.getText().toString());
+            tvModel.setText(etModel.getText().toString());
+            tvMadeBy.setText(spnMadeBy.getSelectedItem().toString());
+            tvMadeIn.setText(etMadeIn.getText().toString());
+            tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
+            tvAddressDetails.setText(etAddressDetails.getText().toString());
+            tvRegNoName.setText(spnRegNoName1.getSelectedItem().toString()+" "+spnRegNoName2.getSelectedItem().toString()
+            +" "+etRegNoName.getText().toString());
+         /*   tvReligion.setText(spnReligion.getSelectedItem().toString());
+            tvGender.setText(spnGender.getSelectedItem().toString());
+            tvBloodGroup.setText(spnBloodGroup.getSelectedItem().toString());
+            tvMaritalStatus.setText(spnMaritalStatus.getSelectedItem().toString());
+            tvOcupation.setText(spnOcupation.getSelectedItem().toString());
+
+            tvHair.setText(etHair.getText().toString());
+            tvNose.setText(etNose.getText().toString());
+            tvHeight.setText(etHeight.getText().toString());
+            tvEye.setText(etEye.getText().toString());
+            tvColor.setText(etColor.getText().toString());*/
+
+
+        } catch (Exception e) {
+
+        }
+
+
+
+       /* Intent intent = new Intent(UnknownManActivity.this, CodeGenerateActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);*/
+    }
+
+    @OnClick(R.id.Edit)
+    public void Edit() {
+        llInput.setVisibility(View.VISIBLE);
+        mcvReport.setVisibility(View.GONE);
+       /* tvName.setText(etName.getText().toString());
+        tvFathersName.setText(etFathersName.getText().toString());
+        tvSpouseName.setText(etSpouseName.getText().toString());
+        tvNidNum.setText(etNidNum.getText().toString());
+        tvReligion.setText(spnReligion.getSelectedItem().toString());*/
+
+
+       /* Intent intent = new Intent(UnknownManActivity.this, CodeGenerateActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);*/
+    }
+
+    @OnClick(R.id.Submit)
+    public void Submit() {
+        //submitToServer();
+        Intent intent = new Intent(VehicleEntryActivity.this, CodeGenerateActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     private void submitToServer() {
@@ -393,7 +531,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
                         Utilities.showLogcatMessage("responce");
 
                         Toast.makeText(VehicleEntryActivity.this, "Successfully Done!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(VehicleEntryActivity.this, DashboardActivity.class);
+                        Intent intent = new Intent(VehicleEntryActivity.this, CodeGenerateActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
@@ -1164,10 +1302,12 @@ public class VehicleEntryActivity extends AppCompatActivity {
         mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                etVehicleTime.setText( selectedHour + ":" + selectedMinute);
+                etVehicleTime.setText(selectedHour + ":" + selectedMinute);
             }
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
     }
+
+
 }

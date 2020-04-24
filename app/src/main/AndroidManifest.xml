@@ -24,7 +24,9 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".Activity.CodeGenerateActivity"></activity>
         <activity android:name=".Activity.OthersItemEntryActivity" />
-        <activity android:name=".Activity.VehicleEntryActivity" />
+        <activity android:name=".Activity.VehicleEntryActivity" >
+
+        </activity>
         <activity android:name=".LostInformationEntryActivity" />
         <activity
             android:name=".Activity.UnknownManActivity"

@@ -128,7 +128,7 @@
     <string name="documentType">ডকুমেন্ট এর ধরণ</string>
 
     <!--    vehicle space and time info-->
-    <string name="placeAndTimeInfo">স্থানের ও সময়ের  বিবরণ</string>
+    <string name="placeAndTimeInfo">নিখোঁজ / চুরি স্থানের ও সময়ের  বিবরণ</string>
     <string name="division">বিভাগ</string>
     <string name="addressDetails">স্থানের বিবরণ</string>
     <string name="time">সময়</string>
@@ -169,4 +169,5 @@
     <string name="doc_number">ডকুমেন্ট নম্বর</string>
     <string name="applicant">আবেদনকারী</string>
     <string name="notification">Notification</string>
+    <string name="insurance_paper">Insurance Paper</string>
 </resources>

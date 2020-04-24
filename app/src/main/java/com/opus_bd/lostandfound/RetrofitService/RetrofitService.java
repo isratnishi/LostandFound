@@ -68,8 +68,8 @@ public interface RetrofitService {
 //Global data
 
 
-    @GET("api/LostFound/GetGDInformationByUser/{id}")
-    Call<List<GDInformation>> GetGDInformationByUser(@Header("Authorization") String token,@Path("userName") String userName);
+    @GET("api/LostFound/GetGDInformationByUser/{UserName}")
+    Call<List<GDInformation>> GetGDInformationByUser(@Header("Authorization") String token,@Path("UserName") String userName);
 
 
 
