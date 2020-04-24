@@ -164,6 +164,40 @@
         <item>পাসপোর্ট </item>
     </string-array>
 
+
+    <string-array name="array_beard">
+        <item>লম্বা</item>
+        <item>ছোট</item>
+        <item>পাকা</item>
+        <item>কাঁচা</item>
+        <item>কোকড়ানো</item>
+        <item>কাঁচা-পাকা</item>
+    </string-array>
+
+    <string-array name="array_body_color">
+        <item>কাল</item>
+        <item>উজ্জ্বল</item>
+        <item>তামাটে</item>
+        <item>শ্যামলা</item>
+        <item>বাদামী</item>
+    </string-array>
+
+    <string-array name="array_body_structure">
+        <item>লম্বা</item>
+        <item>হালকা পাতলা</item>
+        <item>বেটে</item>
+        <item>মাঝারি</item>
+        <item>মোটা</item>
+    </string-array>
+
+    <string-array name="array_body_Chin">
+        <item>লম্বাটে</item>
+        <item>গোলাকার</item>
+        <item>থ্যাতলানো</item>
+        <item>পাতলা</item>
+        <item>চিকন</item>
+    </string-array>
+
     <string name="gender">লিঙ্গ</string>
 
     <string name="doc_number">ডকুমেন্ট নম্বর</string>
