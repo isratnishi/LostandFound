@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -61,12 +60,18 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     @BindView(R.id.tvWelcome)
     TextView tvWelcome;
     @BindView(R.id.toolbar)
-    Toolbar toolbar;    @BindView(R.id.ivappLogo)
+    Toolbar toolbar;
+    @BindView(R.id.ivappLogo)
     ImageView ivappLogo;
     @BindView(R.id.mDrawerLayout)
     DrawerLayout mDrawerLayout;
     private MenuItem item;
     ArrayList<GDInformation> gdInformationArrayList = new ArrayList<>();
+
+
+    // First row
+    @BindView(R.id.tvAllegation)
+    TextView tvAllegation;
 
 
     @Override
@@ -84,12 +89,14 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        getAllGDInfo();
     }
+
     @OnClick(R.id.ivappLogo)
     public void ivappLogo() {
         mDrawerLayout.openDrawer(GravityCompat.END);
     }
+
     @Override
     protected void attachBaseContext(Context base) {
         SharedPreferences tprefs = base.getSharedPreferences(SharedPrefManager.SHARED_PREF_NAME, MODE_PRIVATE);
@@ -99,7 +106,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         else
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
-
 
 
     @Override
@@ -119,23 +125,20 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 break;
             case R.id.iNotification:
                 break;
-            case R.id.ilogout:
-            {
-              try {
-                  SharedPrefManager.getInstance(this).clearToken();
-                  Toast.makeText(this, "Logged out successfully!!", Toast.LENGTH_SHORT).show();
-                  Intent intent2 = new Intent(this, LoginActivity.class);
-                  intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            case R.id.ilogout: {
+                try {
+                    SharedPrefManager.getInstance(this).clearToken();
+                    Toast.makeText(this, "Logged out successfully!!", Toast.LENGTH_SHORT).show();
+                    Intent intent2 = new Intent(this, LoginActivity.class);
+                    intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                  startActivity(intent2);
+                    startActivity(intent2);
 
-              }
-              catch (Exception e)
-              {
-                  Utilities.showLogcatMessage("Logout "+e.toString());
-              }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage("Logout " + e.toString());
+                }
             }
-                break;
+            break;
 
 
         }
@@ -144,7 +147,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
     @OnClick({R.id.llTheft, R.id.fabTheft})
     public void llTheft() {
-        Constants.ENTRY_TYPE_ID=Constants.THEFT;
+        Constants.ENTRY_TYPE_ID = Constants.THEFT;
         Intent intent = new Intent(DashboardActivity.this, InformationEntryActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -152,9 +155,9 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     }
 
 
-@OnClick({R.id.fablost,R.id.llfablost})
+    @OnClick({R.id.fablost, R.id.llfablost})
     public void fablost() {
-    Constants.ENTRY_TYPE_ID=Constants.LOST;
+        Constants.ENTRY_TYPE_ID = Constants.LOST;
         Intent intent = new Intent(DashboardActivity.this, InformationEntryActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -165,10 +168,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         try {
             displaySelectedScreen(menuItem.getItemId());
-        }
-        catch (Exception e)
-        {
-            Utilities.showLogcatMessage("Logout "+e.toString());
+        } catch (Exception e) {
+            Utilities.showLogcatMessage("Logout " + e.toString());
         }
 
         return true;
@@ -185,12 +186,13 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         String UserName = SharedPrefManager.getInstance(this).getUser();
 
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-        Call<List<GDInformation>> listCall = retrofitService.GetGDInformationByUser(token,UserName);
+        Call<List<GDInformation>> listCall = retrofitService.GetGDInformationByUser(token, UserName);
         listCall.enqueue(new Callback<List<GDInformation>>() {
             @Override
             public void onResponse(Call<List<GDInformation>> call, Response<List<GDInformation>> response) {
 
                 if (response.body() != null) {
+                    tvAllegation.setText(getResources().getText(R.string.allegation)+" ("+response.body().size()+")");
 
 //                    gdInformationArrayList.clear();
 //                    gdInformationArrayList.addAll(response.body());
@@ -219,6 +221,5 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         });
 
     }
-
 
 }

@@ -307,6 +307,14 @@ public class UnknownManActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);*/
     }
+    @OnClick(R.id.Submit)
+    public void Submit() {
+        submitToServer();
+      /*  Intent intent = new Intent(UnknownManActivity.this, CodeGenerateActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);*/
+    }
     private void submitToServer() {
 
         String token = SharedPrefManager.getInstance(this).getToken();
@@ -387,14 +395,7 @@ public class UnknownManActivity extends AppCompatActivity {
             }
         });
     }
-    @OnClick(R.id.Submit)
-    public void Submit() {
-        submitToServer();
-      /*  Intent intent = new Intent(UnknownManActivity.this, CodeGenerateActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);*/
-    }
+
 
 
     //InformationEntryActivity
