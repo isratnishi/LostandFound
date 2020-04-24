@@ -402,6 +402,7 @@
 
                                     <EditText
                                         android:id="@+id/etImage"
+                                        android:focusable="false"
                                         style="@style/InformationEntryEditText"
                                         android:drawableTint="@color/colorPrimaryDark"
                                         android:drawableRight="@drawable/ic_attachment"/>
@@ -409,7 +410,13 @@
 
 
                             </TableLayout>
-
+                            <GridView
+                                android:layout_width="match_parent"
+                                android:layout_height="300dp"
+                                android:minHeight="300dp"
+                                android:id="@+id/gv"
+                                android:numColumns="4">
+                            </GridView>
                             <Button
                                 android:id="@+id/btnNext2"
                                 style="@style/BtnNext" />
@@ -617,6 +624,7 @@
                                 android:layout_height="wrap_content">
 
                                 <TableRow
+                                    android:visibility="gone"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 

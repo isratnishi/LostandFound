@@ -200,5 +200,36 @@
     <item>Birth Certificate </item>
     <item>Passport </item>
     </string-array>
+    <string-array name="array_beard">
+        <item>Long</item>
+        <item>Short</item>
+        <item>Ripe</item>
+        <item>Young</item>
+        <item>Curl</item>
+        <item>Young Ripe</item>
+    </string-array>
 
+    <string-array name="array_body_color">
+        <item>Kalo</item>
+        <item>Bright</item>
+        <item>Copper</item>
+        <item>Green</item>
+        <item>Brown</item>
+    </string-array>
+
+    <string-array name="array_body_structure">
+        <item>Tall</item>
+        <item>Light</item>
+        <item>Short</item>
+        <item>Medium</item>
+        <item>Fat</item>
+    </string-array>
+
+    <string-array name="array_body_Chin">
+        <item>Long</item>
+        <item>Round</item>
+        <item>Smashed</item>
+        <item>Thin</item>
+        <item>Slim</item>
+    </string-array>
 </resources>

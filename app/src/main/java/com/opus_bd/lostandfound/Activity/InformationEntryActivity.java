@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,7 +71,9 @@ public class InformationEntryActivity extends AppCompatActivity {
     @BindView(R.id.fabMan)
     FloatingActionButton fabMan;
     @BindView(R.id.llVMan)
-    LinearLayout llVMan;
+    LinearLayout llVMan;  @BindView(R.id.tvDocType)
+    TextView tvDocType;@BindView(R.id.spnDocumentType)
+    Spinner spnDocumentType;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -94,7 +98,13 @@ public class InformationEntryActivity extends AppCompatActivity {
         else
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
+    @OnClick(R.id.tvDocType)
+    public void tvDocType() {
+       tvDocType.setVisibility(View.GONE);
+       spnDocumentType.setVisibility(View.VISIBLE);
 
+
+    }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.llVOwn, R.id.fabOwn})
     public void LlVOwn() {

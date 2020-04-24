@@ -22,7 +22,7 @@
                 android:id="@+id/toolbar_logo"
                 android:layout_width="46dp"
                 android:layout_height="46dp"
-                android:src="@drawable/app"
+                android:src="@drawable/civ_image"
                 android:foregroundGravity="center_vertical"/>
 
             <TextView
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="8dp"
-                android:text="Delwar Hossain"
+                android:text="Delwar Hossain Mian"
                 android:textColor="#fff"
                 android:textSize="18dp"
                 android:foregroundGravity="center_vertical"

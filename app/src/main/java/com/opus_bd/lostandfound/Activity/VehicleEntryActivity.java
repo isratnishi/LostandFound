@@ -1,22 +1,27 @@
 package com.opus_bd.lostandfound.Activity;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -26,13 +31,18 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+
 import com.google.android.material.card.MaterialCardView;
+import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
+import com.opus_bd.lostandfound.Model.Documentaion.MetroAreaModel;
+import com.opus_bd.lostandfound.Model.Documentaion.RegistrationLevelModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
 import com.opus_bd.lostandfound.Model.GlobalData.District;
@@ -46,6 +56,9 @@ import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
 import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
+import com.tsongkha.spinnerdatepicker.DatePicker;
+import com.tsongkha.spinnerdatepicker.DatePickerDialog;
+import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -58,6 +71,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.SimpleTimeZone;
@@ -69,8 +83,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class VehicleEntryActivity extends AppCompatActivity {
-// Layout
+public class VehicleEntryActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+    // Layout
     @BindView(R.id.llInput)
     LinearLayout llInput;
     @BindView(R.id.mcvReport)
@@ -121,6 +135,8 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     @BindView(R.id.etVehicleTime)
     EditText etVehicleTime;
+    @BindView(R.id.etImage)
+    EditText etImage;
 
     boolean isllVehicleEntryChecked = true;
     @BindView(R.id.llVehicleInfromation)
@@ -194,6 +210,8 @@ public class VehicleEntryActivity extends AppCompatActivity {
     ArrayList<VehicleType> vehicleTypeArrayList = new ArrayList<>();
     ArrayList<VehicleModel> VehicleModelArrayList = new ArrayList<>();
     ArrayList<Colors> colorArrayList = new ArrayList<>();
+    ArrayList<MetroAreaModel> metroAreaModelArrayList = new ArrayList<>();
+    ArrayList<RegistrationLevelModel> registrationLevelModels = new ArrayList<>();
     public int SELECTED_DOCUMENT_ID;
     public int SELECTED_VEHICLETYPE_ID;
     public String SELECTED_VEHICLEMODEL_Name;
@@ -206,7 +224,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
 
     //date picker
-
+    SimpleDateFormat formatter;
     int mYear, mMonth, mDay;
     Calendar calendar = Calendar.getInstance();
 
@@ -256,7 +274,10 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
     @BindView(R.id.tvSPThana)
     TextView tvSPThana;
-/*
+
+    @BindView(R.id.tvPhoto)
+    TextView tvPhoto;
+/*tvPhoto.setText("Selected Images" + mArrayUri.size());
     @BindView(R.id.tvD)
     TextView tvDocumentType;*/
 
@@ -270,6 +291,14 @@ public class VehicleEntryActivity extends AppCompatActivity {
     @BindView(R.id.tvBlueBook)
     TextView tvBlueBook;
 
+//Multiple Image add
+
+    private Button btn;
+    int PICK_IMAGE_MULTIPLE = 1;
+    String imageEncoded;
+    List<String> imagesEncodedList;
+    private GridView gvGallery, gvGallery1;
+    private GalleryAdapter galleryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -281,6 +310,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
         mcvVehicleAttachment.setVisibility(View.GONE);
         mcvVehiclePlaceTimeInformation.setVisibility(View.GONE);
         mcvReport.setVisibility(View.GONE);
+        Utilities.showLogcatMessage("Activity Open ");
 
         getMatropolitonName();
         getRegiSerial();
@@ -289,6 +319,9 @@ public class VehicleEntryActivity extends AppCompatActivity {
         getAllVehicleType();
         getAllColor();
         getDivision();
+        GetAllMetropolitanArea();
+        getDistrict();
+        GetAllRegistrationLevel();
 
         //date picker
         initializeVariables();
@@ -313,6 +346,23 @@ public class VehicleEntryActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+//Multiple image
+
+        gvGallery = (GridView) findViewById(R.id.gv);
+        gvGallery1 = (GridView) findViewById(R.id.gv1);
+
+        etImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //ImagePicker();
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_MULTIPLE);
             }
         });
     }
@@ -415,15 +465,15 @@ public class VehicleEntryActivity extends AppCompatActivity {
         llInput.setVisibility(View.GONE);
         mcvReport.setVisibility(View.VISIBLE);
         try {
-            tvVehicleType.setText(spnVehicleType.getSelectedItem(   ).toString());
+            tvVehicleType.setText(spnVehicleType.getSelectedItem().toString());
             tvVehicleDate.setText(etVehicleDate.getText().toString());
             tvModel.setText(etModel.getText().toString());
             tvMadeBy.setText(spnMadeBy.getSelectedItem().toString());
             tvMadeIn.setText(etMadeIn.getText().toString());
             tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
             tvAddressDetails.setText(etAddressDetails.getText().toString());
-            tvRegNoName.setText(spnRegNoName1.getSelectedItem().toString()+" "+spnRegNoName2.getSelectedItem().toString()
-            +" "+etRegNoName.getText().toString());
+            tvRegNoName.setText(spnRegNoName1.getSelectedItem().toString() + " " + spnRegNoName2.getSelectedItem().toString()
+                    + " " + etRegNoName.getText().toString());
          /*   tvReligion.setText(spnReligion.getSelectedItem().toString());
             tvGender.setText(spnGender.getSelectedItem().toString());
             tvBloodGroup.setText(spnBloodGroup.getSelectedItem().toString());
@@ -549,12 +599,14 @@ public class VehicleEntryActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Utilities.showLogcatMessage("Fail to connect " + t.toString());
-                // Utilities.hideProgress(LoginActivity.this);
+
                 Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
 
             }
         });
     }
+
+
 
     public void getMatropolitonName() {
         metropoliton = getResources().getStringArray(R.array.matropoliton);
@@ -826,10 +878,121 @@ public class VehicleEntryActivity extends AppCompatActivity {
         });
     }
 
+
+
+    public void GetAllMetropolitanArea() {
+
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<MetroAreaModel>> colors = retrofitService.GetAllMetropolitanArea();
+        colors.enqueue(new Callback<List<MetroAreaModel>>() {
+            @Override
+            public void onResponse(Call<List<MetroAreaModel>> call, Response<List<MetroAreaModel>> response) {
+
+                if (response.body() != null) {
+
+                    metroAreaModelArrayList.clear();
+                    metroAreaModelArrayList.addAll(response.body());
+
+                    addMetroAreaSpinnerData(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<MetroAreaModel>> call, Throwable t) {
+                Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void addMetroAreaSpinnerData(final List<MetroAreaModel> body) {
+        List<String> colorList = new ArrayList<>();
+
+        for (int i = 0; i < body.size(); i++) {
+            colorList.add(body.get(i).getAreaName());
+        }
+
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, colorList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnRegNoName1.setAdapter(dataAdapter2);
+        spnRegNoName1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+              /*  if (i >= 0) {
+                    SELECTED_COLOR_ID = body.get(i).getId();
+                } else {
+                    SELECTED_COLOR_ID = 1;
+                }*/
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+
+    public void GetAllRegistrationLevel() {
+
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<RegistrationLevelModel>> colors = retrofitService.GetAllRegistrationLevel();
+        colors.enqueue(new Callback<List<RegistrationLevelModel>>() {
+            @Override
+            public void onResponse(Call<List<RegistrationLevelModel>> call, Response<List<RegistrationLevelModel>> response) {
+
+                if (response.body() != null) {
+
+                    registrationLevelModels.clear();
+                    registrationLevelModels.addAll(response.body());
+
+                    addRegistrationLevelModelSpinnerData(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<RegistrationLevelModel>> call, Throwable t) {
+                Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void addRegistrationLevelModelSpinnerData(final List<RegistrationLevelModel> body) {
+        List<String> colorList = new ArrayList<>();
+
+        for (int i = 0; i < body.size(); i++) {
+            colorList.add(body.get(i).getLevelName());
+        }
+
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, colorList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnRegNoName2.setAdapter(dataAdapter2);
+        spnRegNoName2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+              /*  if (i >= 0) {
+                    SELECTED_COLOR_ID = body.get(i).getId();
+                } else {
+                    SELECTED_COLOR_ID = 1;
+                }*/
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
     public void getDivision() {
 
         String token = SharedPrefManager.getInstance(this).getToken();
-        if (token != null) {
+
             RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
             Call<List<Division>> divisions = retrofitService.GetDivisions();
             divisions.enqueue(new Callback<List<Division>>() {
@@ -850,12 +1013,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
                     Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
-        } else {
-            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
+
     }
 
 
@@ -874,7 +1032,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i >= 0) {
                     SELECTED_DIVISION_ID = body.get(i).getId();
-                    getDistrict(body.get(i).getId());
+                    //getDistrict(body.get(i).getId());
                 } else {
                     SELECTED_DIVISION_ID = 1;
                 }
@@ -886,11 +1044,34 @@ public class VehicleEntryActivity extends AppCompatActivity {
             }
         });
     }
+    public void getDistrict( ) {
 
-    public void getDistrict(int id) {
 
-        String token = SharedPrefManager.getInstance(this).getToken();
-        if (token != null) {
+            RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+            Call<List<District>> divisions = retrofitService.getAllDistricts();
+            divisions.enqueue(new Callback<List<District>>() {
+                @Override
+                public void onResponse(Call<List<District>> call, Response<List<District>> response) {
+
+                    if (response.body() != null) {
+
+                        districtArrayList.clear();
+                        districtArrayList.addAll(response.body());
+
+                        addDistrictSpinnerData(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<District>> call, Throwable t) {
+                    Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+    }
+/*    public void getDistrict(int id) {
+
+
             RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
             Call<List<District>> divisions = retrofitService.getAllDistricts(id);
             divisions.enqueue(new Callback<List<District>>() {
@@ -911,13 +1092,8 @@ public class VehicleEntryActivity extends AppCompatActivity {
                     Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
-        } else {
-            Toast.makeText(this, "Not registered! Please sign in to continue", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
-    }
+
+    }*/
 
 
     public void addDistrictSpinnerData(final List<District> body) {
@@ -1046,6 +1222,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
         startActivityForResult(intent, 1);
         Utilities.showLogcatMessage(" File Choose");
     }
+/*
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -1069,6 +1246,7 @@ public class VehicleEntryActivity extends AppCompatActivity {
 
 
     }
+*/
 
 
     /*    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -1262,18 +1440,27 @@ public class VehicleEntryActivity extends AppCompatActivity {
         mYear = calendar.get(Calendar.YEAR);
         mMonth = calendar.get(Calendar.MONTH);
         mDay = calendar.get(Calendar.DAY_OF_MONTH);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
         etVehicleDate.setText(formatter.format(calendar.getTime()));
+        etVehicleDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDate(mYear,mMonth,mDay,R.style.DatePickerSpinner);
+            }
+        });
+
         mHour = calendar.get(Calendar.HOUR);
         mMin = calendar.get(Calendar.MINUTE);
         mSec = calendar.get(Calendar.SECOND);
         SimpleDateFormat formatter1 = new SimpleDateFormat("hh:mm", Locale.ENGLISH);
         etVehicleTime.setText(formatter1.format(calendar.getTime()));
+
+
     }
 
-    @OnClick(R.id.etVehicleDate)
+   /* @OnClick(R.id.etVehicleDate)
     public void etDateOnClick() {
-        DatePickerDialog mDatePicker;
+       *//* DatePickerDialog mDatePicker;
         mDatePicker = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker datepicker, int
@@ -1288,9 +1475,34 @@ public class VehicleEntryActivity extends AppCompatActivity {
                     }
                 }, mYear, mMonth, mDay);
         mDatePicker.setTitle("Select Date");
-        mDatePicker.show();
+        mDatePicker.show();*//*
+
+        showDate(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, R.style.DatePickerSpinner);
+    }*/
+
+  /*  @Override
+    public void onDateSet(com.tsongkha.spinnerdatepicker.DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        Calendar calendar = new GregorianCalendar(year, monthOfYear, dayOfMonth);
+        dateTextView.setText(simpleDateFormat.format(calendar.getTime()));
     }
 
+    @Override
+    public void onCancelled(DatePicker view) {
+        dateTextView.setText(R.string.cancelled);
+    }*/
+
+
+    @VisibleForTesting
+    void showDate(int year, int monthOfYear, int dayOfMonth, int spinnerTheme) {
+        new SpinnerDatePickerDialogBuilder()
+                .context(this)
+                .callback(VehicleEntryActivity.this)
+                .spinnerTheme(spinnerTheme)
+                .defaultDate(year, monthOfYear, dayOfMonth)
+                .showTitle(true)
+                .build()
+                .show();
+    }
 
     @OnClick(R.id.etVehicleTime)
     public void etVehicleTime() {
@@ -1309,5 +1521,137 @@ public class VehicleEntryActivity extends AppCompatActivity {
         mTimePicker.show();
     }
 
+//Multiple image
+/*
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Utilities.showLogcatMessage("requestCode "+requestCode);
+        Utilities.showLogcatMessage("resultCode "+resultCode);
+        Utilities.showLogcatMessage("data "+data);
+      *//*  try {
+            // When an Image is picked
+            if (requestCode == PICK_IMAGE_MULTIPLE && resultCode == RESULT_OK
+                    && null != data) {
+                // Get the Image from data
 
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                imagesEncodedList = new ArrayList<String>();
+                if (data.getData() != null) {
+
+                    Uri mImageUri = data.getData();
+
+                    // Get the cursor
+                    Cursor cursor = getContentResolver().query(mImageUri,
+                            filePathColumn, null, null, null);
+                    // Move to first row
+                    cursor.moveToFirst();
+
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    imageEncoded = cursor.getString(columnIndex);
+                    cursor.close();
+
+                    ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
+                    mArrayUri.add(mImageUri);
+                    galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
+                    gvGallery.setAdapter(galleryAdapter);
+                    gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
+                    ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
+                            .getLayoutParams();
+                    mlp.setMargins(0, gvGallery.getHorizontalSpacing(), 0, 0);
+
+
+                    gvGallery1.setAdapter(galleryAdapter);
+                    gvGallery1.setVerticalSpacing(gvGallery1.getHorizontalSpacing());
+                    ViewGroup.MarginLayoutParams mlp1 = (ViewGroup.MarginLayoutParams) gvGallery1
+                            .getLayoutParams();
+                    mlp1.setMargins(0, gvGallery1.getHorizontalSpacing(), 0, 0);
+                    tvPhoto.setText("Selected Images " + mArrayUri.size());
+
+                } else {
+                    if (data.getClipData() != null) {
+                        ClipData mClipData = data.getClipData();
+                        ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
+                        for (int i = 0; i < mClipData.getItemCount(); i++) {
+
+                            ClipData.Item item = mClipData.getItemAt(i);
+                            Uri uri = item.getUri();
+                            mArrayUri.add(uri);
+                            // Get the cursor
+                            Cursor cursor = getContentResolver().query(uri, filePathColumn, null, null, null);
+                            // Move to first row
+                            cursor.moveToFirst();
+
+                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                            imageEncoded = cursor.getString(columnIndex);
+                            imagesEncodedList.add(imageEncoded);
+                            cursor.close();
+
+                            galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
+                            gvGallery.setAdapter(galleryAdapter);
+                            gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
+                            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
+                                    .getLayoutParams();
+                            mlp.setMargins(0, gvGallery.getHorizontalSpacing(), 0, 0);
+
+
+                            gvGallery1.setAdapter(galleryAdapter);
+                            gvGallery1.setVerticalSpacing(gvGallery1.getHorizontalSpacing());
+                            ViewGroup.MarginLayoutParams mlp1 = (ViewGroup.MarginLayoutParams) gvGallery1
+                                    .getLayoutParams();
+                            mlp1.setMargins(0, gvGallery1.getHorizontalSpacing(), 0, 0);
+
+                        }
+                        Log.v("LOG_TAG", "Selected Images" + mArrayUri.size());
+                        tvPhoto.setText("Selected Images " + mArrayUri.size());
+                    }
+                }
+            } else {
+                Toast.makeText(this, "You haven't picked Image",
+                        Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG)
+                    .show();
+            Utilities.showLogcatMessage(" "+e.getLocalizedMessage());
+        }*//*
+
+
+    }*/
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        Calendar calendar = new GregorianCalendar(year, monthOfYear, dayOfMonth);
+        etVehicleDate.setText(formatter.format(calendar.getTime()));
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+
+   /* // Multipole Image picker
+public void ImagePicker(){
+    Options options = Options.init()
+            .setRequestCode(200)                                           //Request code for activity results
+            .setCount(3)                                                   //Number of images to restict selection count
+            .setFrontfacing(false)                                         //Front Facing camera on start
+           *//* .setPreSelectedUrls(returnValue)                               //Pre selected Image Urls*//*
+            .setExcludeVideos(false)                                       //Option to exclude videos
+            .setVideoDurationLimitinSeconds(30)                            //Duration for video recording
+            .setScreenOrientation(Options.SCREEN_ORIENTATION_PORTRAIT)     //Orientaion
+            .setPath("/pix/images");                                       //Custom Path For media Storage
+
+    Pix.start(VehicleEntryActivity.this, options);
+
+
+}
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == 200) {
+            ArrayList<String> returnValue = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
+        }
+    }*/
 }
