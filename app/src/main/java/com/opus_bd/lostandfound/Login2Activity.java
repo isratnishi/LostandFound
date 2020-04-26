@@ -269,7 +269,7 @@ public class Login2Activity extends AppCompatActivity implements GoogleApiClient
     }
 
     private void getMyLocation() {
-        if (googleApiClient != null) {
+      /*  if (googleApiClient != null) {
             if (googleApiClient.isConnected()) {
                 int permissionLocation = ContextCompat.checkSelfPermission(Login2Activity.this,
                         Manifest.permission.ACCESS_FINE_LOCATION);
@@ -329,7 +329,7 @@ public class Login2Activity extends AppCompatActivity implements GoogleApiClient
                     });
                 }
             }
-        }
+        }*/
     }
 
     @Override

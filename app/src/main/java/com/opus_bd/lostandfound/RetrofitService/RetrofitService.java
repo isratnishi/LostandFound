@@ -5,7 +5,9 @@ import com.opus_bd.lostandfound.Model.Dashboard.GDInformation;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
+import com.opus_bd.lostandfound.Model.Documentaion.MetroAreaModel;
 import com.opus_bd.lostandfound.Model.Documentaion.NationalIdentityTypesModel;
+import com.opus_bd.lostandfound.Model.Documentaion.RegistrationLevelModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
 import com.opus_bd.lostandfound.Model.GlobalData.District;
@@ -52,8 +54,8 @@ public interface RetrofitService {
     @GET("api/AddressMaster/GetDivisions")
     Call<List<Division>> GetDivisions();
 
-    @GET("api/AddressMaster/GetDistrictByDivisionId/{id}")
-    Call<List<District>> getAllDistricts(@Path("id") int id);
+    @GET("api/AddressMaster/GetAllDistrict")
+    Call<List<District>> getAllDistricts();
 
     @GET("api/AddressMaster/GetThanaByDistrictId/{id}")
     Call<List<Thana>> GetThanaByDistrictId(@Path("id") int id);
@@ -75,5 +77,10 @@ public interface RetrofitService {
 
     @GET("api/DocumentMaster/GetColors")
     Call<List<Colors>> GetColors();
+    @GET("api/VehicleMaster/GetAllMetropolitanArea")
+    Call<List<MetroAreaModel>> GetAllMetropolitanArea();
+
+    @GET("api/VehicleMaster/GetAllRegistrationLevel")
+    Call<List<RegistrationLevelModel>> GetAllRegistrationLevel();
 
 }

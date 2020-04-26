@@ -200,7 +200,6 @@
     <item>Birth Certificate </item>
     <item>Passport </item>
     </string-array>
-
     <string-array name="array_beard">
         <item>Long</item>
         <item>Short</item>
@@ -233,6 +232,4 @@
         <item>Thin</item>
         <item>Slim</item>
     </string-array>
-
-
 </resources>

@@ -200,7 +200,7 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
     }
 
     private void getMyLocation() {
-        if (googleApiClient != null) {
+     if (googleApiClient != null) {
             if (googleApiClient.isConnected()) {
                 int permissionLocation = ContextCompat.checkSelfPermission(WelcomeActivity.this,
                         Manifest.permission.ACCESS_FINE_LOCATION);

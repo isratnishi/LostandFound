@@ -66,7 +66,6 @@
                                 android:tint="@color/colorPrimaryDark" />
                         </RelativeLayout>
 
-
                         <LinearLayout
                             android:id="@+id/llPersonInfromation"
                             android:layout_width="match_parent"
@@ -372,62 +371,6 @@
                             <TableLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="Eye" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-
-                                    <EditText
-                                        android:id="@+id/etEye"
-                                        style="@style/InformationEntryEditText"
-                                        />
-                                </TableRow>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="Nose" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-
-                                    <EditText
-                                        android:id="@+id/etNose"
-                                        style="@style/InformationEntryEditText"
-                                        />
-                                </TableRow>
-
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="Height" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-
-                                    <EditText
-                                        android:id="@+id/etHeight"
-                                        style="@style/InformationEntryEditText"
-                                        />
-                                </TableRow>
-
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
@@ -444,10 +387,10 @@
                                         android:id="@+id/spnColor"
                                         style="@style/InformationEntryEditText"
                                         android:entries="@array/array_body_color" />
-<!--                                    <EditText-->
-<!--                                        android:id="@+id/etColor"-->
-<!--                                        style="@style/InformationEntryEditText"-->
-<!--                                        />-->
+                                    <!--                                    <EditText-->
+                                    <!--                                        android:id="@+id/etColor"-->
+                                    <!--                                        style="@style/InformationEntryEditText"-->
+                                    <!--                                        />-->
                                 </TableRow>
 
                                 <TableRow
@@ -521,6 +464,79 @@
                                         android:id="@+id/spnChin"
                                         style="@style/InformationEntryEditText"
                                         android:entries="@array/array_body_structure" />
+                                </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Eye" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etEye"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Nose" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etNose"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
+
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Height" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etHeight"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Color" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+
+                                    <EditText
+                                        android:id="@+id/etColor"
+                                        style="@style/InformationEntryEditText"
+                                        />
                                 </TableRow>
 
                             </TableLayout>
