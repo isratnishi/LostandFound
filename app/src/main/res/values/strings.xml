@@ -177,6 +177,11 @@
     <string name="applicant">Applicant</string>
     <string name="notification">Notification</string>
     <string name="insurance_paper">Insurance Paper</string>
+    <string name="person_information">Person Information</string>
+    <string name="person_address">Person Address</string>
+
+    <string name="age">Age</string>
+
 
     <string-array name="matropoliton">
 
@@ -194,13 +199,32 @@
         <item>La</item>
         <item>Sa</item>
     </string-array>
+    <string name="select_list">Select List</string>
+    <string name="number_type">Number Type</string>
+    <string name="country">Country</string>
+    <string name="one_line_address">One Line Address</string>
+    <string name="address_type">Address Type</string>
+
+    <string-array name="NUMBERTYPE">
+     <item>@string/select_list</item>
+<item>Telephone</item>
+<item>Driveing Lisence</item>
+<item>TIN Number</item>
+<item>Passport</item>
+<item>Mobile</item>
+<item>Others</item>
+</string-array>
+
+
 
     <string-array name="doc_type">
+    <item>@string/select_list</item>
     <item>NID</item>
     <item>Birth Certificate </item>
     <item>Passport </item>
     </string-array>
     <string-array name="array_beard">
+        <item>Select List</item>
         <item>Long</item>
         <item>Short</item>
         <item>Ripe</item>
@@ -231,5 +255,19 @@
         <item>Smashed</item>
         <item>Thin</item>
         <item>Slim</item>
+    </string-array>
+
+    <string-array name = "address_type">
+        <item> @string/select_list </item>
+        <item> Obtained from other sources </item>
+        <item> Secret Workplace </item>
+        <item> Possible addresses </item>
+        <item> given to the police </item>
+        <item> provided by the accused </item>
+        <item> Current </item>
+        <item> Other </item>
+        <item> Permanent </item>
+        <item> Chat </item>
+        <item> Workplace Address </item>
     </string-array>
 </resources>

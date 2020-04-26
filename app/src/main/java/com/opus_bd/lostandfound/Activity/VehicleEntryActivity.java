@@ -37,6 +37,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 
 import com.google.android.material.card.MaterialCardView;
+import com.hbb20.CountryCodePicker;
 import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
@@ -118,9 +119,10 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     @BindView(R.id.etCCNo)
     EditText etCCNo;
 
-    @BindView(R.id.etMadeIn)
-    EditText etMadeIn;
 
+
+    @BindView(R.id.ccp)
+    CountryCodePicker ccp;
     @BindView(R.id.etMadeDate)
     EditText etMadeDate;
 
@@ -349,6 +351,31 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             }
         });
 
+
+        etEngineNo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // if user is typing string one character at a time
+                if (count == 1) {
+                    // auto insert dashes while user typing their ssn
+                    if (start == 1 || start == 4|| start == 7|| start == 10|| start == 13|| start == 16|| start == 19) {
+                        etEngineNo.setText(etEngineNo.getText() + "-");
+                        etEngineNo.setSelection(etEngineNo.getText().length());
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 //Multiple image
 
         gvGallery = (GridView) findViewById(R.id.gv);
@@ -469,7 +496,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             tvVehicleDate.setText(etVehicleDate.getText().toString());
             tvModel.setText(etModel.getText().toString());
             tvMadeBy.setText(spnMadeBy.getSelectedItem().toString());
-            tvMadeIn.setText(etMadeIn.getText().toString());
+            tvMadeIn.setText(ccp.getSelectedCountryName());
             tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
             tvAddressDetails.setText(etAddressDetails.getText().toString());
             tvRegNoName.setText(spnRegNoName1.getSelectedItem().toString() + " " + spnRegNoName2.getSelectedItem().toString()
@@ -554,7 +581,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         gdInformationModel.setEngineNo(etEngineNo.getText().toString());
         gdInformationModel.setChasisNo(etChesisNo.getText().toString());
         gdInformationModel.setCcNo(etCCNo.getText().toString());
-        gdInformationModel.setMadeIn(etMadeIn.getText().toString());
+        gdInformationModel.setMadeIn(ccp.getSelectedCountryName());
         gdInformationModel.setModelDate(etMadeDate.getText().toString());
 
         //Identity Info
@@ -1442,7 +1469,15 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         mDay = calendar.get(Calendar.DAY_OF_MONTH);
         formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
         etVehicleDate.setText(formatter.format(calendar.getTime()));
+        etMadeDate.setText(formatter.format(calendar.getTime()));
         etVehicleDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDate(mYear,mMonth,mDay,R.style.DatePickerSpinner);
+            }
+        });
+
+        etMadeDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDate(mYear,mMonth,mDay,R.style.DatePickerSpinner);
@@ -1514,7 +1549,28 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                etVehicleTime.setText(selectedHour + ":" + selectedMinute);
+                String status = "AM";
+
+                if(hour > 11)
+                {
+                    // If the hour is greater than or equal to 12
+                    // Then the current AM PM status is PM
+                    status = "PM";
+                }
+
+                // Initialize a new variable to hold 12 hour format hour value
+                int hour_of_12_hour_format;
+
+                if(hour > 11){
+
+                    // If the hour is greater than or equal to 12
+                    // Then we subtract 12 from the hour to make it 12 hour format time
+                    hour_of_12_hour_format = hour - 12;
+                }
+                else {
+                    hour_of_12_hour_format = hour;
+                }
+                etVehicleTime.setText(selectedHour + ":" + selectedMinute+ " "+status);
             }
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");

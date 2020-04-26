@@ -117,7 +117,7 @@
     <string name="engineNo">ইঞ্জিন নং</string>
     <string name="chesisNo">চেসিস নং</string>
     <string name="ccNo">সিসি নং</string>
-    <string name="madeIn">তৈরির দেশ</string>
+    <string name="madeIn">প্রস্তুতকারি দেশ</string>
     <string name="madeDate">উৎপাদন তারিখ</string>
 
     <!--    vehicle document info-->
@@ -142,6 +142,8 @@
     <string name="tax_token">ট্যাক্স টোকেন</string>
     <string name="fitness_certificate">ফিটনেস সার্টিফিকেট</string>
     <string name="image">ছবি</string>
+
+    <string name="select_list">তালিকা নির্বাচন করুন</string>
     <string-array name="matropoliton">
         <item>ঢাকা মেট্রো</item>
         <item>চট্ট মেট্রো</item>
@@ -159,18 +161,39 @@
     </string-array>
 
     <string-array name="doc_type">
+        <item>@string/select_list</item>
         <item>জাতীয় পরিচয় পত্র</item>
         <item>জন্ম নিবন্ধন </item>
         <item>পাসপোর্ট </item>
+    </string-array>    <string-array name="address_type">
+        <item>@string/select_list</item>
+        <item> অন্যান্য উৎস হতে প্রাপ্ত</item>
+        <item>গোপন কর্মস্থল </item>
+        <item>সম্ভাব্য ঠিকানা</item>
+        <item>পুলিশকে প্রদত্ত</item>
+        <item>অভিযুক্ত কতৃক প্রদত্ত</item>
+        <item>বর্তমান</item>
+        <item>অন্যান্য</item>
+        <item>স্থায়ী</item>
+        <item>আড্ডাস্থল</item>
+        <item>কর্মক্ষেত্রের ঠিকানা</item>
     </string-array>
 
-    <string name="gender">লিঙ্গ</string>
 
+
+
+    <string name="gender">লিঙ্গ</string>
     <string name="doc_number">ডকুমেন্ট নম্বর</string>
     <string name="applicant">আবেদনকারী</string>
-    <string name="notification">Notification</string>
-    <string name="insurance_paper">Insurance Paper</string>
-
+    <string name="notification">প্রজ্ঞাপন</string>
+    <string name="insurance_paper">বীমা কাগজ</string>
+    <string name="person_information">ব্যক্তির প্রাথমিক তথ্য</string>
+    <string name="age">Age</string>
+    <string name="number_type">নম্বরের প্রকার</string>
+    <string name="person_address">ব্যক্তির ঠিকানা</string>
+    <string name="country">Country</string>
+    <string name="one_line_address">One Line Address</string>
+    <string name="address_type">Address Type</string>
 
     <string-array name="array_beard">
         <item>লম্বা</item>
@@ -204,4 +227,17 @@
         <item>পাতলা</item>
         <item>চিকন</item>
     </string-array>
+
+    <string-array name="NUMBERTYPE">
+        <item>@string/select_list</item>
+        <item>টেলিফোন</item>
+        <item>ড্রাইভিং লাইসেন্স</item>
+        <item>টিন নাম্বার</item>
+        <item>পাসপোর্ট</item>
+        <item>মোবাইল</item>
+        <item>অন্যান্য</item>
+    </string-array>
+
+
+
 </resources>
