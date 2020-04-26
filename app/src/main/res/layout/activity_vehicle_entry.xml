@@ -90,6 +90,7 @@
                                         android:text=":" />
                                     <Spinner
                                         android:id="@+id/spnVehicleType"
+                                        android:drawSelectorOnTop="true"
                                         style="@style/InformationEntryEditText"/>
 
                                 </TableRow>
@@ -227,6 +228,7 @@
                                     <EditText
                                         android:id="@+id/etCCNo"
                                         style="@style/InformationEntryEditText"
+                                        android:inputType="numberSigned"
                                         android:hint="@string/ccNo" />
                                 </TableRow>
 
@@ -434,7 +436,7 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
-              <!--  vehicle attachment-->
+                <!--  vehicle attachment-->
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/mcvVehicleAttachment"
@@ -779,9 +781,9 @@
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
-<include
-    android:id="@+id/mcvReport"
-    layout="@layout/vehicle_report_for_activity"/>
+            <include
+                android:id="@+id/mcvReport"
+                layout="@layout/vehicle_report_for_activity"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -802,5 +804,3 @@
         app:layout_anchor="@id/bar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
