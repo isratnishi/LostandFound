@@ -15,1433 +15,747 @@
         android:layout_marginBottom="@dimen/actionBarSize"
         android:background="@drawable/card_backgound"
         tools:context=".Activity.VehicleEntryActivity">
+        <LinearLayout
 
-        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="@dimen/spacing_middle">
-            &lt;!&ndash;Vehicle Information&ndash;&gt;
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
+                android:id="@+id/llInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="@dimen/spacing_medium">
-
-                <LinearLayout
+                android:orientation="vertical">
+                <!--Vehicle Information-->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvVehicleInformation"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:id="@+id/rlVehicleInfromation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/grey_10"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:id="@+id/tvVehicleInfromation"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="center_vertical"
-                            android:text="Vehicle Information"
-                            android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/ivVehicleInformation"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_drop_down"
-                            android:tint="@color/colorPrimaryDark" />
-                    </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/spacing_medium">
 
                     <LinearLayout
-                        android:id="@+id/llVehicleInfromation"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="10dp">
+                        android:orientation="vertical">
 
-                        <TableLayout
+                        <RelativeLayout
+                            android:id="@+id/rlVehicleInfromation"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:background="@color/grey_10"
+                            android:padding="5dp">
 
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/vehicleType" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-                                <Spinner
-                                    android:id="@+id/spnVehicleType"
-                                    style="@style/InformationEntryEditText"/>
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/vehicleBrand" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <Spinner
-                                    android:id="@+id/spnMadeBy"
-                                    style="@style/InformationEntryEditText" />
-                            </TableRow>
-
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/vehicleModel" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <EditText
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/vehicleModel" />
-                            </TableRow>
-                            <TableRow
-                                android:layout_gravity="center_vertical"
+                            <TextView
+                                android:id="@+id/tvVehicleInfromation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="10dp"
                                 android:gravity="center_vertical"
+                                android:text="Vehicle Information"
+                                android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/ivVehicleInformation"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/ic_drop_down"
+                                android:tint="@color/colorPrimaryDark" />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llVehicleInfromation"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TableLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
-                                <TextView
-                                    android:gravity="end|center_vertical"
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/vehicleRegiNo" />
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                                <TextView
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/vehicleType" />
 
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+                                    <Spinner
+                                        android:id="@+id/spnVehicleType"
+                                        style="@style/InformationEntryEditText"/>
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/vehicleBrand" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnMadeBy"
+                                        style="@style/InformationEntryEditText" />
+                                </TableRow>
 
 
-                                <LinearLayout
-                                    style="@style/InformationEntryEditText"
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                                    android:orientation="horizontal">
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/vehicleModel" />
 
-                                    <androidx.appcompat.widget.AppCompatSpinner
-                                        android:id="@+id/spnRegNoName1"
-                                        android:layout_width="100dp"
-                                        android:layout_height="match_parent"
-                                        android:spinnerMode="dialog"
-                                        android:fadingEdge="horizontal"
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
 
-                                        android:background="@android:color/transparent"
-                                        android:entries="@array/matropoliton"/>
-                                    <androidx.appcompat.widget.AppCompatSpinner
-                                        android:id="@+id/spnRegNoName2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-
-                                        android:background="@android:color/transparent"
-                                        android:entries="@array/regiparttwo"/>
                                     <EditText
+                                        android:id="@+id/etModel"
+                                        style="@style/InformationEntryEditText"
+                                        android:hint="@string/vehicleModel" />
+                                </TableRow>
+                                <TableRow
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:gravity="end|center_vertical"
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/vehicleRegiNo" />
+
+                                    <TextView
+
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+
+                                    <LinearLayout
+                                        style="@style/InformationEntryEditText"
+
+                                        android:orientation="horizontal">
+
+                                        <Spinner
+                                            android:id="@+id/spnRegNoName1"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:spinnerMode="dialog"
+                                            android:fadingEdge="horizontal"
+                                            android:background="@android:color/transparent"/>
+                                        <Spinner
+                                            android:id="@+id/spnRegNoName2"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:background="@android:color/transparent"/>
+                                        <EditText
+                                            android:id="@+id/etRegNoName"
+                                            android:inputType="number"
+
+                                            android:maxLength="7"
+                                            style="@style/InformationEntryEditText"
+                                            android:hint="XX-XXXX" />
+                                    </LinearLayout>
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/engineNo" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+
+                                    <EditText
+                                        android:id="@+id/etEngineNo"
                                         style="@style/InformationEntryEditText"
                                         android:hint="@string/engineNo" />
-                                </LinearLayout>
-                            </TableRow>
+                                </TableRow>
 
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/engineNo" />
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/chesisNo" />
 
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
 
 
-                                <EditText
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/engineNo" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/chesisNo" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <EditText
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/chesisNo" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/ccNo" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <EditText
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/ccNo" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/madeIn" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <EditText
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/madeIn" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/madeDate" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <EditText
-                                    android:id="@+id/etMadeDate"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/madeDate" />
-                            </TableRow>
-
-                        </TableLayout>
-
-                        <Button
-                            android:id="@+id/btnNext1"
-                            style="@style/BtnNext" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            &lt;!&ndash;vehicle  Idendity Information&ndash;&gt;
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_middle"
-                android:backgroundTint="@android:color/white"
-                app:cardCornerRadius="@dimen/spacing_medium">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/white"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:id="@+id/rlVIdentityInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/grey_10"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:id="@+id/tvVIdentityInfo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="center_vertical"
-                            android:text="@string/identityInfo"
-                            android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/ivVIdentityInfo"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_drop_down"
-                            android:tint="@color/colorPrimaryDark" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:id="@+id/llVIdentityInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <TableLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/colorName" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <Spinner
-                                    android:id="@+id/spnColor"
-                                    style="@style/InformationEntryEditText"/>
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/vehicleSign" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <EditText
-                                    android:id="@+id/etIdentitySign"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/vehicleSign" />
-                            </TableRow>
-
-
-                            <TableRow
-                                android:visibility="gone"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/documentType" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <Spinner
-                                    android:id="@+id/spnDocumentType"
-                                    style="@style/InformationEntryEditText"/>
-                            </TableRow>
-
-                            <TableRow
-                                android:visibility="gone"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/photo" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <EditText
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/photo" />
-                            </TableRow>
-
-
-                        </TableLayout>
-
-                        <Button
-                            android:id="@+id/btnNext2"
-                            style="@style/BtnNext" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_middle"
-                android:backgroundTint="@android:color/white"
-                app:cardCornerRadius="@dimen/spacing_medium">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/white"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:id="@+id/rlVehicleAttachment"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/grey_10"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:id="@+id/tvVehicleAttachment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="center_vertical"
-                            android:text="@string/attachment"
-                            android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/ivVehicleAttachment"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_drop_down"
-                            android:tint="@color/colorPrimaryDark" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:id="@+id/llVehicleAttachment"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <TableLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/blue_book" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <TextView
-                                    android:id="@+id/etBlueBook"
-                                    style="@style/InformationEntryEditText"
-                                    android:drawableTint="@color/colorPrimaryDark"
-                                    android:drawableRight="@drawable/ic_attachment" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/tax_token" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <EditText
-                                    android:id="@+id/etTaxtToken"
-                                    android:drawableTint="@color/colorPrimaryDark"
-                                    android:drawableRight="@drawable/ic_attachment"
-                                    style="@style/InformationEntryEditText"/>
-                            </TableRow>
-
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/fitness_certificate" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <EditText
-                                    android:id="@+id/etFitness"
-                                    style="@style/InformationEntryEditText"
-                                    android:drawableTint="@color/colorPrimaryDark"
-                                    android:drawableRight="@drawable/ic_attachment"/>
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/image" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <EditText
-                                    android:id="@+id/etImage"
-                                    style="@style/InformationEntryEditText"
-                                    android:drawableTint="@color/colorPrimaryDark"
-                                    android:drawableRight="@drawable/ic_attachment"/>
-                            </TableRow>
-                        </TableLayout>
-
-                        <Button
-                            android:id="@+id/btnNext4"
-                            style="@style/BtnNext" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-            &lt;!&ndash;vehicle place and time Information&ndash;&gt;
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_middle"
-                android:backgroundTint="@android:color/white"
-                app:cardCornerRadius="@dimen/spacing_medium">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/white"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:id="@+id/rlPersonPhysical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/grey_10"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:id="@+id/tvVSATInfo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="center_vertical"
-                            android:text="@string/placeAndTimeInfo"
-                            android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/ivVPATInfo"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_drop_down"
-                            android:tint="@color/colorPrimaryDark" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:id="@+id/llVPATInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <TableLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/division" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <Spinner
-                                    android:id="@+id/spnSPDivision"
-                                    style="@style/InformationEntryEditText"/>
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/district" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <Spinner
-                                    android:id="@+id/spnSPDistrict"
-                                    style="@style/InformationEntryEditText"/>
-                            </TableRow>
-
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/thana" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <Spinner
-                                    android:id="@+id/spnSPThana"
-                                    style="@style/InformationEntryEditText"/>
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/addressDetails" />
-
-                                <TextView
-
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <EditText
-                                    android:id="@+id/etAddressDetails"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/addressDetails"
-                                    />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/date" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <EditText
-                                    android:id="@+id/etVehicleDate"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/date"
-                                    />
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/time" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <EditText
-                                    android:id="@+id/etVehicleTime"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/time"
-                                    />
-                            </TableRow>
-                        </TableLayout>
-
-                        <Button
-                            android:id="@+id/btnNext3"
-                            style="@style/BtnNext" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-            &lt;!&ndash;attachment&ndash;&gt;
-
-        </LinearLayout>-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/spacing_middle">
-            <!--Vehicle Information-->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="@dimen/spacing_medium">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:id="@+id/rlVehicleInfromation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/grey_10"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:id="@+id/tvVehicleInfromation"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="center_vertical"
-                            android:text="Vehicle Information"
-                            android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/ivVehicleInformation"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_drop_down"
-                            android:tint="@color/colorPrimaryDark" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:id="@+id/llVehicleInfromation"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-
-                        <TableLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/vehicleType" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-                                <Spinner
-                                    android:id="@+id/spnVehicleType"
-                                    style="@style/InformationEntryEditText"/>
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/vehicleBrand" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <Spinner
-                                    android:id="@+id/spnMadeBy"
-                                    style="@style/InformationEntryEditText" />
-                            </TableRow>
-
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/vehicleModel" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <EditText
-                                    android:id="@+id/etModel"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/vehicleModel" />
-                            </TableRow>
-                            <TableRow
-                                android:layout_gravity="center_vertical"
-                                android:gravity="center_vertical"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:gravity="end|center_vertical"
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/vehicleRegiNo" />
-
-                                <TextView
-
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <LinearLayout
-                                    style="@style/InformationEntryEditText"
-
-                                    android:orientation="horizontal">
-
-                                    <Spinner
-                                        android:id="@+id/spnRegNoName1"
-                                        android:layout_width="100dp"
-                                        android:layout_height="match_parent"
-                                        android:spinnerMode="dialog"
-                                        android:fadingEdge="horizontal"
-                                        android:background="@android:color/transparent"/>
-                                    <Spinner
-                                        android:id="@+id/spnRegNoName2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:background="@android:color/transparent"/>
                                     <EditText
-                                        android:id="@+id/etRegNoName"
+                                        android:id="@+id/etChesisNo"
                                         style="@style/InformationEntryEditText"
-                                        android:hint="@string/vehicleRegiNo" />
-                                </LinearLayout>
-                            </TableRow>
+                                        android:hint="@string/chesisNo" />
+                                </TableRow>
 
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/engineNo" />
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/ccNo" />
 
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <EditText
-                                    android:id="@+id/etEngineNo"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/engineNo" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/chesisNo" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
 
 
-                                <EditText
-                                    android:id="@+id/etChesisNo"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/chesisNo" />
-                            </TableRow>
+                                    <EditText
+                                        android:id="@+id/etCCNo"
+                                        style="@style/InformationEntryEditText"
+                                        android:hint="@string/ccNo" />
+                                </TableRow>
 
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/ccNo" />
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/madeIn" />
 
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <EditText
-                                    android:id="@+id/etCCNo"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/ccNo" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/madeIn" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
 
 
-                                <EditText
-                                    android:id="@+id/etMadeIn"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/madeIn" />
-                            </TableRow>
+                                    <EditText
+                                        android:id="@+id/etMadeIn"
+                                        style="@style/InformationEntryEditText"
+                                        android:hint="@string/madeIn" />
+                                </TableRow>
 
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/madeDate" />
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/madeDate" />
 
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
 
 
-                                <EditText
-                                    android:id="@+id/etMadeDate"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/madeDate" />
-                            </TableRow>
+                                    <EditText
+                                        android:id="@+id/etMadeDate"
+                                        style="@style/InformationEntryEditText"
+                                        android:hint="@string/madeDate" />
+                                </TableRow>
 
-                        </TableLayout>
+                            </TableLayout>
 
-                        <Button
-                            android:id="@+id/btnNext1"
-                            style="@style/BtnNext" />
+                            <Button
+                                android:id="@+id/btnNext1"
+                                style="@style/BtnNext" />
 
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
 
-            </com.google.android.material.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
-            <!--vehicle  Idendity Information-->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_middle"
-                android:backgroundTint="@android:color/white"
-                app:cardCornerRadius="@dimen/spacing_medium">
-
-                <LinearLayout
+                <!--vehicle  Idendity Information-->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvVehicleIdendityInformation"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/white"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:id="@+id/rlVIdentityInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/grey_10"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:id="@+id/tvVIdentityInfo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="center_vertical"
-                            android:text="@string/identityInfo"
-                            android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/ivVIdentityInfo"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_drop_down"
-                            android:tint="@color/colorPrimaryDark" />
-                    </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_middle"
+                    android:backgroundTint="@android:color/white"
+                    app:cardCornerRadius="@dimen/spacing_medium">
 
                     <LinearLayout
-                        android:id="@+id/llVIdentityInfo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="10dp">
+                        android:background="@android:color/white"
+                        android:orientation="vertical">
 
-                        <TableLayout
+                        <RelativeLayout
+                            android:id="@+id/rlVIdentityInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/colorName" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <Spinner
-                                    android:id="@+id/spnColor"
-                                    style="@style/InformationEntryEditText"/>
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/vehicleSign" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <EditText
-                                    android:id="@+id/etIdentitySign"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/vehicleSign" />
-                            </TableRow>
-
-
-                            <TableRow
-                                android:visibility="gone"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/documentType" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <Spinner
-                                    android:id="@+id/spnDocumentType"
-                                    style="@style/InformationEntryEditText"/>
-                            </TableRow>
-
-                            <TableRow
-                                android:visibility="gone"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/photo" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <EditText
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/photo" />
-                            </TableRow>
-
-
-                        </TableLayout>
-
-                        <Button
-                            android:id="@+id/btnNext2"
-                            style="@style/BtnNext" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_middle"
-                android:backgroundTint="@android:color/white"
-                app:cardCornerRadius="@dimen/spacing_medium">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/white"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:id="@+id/rlVehicleAttachment"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/grey_10"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:id="@+id/tvVehicleAttachment"
-                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="center_vertical"
-                            android:text="@string/attachment"
-                            android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
+                            android:background="@color/grey_10"
+                            android:padding="5dp">
 
-                        <ImageView
-                            android:id="@+id/ivVehicleAttachment"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_drop_down"
-                            android:tint="@color/colorPrimaryDark" />
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/tvVIdentityInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="center_vertical"
+                                android:text="@string/identityInfo"
+                                android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/ivVIdentityInfo"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/ic_drop_down"
+                                android:tint="@color/colorPrimaryDark" />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llVIdentityInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TableLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/colorName" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnColor"
+                                        style="@style/InformationEntryEditText"/>
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/vehicleSign" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etIdentitySign"
+                                        style="@style/InformationEntryEditText"
+                                        android:hint="@string/vehicleSign" />
+                                </TableRow>
+
+
+                                <TableRow
+                                    android:visibility="gone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/documentType" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnDocumentType"
+                                        style="@style/InformationEntryEditText"/>
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/image" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+
+                                    <EditText
+                                        android:id="@+id/etImage"
+                                        android:focusable="false"
+                                        style="@style/InformationEntryEditText"
+                                        android:drawableTint="@color/colorPrimaryDark"
+                                        android:drawableRight="@drawable/ic_attachment"/>
+                                </TableRow>
+
+
+                            </TableLayout>
+                            <GridView
+                                android:layout_width="match_parent"
+                                android:layout_height="300dp"
+                                android:minHeight="300dp"
+                                android:id="@+id/gv"
+                                android:numColumns="4">
+                            </GridView>
+                            <Button
+                                android:id="@+id/btnNext2"
+                                style="@style/BtnNext" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!--  vehicle attachment-->
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvVehicleAttachment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_middle"
+                    android:backgroundTint="@android:color/white"
+                    app:cardCornerRadius="@dimen/spacing_medium">
 
                     <LinearLayout
-                        android:id="@+id/llVehicleAttachment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="10dp">
+                        android:background="@android:color/white"
+                        android:orientation="vertical">
 
-                        <TableLayout
+                        <RelativeLayout
+                            android:id="@+id/rlVehicleAttachment"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/blue_book" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <TextView
-                                    android:id="@+id/etBlueBook"
-                                    style="@style/InformationEntryEditText"
-                                    android:drawableTint="@color/colorPrimaryDark"
-                                    android:drawableRight="@drawable/ic_attachment" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/tax_token" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <EditText
-                                    android:id="@+id/etTaxtToken"
-                                    android:drawableTint="@color/colorPrimaryDark"
-                                    android:drawableRight="@drawable/ic_attachment"
-                                    style="@style/InformationEntryEditText"/>
-                            </TableRow>
-
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/fitness_certificate" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <EditText
-                                    android:id="@+id/etFitness"
-                                    style="@style/InformationEntryEditText"
-                                    android:drawableTint="@color/colorPrimaryDark"
-                                    android:drawableRight="@drawable/ic_attachment"/>
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/image" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-
-                                <EditText
-                                    android:id="@+id/etImage"
-                                    style="@style/InformationEntryEditText"
-                                    android:drawableTint="@color/colorPrimaryDark"
-                                    android:drawableRight="@drawable/ic_attachment"/>
-                            </TableRow>
-                        </TableLayout>
-
-                        <Button
-                            android:id="@+id/btnNext4"
-                            style="@style/BtnNext" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-            <!--vehicle place and time Information-->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_middle"
-                android:backgroundTint="@android:color/white"
-                app:cardCornerRadius="@dimen/spacing_medium">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/white"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:id="@+id/rlPersonPhysical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/grey_10"
-                        android:padding="5dp">
-
-                        <TextView
-                            android:id="@+id/tvVSATInfo"
-                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="center_vertical"
-                            android:text="@string/placeAndTimeInfo"
-                            android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textStyle="bold" />
+                            android:background="@color/grey_10"
+                            android:padding="5dp">
 
-                        <ImageView
-                            android:id="@+id/ivVPATInfo"
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_drop_down"
-                            android:tint="@color/colorPrimaryDark" />
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/tvVehicleAttachment"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="center_vertical"
+                                android:text="@string/attachment"
+                                android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/ivVehicleAttachment"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/ic_drop_down"
+                                android:tint="@color/colorPrimaryDark" />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llVehicleAttachment"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TableLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/blue_book" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <TextView
+                                        android:id="@+id/etBlueBook"
+                                        style="@style/InformationEntryEditText"
+                                        android:drawableTint="@color/colorPrimaryDark"
+                                        android:drawableRight="@drawable/ic_attachment" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/tax_token" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etTaxtToken"
+                                        android:drawableTint="@color/colorPrimaryDark"
+                                        android:drawableRight="@drawable/ic_attachment"
+                                        style="@style/InformationEntryEditText"/>
+                                </TableRow>
+
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/fitness_certificate" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etFitness"
+                                        style="@style/InformationEntryEditText"
+                                        android:drawableTint="@color/colorPrimaryDark"
+                                        android:drawableRight="@drawable/ic_attachment"/>
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/insurance_paper" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etInsurance"
+                                        style="@style/InformationEntryEditText"
+                                        android:drawableTint="@color/colorPrimaryDark"
+                                        android:drawableRight="@drawable/ic_attachment"/>
+                                </TableRow>
+
+
+                            </TableLayout>
+
+                            <Button
+                                android:id="@+id/btnNext3"
+                                style="@style/BtnNext" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+                <!--vehicle place and time Information-->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvVehiclePlaceTimeInformation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_middle"
+                    android:backgroundTint="@android:color/white"
+                    app:cardCornerRadius="@dimen/spacing_medium">
 
                     <LinearLayout
-                        android:id="@+id/llVPATInfo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="10dp">
+                        android:background="@android:color/white"
+                        android:orientation="vertical">
 
-                        <TableLayout
+                        <RelativeLayout
+                            android:id="@+id/rlPersonPhysical"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:background="@color/grey_10"
+                            android:padding="5dp">
 
-                            <TableRow
+                            <TextView
+                                android:id="@+id/tvVSATInfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="center_vertical"
+                                android:text="@string/placeAndTimeInfo"
+                                android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/ivVPATInfo"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/ic_drop_down"
+                                android:tint="@color/colorPrimaryDark" />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llVPATInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TableLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/division" />
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/division" />
 
-                                <Spinner
-                                    android:id="@+id/spnSPDivision"
-                                    style="@style/InformationEntryEditText"/>
-                            </TableRow>
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
 
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                    <Spinner
+                                        android:id="@+id/spnSPDivision"
+                                        style="@style/InformationEntryEditText"/>
+                                </TableRow>
 
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/district" />
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/district" />
 
-                                <Spinner
-                                    android:id="@+id/spnSPDistrict"
-                                    style="@style/InformationEntryEditText"/>
-                            </TableRow>
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
 
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/thana" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <Spinner
-                                    android:id="@+id/spnSPThana"
-                                    style="@style/InformationEntryEditText"/>
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/addressDetails" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
+                                    <Spinner
+                                        android:id="@+id/spnSPDistrict"
+                                        style="@style/InformationEntryEditText"/>
+                                </TableRow>
 
 
-                                <EditText
-                                    android:id="@+id/etAddressDetails"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/addressDetails"
-                                    />
-                            </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/thana" />
 
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/date" />
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
 
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
+                                    <Spinner
+                                        android:id="@+id/spnSPThana"
+                                        style="@style/InformationEntryEditText"/>
+                                </TableRow>
 
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                                <EditText
-                                    android:focusable="false"
-                                    android:drawableRight="@drawable/ic_date"
-                                    android:drawableTint="@color/colorPrimary"
-                                    android:id="@+id/etVehicleDate"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/date"
-                                    />
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/addressDetails" />
 
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="@string/time" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
 
 
-                                <EditText
-                                    android:focusable="false"
-                                    android:drawableRight="@drawable/ic_time"
-                                    android:drawableTint="@color/colorPrimary"
+                                    <EditText
+                                        android:id="@+id/etAddressDetails"
+                                        style="@style/InformationEntryEditText"
+                                        android:hint="@string/addressDetails"
+                                        />
+                                </TableRow>
 
-                                    android:id="@+id/etVehicleTime"
-                                    style="@style/InformationEntryEditText"
-                                    android:hint="@string/time"
-                                    />
-                            </TableRow>
-                        </TableLayout>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                        <Button
-                            android:id="@+id/btnNext3"
-                            style="@style/BtnNext" />
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/date" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+
+                                    <EditText
+                                        android:focusable="false"
+                                        android:drawableRight="@drawable/ic_date"
+                                        android:drawableTint="@color/colorPrimary"
+                                        android:id="@+id/etVehicleDate"
+                                        style="@style/InformationEntryEditText"
+                                        android:hint="@string/date"
+                                        />
+                                </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/time" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+
+                                    <EditText
+                                        android:focusable="false"
+                                        android:drawableRight="@drawable/ic_time"
+                                        android:drawableTint="@color/colorPrimary"
+
+                                        android:id="@+id/etVehicleTime"
+                                        style="@style/InformationEntryEditText"
+                                        android:hint="@string/time"
+                                        />
+                                </TableRow>
+                            </TableLayout>
+
+                            <Button
+                                android:id="@+id/btnNext4"
+                                style="@style/BtnNext" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:paddingTop="10dp"
-                        android:id="@+id/btnSubmit"
-                        android:background="@color/colorPrimary"
-                        android:text="Submit" />
 
-                </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
-            </com.google.android.material.card.MaterialCardView>
-
-
+            <include
+                android:id="@+id/mcvReport"
+                layout="@layout/vehicle_report_for_activity"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -1462,5 +776,3 @@
         app:layout_anchor="@id/bar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
