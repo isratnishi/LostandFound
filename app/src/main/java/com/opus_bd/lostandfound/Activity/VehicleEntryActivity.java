@@ -300,6 +300,8 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     private GridView gvGallery, gvGallery1;
     private GalleryAdapter galleryAdapter;
 
+    String selectOne;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -311,14 +313,14 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         mcvVehiclePlaceTimeInformation.setVisibility(View.GONE);
         mcvReport.setVisibility(View.GONE);
         Utilities.showLogcatMessage("Activity Open ");
-
+        selectOne=getResources().getString(R.string.select_option);
         getMatropolitonName();
         getRegiSerial();
         //Spinner
         getAllDocument();
         getAllVehicleType();
         getAllColor();
-        getDivision();
+        //getDivision();
         GetAllMetropolitanArea();
         getDistrict();
         GetAllRegistrationLevel();
@@ -728,9 +730,6 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
                     vehicleTypeArrayList.clear();
                     vehicleTypeArrayList.addAll(response.body());
-                    for (int i = 0; i < response.body().size(); i++) {
-
-                    }
 
                     addVehicleTypeNamePresentSpinnerData(response.body());
                 }
@@ -746,9 +745,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     public void addVehicleTypeNamePresentSpinnerData(final List<VehicleType> body) {
         List<String> vehicleList = new ArrayList<>();
-
+        vehicleList.add(0,selectOne);
         for (int i = 0; i < body.size(); i++) {
-            vehicleList.add(body.get(i).getVehicleTypeName());
+            vehicleList.add(i+1,body.get(i).getVehicleTypeName());
         }
 
 
@@ -758,11 +757,11 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         spnVehicleType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i >= 0) {
+                if (i >= 1) {
                     SELECTED_VEHICLETYPE_ID = body.get(i).getId();
-                    getAllVehicleModel(body.get(i).getId());
+                    getAllVehicleModel(body.get(i-1).getId());
                 } else {
-                    SELECTED_VEHICLETYPE_ID = 1;
+                    SELECTED_VEHICLETYPE_ID = 0;
                 }
             }
 
@@ -852,9 +851,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     public void addColorSpinnerData(final List<Colors> body) {
         List<String> colorList = new ArrayList<>();
-        colorList.add("Color");
+        colorList.add(0,selectOne);
         for (int i = 0; i < body.size(); i++) {
-            colorList.add(body.get(i).getColorName());
+            colorList.add(i+1,body.get(i).getColorName());
         }
 
 
@@ -864,10 +863,10 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         spnColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i >= 0) {
+                if (i >= 1) {
                     SELECTED_COLOR_ID = body.get(i).getId();
                 } else {
-                    SELECTED_COLOR_ID = 1;
+                    SELECTED_COLOR_ID = 0;
                 }
             }
 
@@ -908,9 +907,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     public void addMetroAreaSpinnerData(final List<MetroAreaModel> body) {
         List<String> colorList = new ArrayList<>();
-
+        colorList.add(0,selectOne);
         for (int i = 0; i < body.size(); i++) {
-            colorList.add(body.get(i).getAreaName());
+            colorList.add(i+1,body.get(i).getAreaName());
         }
 
 
@@ -920,11 +919,11 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         spnRegNoName1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-              /*  if (i >= 0) {
-                    SELECTED_COLOR_ID = body.get(i).getId();
+               if (i >= 1) {
+                    SELECTED_REGNO_1 = body.get(i).getAreaName();
                 } else {
-                    SELECTED_COLOR_ID = 1;
-                }*/
+                   SELECTED_REGNO_1 = "";
+                }
             }
 
             @Override
@@ -962,10 +961,11 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     }
 
     public void addRegistrationLevelModelSpinnerData(final List<RegistrationLevelModel> body) {
-        List<String> colorList = new ArrayList<>();
 
+        List<String> colorList = new ArrayList<>();
+        colorList.add(0,selectOne);
         for (int i = 0; i < body.size(); i++) {
-            colorList.add(body.get(i).getLevelName());
+            colorList.add(i+1,body.get(i).getLevelName());
         }
 
 
@@ -975,11 +975,11 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         spnRegNoName2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-              /*  if (i >= 0) {
-                    SELECTED_COLOR_ID = body.get(i).getId();
+               if (i >= 1) {
+                    SELECTED_REGNO_2 = body.get(i).getLevelName();
                 } else {
-                    SELECTED_COLOR_ID = 1;
-                }*/
+                   SELECTED_REGNO_2 = "";
+                }
             }
 
             @Override
@@ -1019,8 +1019,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     public void addDivisionSpinnerData(final List<Division> body) {
         List<String> divisionList = new ArrayList<>();
+        divisionList.add(0,selectOne);
         for (int i = 0; i < body.size(); i++) {
-            divisionList.add(body.get(i).getDivisionName());
+            divisionList.add(i+1,body.get(i).getDivisionName());
         }
 
 
@@ -1030,11 +1031,11 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         spnSPDivision.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i >= 0) {
+                if (i >= 1) {
                     SELECTED_DIVISION_ID = body.get(i).getId();
                     //getDistrict(body.get(i).getId());
                 } else {
-                    SELECTED_DIVISION_ID = 1;
+                    SELECTED_DIVISION_ID = 0;
                 }
             }
 
@@ -1098,8 +1099,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     public void addDistrictSpinnerData(final List<District> body) {
         List<String> districtList = new ArrayList<>();
+        districtList.add(0,selectOne);
         for (int i = 0; i < body.size(); i++) {
-            districtList.add(body.get(i).getDistrictName());
+            districtList.add(i+1,body.get(i).getDistrictName());
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, districtList);
@@ -1109,11 +1111,11 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 try {
-                    if (i >= 0) {
+                    if (i >= 1) {
                         SELECTED_DISTRICT_ID = body.get(i).getId();
                         getAllThana(body.get(i).getId());
                     } else {
-                        SELECTED_DISTRICT_ID = 1;
+                        SELECTED_DISTRICT_ID = 0;
                     }
                 } catch (Exception e) {
                     Utilities.showLogcatMessage(" " + e.toString());
@@ -1156,8 +1158,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     public void addThanaSpinnerData(final List<Thana> body) {
         List<String> thanaList = new ArrayList<>();
+        thanaList.add(0,selectOne);
         for (int i = 0; i < body.size(); i++) {
-            thanaList.add(body.get(i).getThanaName());
+            thanaList.add(i+1,body.get(i).getThanaName());
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, thanaList);
@@ -1166,11 +1169,10 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         spnSPThana.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i >= 0) {
+                if (i >= 1) {
                     SELECTED_THANA_ID = body.get(i).getId();
-
                 } else {
-                    SELECTED_THANA_ID = 1;
+                    SELECTED_THANA_ID = 0;
                 }
             }
 

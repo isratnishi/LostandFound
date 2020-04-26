@@ -310,7 +310,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:background="@color/colorAccent"
-                        android:text="Done"
+                        android:text="@string/next"
                         android:textColor="@android:color/white" />
 
                 </LinearLayout>

@@ -147,7 +147,7 @@
     <string name="vehicleRegiNo">Regi No</string>
     <string name="engineNo">Engine No</string>
     <string name="chesisNo">Chesis No</string>
-    <string name="ccNo">CC No</string>
+    <string name="ccNo">CC</string>
     <string name="madeIn">Made In</string>
     <string name="madeDate">Manufecture Date</string>
 
@@ -232,4 +232,225 @@
         <item>Thin</item>
         <item>Slim</item>
     </string-array>
+
+    <string name="select_option">Select One</string>
+
+
+    <string name="address_type">
+        <item>@string/select_option</item>
+        <item>অন্যান্য উৎস হতে প্রাপ্ত</item>
+        <item>গোপন কর্মস্থল</item>
+        <item>সম্ভাব্য ঠিকানা</item>
+        <item>given to police</item>
+        <item>অভিযুক্ত কতৃক প্রদত্ত</item>
+        <item>বর্তমান</item>
+        <item>অন্যান্য</item>
+        <item>স্থায়ী</item>
+        <item>আড্ডাস্থল</item>
+        <item>কর্মক্ষেত্রের ঠিকানা</item>
+    </string>
+
+    <string name="array_care_type">
+        <item>@string/select_option</item>
+        <item>স্ত্রী</item>
+        <item>সরকারী অফিস</item>
+        <item>সামরিক বাহিনী</item>
+        <item>আধা-সামরিক</item>
+        <item>বে-সরকারী</item>
+        <item>স্ব-নিয়োজিত প্রতিষ্ঠান</item>
+        <item>বেসরকারী অফিস</item>
+        <item>স্বামী</item>
+        <item>সহযোগী</item>
+        <item>শিক্ষা প্রতিষ্ঠান</item>
+    </string>
+
+    <string name="array_complextion">
+        <item>@string/select_option</item>
+        <item>Bright</item>
+        <item>Brass</item>
+        <item>rtret</item>
+        <item>Cream</item>
+        <item>Bronze</item>
+    </string>
+
+    <string name="array_cust">
+        <item>@string/select_option</item>
+        <item>Jew</item>
+        <item>রোমান ক্যাথলিক</item>
+        <item>ক্ষত্রিয়</item>
+        <item>Sino</item>
+        <item>Atheist</item>
+        <item>ব্রাহ্মণ</item>
+        <item>Shia</item>
+        <item>Shikh</item>
+        <item>Sunni</item>
+        <item>Jain</item>
+    </string>
+
+    <string name="array_death_type">
+        <item>@string/select_option</item>
+        <item>সাপের কামড়</item>
+        <item>অন্যান্য</item>
+        <item>বিষপান</item>
+        <item>আত্মহত্যা</item>
+        <item>বন্য জন্তুর আক্রমন</item>
+        <item>সড়ক দুর্ঘটনা</item>
+        <item>পানিতে ডুবিয়া</item>
+        <item>পক্ষাঘাত</item>
+        <item>ফাঁসি</item>
+    </string>
+
+    <string name="array_eye">
+        <item>@string/select_option</item>
+        <item>Inside</item>
+        <item>Bright Colour</item>
+        <item>Long</item>
+        <item>বাদামী</item>
+        <item>Thin</item>
+        <item>One eyes</item>
+        <item>Thick</item>
+        <item>Fade</item>
+        <item>Sahint</item>
+        <item>Twin</item>
+        <item>Black eyris</item>
+        <item>oo</item>
+    </string>
+
+    <string name="array_face_shape">
+        <item>@string/select_option</item>
+        <item>Flat</item>
+        <item>Normal</item>
+        <item>Long</item>
+        <item>Round</item>
+    </string>
+
+    <string name="array_forehead">
+        <item>@string/select_option</item>
+        <item>Wide</item>
+        <item>Straight</item>
+        <item>Stand</item>
+    </string>
+
+    <string name="array_gender">
+        <item>@string/select_option</item>
+        <item>মহিলা</item>
+        <item>পুরুষ</item>
+        <item>হিজরা</item>
+    </string>
+
+    <string name="array_hair">
+        <item>@string/select_option</item>
+        <item>White-Ripe</item>
+        <item>Blad</item>
+        <item>Long</item>
+        <item>Short</item>
+        <item>Brown</item>
+        <item>Grey-White</item>
+        <item>Curl</item>
+        <item>Black</item>
+    </string>
+
+    <string name="array_head">
+        <item>@string/select_option</item>
+        <item>Long</item>
+        <item>Short</item>
+        <item>Round</item>
+    </string>
+
+    <string name="array_material_condition">
+        <item>@string/select_option</item>
+        <item>ইনটেক অবস্থা</item>
+        <item>ধ্বংস প্রাপ্ত</item>
+        <item>নষ্ট</item>
+        <item>পরিত্যক্ত</item>
+        <item>অন্যান্য</item>
+    </string>
+
+    <string name="array_marital_status">
+        <item>@string/select_option</item>
+        <item>তালাক প্রাপ্ত</item>
+        <item>বিপত্নীক</item>
+        <item>অবিবাহিত</item>
+        <item>একাধিক বিবাহ</item>
+        <item>বিধবা</item>
+        <item>বিবাহিত</item>
+    </string>
+
+    <string name="array_moustache">
+        <item>@string/select_option</item>
+        <item>ছোট</item>
+        <item>সাদা</item>
+        <item>কালো</item>
+        <item>কালো সাদা</item>
+        <item>বড়</item>
+    </string>
+
+    <string name="array_mouth">
+        <item>@string/select_option</item>
+        <item>Thick Lips</item>
+        <item>Big</item>
+        <item>Small</item>
+        <item>Swell</item>
+        <item>Black Lips</item>
+        <item>Teath ahead</item>
+        <item>Thin Lips</item>
+    </string>
+
+    <string name="array_neck">
+        <item>@string/select_option</item>
+        <item>Thin</item>
+        <item>ছোট</item>
+        <item>লম্বা</item>
+        <item>মোটা</item>
+    </string>
+
+    <string name="array_nose">
+        <item>@string/select_option</item>
+        <item>Long</item>
+        <item>Fat</item>
+        <item>Short</item>
+        <item>Flat</item>
+        <item>Curve</item>
+    </string>
+
+    <string name="array_religion">
+        <item>@string/select_option</item>
+        <item>অন্যান্য</item>
+        <item>হিন্দু</item>
+        <item>বৌদ্ধ</item>
+        <item>ইসলাম</item>
+        <item>খ্রীস্টান</item>
+    </string>
+
+    <string name="array_number_type">
+        <item>@string/select_option</item>
+        <item>টেলিফোন</item>
+        <item>Driveing Lisence</item>
+        <item>টিন নাম্বার</item>
+        <item>পাসপোর্ট</item>
+        <item>অন্যান্য</item>
+        <item>Mobile</item>
+    </string>
+
+    <string name="array_measurement_type">
+        <item>@string/select_option</item>
+        <item>কেজি</item>
+        <item>ফুট</item>
+        <item>পাউন্ড</item>
+        <item>লিটার</item>
+        <item>মিটার</item>
+        <item>গজ</item>
+        <item>মিলি মিটার</item>
+        <item>গ্রাম</item>
+        <item>ভরি</item>
+    </string>
+
+    <string name="array_given_type">
+        <item>@string/select_option</item>
+        <item>অন্যান্য</item>
+        <item>IME নং</item>
+        <item>ইঞ্জিন নং</item>
+        <item>চেসিস নং</item>
+    </string>
+
 </resources>

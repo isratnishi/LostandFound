@@ -90,6 +90,7 @@
                                         android:text=":" />
                                     <Spinner
                                         android:id="@+id/spnVehicleType"
+                                        android:drawSelectorOnTop="true"
                                         style="@style/InformationEntryEditText"/>
 
                                 </TableRow>
@@ -227,6 +228,7 @@
                                     <EditText
                                         android:id="@+id/etCCNo"
                                         style="@style/InformationEntryEditText"
+                                        android:inputType="numberSigned"
                                         android:hint="@string/ccNo" />
                                 </TableRow>
 
