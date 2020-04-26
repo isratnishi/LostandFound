@@ -260,19 +260,6 @@
     <string name="select_option">Select One</string>
 
 
-    <string name="address_type">
-        <item>@string/select_option</item>
-        <item>অন্যান্য উৎস হতে প্রাপ্ত</item>
-        <item>গোপন কর্মস্থল</item>
-        <item>সম্ভাব্য ঠিকানা</item>
-        <item>given to police</item>
-        <item>অভিযুক্ত কতৃক প্রদত্ত</item>
-        <item>বর্তমান</item>
-        <item>অন্যান্য</item>
-        <item>স্থায়ী</item>
-        <item>আড্ডাস্থল</item>
-        <item>কর্মক্ষেত্রের ঠিকানা</item>
-    </string>
 
     <string name="array_care_type">
         <item>@string/select_option</item>

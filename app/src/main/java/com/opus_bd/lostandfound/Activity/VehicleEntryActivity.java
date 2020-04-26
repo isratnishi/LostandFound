@@ -1496,7 +1496,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     }
 
    /* @OnClick(R.id.etVehicleDate)
-    public void etDateOnClick() {
+    public void etDateOnClick() 0{
        *//* DatePickerDialog mDatePicker;
         mDatePicker = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
