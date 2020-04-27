@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Lost And Found</string>
     <string name="lost_found_apps"><![CDATA[LOST & FOUND APPS]]></string>
     <string name="welcome_to">Welcome To</string>
@@ -88,62 +87,6 @@
     <string name="gender">Gender</string>
     <string name="occupation">Occupation</string>
     <string name="blood_group">Blood Group</string>
-    <string-array name="purpose_of_visit">
-        <item>@string/select_option</item>
-        <item>Purpose of Visit</item>
-        <item>Tourist visa</item>
-        <item>Business visa</item>
-        <item>Student visa</item>
-        <item>Employment visa</item>
-        <item> Diplomatic/Official visa</item>
-        <item>Investor visa</item>
-        <item>Journalist visa</item>
-        <item> NGO visa</item>
-
-
-    </string-array>
-
-    <string-array name="religion">
-        <item>@string/select_option</item>
-        <item>Islam</item>
-        <item>Hindu</item>
-        <item>Cristian</item>
-        <item>Buddhits</item>
-    </string-array>
-
-    <string-array name="blood_groups">
-        <item>@string/select_option</item>
-        <item>A+</item>
-        <item>A-</item>
-        <item>B+</item>
-        <item>B-</item>
-        <item>AB+</item>
-        <item>AB-</item>
-        <item>O+</item>
-        <item>O-</item>
-    </string-array>
-
-    <string-array name="gender">
-        <item>@string/select_option</item>
-        <item>Male</item>
-        <item>Female</item>
-        <item>Other</item>
-    </string-array>
-
-    <string-array name="marital_status">
-        <item>@string/select_option</item>
-        <item>single</item>
-        <item>Married</item>
-    </string-array>
-    <string-array name="occupations">
-        <item>@string/select_option</item>
-        <item>Govt. Job</item>
-        <item>Private Job</item>
-        <item>Business</item>
-        <item>Teacher</item>
-        <item>Others</item>
-    </string-array>
-
     <!--    vehicle information-->
     <string name="vehicleType">Vehicle Type</string>
     <string name="vehicleBrand">Brand</string>
@@ -189,53 +132,96 @@
     <string name="age">Age</string>
 
 
-    <string-array name="matropoliton">
-
-        <item> Dhaka Metro </item>
-        <item> Ctg Metro </item>
-        <item> Rajshahi Metro </item>
-        <item> Comilla Metro </item>
-        <item> Sylhet Metro </item>
-        <item> Khulna Metro </item>
-        <item> Barisal Metro </item>
-    </string-array>
-    <string-array name="regiparttwo">
-        <item>Ka</item>
-        <item>Kha</item>
-        <item>La</item>
-        <item>Sa</item>
-    </string-array>
     <string name="select_list">Select List</string>
     <string name="number_type">Number Type</string>
     <string name="country">Country</string>
     <string name="one_line_address">One Line Address</string>
     <string name="address_type">Address Type</string>
 
-    <string-array name="NUMBERTYPE">
-     <item>@string/select_list</item>
-<item>Telephone</item>
-<item>Driveing Lisence</item>
-<item>TIN Number</item>
-<item>Passport</item>
-<item>Mobile</item>
-<item>Others</item>
-</string-array>
 
+    <string-array name="purpose_of_visit">
+        <item>@string/select_option</item>
+        <item>Purpose of Visit</item>
+        <item>Tourist visa</item>
+        <item>Business visa</item>
+        <item>Student visa</item>
+        <item>Employment visa</item>
+        <item> Diplomatic/Official visa</item>
+        <item>Investor visa</item>
+        <item>Journalist visa</item>
+        <item> NGO visa</item>
+    </string-array>
+    <string-array name="religion">
+        <item>@string/select_option</item>
+        <item>Muslim</item>
+        <item>Hindu</item>
+        <item>Cristian</item>
+        <item>Buddhist</item>
+        <item>Others</item>
+
+    </string-array>
+
+
+    <string name="array_gender">
+        <item>@string/select_option</item>
+        <item>মহিলা</item>
+        <item>পুরুষ</item>
+        <item>হিজরা</item>
+    </string>
+    <string-array name="blood_groups">
+        <item>@string/select_option</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>O+</item>
+        <item>O-</item>
+    </string-array>
+    <string-array name="gender">
+        <item>@string/select_option</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="marital_status">
+        <item>@string/select_option</item>
+        <item>single</item>
+        <item>Married</item>
+    </string-array>
+    <string-array name="occupations">
+        <item>@string/select_option</item>
+        <item>Govt. Job</item>
+        <item>Private Job</item>
+        <item>Business</item>
+        <item>Teacher</item>
+        <item>Others</item>
+    </string-array>
+
+
+    <string-array name="NUMBERTYPE">
+        <item>@string/select_list</item>
+        <item>Telephone</item>
+        <item>Driving Licence</item>
+        <item>TIN Number</item>
+        <item>Passport</item>
+        <item>Mobile</item>
+        <item>Others</item>
+    </string-array>
 
 
     <string-array name="doc_type">
-        <item>@string/select_option</item>
+        <item>@string/select_list</item>
         <item>NID</item>
         <item>Birth Certificate </item>
         <item>Passport </item>
-    <item>@string/select_list</item>
-    <item>NID</item>
-    <item>Birth Certificate </item>
-    <item>Passport </item>
     </string-array>
+
+
     <string-array name="array_beard">
         <item>@string/select_option</item>
-        <item>Select List</item>
         <item>Long</item>
         <item>Short</item>
         <item>Ripe</item>
@@ -274,19 +260,18 @@
     <string name="select_option">Select One</string>
 
 
-
     <string name="array_care_type">
         <item>@string/select_option</item>
-        <item>স্ত্রী</item>
-        <item>সরকারী অফিস</item>
-        <item>সামরিক বাহিনী</item>
-        <item>আধা-সামরিক</item>
-        <item>বে-সরকারী</item>
-        <item>স্ব-নিয়োজিত প্রতিষ্ঠান</item>
-        <item>বেসরকারী অফিস</item>
-        <item>স্বামী</item>
-        <item>সহযোগী</item>
-        <item>শিক্ষা প্রতিষ্ঠান</item>
+        <item> Wife </item>
+        <item> Government Office </item>
+        <item> Military </item>
+        <item> para-military </item>
+        <item> Unofficial </item>
+        <item> Self-employed organization </item>
+        <item> Private Office </item>
+        <item> Husband </item>
+        <item> Collaborators </item>
+        <item> Educational Institutions </item>
     </string>
 
     <string name="array_complextion">
@@ -301,28 +286,28 @@
     <string name="array_cust">
         <item>@string/select_option</item>
         <item>Jew</item>
-        <item>রোমান ক্যাথলিক</item>
-        <item>ক্ষত্রিয়</item>
-        <item>Sino</item>
-        <item>Atheist</item>
-        <item>ব্রাহ্মণ</item>
-        <item>Shia</item>
-        <item>Shikh</item>
-        <item>Sunni</item>
-        <item>Jain</item>
+        <item> Roman Catholic </item>
+        <item> Kshatriya </item>
+        <item> Sino </item>
+        <item> Atheist </item>
+        <item> Brahmin </item>
+        <item> Shia </item>
+        <item> Shikh </item>
+        <item> Sunni </item>
+        <item> Jain </item>
     </string>
 
     <string name="array_death_type">
         <item>@string/select_option</item>
-        <item>সাপের কামড়</item>
-        <item>অন্যান্য</item>
-        <item>বিষপান</item>
-        <item>আত্মহত্যা</item>
-        <item>বন্য জন্তুর আক্রমন</item>
-        <item>সড়ক দুর্ঘটনা</item>
-        <item>পানিতে ডুবিয়া</item>
-        <item>পক্ষাঘাত</item>
-        <item>ফাঁসি</item>
+        <item> Snake bite </item>
+        <item> Other </item>
+        <item> poisoning </item>
+        <item> Suicide </item>
+        <item> Wild Animal Attack </item>
+        <item> Road Accident </item>
+        <item> Submerged in water </item>
+        <item> Paralysis </item>
+        <item> Hang </item>
     </string>
 
     <string name="array_eye">
@@ -330,7 +315,7 @@
         <item>Inside</item>
         <item>Bright Colour</item>
         <item>Long</item>
-        <item>বাদামী</item>
+        <item>Brown</item>
         <item>Thin</item>
         <item>One eyes</item>
         <item>Thick</item>
@@ -356,12 +341,6 @@
         <item>Stand</item>
     </string>
 
-    <string name="array_gender">
-        <item>@string/select_option</item>
-        <item>মহিলা</item>
-        <item>পুরুষ</item>
-        <item>হিজরা</item>
-    </string>
 
     <string name="array_hair">
         <item>@string/select_option</item>
@@ -393,12 +372,13 @@
 
     <string name="array_marital_status">
         <item>@string/select_option</item>
-        <item>তালাক প্রাপ্ত</item>
-        <item>বিপত্নীক</item>
-        <item>অবিবাহিত</item>
-        <item>একাধিক বিবাহ</item>
-        <item>বিধবা</item>
-        <item>বিবাহিত</item>
+
+<item> Divorced </item>
+        <item> Widow </item>
+        <item> Unmarried </item>
+        <item> Multiple marriages </item>
+        <item> Widow </item>
+        <item> Married </item>
     </string>
 
     <string name="array_moustache">
@@ -440,11 +420,13 @@
 
     <string name="array_religion">
         <item>@string/select_option</item>
-        <item>অন্যান্য</item>
+        <item>ইসলাম</item>
+
         <item>হিন্দু</item>
         <item>বৌদ্ধ</item>
-        <item>ইসলাম</item>
+
         <item>খ্রীস্টান</item>
+         <item>অন্যান্য</item>
     </string>
 
     <string name="array_number_type">
@@ -479,7 +461,7 @@
     </string>
 
 
-    <string-array name = "address_type">
+    <string-array name="address_type">
         <item> @string/select_list </item>
         <item> Obtained from other sources </item>
         <item> Secret Workplace </item>

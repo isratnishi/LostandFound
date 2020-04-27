@@ -25,6 +25,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -38,6 +39,8 @@ import com.bumptech.glide.Glide;
 
 import com.google.android.material.card.MaterialCardView;
 import com.hbb20.CountryCodePicker;
+import com.opus_bd.lostandfound.Adapter.CustomAdapter;
+import com.opus_bd.lostandfound.Adapter.CustomSpinnerAdapter;
 import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
@@ -316,8 +319,8 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         mcvReport.setVisibility(View.GONE);
         Utilities.showLogcatMessage("Activity Open ");
         selectOne=getResources().getString(R.string.select_option);
-        getMatropolitonName();
-        getRegiSerial();
+      /*  getMatropolitonName();
+        getRegiSerial();*/
         //Spinner
         getAllDocument();
         getAllVehicleType();
@@ -636,9 +639,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     }
 
 
-
+/*
     public void getMatropolitonName() {
-        metropoliton = getResources().getStringArray(R.array.matropoliton);
+
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, metropoliton);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -662,7 +665,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     }
 
     public void getRegiSerial() {
-        regipartTwo = getResources().getStringArray(R.array.regiparttwo);
+       *//* regipartTwo = getResources().getStringArray(R.array.regiparttwo);*//*
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, regipartTwo);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -683,7 +686,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
             }
         });
-    }
+    }*/
 
     public void getAllDocument() {
 
@@ -825,14 +828,19 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     public void addVehicleMadyBySpinnerData(final List<VehicleModel> body) {
         List<String> vehicleMadyBy = new ArrayList<>();
+        List<String> vehicleIcon = new ArrayList<>();
         for (int i = 0; i < body.size(); i++) {
             vehicleMadyBy.add(body.get(i).getModelName());
+            vehicleIcon.add(body.get(i).getImagePath());
         }
 
 
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, vehicleMadyBy);
-        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnMadeBy.setAdapter(dataAdapter2);
+      /*  ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, vehicleMadyBy);
+        dataAdapter2.setDropDownViewResource(R.layout.custom_spinner);
+        spnMadeBy.setAdapter(dataAdapter2);*/
+
+        CustomAdapter customAdapter=new CustomAdapter(getApplicationContext(),vehicleIcon,vehicleMadyBy);
+        spnMadeBy.setAdapter(customAdapter);
         spnMadeBy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
