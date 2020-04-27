@@ -216,6 +216,25 @@
                                         style="@style/InformationEntryEditText"
                                         />
                                 </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/colorName" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+
+                                    <Spinner
+                                        android:id="@+id/spnColor1"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
                             </TableLayout>
 
                             <Button
