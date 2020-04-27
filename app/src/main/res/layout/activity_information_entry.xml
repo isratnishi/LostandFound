@@ -99,19 +99,13 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:orientation="vertical">
-
-                                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                <com.mikhaellopez.circularimageview.CircularImageView
                                     android:id="@+id/fabOwn"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
                                     android:clickable="true"
-                                    android:src="@drawable/robbery"
-                                    android:tint="@android:color/white"
-                                    app:backgroundTint="@color/grey_40"
-                                    app:elevation="0dp"
-                                    app:fabSize="mini"
-                                    app:rippleColor="@android:color/white" />
-
+                                    android:src="@drawable/civ_image"
+                                    android:foregroundGravity="center_vertical"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -130,18 +124,14 @@
                                 android:gravity="center"
                                 android:orientation="vertical">
 
-                                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                <ImageView
 
                                     android:id="@+id/fabOther"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
                                     android:clickable="true"
-                                    android:src="@drawable/lose"
-                                    android:tint="@android:color/white"
-                                    app:backgroundTint="@color/grey_40"
-                                    app:elevation="0dp"
-                                    app:fabSize="mini"
-                                    app:rippleColor="@android:color/white" />
+                                    android:src="@drawable/ic_for_others"
+                                     />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -390,23 +380,19 @@
                                 android:gravity="center"
                                 android:orientation="vertical">
 
-                                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                <ImageView
                                     android:id="@+id/fabVihecal"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
                                     android:clickable="true"
-                                    android:src="@drawable/robbery"
-                                    android:tint="@android:color/white"
-                                    app:backgroundTint="@color/grey_40"
-                                    app:elevation="0dp"
-                                    app:fabSize="mini"
-                                    app:rippleColor="@android:color/white" />
+                                    android:src="@drawable/ic_vehicle"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/spacing_medium"
                                     android:text="@string/vehicle"
+                                    android:textSize="15dp"
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                                     android:textColor="@color/grey_40" />
 
@@ -421,24 +407,20 @@
                                 android:gravity="center"
                                 android:orientation="vertical">
 
-                                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                <ImageView
 
                                     android:id="@+id/fabMan"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
                                     android:clickable="true"
-                                    android:src="@drawable/lose"
-                                    android:tint="@android:color/white"
-                                    app:backgroundTint="@color/grey_40"
-                                    app:elevation="0dp"
-                                    app:fabSize="mini"
-                                    app:rippleColor="@android:color/white" />
+                                    android:src="@drawable/ic_losthuman" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/spacing_medium"
                                     android:text="@string/man"
+                                    android:textSize="15dp"
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                                     android:textColor="@color/grey_40" />
                             </LinearLayout>
@@ -451,18 +433,13 @@
                                 android:gravity="center"
                                 android:orientation="vertical">
 
-                                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                <ImageView
 
                                     android:id="@+id/fabVivid"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
                                     android:clickable="true"
-                                    android:src="@drawable/lose"
-                                    android:tint="@android:color/white"
-                                    app:backgroundTint="@color/grey_40"
-                                    app:elevation="0dp"
-                                    app:fabSize="mini"
-                                    app:rippleColor="@android:color/white" />
+                                    android:src="@drawable/ic_lost" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -470,6 +447,7 @@
                                     android:layout_marginTop="@dimen/spacing_medium"
                                     android:text="@string/others"
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                                    android:textSize="15dp"
                                     android:textColor="@color/grey_40" />
                             </LinearLayout>
 

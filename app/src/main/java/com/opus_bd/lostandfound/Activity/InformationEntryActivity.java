@@ -62,14 +62,14 @@ public class InformationEntryActivity extends AppCompatActivity {
     @BindView(R.id.cvItems)
     CardView cvItems;
     @BindView(R.id.fabOwn)
-    FloatingActionButton fabOwn;
+    ImageView fabOwn;
     @BindView(R.id.fabVihecal)
-    FloatingActionButton fabVihecal;
+    ImageView fabVihecal;
 
     @BindView(R.id.fabOther)
-    FloatingActionButton fabOther;
+    ImageView fabOther;
     @BindView(R.id.fabMan)
-    FloatingActionButton fabMan;
+    ImageView fabMan;
     @BindView(R.id.llVMan)
     LinearLayout llVMan;  @BindView(R.id.tvDocType)
     TextView tvDocType;@BindView(R.id.spnDocumentType)

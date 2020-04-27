@@ -8,7 +8,10 @@
         android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:padding="5dp"
+        android:paddingLeft="5dp"
+       android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+
         /><!--Make sure image is present in Drawable folder-->
 
     <TextView
@@ -16,7 +19,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="@dimen/activity_horizontal_margin"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
         android:text="Demo"
         android:textColor="#000" />
 </LinearLayout>
