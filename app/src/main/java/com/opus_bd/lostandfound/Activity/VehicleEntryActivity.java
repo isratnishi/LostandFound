@@ -25,6 +25,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -37,6 +38,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 
 import com.google.android.material.card.MaterialCardView;
+import com.hbb20.CountryCodePicker;
+import com.opus_bd.lostandfound.Adapter.CustomAdapter;
+import com.opus_bd.lostandfound.Adapter.CustomSpinnerAdapter;
 import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
@@ -118,9 +122,10 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     @BindView(R.id.etCCNo)
     EditText etCCNo;
 
-    @BindView(R.id.etMadeIn)
-    EditText etMadeIn;
 
+
+    @BindView(R.id.ccp)
+    CountryCodePicker ccp;
     @BindView(R.id.etMadeDate)
     EditText etMadeDate;
 
@@ -314,8 +319,8 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         mcvReport.setVisibility(View.GONE);
         Utilities.showLogcatMessage("Activity Open ");
         selectOne=getResources().getString(R.string.select_option);
-        getMatropolitonName();
-        getRegiSerial();
+      /*  getMatropolitonName();
+        getRegiSerial();*/
         //Spinner
         getAllDocument();
         getAllVehicleType();
@@ -444,17 +449,6 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
 
-//    @OnClick(R.id.etEngineNo)
-//    public void afterTextChanged(Editable text) {
-//
-//        //Log.d("texttest", "afterTextChanged: "+text);
-//        if (text.length() == 2) {
-//            text.append('-');
-//        }
-//
-//
-//    }
-
     @OnClick(R.id.ivVehicleInformation)
     public void ivVehicleInformation() {
         if (isllVehicleEntryChecked) {
@@ -548,7 +542,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             tvVehicleDate.setText(etVehicleDate.getText().toString());
             tvModel.setText(etModel.getText().toString());
             tvMadeBy.setText(spnMadeBy.getSelectedItem().toString());
-            tvMadeIn.setText(etMadeIn.getText().toString());
+            tvMadeIn.setText(ccp.getSelectedCountryName());
             tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
             tvAddressDetails.setText(etAddressDetails.getText().toString());
             tvRegNoName.setText(spnRegNoName1.getSelectedItem().toString() + " " + spnRegNoName2.getSelectedItem().toString()
@@ -595,8 +589,6 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         startActivity(intent);*/
     }
 
-
-
     @OnClick(R.id.Submit)
     public void Submit() {
         //submitToServer();
@@ -635,7 +627,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         gdInformationModel.setEngineNo(etEngineNo.getText().toString());
         gdInformationModel.setChasisNo(etChesisNo.getText().toString());
         gdInformationModel.setCcNo(etCCNo.getText().toString());
-        gdInformationModel.setMadeIn(etMadeIn.getText().toString());
+        gdInformationModel.setMadeIn(ccp.getSelectedCountryName());
         gdInformationModel.setModelDate(etMadeDate.getText().toString());
 
         //Identity Info
@@ -688,7 +680,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     }
 
 
-
+/*
     public void getMatropolitonName() {
         metropoliton = getResources().getStringArray(R.array.matropoliton);
 
@@ -714,7 +706,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     }
 
     public void getRegiSerial() {
-        regipartTwo = getResources().getStringArray(R.array.regiparttwo);
+       *//* regipartTwo = getResources().getStringArray(R.array.regiparttwo);*//*
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, regipartTwo);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -735,7 +727,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
             }
         });
-    }
+    }*/
 
     public void getAllDocument() {
 
@@ -877,14 +869,19 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     public void addVehicleMadyBySpinnerData(final List<VehicleModel> body) {
         List<String> vehicleMadyBy = new ArrayList<>();
+        List<String> vehicleIcon = new ArrayList<>();
         for (int i = 0; i < body.size(); i++) {
             vehicleMadyBy.add(body.get(i).getModelName());
+            vehicleIcon.add(body.get(i).getImagePath());
         }
 
 
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, vehicleMadyBy);
-        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnMadeBy.setAdapter(dataAdapter2);
+      /*  ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, vehicleMadyBy);
+        dataAdapter2.setDropDownViewResource(R.layout.custom_spinner);
+        spnMadeBy.setAdapter(dataAdapter2);*/
+
+        CustomAdapter customAdapter=new CustomAdapter(getApplicationContext(),vehicleIcon,vehicleMadyBy);
+        spnMadeBy.setAdapter(customAdapter);
         spnMadeBy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -1522,7 +1519,15 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         mDay = calendar.get(Calendar.DAY_OF_MONTH);
         formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
         etVehicleDate.setText(formatter.format(calendar.getTime()));
+        etMadeDate.setText(formatter.format(calendar.getTime()));
         etVehicleDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDate(mYear,mMonth,mDay,R.style.DatePickerSpinner);
+            }
+        });
+
+        etMadeDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDate(mYear,mMonth,mDay,R.style.DatePickerSpinner);
@@ -1539,7 +1544,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     }
 
    /* @OnClick(R.id.etVehicleDate)
-    public void etDateOnClick() {
+    public void etDateOnClick() 0{
        *//* DatePickerDialog mDatePicker;
         mDatePicker = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
@@ -1594,7 +1599,28 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                etVehicleTime.setText(selectedHour + ":" + selectedMinute);
+                String status = "AM";
+
+                if(hour > 11)
+                {
+                    // If the hour is greater than or equal to 12
+                    // Then the current AM PM status is PM
+                    status = "PM";
+                }
+
+                // Initialize a new variable to hold 12 hour format hour value
+                int hour_of_12_hour_format;
+
+                if(hour > 11){
+
+                    // If the hour is greater than or equal to 12
+                    // Then we subtract 12 from the hour to make it 12 hour format time
+                    hour_of_12_hour_format = hour - 12;
+                }
+                else {
+                    hour_of_12_hour_format = hour;
+                }
+                etVehicleTime.setText(selectedHour + ":" + selectedMinute+ " "+status);
             }
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");

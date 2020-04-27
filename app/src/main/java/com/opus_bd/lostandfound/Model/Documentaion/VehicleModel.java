@@ -14,7 +14,9 @@ public class VehicleModel {
     private Object vehicleType;
     @SerializedName("modelName")
     @Expose
-    private String modelName;
+    private String modelName; @SerializedName("imagePath")
+    @Expose
+    private String imagePath;
     @SerializedName("modelNameBn")
     @Expose
     private Object modelNameBn;
@@ -128,4 +130,12 @@ public class VehicleModel {
         this.updatedBy = updatedBy;
     }
 
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 }

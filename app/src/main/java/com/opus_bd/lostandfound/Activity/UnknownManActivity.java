@@ -1,9 +1,11 @@
 package com.opus_bd.lostandfound.Activity;
 
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -34,6 +37,14 @@ import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
 import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
+import com.tsongkha.spinnerdatepicker.DatePicker;
+import com.tsongkha.spinnerdatepicker.DatePickerDialog;
+import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,7 +53,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UnknownManActivity extends AppCompatActivity {
+public class UnknownManActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     @BindView(R.id.llInput)
     LinearLayout llInput;
     @BindView(R.id.llReport)
@@ -57,7 +68,11 @@ public class UnknownManActivity extends AppCompatActivity {
     @BindView(R.id.ivTPersonInfromation)
     ImageView ivTPersonInfromation;
 
+    @BindView(R.id.etVehicleDate)
+    EditText etVehicleDate;
 
+    @BindView(R.id.etVehicleTime)
+    EditText etVehicleTime;
     boolean isllPersonIdentificationChecked = true;
     @BindView(R.id.mcvPersonIdendityInformation)
     MaterialCardView mcvPersonIdendityInformation;
@@ -77,6 +92,26 @@ public class UnknownManActivity extends AppCompatActivity {
 
     @BindView(R.id.ivTPersonPhysical)
     ImageView ivTPersonPhysical;
+
+
+    boolean isllPersonAddressChecked = true;
+    @BindView(R.id.mcvPersonAddress)
+    MaterialCardView mcvPersonAddress;
+
+    @BindView(R.id.llPersonAddress)
+    LinearLayout llPersonAddress;
+
+    @BindView(R.id.ivTPersonAddress)
+    ImageView ivTPersonAddress;
+  boolean isllPersonLostPlaceChecked = true;
+    @BindView(R.id.mcvPersonLostPlace)
+    MaterialCardView mcvPersonLostPlace;
+
+    @BindView(R.id.llPersonLostPlace)
+    LinearLayout llPersonLostPlace;
+
+    @BindView(R.id.ivPersonLostPlace)
+    ImageView ivTPersonLostPlace;
 
 
     //input field
@@ -138,6 +173,13 @@ public class UnknownManActivity extends AppCompatActivity {
     @BindView(R.id.tvColor)
     TextView tvColor;
 
+    //date picker
+    SimpleDateFormat formatter;
+    int mYear, mMonth, mDay;
+    Calendar calendar = Calendar.getInstance();
+
+    //time picker
+    int mHour, mMin, mSec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,9 +191,37 @@ public class UnknownManActivity extends AppCompatActivity {
         Glide.with(this).load(R.drawable.ic_drop_up).into(ivTPersonInfromation);
         mcvPersonIdendityInformation.setVisibility(View.GONE);
         mcvPersonPhysical.setVisibility(View.GONE);
+        mcvPersonAddress.setVisibility(View.GONE);
+        mcvPersonLostPlace.setVisibility(View.GONE);
+        //date picker
+        initializeVariables();
+    }
+//Date Picker
+
+    private void initializeVariables() {
+        mYear = calendar.get(Calendar.YEAR);
+        mMonth = calendar.get(Calendar.MONTH);
+        mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        etVehicleDate.setText(formatter.format(calendar.getTime()));
+
+        etVehicleDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDate(mYear,mMonth,mDay,R.style.DatePickerSpinner);
+            }
+        });
+
+
+
+        mHour = calendar.get(Calendar.HOUR);
+        mMin = calendar.get(Calendar.MINUTE);
+        mSec = calendar.get(Calendar.SECOND);
+        SimpleDateFormat formatter1 = new SimpleDateFormat("hh:mm", Locale.ENGLISH);
+        etVehicleTime.setText(formatter1.format(calendar.getTime()));
+
 
     }
-
     protected void attachBaseContext(Context base) {
         SharedPreferences tprefs = base.getSharedPreferences(SharedPrefManager.SHARED_PREF_NAME, MODE_PRIVATE);
         boolean language = tprefs.getBoolean(SharedPrefManager.KEY_State, true);
@@ -201,13 +271,36 @@ public class UnknownManActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.ivTPersonPhysical, R.id.btnNext2})
-    public void ivTPersonPhysical() {
-        if (isllPersonPhysicalChecked) {
+    @OnClick({R.id.ivTPersonAddress, R.id.btnNext2})
+    public void ivTPersonAddress() {
+        if (isllPersonAddressChecked) {
             // show password
             llPersonIdentification.setVisibility(View.GONE);
             Glide.with(this).load(R.drawable.ic_drop_down).into(ivTPersonIdentification);
             isllPersonIdentificationChecked = true;
+
+            mcvPersonAddress.setVisibility(View.VISIBLE);
+            llPersonAddress.setVisibility(View.VISIBLE);
+            Glide.with(this).load(R.drawable.ic_drop_up).into(ivTPersonAddress);
+            isllPersonAddressChecked = false;
+
+        } else {
+            // hide password
+            llPersonAddress.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivTPersonAddress);
+            isllPersonAddressChecked = true;
+        }
+
+    }
+
+
+    @OnClick({R.id.ivTPersonPhysical, R.id.btnNext3})
+    public void ivTPersonPhysical() {
+        if (isllPersonPhysicalChecked) {
+            // show password
+            llPersonAddress.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivTPersonAddress);
+            isllPersonAddressChecked = true;
 
             mcvPersonPhysical.setVisibility(View.VISIBLE);
             llPersonPhysical.setVisibility(View.VISIBLE);
@@ -219,6 +312,29 @@ public class UnknownManActivity extends AppCompatActivity {
             llPersonPhysical.setVisibility(View.GONE);
             Glide.with(this).load(R.drawable.ic_drop_down).into(ivTPersonPhysical);
             isllPersonPhysicalChecked = true;
+        }
+
+    }
+
+
+    @OnClick({R.id.ivPersonLostPlace, R.id.btnNext4})
+    public void ivTPersonLostPlace() {
+        if (isllPersonLostPlaceChecked) {
+            // show password
+            llPersonPhysical.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivTPersonPhysical);
+            isllPersonPhysicalChecked = true;
+
+            mcvPersonLostPlace.setVisibility(View.VISIBLE);
+            llPersonLostPlace.setVisibility(View.VISIBLE);
+            Glide.with(this).load(R.drawable.ic_drop_up).into(ivTPersonLostPlace);
+            isllPersonLostPlaceChecked = false;
+
+        } else {
+            // hide password
+            llPersonLostPlace.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivTPersonLostPlace);
+            isllPersonLostPlaceChecked = true;
         }
 
     }
@@ -257,7 +373,7 @@ public class UnknownManActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    @OnClick(R.id.btnNext3)
+    @OnClick(R.id.btnNext5)
     public void btnNext2() {
         llInput.setVisibility(View.GONE);
         mcvReport.setVisibility(View.VISIBLE);
@@ -418,5 +534,66 @@ public class UnknownManActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
+    }
+
+
+    //TIME AND dATE
+    @VisibleForTesting
+    void showDate(int year, int monthOfYear, int dayOfMonth, int spinnerTheme) {
+        new SpinnerDatePickerDialogBuilder()
+                .context(this)
+                .callback(UnknownManActivity.this)
+                .spinnerTheme(spinnerTheme)
+                .defaultDate(year, monthOfYear, dayOfMonth)
+                .showTitle(true)
+                .build()
+                .show();
+    }
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        Calendar calendar = new GregorianCalendar(year, monthOfYear, dayOfMonth);
+        etVehicleDate.setText(formatter.format(calendar.getTime()));
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+    @OnClick(R.id.etVehicleTime)
+    public void etVehicleTime() {
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        int second = mcurrentTime.get(Calendar.SECOND);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                String status = "AM";
+
+                if(hour > 11)
+                {
+                    // If the hour is greater than or equal to 12
+                    // Then the current AM PM status is PM
+                    status = "PM";
+                }
+
+                // Initialize a new variable to hold 12 hour format hour value
+                int hour_of_12_hour_format;
+
+                if(hour > 11){
+
+                    // If the hour is greater than or equal to 12
+                    // Then we subtract 12 from the hour to make it 12 hour format time
+                    hour_of_12_hour_format = hour - 12;
+                }
+                else {
+                    hour_of_12_hour_format = hour;
+                }
+                etVehicleTime.setText(selectedHour + ":" + selectedMinute+ " "+status);
+            }
+        }, hour, minute, true);//Yes 24 hour time
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
     }
 }
