@@ -4,6 +4,7 @@ import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
@@ -29,6 +30,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
+import com.opus_bd.lostandfound.Adapter.CustomAdapter;
+import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
@@ -42,8 +45,13 @@ import com.tsongkha.spinnerdatepicker.DatePickerDialog;
 import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -132,7 +140,8 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     @BindView(R.id.spnOcupation)
     Spinner spnOcupation;
     @BindView(R.id.spnMaritalStatus)
-    Spinner spnMaritalStatus;
+    Spinner spnMaritalStatus;    @BindView(R.id.spnColor1)
+    Spinner spnColor1;
     @BindView(R.id.etEye)
     EditText etEye;
     @BindView(R.id.etNose)
@@ -181,6 +190,11 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     //time picker
     int mHour, mMin, mSec;
 
+    //Color List
+
+    List<String> ColorName;
+    List<String> ColorCode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -195,7 +209,23 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         mcvPersonLostPlace.setVisibility(View.GONE);
         //date picker
         initializeVariables();
+
+
+        //Color
+        initializeColor();
+
+
+
     }
+    //Color
+    public void initializeColor(){
+        ColorName= new ArrayList<String>(R.array.ColorName);
+        ColorCode= new ArrayList<String>(R.array.ColorCode);
+
+        CustomColorAdapter customAdapter=new CustomColorAdapter(getApplicationContext(),ColorName,ColorCode);
+        spnColor1.setAdapter(customAdapter);
+    }
+
 //Date Picker
 
     private void initializeVariables() {
@@ -211,7 +241,6 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
                 showDate(mYear,mMonth,mDay,R.style.DatePickerSpinner);
             }
         });
-
 
 
         mHour = calendar.get(Calendar.HOUR);
