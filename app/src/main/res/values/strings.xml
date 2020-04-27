@@ -233,7 +233,7 @@
         <item>Slim</item>
     </string-array>
 
-    <string name="select_option">Select One</string>
+    <string name="select_option">Select List</string>
 
 
     <string name="address_type">

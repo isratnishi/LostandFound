@@ -1187,7 +1187,6 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     public void FileUpload() {
 
-
         //on upload button Click
         if (selectedFilePath != null) {
             dialog = ProgressDialog.show(VehicleEntryActivity.this, "", "Uploading File...", true);
