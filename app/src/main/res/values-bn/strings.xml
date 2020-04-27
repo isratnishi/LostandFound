@@ -94,6 +94,7 @@
     <string name="blood_group">রক্তের গ্রুপ</string>
 
     <string-array name="purpose_of_visit">
+        <item>@string/select_option</item>
         <item>ভ্রমণের উদ্দেশ্য</item>
 
         <item> ট্যুরিস্ট ভিসা </item>
@@ -159,6 +160,7 @@
     </string-array>
 
     <string-array name="doc_type">
+        <item>@string/select_option</item>
         <item>জাতীয় পরিচয় পত্র</item>
         <item>জন্ম নিবন্ধন </item>
         <item>পাসপোর্ট </item>
@@ -173,6 +175,7 @@
 
 
     <string-array name="array_beard">
+        <item>@string/select_option</item>
         <item>লম্বা</item>
         <item>ছোট</item>
         <item>পাকা</item>
@@ -182,6 +185,7 @@
     </string-array>
 
     <string-array name="array_body_color">
+        <item>@string/select_option</item>
         <item>কাল</item>
         <item>উজ্জ্বল</item>
         <item>তামাটে</item>
@@ -190,6 +194,7 @@
     </string-array>
 
     <string-array name="array_body_structure">
+        <item>@string/select_option</item>
         <item>লম্বা</item>
         <item>হালকা পাতলা</item>
         <item>বেটে</item>
@@ -198,6 +203,7 @@
     </string-array>
 
     <string-array name="array_body_Chin">
+        <item>@string/select_option</item>
         <item>লম্বাটে</item>
         <item>গোলাকার</item>
         <item>থ্যাতলানো</item>
