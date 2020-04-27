@@ -907,9 +907,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     public void addMetroAreaSpinnerData(final List<MetroAreaModel> body) {
         List<String> colorList = new ArrayList<>();
-        colorList.add(0,selectOne);
+        //colorList.add(0,selectOne);
         for (int i = 0; i < body.size(); i++) {
-            colorList.add(i+1,body.get(i).getAreaName());
+            colorList.add(body.get(i).getAreaName());
         }
 
 
@@ -919,7 +919,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         spnRegNoName1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               if (i >= 1) {
+               if (i >= 0) {
                     SELECTED_REGNO_1 = body.get(i).getAreaName();
                 } else {
                    SELECTED_REGNO_1 = "";
@@ -963,9 +963,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     public void addRegistrationLevelModelSpinnerData(final List<RegistrationLevelModel> body) {
 
         List<String> colorList = new ArrayList<>();
-        colorList.add(0,selectOne);
+//        colorList.add(0,selectOne);
         for (int i = 0; i < body.size(); i++) {
-            colorList.add(i+1,body.get(i).getLevelName());
+            colorList.add(body.get(i).getLevelName());
         }
 
 
@@ -975,7 +975,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         spnRegNoName2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               if (i >= 1) {
+               if (i >= 0) {
                     SELECTED_REGNO_2 = body.get(i).getLevelName();
                 } else {
                    SELECTED_REGNO_2 = "";

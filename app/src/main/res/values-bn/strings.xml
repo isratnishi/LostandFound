@@ -116,7 +116,7 @@
     <string name="vehicleRegiNo">রেজিস্ট্রেশন নং</string>
     <string name="engineNo">ইঞ্জিন নং</string>
     <string name="chesisNo">চেসিস নং</string>
-    <string name="ccNo">সিসি নং</string>
+    <string name="ccNo">সিসি</string>
     <string name="madeIn">তৈরির দেশ</string>
     <string name="madeDate">উৎপাদন তারিখ</string>
 
