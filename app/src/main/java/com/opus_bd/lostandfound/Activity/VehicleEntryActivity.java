@@ -205,7 +205,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     TextView etBlueBook;
 
     String[] metropoliton, regipartTwo;
-
+    char[] engNoArray,chesisNoArray;
     //Address List
     ArrayList<Division> divisionArrayList = new ArrayList<>();
     ArrayList<District> districtArrayList = new ArrayList<>();
@@ -305,7 +305,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     private GridView gvGallery, gvGallery1;
     private GalleryAdapter galleryAdapter;
 
-    String selectOne;
+    String selectOne,engNoString,chesisNoString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -356,25 +356,66 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             }
         });
 
-
         etEngineNo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // if user is typing string one character at a time
-                if (count == 1) {
-                    // auto insert dashes while user typing their ssn
-                    if (start == 1 || start == 4|| start == 7|| start == 10|| start == 13|| start == 16|| start == 19) {
-                        etEngineNo.setText(etEngineNo.getText() + "-");
-                        etEngineNo.setSelection(etEngineNo.getText().length());
+
+                if(etEngineNo.getText().length()==3 ||etEngineNo.getText().length()==6 ||etEngineNo.getText().length()==9 ||etEngineNo.getText().length()==12 ||etEngineNo.getText().length()==15 ||etEngineNo.getText().length()==18 ||etEngineNo.getText().length()==21 ||etEngineNo.getText().length()==24 ||etEngineNo.getText().length()==27)
+                {
+                    engNoString=etEngineNo.getText().toString()+"-";
+                    char c=engNoString.charAt(engNoString.length()-2);
+
+                    if(c!='-')
+                    {
+                        engNoArray = engNoString.toCharArray();
+                        engNoArray[engNoString.length()-2]=engNoArray[engNoString.length()-1];
+                        engNoArray[engNoString.length()-1]=c;
+
+                        //code to convert charArray back to String..
+                        engNoString=new String(engNoArray);
+                        etEngineNo.setText(engNoString);
+                        etEngineNo.setSelection(engNoString.length());
+                        engNoString=null;
                     }
                 }
             }
+            @Override
+            public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        etChesisNo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if(etChesisNo.getText().length()==3 ||etChesisNo.getText().length()==6 ||etChesisNo.getText().length()==9 ||etChesisNo.getText().length()==12 ||etChesisNo.getText().length()==15 ||etChesisNo.getText().length()==18 ||etChesisNo.getText().length()==21 ||etChesisNo.getText().length()==24 ||etChesisNo.getText().length()==27)
+                {
+                    chesisNoString=etChesisNo.getText().toString()+"-";
+                    char c=chesisNoString.charAt(chesisNoString.length()-2);
+
+                    if(c!='-')
+                    {
+                        chesisNoArray = chesisNoString.toCharArray();
+                        chesisNoArray[chesisNoString.length()-2]=chesisNoArray[chesisNoString.length()-1];
+                        chesisNoArray[chesisNoString.length()-1]=c;
+
+                        //code to convert charArray back to String..
+                        chesisNoString=new String(chesisNoArray);
+                        etChesisNo.setText(chesisNoString);
+                        etChesisNo.setSelection(chesisNoString.length());
+                        chesisNoString=null;
+                    }
+                }
+            }
             @Override
             public void afterTextChanged(Editable s) {
 

@@ -190,6 +190,8 @@
                                     <EditText
                                         android:id="@+id/etEngineNo"
                                         style="@style/InformationEntryEditText"
+                                        android:maxLength="29"
+                                        android:inputType="textCapCharacters"
                                         android:hint="@string/engineNo" />
                                 </TableRow>
 
@@ -209,6 +211,8 @@
                                     <EditText
                                         android:id="@+id/etChesisNo"
                                         style="@style/InformationEntryEditText"
+                                        android:maxLength="29"
+                                        android:inputType="textCapCharacters"
                                         android:hint="@string/chesisNo" />
                                 </TableRow>
 
