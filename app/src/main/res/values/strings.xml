@@ -478,6 +478,7 @@
     <string name="deadbody_condition">DeadBody Condition</string>
     <string name="date_of_death">Date of death</string>
     <string name="deadbody_location">The location of the corpse</string>
+    <string name="physical_details">Physical Details</string>
 
 
     <string-array name="address_type">

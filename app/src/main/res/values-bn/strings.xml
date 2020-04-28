@@ -457,6 +457,7 @@
     <string name="image_type">ফটোর ধরণ</string>
     <string name="image_name">ফটোর নাম</string>
     <string name="deadbody_location">মৃতদেহের প্রাপ্তিস্থান </string>
+    <string name="physical_details">দৈহিক বিবরণ যোগ</string>
     <string-array name="ImageType">
     <item>@string/select_option</item>
     <item>Right Side</item>
