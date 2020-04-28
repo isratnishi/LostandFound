@@ -142,14 +142,42 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     @BindView(R.id.spnMaritalStatus)
     Spinner spnMaritalStatus;    @BindView(R.id.spnColor1)
     Spinner spnColor1;
-    @BindView(R.id.etEye)
-    EditText etEye;
-    @BindView(R.id.etNose)
-    EditText etNose;
-    @BindView(R.id.etHair)
-    EditText etHair;
-    @BindView(R.id.etHeight)
-    EditText etHeight;
+    @BindView(R.id.spnEye)
+    Spinner spnEye;
+    @BindView(R.id.spnNose)
+    Spinner spnNose;
+    @BindView(R.id.spnHair)
+    Spinner spnHair;
+    @BindView(R.id.spnForhead)
+    Spinner spnForhead;
+    @BindView(R.id.etWeight)
+    EditText etWeight;
+    @BindView(R.id.spnBodyStucture)
+    Spinner spnBodyStucture;
+    @BindView(R.id.spnFaceShape)
+    Spinner spnFaceShape;
+    @BindView(R.id.spnChin)
+    Spinner spnChin;
+    @BindView(R.id.spnSkinColor)
+    Spinner spnSkinColor;
+    @BindView(R.id.spnMustache)
+    Spinner spnMustache;
+    @BindView(R.id.spnEar)
+    Spinner spnEar;
+    @BindView(R.id.spnNeck)
+    Spinner spnNeck;
+    @BindView(R.id.spnHeight_feet)
+    Spinner spnHeight_feet;
+    @BindView(R.id.spnHeight_Inch)
+    Spinner spnHeight_Inch;
+
+    @BindView(R.id.etIdentityficationMark)
+    EditText etIdentityficationMark;
+    @BindView(R.id.etTeeth)
+    EditText etTeeth;
+    @BindView(R.id.etSpecial_physical_description)
+    EditText etSpecial_physical_description;
+
     @BindView(R.id.etColor)
     EditText etColor;
 
@@ -417,10 +445,10 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
             tvMaritalStatus.setText(spnMaritalStatus.getSelectedItem().toString());
             tvOcupation.setText(spnOcupation.getSelectedItem().toString());
 
-            tvHair.setText(etHair.getText().toString());
-            tvNose.setText(etNose.getText().toString());
-            tvHeight.setText(etHeight.getText().toString());
-            tvEye.setText(etEye.getText().toString());
+            tvHair.setText(spnHair.getSelectedItem().toString());
+            tvNose.setText(spnNose.getSelectedItem().toString());
+            tvHeight.setText(spnHeight_feet.getSelectedItem().toString());
+            tvEye.setText(spnEye.getSelectedItem().toString());
             tvColor.setText(etColor.getText().toString());
 
 

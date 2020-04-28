@@ -129,7 +129,6 @@
     <string name="tax_token">ট্যাক্স টোকেন</string>
     <string name="fitness_certificate">ফিটনেস সার্টিফিকেট</string>
     <string name="image">ছবি</string>
-    <string name="eye">চোখ</string>
 
     <string name="select_list">Select List</string>
 
@@ -293,6 +292,16 @@
         <item>ফাঁসি</item>
     </string-array>
 
+    <string-array name="array_ear">
+        <item>@string/select_option</item>
+        <item>প্রশস্থ</item>
+        <item>লম্বা</item>
+        <item>খাটো</item>
+        <item>লতি কাঁটা</item>
+        <item>কুলার মতো</item>
+        <item>গোলাকার</item>
+    </string-array>
+
     <string-array name="array_eye">
         <item>@string/select_option</item>
         <item>কোটরাগত</item>
@@ -431,6 +440,31 @@
         <item>পাসপোর্ট</item>
         <item>অন্যান্য</item>
         <item>মোবাইল</item>
+    </string-array>
+
+    <string-array name="array_height_feet">
+        <item>@string/select_option</item>
+        <item>৩ ফুট</item>
+        <item>৪ ফুট</item>
+        <item>৫ ফুট</item>
+        <item>৬ ফুট</item>
+        <item>৭ ফুট</item>
+        <item>৮ ফুট</item>
+    </string-array>
+
+    <string-array name="array_height_inch">
+        <item>@string/select_option</item>
+        <item>১ ইঞ্চি</item>
+        <item>২ ইঞ্চি</item>
+        <item>৩ ইঞ্চি</item>
+        <item>৪ ইঞ্চি</item>
+        <item>৫ ইঞ্চি</item>
+        <item>৬ ইঞ্চি</item>
+        <item>৭ ইঞ্চি</item>
+        <item>৮ ইঞ্চি</item>
+        <item>৯ ইঞ্চি</item>
+        <item>১০ ইঞ্চি</item>
+        <item>১১ ইঞ্চি</item>
     </string-array>
 
     <string-array name="array_measurement_type">

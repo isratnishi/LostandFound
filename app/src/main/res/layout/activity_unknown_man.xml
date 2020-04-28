@@ -315,23 +315,23 @@
                                         android:entries="@array/religion" />
                                 </TableRow>
 
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+<!--                                <TableRow-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="wrap_content">-->
 
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="@string/gender" />
+<!--                                    <TextView-->
+<!--                                        style="@style/InformationEntryTextView"-->
+<!--                                        android:text="@string/gender" />-->
 
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
+<!--                                    <TextView-->
+<!--                                        style="@style/InformationEntryTextViewColon"-->
+<!--                                        android:text=":" />-->
 
-                                    <Spinner
-                                        android:id="@+id/spnGender"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/gender" />
-                                </TableRow>
+<!--                                    <Spinner-->
+<!--                                        android:id="@+id/spnGender"-->
+<!--                                        style="@style/InformationEntryEditText"-->
+<!--                                        android:entries="@array/gender" />-->
+<!--                                </TableRow>-->
 
 
                                 <TableRow
@@ -663,12 +663,9 @@
                                         android:text=":" />
                                     <Spinner
                                         android:id="@+id/spnEye"
-                                        style="@style/InformationEntryEditText"/>
-
-                                    <EditText
-                                        android:id="@+id/etEye"
                                         style="@style/InformationEntryEditText"
-                                        />
+                                        android:entries="@array/array_eye" />
+
                                 </TableRow>
 
                                 <TableRow
@@ -677,20 +674,17 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Color" />
+                                        android:text="@string/nose" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
 
                                     <Spinner
-                                        android:id="@+id/spnColor"
+                                        android:id="@+id/spnNose"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_body_color" />
-                                    <!--                                    <EditText-->
-                                    <!--                                        android:id="@+id/etColor"-->
-                                    <!--                                        style="@style/InformationEntryEditText"-->
-                                    <!--                                        />-->
+                                        android:entries="@array/array_nose" />
+
                                 </TableRow>
 
                                 <TableRow
@@ -699,17 +693,17 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Hair" />
+                                        android:text="@string/hair" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
 
 
-                                    <EditText
-                                        android:id="@+id/etHair"
+                                    <Spinner
+                                        android:id="@+id/spnHair"
                                         style="@style/InformationEntryEditText"
-                                        />
+                                        android:entries="@array/array_hair" />
                                 </TableRow>
 
                                 <TableRow
@@ -718,7 +712,26 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Beard" />
+                                        android:text="@string/forehead" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+
+                                    <Spinner
+                                        android:id="@+id/spnForhead"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_forehead" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/beard" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -736,7 +749,43 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Body Structure" />
+                                        android:text="@string/weight_kg" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etWeight"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/gender" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnGender"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_gender" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/physical_constitution" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -754,7 +803,25 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Chin" />
+                                        android:text="@string/shape_of_face" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnFaceShape"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_face_shape" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/chin" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -763,7 +830,7 @@
                                     <Spinner
                                         android:id="@+id/spnChin"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_body_structure" />
+                                        android:entries="@array/array_body_Chin" />
                                 </TableRow>
 
 
@@ -773,14 +840,128 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Nose" />
+                                        android:text="@string/skin_color" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnSkinColor"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_body_color" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/mustache" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnMustache"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_moustache" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/ears" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnEar"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_ear" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/neck" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnNeck"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_neck" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/feet" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnHeight_feet"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_height_feet" />
+
+                                </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/inches" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnHeight_Inch"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_height_inch" />
+
+                                </TableRow>
+
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/identification_mark" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
 
                                     <EditText
-                                        android:id="@+id/etNose"
+                                        android:id="@+id/etIdentityficationMark"
                                         style="@style/InformationEntryEditText"
                                         />
                                 </TableRow>
@@ -792,14 +973,14 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Height" />
+                                        android:text="@string/description_of_teeth" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
 
                                     <EditText
-                                        android:id="@+id/etHeight"
+                                        android:id="@+id/etTeeth"
                                         style="@style/InformationEntryEditText"
                                         />
                                 </TableRow>
@@ -810,7 +991,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Color" />
+                                        android:text="@string/special_physical_description" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -818,7 +999,7 @@
 
 
                                     <EditText
-                                        android:id="@+id/etColor"
+                                        android:id="@+id/etSpecial_physical_description"
                                         style="@style/InformationEntryEditText"
                                         />
                                 </TableRow>

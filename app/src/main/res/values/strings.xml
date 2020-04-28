@@ -145,7 +145,6 @@
     <string name="country">Country</string>
     <string name="one_line_address">One Line Address</string>
     <string name="address_type">Address Type</string>
-    <string name="eye">চোখ</string>
 
     <string-array name="purpose_of_visit">
         <item>@string/select_option</item>
@@ -325,7 +324,15 @@
         <item> Paralysis </item>
         <item> Hang </item>
     </string-array>
-
+    <string-array name="array_ear">
+        <item>@string/select_option</item>
+        <item>Width</item>
+        <item>Long</item>
+        <item>Short</item>
+        <item>Loti kata</item>
+        <item>Kula</item>
+        <item>Round</item>
+    </string-array>
     <string-array name="array_eye">
         <item>@string/select_option</item>
         <item>Inside</item>
@@ -453,6 +460,31 @@
         <item>পাসপোর্ট</item>
         <item>অন্যান্য</item>
         <item>Mobile</item>
+    </string-array>
+
+    <string-array name="array_height_feet">
+        <item>@string/select_option</item>
+        <item>3 feet</item>
+        <item>4 feet</item>
+        <item>5 feet</item>
+        <item>6 feet</item>
+        <item>7 feet</item>
+        <item>8 feet</item>
+    </string-array>
+
+    <string-array name="array_height_inch">
+        <item>@string/select_option</item>
+        <item>1 Inch</item>
+        <item>2 Inch</item>
+        <item>3 Inch</item>
+        <item>4 Inch</item>
+        <item>5 Inch</item>
+        <item>6 Inch</item>
+        <item>7 Inch</item>
+        <item>8 Inch</item>
+        <item>9 Inch</item>
+        <item>10 Inch</item>
+        <item>11 Inch</item>
     </string-array>
 
     <string-array name="array_measurement_type">
