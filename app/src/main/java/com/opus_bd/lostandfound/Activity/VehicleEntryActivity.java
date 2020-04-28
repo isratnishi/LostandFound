@@ -272,8 +272,8 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     @BindView(R.id.tvVehicleTime)
     TextView tvVehicleTime;
 
-    @BindView(R.id.tvSPDivision)
-    TextView tvSPDivision;
+//    @BindView(R.id.tvSPDivision)
+//    TextView tvSPDivision;
 
     @BindView(R.id.tvSPDistrict)
     TextView tvSPDistrict;
@@ -365,7 +365,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
                 if(etEngineNo.getText().length()==3 ||etEngineNo.getText().length()==6 ||etEngineNo.getText().length()==9 ||etEngineNo.getText().length()==12 ||etEngineNo.getText().length()==15 ||etEngineNo.getText().length()==18 ||etEngineNo.getText().length()==21 ||etEngineNo.getText().length()==24 ||etEngineNo.getText().length()==27)
                 {
-                    engNoString=etEngineNo.getText().toString()+"-";
+                    engNoString=etEngineNo.getText().toString().toUpperCase()+"-";
                     char c=engNoString.charAt(engNoString.length()-2);
 
                     if(c!='-')
@@ -398,7 +398,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
                 if(etChesisNo.getText().length()==3 ||etChesisNo.getText().length()==6 ||etChesisNo.getText().length()==9 ||etChesisNo.getText().length()==12 ||etChesisNo.getText().length()==15 ||etChesisNo.getText().length()==18 ||etChesisNo.getText().length()==21 ||etChesisNo.getText().length()==24 ||etChesisNo.getText().length()==27)
                 {
-                    chesisNoString=etChesisNo.getText().toString()+"-";
+                    chesisNoString=etChesisNo.getText().toString().toUpperCase()+"-";
                     char c=chesisNoString.charAt(chesisNoString.length()-2);
 
                     if(c!='-')
@@ -540,17 +540,28 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             tvVehicleType.setText(spnVehicleType.getSelectedItem().toString());
             tvVehicleDate.setText(etVehicleDate.getText().toString());
             tvModel.setText(etModel.getText().toString());
-            tvMadeBy.setText(spnMadeBy.getSelectedItem().toString());
+            //tvMadeBy.setText(spnMadeBy.getSelectedItem().toString());
             tvMadeIn.setText(ccp.getSelectedCountryName());
             tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
             tvAddressDetails.setText(etAddressDetails.getText().toString());
             tvRegNoName.setText(spnRegNoName1.getSelectedItem().toString() + " " + spnRegNoName2.getSelectedItem().toString()
                     + " " + etRegNoName.getText().toString());
-
-
-
+            tvEngineNo.setText(etEngineNo.getText().toString());
+            tvChesisNo.setText(etChesisNo.getText().toString());
+            tvCCNo.setText(etCCNo.getText().toString());
+            tvMadeIn.setText(ccp.getSelectedCountryName());
+            tvMadeDate.setText(etMadeDate.getText().toString());
+            tvColor.setText(spnColor.getSelectedItem().toString());
+            tvIdentitySign.setText(etIdentitySign.getText().toString());
+            tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
+            tvSPThana.setText(spnSPThana.getSelectedItem().toString());
+            tvAddressDetails.setText(etAddressDetails.getText().toString());
+            tvVehicleDate.setText(etVehicleDate.getText().toString());
+            tvVehicleTime.setText(etVehicleTime.getText().toString());
+            //ivrPhoto.setImageResource(ivVehicleAttachment.getSourceLayoutResId());
+            Log.i("reportinfo", "engineno: "+etEngineNo.getText().toString()+",chesisno: "+etChesisNo.getText().toString()+",date: "+etMadeDate.getText().toString()+"");
         } catch (Exception e) {
-
+            Log.e("reportinfo", "btnNext4: ",e );
         }
 
     }
