@@ -145,7 +145,7 @@
     <string name="country">Country</string>
     <string name="one_line_address">One Line Address</string>
     <string name="address_type">Address Type</string>
-
+    <string name="eye">চোখ</string>
 
     <string-array name="purpose_of_visit">
         <item>@string/select_option</item>
