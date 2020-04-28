@@ -181,7 +181,7 @@
     <string name="notification">প্রজ্ঞাপন</string>
     <string name="insurance_paper">বীমা কাগজ</string>
     <string name="person_information">ব্যক্তির প্রাথমিক তথ্য</string>
-    <string name="age">Age</string>
+    <string name="age">আনুমানিক বয়স</string>
     <string name="number_type">নম্বরের প্রকার</string>
     <string name="person_address">ব্যক্তির ঠিকানা</string>
     <string name="country">Country</string>
