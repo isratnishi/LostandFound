@@ -212,19 +212,19 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
 
         //Color
-        initializeColor();
+       // initializeColor();
 
 
 
     }
     //Color
-    public void initializeColor(){
+   /* public void initializeColor(){
         ColorName= new ArrayList<String>(R.array.ColorName);
         ColorCode= new ArrayList<String>(R.array.ColorCode);
 
         CustomColorAdapter customAdapter=new CustomColorAdapter(getApplicationContext(),ColorName,ColorCode);
         spnColor1.setAdapter(customAdapter);
-    }
+    }*/
 
 //Date Picker
 

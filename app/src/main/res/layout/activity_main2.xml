@@ -277,17 +277,13 @@
                                     android:gravity="center"
                                     android:orientation="vertical">
 
-                                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                    <ImageView
                                        android:id="@+id/fablost"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
+                                        android:layout_width="45dp"
+                                        android:layout_height="45dp"
                                         android:clickable="true"
-                                        android:src="@drawable/lose"
-                                        android:tint="@android:color/white"
-                                        app:backgroundTint="@color/yellow_600"
-                                        app:elevation="0dp"
-                                        app:fabSize="mini"
-                                        app:rippleColor="@android:color/white" />
+                                        android:src="@drawable/ic_lost"
+                                 />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -305,16 +301,11 @@
                                     android:gravity="center"
                                     android:orientation="vertical">
 
-                                    <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
+                                    <ImageView
+                                        android:layout_width="45dp"
+                                        android:layout_height="45dp"
                                         android:clickable="true"
-                                        android:src="@drawable/found"
-                                        android:tint="@android:color/white"
-                                        app:backgroundTint="@color/purple_400"
-                                        app:elevation="0dp"
-                                        app:fabSize="mini"
-                                        app:rippleColor="@android:color/white" />
+                                        android:src="@drawable/ic_found"/>
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -411,16 +402,12 @@
                                     android:gravity="center"
                                     android:orientation="vertical">
 
-                                    <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:scaleType="fitXY"
                                         android:clickable="true"
-                                        android:src="@drawable/lose"
-                                        android:tint="@android:color/white"
-                                        app:backgroundTint="@color/pink_600"
-                                        app:elevation="0dp"
-                                        app:fabSize="mini"
-                                        app:rippleColor="@android:color/white" />
+                                        android:src="@drawable/ic_vehicle" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
