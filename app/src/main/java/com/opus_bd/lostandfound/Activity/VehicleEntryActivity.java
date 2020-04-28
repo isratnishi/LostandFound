@@ -40,6 +40,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 import com.hbb20.CountryCodePicker;
 import com.opus_bd.lostandfound.Adapter.CustomAdapter;
+import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
 import com.opus_bd.lostandfound.Adapter.CustomSpinnerAdapter;
 import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
@@ -293,9 +294,6 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     TextView tvColor;
     @BindView(R.id.tvBlueBook)
     TextView tvBlueBook;
-
-//    @BindView(R.id.ivrPhoto)
-//    ImageView ivrPhoto;
 
 //Multiple Image add
 
@@ -855,15 +853,17 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     public void addColorSpinnerData(final List<Colors> body) {
         List<String> colorList = new ArrayList<>();
+        List<String> colorCode = new ArrayList<>();
         colorList.add(0,selectOne);
+        colorCode.add(0,"#FFFFFF");
         for (int i = 0; i < body.size(); i++) {
-            colorList.add(body.get(i).getColorName());
+            colorList.add(i+1,(body.get(i).getColorName()+" ("+body.get(i).getColorNameBn()+")"));
+            colorCode.add(i+1,body.get(i).getColorCode());
         }
 
 
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, colorList);
-        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnColor.setAdapter(dataAdapter2);
+        CustomColorAdapter customAdapter=new CustomColorAdapter(getApplicationContext(),colorList,colorCode);
+        spnColor.setAdapter(customAdapter);
         spnColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -1032,18 +1032,16 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         spnSPDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
                 try {
                     if (i >= 1) {
                         SELECTED_DISTRICT_ID = body.get(i).getId();
-
-                        getAllThana(body.get(i-1).getId());
+                        getAllThana(body.get(i).getId());
                     } else {
                         SELECTED_DISTRICT_ID = 0;
                     }
                 } catch (Exception e) {
                     Utilities.showLogcatMessage(" " + e.toString());
-                    Log.i("thana", "Exception: "+e.toString()+"");
+
                 }
             }
 
@@ -1055,7 +1053,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     }
 
     public void getAllThana(int id) {
-        Log.i("thana", "getAllThana: "+id+"");
+
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
         Call<List<Thana>> thana = retrofitService.GetThanaByDistrictId(id);
         thana.enqueue(new Callback<List<Thana>>() {
@@ -1081,13 +1079,12 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
 
     public void addThanaSpinnerData(final List<Thana> body) {
-        Log.i("thana", "addThanaSpinnerData: "+body.size()+"");
         List<String> thanaList = new ArrayList<>();
         thanaList.add(0,selectOne);
         for (int i = 0; i < body.size(); i++) {
             thanaList.add(i+1,body.get(i).getThanaName());
         }
-        Log.i("thana", "onResponse: "+thanaList+"");
+
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, thanaList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnSPThana.setAdapter(dataAdapter2);

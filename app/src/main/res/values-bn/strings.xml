@@ -70,6 +70,7 @@
     <string name="status">স্টেটাস</string>
     <string name="report">রিপোর্ট</string>
     <string name="doc_type">ডকুমেন্ট ধরণ</string>
+    <string name="doc_type_if_found">ডকুমেন্ট ধরণ (যদি পাওয়া যায়)</string>
 
 
     <string name="entry_code">আপনার এন্ট্রি সম্পূর্ণ হয়েছে নিচের কোডটি সংরক্ষণ করুন</string>
@@ -80,8 +81,11 @@
     <string name="thana">থানা</string>
     <string name="village">গ্রাম </string>
     <string name="name">নাম</string>
+    <string name="name_if_found">নাম (যদি পাওয়া যায়)</string>
     <string name="father_s_name">পিতার নাম</string>
+    <string name="father_s_name_if_found">পিতার নাম (যদি পাওয়া যায়)</string>
     <string name="husband_wife_name">স্বামী / স্ত্রীর নাম</string>
+    <string name="husband_wife_name_if_found">স্বামী / স্ত্রীর নাম  (যদি পাওয়া যায়)</string>
     <string name="religion">ধর্ম</string>
     <string name="occupation">পেশা</string>
     <string name="blood_group">রক্তের গ্রুপ</string>
@@ -177,11 +181,13 @@
 
     <string name="gender">লিঙ্গ</string>
     <string name="doc_number">ডকুমেন্ট নম্বর</string>
+    <string name="doc_number_if_found">ডকুমেন্ট নম্বর (যদি পাওয়া যায়)</string>
     <string name="applicant">আবেদনকারী</string>
     <string name="notification">প্রজ্ঞাপন</string>
     <string name="insurance_paper">বীমা কাগজ</string>
     <string name="person_information">ব্যক্তির প্রাথমিক তথ্য</string>
-    <string name="age">আনুমানিক বয়স</string>
+    <string name="age">বয়স </string>
+    <string name="approximate_age">আনুমানিক বয়স</string>
     <string name="number_type">নম্বরের প্রকার</string>
     <string name="person_address">ব্যক্তির ঠিকানা</string>
     <string name="country">Country</string>
@@ -446,5 +452,16 @@
         <item>ইঞ্জিন নং</item>
         <item>চেসিস নং</item>
     </string>
-
+    <string name="deadbody_condition">মৃতদেহের অবস্থা</string>
+    <string name="date_of_death">মৃত্যুর তারিখ</string>
+    <string name="image_type">ফটোর ধরণ</string>
+    <string name="image_name">ফটোর নাম</string>
+    <string name="deadbody_location">মৃতদেহের প্রাপ্তিস্থান </string>
+    <string name="physical_details">দৈহিক বিবরণ যোগ</string>
+    <string-array name="ImageType">
+    <item>@string/select_option</item>
+    <item>Right Side</item>
+    <item>Left Side</item>
+    <item>Front Side</item>
+        <item>Back Side</item></string-array>
 </resources>
