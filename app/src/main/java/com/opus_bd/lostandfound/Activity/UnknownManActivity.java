@@ -19,6 +19,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,6 +35,8 @@ import com.google.android.material.card.MaterialCardView;
 import com.opus_bd.lostandfound.Adapter.CustomAdapter;
 import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
+import com.opus_bd.lostandfound.Model.GlobalData.District;
+import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
@@ -121,16 +125,51 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     @BindView(R.id.ivPersonLostPlace)
     ImageView ivTPersonLostPlace;
 
+    boolean isllDressDescriptionChecked = true;
+    @BindView(R.id.mcvDressDescription)
+    MaterialCardView mcvDressDescription;
+
+    @BindView(R.id.llDressDescription)
+    LinearLayout llDressDescription;
+
+    @BindView(R.id.ivDressDescription)
+    ImageView ivDressDescription;
+
+    boolean isllllPersonPhotoesChecked = true;
+    @BindView(R.id.mcvPersonPhotoes)
+    MaterialCardView mcvPersonPhotoes;
+
+    @BindView(R.id.llPersonPhotoes)
+    LinearLayout llPersonPhotoes;
+
+    @BindView(R.id.ivPersonPhotoes)
+    ImageView ivPersonPhotoes;
 
     //input field
     @BindView(R.id.etName)
     EditText etName;
+    @BindView(R.id.tvName)
+    TextView tvName;
+
+    @BindView(R.id.etAge)
+    EditText etAge;
+    @BindView(R.id.tvAge)
+    EditText tvAge;
+
     @BindView(R.id.etFathersName)
     EditText etFathersName;
+    @BindView(R.id.tvFathersName)
+    TextView tvFathersName;
+
     @BindView(R.id.etSpouseName)
     EditText etSpouseName;
+    @BindView(R.id.tvSpouseName)
+    TextView tvSpouseName;
+
     @BindView(R.id.etNidNum)
     EditText etNidNum;
+    @BindView(R.id.tvNidNum)
+    TextView tvNidNum;
     @BindView(R.id.spnReligion)
     Spinner spnReligion;
     @BindView(R.id.spnGender)
@@ -140,7 +179,18 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     @BindView(R.id.spnOcupation)
     Spinner spnOcupation;
     @BindView(R.id.spnMaritalStatus)
-    Spinner spnMaritalStatus;    @BindView(R.id.spnColor1)
+    Spinner spnMaritalStatus;
+    @BindView(R.id.spnSPDistrict)
+    Spinner spnSPDistrict;
+    @BindView(R.id.spnSPThana)
+    Spinner spnSPThana;
+
+    @BindView(R.id.spnLostistrict)
+    Spinner spnLostistrict;
+    @BindView(R.id.spnLostThana)
+    Spinner spnLostThana;
+
+    @BindView(R.id.spnColor1)
     Spinner spnColor1;
     @BindView(R.id.spnEye)
     Spinner spnEye;
@@ -178,17 +228,9 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     @BindView(R.id.etSpecial_physical_description)
     EditText etSpecial_physical_description;
 
-    @BindView(R.id.etColor)
-    EditText etColor;
 
-    @BindView(R.id.tvName)
-    TextView tvName;
-    @BindView(R.id.tvFathersName)
-    TextView tvFathersName;
-    @BindView(R.id.tvSpouseName)
-    TextView tvSpouseName;
-    @BindView(R.id.tvNidNum)
-    TextView tvNidNum;
+
+
     @BindView(R.id.tvReligion)
     TextView tvReligion;
     @BindView(R.id.tvGender)
@@ -222,7 +264,13 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
     List<String> ColorName;
     List<String> ColorCode;
-
+    ArrayList<District> districtArrayList = new ArrayList<>();
+    ArrayList<Thana> thanaArrayList = new ArrayList<>();
+    public int SELECTED_DISTRICT_ID;
+    public int SELECTED_DISTRICT_ID_LP;
+    public int SELECTED_THANA_ID;
+    public int SELECTED_THANA_ID_LP;
+    String selectOne;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -235,10 +283,12 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         mcvPersonPhysical.setVisibility(View.GONE);
         mcvPersonAddress.setVisibility(View.GONE);
         mcvPersonLostPlace.setVisibility(View.GONE);
+        mcvDressDescription.setVisibility(View.GONE);
+        mcvPersonPhotoes.setVisibility(View.GONE);
         //date picker
         initializeVariables();
-
-
+        selectOne=getResources().getString(R.string.select_option);
+        getDistrict();
         //Color
        // initializeColor();
 
@@ -374,13 +424,57 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     }
 
 
-    @OnClick({R.id.ivPersonLostPlace, R.id.btnNext4})
-    public void ivTPersonLostPlace() {
-        if (isllPersonLostPlaceChecked) {
+    @OnClick({R.id.ivDressDescription, R.id.btnNext4})
+    public void ivDressDescription() {
+        if (isllDressDescriptionChecked) {
             // show password
             llPersonPhysical.setVisibility(View.GONE);
             Glide.with(this).load(R.drawable.ic_drop_down).into(ivTPersonPhysical);
             isllPersonPhysicalChecked = true;
+
+            mcvDressDescription.setVisibility(View.VISIBLE);
+            llDressDescription.setVisibility(View.VISIBLE);
+            Glide.with(this).load(R.drawable.ic_drop_up).into(ivDressDescription);
+            isllDressDescriptionChecked = false;
+
+        } else {
+            // hide password
+            llDressDescription.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivDressDescription);
+            isllDressDescriptionChecked = true;
+        }
+
+    }
+
+    @OnClick({R.id.ivPersonPhotoes, R.id.btnNextDressDes})
+    public void ivPersonPhotoes() {
+        if (isllllPersonPhotoesChecked) {
+            // show password
+            llDressDescription.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivDressDescription);
+            isllDressDescriptionChecked = true;
+
+            mcvPersonPhotoes.setVisibility(View.VISIBLE);
+            llPersonPhotoes.setVisibility(View.VISIBLE);
+            Glide.with(this).load(R.drawable.ic_drop_up).into(ivPersonPhotoes);
+            isllllPersonPhotoesChecked = false;
+
+        } else {
+            // hide password
+            llPersonPhotoes.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivPersonPhotoes);
+            isllllPersonPhotoesChecked = true;
+        }
+
+    }
+
+    @OnClick({R.id.ivPersonLostPlace, R.id.btnNextPhotoes})
+    public void ivTPersonLostPlace() {
+        if (isllPersonLostPlaceChecked) {
+            // show password
+            llPersonPhotoes.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivPersonPhotoes);
+            isllllPersonPhotoesChecked = true;
 
             mcvPersonLostPlace.setVisibility(View.VISIBLE);
             llPersonLostPlace.setVisibility(View.VISIBLE);
@@ -395,6 +489,8 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         }
 
     }
+
+
 
     public void customDialog() {
         final Dialog dialog = new Dialog(UnknownManActivity.this);
@@ -449,7 +545,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
             tvNose.setText(spnNose.getSelectedItem().toString());
             tvHeight.setText(spnHeight_feet.getSelectedItem().toString());
             tvEye.setText(spnEye.getSelectedItem().toString());
-            tvColor.setText(etColor.getText().toString());
+            //tvColor.setText(etColor.getText().toString());
 
 
         } catch (Exception e) {
@@ -592,6 +688,205 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         startActivity(intent);
 
     }
+
+    public void getDistrict( ) {
+
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<District>> divisions = retrofitService.getAllDistricts();
+        divisions.enqueue(new Callback<List<District>>() {
+            @Override
+            public void onResponse(Call<List<District>> call, Response<List<District>> response) {
+
+                if (response.body() != null) {
+
+                    districtArrayList.clear();
+                    districtArrayList.addAll(response.body());
+
+                    addDistrictSpinnerData(response.body());
+                    addDistrictSpinnerDataLP(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<District>> call, Throwable t) {
+                Toast.makeText(UnknownManActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void addDistrictSpinnerData(final List<District> body) {
+        List<String> districtList = new ArrayList<>();
+        districtList.add(0,selectOne);
+        for (int i = 0; i < body.size(); i++) {
+            districtList.add(i+1,body.get(i).getDistrictName());
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, districtList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnSPDistrict.setAdapter(dataAdapter2);
+        spnSPDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_DISTRICT_ID = body.get(i).getId();
+                        getAllThana(body.get(i).getId());
+                    } else {
+                        SELECTED_DISTRICT_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getAllThana(int id) {
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<Thana>> thana = retrofitService.GetThanaByDistrictId(id);
+        thana.enqueue(new Callback<List<Thana>>() {
+            @Override
+            public void onResponse(Call<List<Thana>> call, Response<List<Thana>> response) {
+
+                if (response.body() != null) {
+
+                    thanaArrayList.clear();
+                    thanaArrayList.addAll(response.body());
+
+                    addThanaSpinnerData(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Thana>> call, Throwable t) {
+                Toast.makeText(UnknownManActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+
+    public void addThanaSpinnerData(final List<Thana> body) {
+        List<String> thanaList = new ArrayList<>();
+        thanaList.add(0,selectOne);
+        for (int i = 0; i < body.size(); i++) {
+            thanaList.add(i+1,body.get(i).getThanaName());
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, thanaList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnSPThana.setAdapter(dataAdapter2);
+        spnSPThana.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 1) {
+                    SELECTED_THANA_ID = body.get(i).getId();
+                } else {
+                    SELECTED_THANA_ID = 0;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addDistrictSpinnerDataLP(final List<District> body) {
+        List<String> districtList = new ArrayList<>();
+        districtList.add(0,selectOne);
+        for (int i = 0; i < body.size(); i++) {
+            districtList.add(i+1,body.get(i).getDistrictName());
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, districtList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnLostistrict.setAdapter(dataAdapter2);
+        spnLostistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_DISTRICT_ID_LP = body.get(i).getId();
+                        getAllThanaLP(body.get(i).getId());
+                    } else {
+                        SELECTED_DISTRICT_ID_LP = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getAllThanaLP(int id) {
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<Thana>> thana = retrofitService.GetThanaByDistrictId(id);
+        thana.enqueue(new Callback<List<Thana>>() {
+            @Override
+            public void onResponse(Call<List<Thana>> call, Response<List<Thana>> response) {
+
+                if (response.body() != null) {
+
+                    thanaArrayList.clear();
+                    thanaArrayList.addAll(response.body());
+
+                    addThanaSpinnerDataLP(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Thana>> call, Throwable t) {
+                Toast.makeText(UnknownManActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void addThanaSpinnerDataLP(final List<Thana> body) {
+        List<String> thanaList = new ArrayList<>();
+        thanaList.add(0,selectOne);
+        for (int i = 0; i < body.size(); i++) {
+            thanaList.add(i+1,body.get(i).getThanaName());
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, thanaList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnLostThana.setAdapter(dataAdapter2);
+        spnLostThana.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 1) {
+                    SELECTED_THANA_ID_LP = body.get(i).getId();
+                } else {
+                    SELECTED_THANA_ID_LP = 0;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
 
 
     //TIME AND dATE

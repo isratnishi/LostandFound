@@ -530,7 +530,15 @@
     <string name="description_of_teeth">Description of teeth</string>
     <string name="special_physical_description">Special physical description</string>
     <string name="identification_mark">Identification mark</string>
-
+    <string name="dress_descrioption">Dress Descrioption</string>
+    <string name="dhead">Head</string>
+    <string name="dcolor">Color</string>
+    <string name="deye">Eye</string>
+    <string name="dthroat">In the throat</string>
+    <string name="dbody">In the body</string>
+    <string name="dwaist">In the waist</string>
+    <string name="dlegs">Legs</string>
+    <string name="person_identification_info">Person identification information</string>
 
     <string-array name="address_type">
         <item> @string/select_list </item>

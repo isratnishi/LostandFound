@@ -512,12 +512,23 @@
     <string name="description_of_teeth">দাঁতের বর্ণনা</string>
     <string name="special_physical_description">বিশেষ শারিরিক বর্ণনা</string>
     <string name="identification_mark">সনাক্তকারী চিহ্ন</string>
-    <string-array name="ImageType">
-    <item>@string/select_option</item>
-    <item>Right Side</item>
-    <item>Left Side</item>
-    <item>Front Side</item>
-        <item>Back Side</item></string-array>
+    <string name="dress_descrioption">পোশাকের বিবরণ</string>
+    <string name="dhead">মাথায়</string>
+    <string name="dcolor">রং</string>
+    <string name="deye">চোখে</string>
+    <string name="dthroat">গলায়</string>
+    <string name="dbody">দেহে</string>
+    <string name="dwaist">কোমরে</string>
+    <string name="dlegs">পায়ে</string>
+    <string name="person_identification_info">ব্যাক্তির সনাক্তকরণের তথ্য</string>
+
+    <string-array name="ImageType">s
+        <item>@string/select_option</item>
+        <item>Right Side</item>
+        <item>Left Side</item>
+        <item>Front Side</item>
+        <item>Back Side</item>
+    </string-array>
 
 
 
