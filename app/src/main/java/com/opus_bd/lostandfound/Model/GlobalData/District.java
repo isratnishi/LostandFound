@@ -22,9 +22,9 @@ public class District {
     @SerializedName("division")
     @Expose
     private Object division;
-    @SerializedName("id")
+    @SerializedName("Id")
     @Expose
-    private Integer id;
+    private Integer Id;
     @SerializedName("isDelete")
     @Expose
     private Integer isDelete;
@@ -90,11 +90,11 @@ public class District {
     }
 
     public Integer getId() {
-        return id;
+        return Id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer Id) {
+        this.Id = Id;
     }
 
     public Integer getIsDelete() {

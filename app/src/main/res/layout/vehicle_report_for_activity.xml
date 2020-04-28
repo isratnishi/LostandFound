@@ -325,6 +325,7 @@
                             android:id="@+id/tvPhoto"
                             style="@style/InformationEntryTextView"
                             android:hint="@string/photo" />
+
                     </TableRow>
 
 
@@ -496,23 +497,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+<!--                    <TableRow-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content">-->
 
-                        <TextView
-                            style="@style/InformationEntryTextView"
-                            android:text="@string/division" />
+<!--                        <TextView-->
+<!--                            style="@style/InformationEntryTextView"-->
+<!--                            android:text="@string/division" />-->
 
-                        <TextView
-                            style="@style/InformationEntryTextViewColon"
-                            android:text=":" />
+<!--                        <TextView-->
+<!--                            style="@style/InformationEntryTextViewColon"-->
+<!--                            android:text=":" />-->
 
-                        <TextView
-                            android:gravity="start"
-                            android:id="@+id/tvSPDivision"
-                            style="@style/InformationEntryTextView"/>
-                    </TableRow>
+<!--                        <TextView-->
+<!--                            android:gravity="start"-->
+<!--                            android:id="@+id/tvSPDivision"-->
+<!--                            style="@style/InformationEntryTextView"/>-->
+<!--                    </TableRow>-->
 
                     <TableRow
                         android:layout_width="match_parent"

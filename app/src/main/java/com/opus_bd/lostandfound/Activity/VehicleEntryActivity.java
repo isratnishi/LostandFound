@@ -271,8 +271,8 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     @BindView(R.id.tvVehicleTime)
     TextView tvVehicleTime;
 
-    @BindView(R.id.tvSPDivision)
-    TextView tvSPDivision;
+//    @BindView(R.id.tvSPDivision)
+//    TextView tvSPDivision;
 
     @BindView(R.id.tvSPDistrict)
     TextView tvSPDistrict;
@@ -293,6 +293,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     TextView tvColor;
     @BindView(R.id.tvBlueBook)
     TextView tvBlueBook;
+
+//    @BindView(R.id.ivrPhoto)
+//    ImageView ivrPhoto;
 
 //Multiple Image add
 
@@ -364,7 +367,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
                 if(etEngineNo.getText().length()==3 ||etEngineNo.getText().length()==6 ||etEngineNo.getText().length()==9 ||etEngineNo.getText().length()==12 ||etEngineNo.getText().length()==15 ||etEngineNo.getText().length()==18 ||etEngineNo.getText().length()==21 ||etEngineNo.getText().length()==24 ||etEngineNo.getText().length()==27)
                 {
-                    engNoString=etEngineNo.getText().toString()+"-";
+                    engNoString=etEngineNo.getText().toString().toUpperCase()+"-";
                     char c=engNoString.charAt(engNoString.length()-2);
 
                     if(c!='-')
@@ -397,7 +400,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
                 if(etChesisNo.getText().length()==3 ||etChesisNo.getText().length()==6 ||etChesisNo.getText().length()==9 ||etChesisNo.getText().length()==12 ||etChesisNo.getText().length()==15 ||etChesisNo.getText().length()==18 ||etChesisNo.getText().length()==21 ||etChesisNo.getText().length()==24 ||etChesisNo.getText().length()==27)
                 {
-                    chesisNoString=etChesisNo.getText().toString()+"-";
+                    chesisNoString=etChesisNo.getText().toString().toUpperCase()+"-";
                     char c=chesisNoString.charAt(chesisNoString.length()-2);
 
                     if(c!='-')
@@ -539,17 +542,28 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             tvVehicleType.setText(spnVehicleType.getSelectedItem().toString());
             tvVehicleDate.setText(etVehicleDate.getText().toString());
             tvModel.setText(etModel.getText().toString());
-            tvMadeBy.setText(spnMadeBy.getSelectedItem().toString());
+            //tvMadeBy.setText(spnMadeBy.getSelectedItem().toString());
             tvMadeIn.setText(ccp.getSelectedCountryName());
             tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
             tvAddressDetails.setText(etAddressDetails.getText().toString());
             tvRegNoName.setText(spnRegNoName1.getSelectedItem().toString() + " " + spnRegNoName2.getSelectedItem().toString()
                     + " " + etRegNoName.getText().toString());
-
-
-
+            tvEngineNo.setText(etEngineNo.getText().toString());
+            tvChesisNo.setText(etChesisNo.getText().toString());
+            tvCCNo.setText(etCCNo.getText().toString());
+            tvMadeIn.setText(ccp.getSelectedCountryName());
+            tvMadeDate.setText(etMadeDate.getText().toString());
+            tvColor.setText(spnColor.getSelectedItem().toString());
+            tvIdentitySign.setText(etIdentitySign.getText().toString());
+            tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
+            tvSPThana.setText(spnSPThana.getSelectedItem().toString());
+            tvAddressDetails.setText(etAddressDetails.getText().toString());
+            tvVehicleDate.setText(etVehicleDate.getText().toString());
+            tvVehicleTime.setText(etVehicleTime.getText().toString());
+            //ivrPhoto.setImageResource(ivVehicleAttachment.getSourceLayoutResId());
+            Log.i("reportinfo", "engineno: "+etEngineNo.getText().toString()+",chesisno: "+etChesisNo.getText().toString()+",date: "+etMadeDate.getText().toString()+"");
         } catch (Exception e) {
-
+            Log.e("reportinfo", "btnNext4: ",e );
         }
 
     }
@@ -843,7 +857,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         List<String> colorList = new ArrayList<>();
         colorList.add(0,selectOne);
         for (int i = 0; i < body.size(); i++) {
-            colorList.add(i+1,body.get(i).getColorName());
+            colorList.add(body.get(i).getColorName());
         }
 
 
@@ -1018,16 +1032,18 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         spnSPDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
                 try {
                     if (i >= 1) {
                         SELECTED_DISTRICT_ID = body.get(i).getId();
-                        getAllThana(body.get(i).getId());
+
+                        getAllThana(body.get(i-1).getId());
                     } else {
                         SELECTED_DISTRICT_ID = 0;
                     }
                 } catch (Exception e) {
                     Utilities.showLogcatMessage(" " + e.toString());
-
+                    Log.i("thana", "Exception: "+e.toString()+"");
                 }
             }
 
@@ -1039,7 +1055,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     }
 
     public void getAllThana(int id) {
-
+        Log.i("thana", "getAllThana: "+id+"");
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
         Call<List<Thana>> thana = retrofitService.GetThanaByDistrictId(id);
         thana.enqueue(new Callback<List<Thana>>() {
@@ -1065,12 +1081,13 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
 
     public void addThanaSpinnerData(final List<Thana> body) {
+        Log.i("thana", "addThanaSpinnerData: "+body.size()+"");
         List<String> thanaList = new ArrayList<>();
         thanaList.add(0,selectOne);
         for (int i = 0; i < body.size(); i++) {
             thanaList.add(i+1,body.get(i).getThanaName());
         }
-
+        Log.i("thana", "onResponse: "+thanaList+"");
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, thanaList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnSPThana.setAdapter(dataAdapter2);
