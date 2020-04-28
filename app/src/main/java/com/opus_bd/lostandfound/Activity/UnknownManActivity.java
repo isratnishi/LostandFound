@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
+import com.hbb20.CountryCodePicker;
 import com.opus_bd.lostandfound.Adapter.CustomAdapter;
 import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
@@ -80,11 +81,6 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     @BindView(R.id.ivTPersonInfromation)
     ImageView ivTPersonInfromation;
 
-    @BindView(R.id.etVehicleDate)
-    EditText etVehicleDate;
-
-    @BindView(R.id.etVehicleTime)
-    EditText etVehicleTime;
     boolean isllPersonIdentificationChecked = true;
     @BindView(R.id.mcvPersonIdendityInformation)
     MaterialCardView mcvPersonIdendityInformation;
@@ -150,12 +146,10 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     EditText etName;
     @BindView(R.id.tvName)
     TextView tvName;
-
     @BindView(R.id.etAge)
     EditText etAge;
     @BindView(R.id.tvAge)
-    EditText tvAge;
-
+    TextView tvAge;
     @BindView(R.id.etFathersName)
     EditText etFathersName;
     @BindView(R.id.tvFathersName)
@@ -170,87 +164,228 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     EditText etNidNum;
     @BindView(R.id.tvNidNum)
     TextView tvNidNum;
+    @BindView(R.id.spnDocType)
+    Spinner spnDocType;
+    @BindView(R.id.tvDocType)
+    TextView tvDocType;
+    @BindView(R.id.spnNumberType)
+    Spinner spnNumberType;
+    @BindView(R.id.tvNumberType)
+    TextView tvNumberType;
+    @BindView(R.id.etNum)
+    EditText etNum;
+    @BindView(R.id.tvNum)
+    TextView tvNum;
+
     @BindView(R.id.spnReligion)
     Spinner spnReligion;
+    @BindView(R.id.tvReligion)
+    TextView tvReligion;
     @BindView(R.id.spnGender)
     Spinner spnGender;
+    @BindView(R.id.tvGender)
+    TextView tvGender;
     @BindView(R.id.spnBloodGroup)
     Spinner spnBloodGroup;
+    @BindView(R.id.tvBloodGroup)
+    TextView tvBloodGroup;
     @BindView(R.id.spnOcupation)
     Spinner spnOcupation;
+    @BindView(R.id.tvOcupation)
+    TextView tvOcupation;
     @BindView(R.id.spnMaritalStatus)
     Spinner spnMaritalStatus;
+    @BindView(R.id.tvMaritalStatus)
+    TextView tvMaritalStatus;
+
+    @BindView(R.id.ccp)
+    CountryCodePicker ccp;
+    @BindView(R.id.tvccp)
+    TextView tvccp;
     @BindView(R.id.spnSPDistrict)
     Spinner spnSPDistrict;
+    @BindView(R.id.tvSPDistrict)
+    TextView tvSPDistrict;
     @BindView(R.id.spnSPThana)
     Spinner spnSPThana;
+    @BindView(R.id.tvSPThana)
+    TextView tvSPThana;
+    @BindView(R.id.etVillage)
+    EditText etVillage;
+    @BindView(R.id.tvVillage)
+    TextView tvVillage;
+    @BindView(R.id.etAddressDetails)
+    EditText etAddressDetails;
+    @BindView(R.id.tvAddressDetails)
+    TextView tvAddressDetails;
+    @BindView(R.id.spnAddressType)
+    Spinner spnAddressType;
+    @BindView(R.id.tvAddressType)
+    TextView tvAddressType;
+    @BindView(R.id.etOneLineAddress)
+    EditText etOneLineAddress;
+    @BindView(R.id.tvOneLineAddress)
+    TextView tvOneLineAddress;
 
-    @BindView(R.id.spnLostistrict)
-    Spinner spnLostistrict;
-    @BindView(R.id.spnLostThana)
-    Spinner spnLostThana;
+//    @BindView(R.id.tvHeight)
+//    TextView tvHeight;
+//    @BindView(R.id.tvColor)
+//    TextView tvColor;
 
     @BindView(R.id.spnColor1)
     Spinner spnColor1;
     @BindView(R.id.spnEye)
     Spinner spnEye;
-    @BindView(R.id.spnNose)
-    Spinner spnNose;
-    @BindView(R.id.spnHair)
-    Spinner spnHair;
-    @BindView(R.id.spnForhead)
-    Spinner spnForhead;
-    @BindView(R.id.etWeight)
-    EditText etWeight;
-    @BindView(R.id.spnBodyStucture)
-    Spinner spnBodyStucture;
-    @BindView(R.id.spnFaceShape)
-    Spinner spnFaceShape;
-    @BindView(R.id.spnChin)
-    Spinner spnChin;
-    @BindView(R.id.spnSkinColor)
-    Spinner spnSkinColor;
-    @BindView(R.id.spnMustache)
-    Spinner spnMustache;
-    @BindView(R.id.spnEar)
-    Spinner spnEar;
-    @BindView(R.id.spnNeck)
-    Spinner spnNeck;
-    @BindView(R.id.spnHeight_feet)
-    Spinner spnHeight_feet;
-    @BindView(R.id.spnHeight_Inch)
-    Spinner spnHeight_Inch;
-
-    @BindView(R.id.etIdentityficationMark)
-    EditText etIdentityficationMark;
-    @BindView(R.id.etTeeth)
-    EditText etTeeth;
-    @BindView(R.id.etSpecial_physical_description)
-    EditText etSpecial_physical_description;
-
-
-
-
-    @BindView(R.id.tvReligion)
-    TextView tvReligion;
-    @BindView(R.id.tvGender)
-    TextView tvGender;
-    @BindView(R.id.tvBloodGroup)
-    TextView tvBloodGroup;
-    @BindView(R.id.tvOcupation)
-    TextView tvOcupation;
-    @BindView(R.id.tvMaritalStatus)
-    TextView tvMaritalStatus;
     @BindView(R.id.tvEye)
     TextView tvEye;
+    @BindView(R.id.spnNose)
+    Spinner spnNose;
     @BindView(R.id.tvNose)
     TextView tvNose;
+    @BindView(R.id.spnHair)
+    Spinner spnHair;
     @BindView(R.id.tvHair)
     TextView tvHair;
-    @BindView(R.id.tvHeight)
-    TextView tvHeight;
-    @BindView(R.id.tvColor)
-    TextView tvColor;
+    @BindView(R.id.spnForhead)
+    Spinner spnForhead;
+    @BindView(R.id.tvForhead)
+    TextView tvForhead;
+     @BindView(R.id.spnBeard)
+    Spinner spnBeard;
+    @BindView(R.id.tvBeard)
+    TextView tvBeard;
+    @BindView(R.id.etWeight)
+    EditText etWeight;
+    @BindView(R.id.tvWeight)
+    TextView tvWeight;
+    @BindView(R.id.spnBodyStucture)
+    Spinner spnBodyStucture;
+    @BindView(R.id.tvBodyStucture)
+    TextView tvBodyStucture;
+    @BindView(R.id.spnFaceShape)
+    Spinner spnFaceShape;
+    @BindView(R.id.tvFaceShape)
+    TextView tvFaceShape;
+    @BindView(R.id.spnChin)
+    Spinner spnChin;
+    @BindView(R.id.tvChin)
+    TextView tvChin;
+    @BindView(R.id.spnSkinColor)
+    Spinner spnSkinColor;
+    @BindView(R.id.tvSkinColor)
+    TextView tvSkinColor;
+    @BindView(R.id.spnMustache)
+    Spinner spnMustache;
+    @BindView(R.id.tvMustache)
+    TextView tvMustache;
+    @BindView(R.id.spnEar)
+    Spinner spnEar;
+    @BindView(R.id.tvEar)
+    TextView tvEar;
+    @BindView(R.id.spnNeck)
+    Spinner spnNeck;
+    @BindView(R.id.tvNeck)
+    TextView tvNeck;
+    @BindView(R.id.spnHeight_feet)
+    Spinner spnHeight_feet;
+    @BindView(R.id.tvHeight_feet)
+    TextView tvHeight_feet;
+    @BindView(R.id.spnHeight_Inch)
+    Spinner spnHeight_Inch;
+    @BindView(R.id.tvHeight_Inch)
+    TextView tvHeight_Inch;
+    @BindView(R.id.etIdentityficationMark)
+    EditText etIdentityficationMark;
+    @BindView(R.id.tvIdentityficationMark)
+    TextView tvIdentityficationMark;
+    @BindView(R.id.etTeeth)
+    EditText etTeeth;
+    @BindView(R.id.tvTeeth)
+    TextView tvTeeth;
+    @BindView(R.id.etSpecial_physical_description)
+    EditText etSpecial_physical_description;
+    @BindView(R.id.tvSpecial_physical_description)
+    TextView tvSpecial_physical_description;
+
+    @BindView(R.id.etDHead)
+    EditText etDHead;
+    @BindView(R.id.tvDHead)
+    TextView tvDHead;
+    @BindView(R.id.etDHeadColor)
+    EditText etDHeadColor;
+    @BindView(R.id.tvDHeadColor)
+    TextView tvDHeadColor;
+    @BindView(R.id.etDEye)
+    EditText etDEye;
+    @BindView(R.id.tvDEye)
+    TextView tvDEye;
+    @BindView(R.id.etDEyeColor)
+    EditText etDEyeColor;
+    @BindView(R.id.tvDEyeColor)
+    TextView tvDEyeColor;
+    @BindView(R.id.etDThroat)
+    EditText etDThroat;
+    @BindView(R.id.tvDThroat)
+    TextView tvDThroat;
+    @BindView(R.id.etDThroatColor)
+    EditText etDThroatColor;
+    @BindView(R.id.tvDThroatColor)
+    TextView tvDThroatColor;
+    @BindView(R.id.etDBody)
+    EditText etDBody;
+    @BindView(R.id.tvDBody)
+    TextView tvDBody;
+    @BindView(R.id.etDBodyColor)
+    EditText etDBodyColor;
+    @BindView(R.id.tvDBodyColor)
+    TextView tvDBodyColor;
+    @BindView(R.id.etDWaist)
+    EditText etDWaist;
+    @BindView(R.id.tvDWaist)
+    TextView tvDWaist;
+    @BindView(R.id.etDWaistColor)
+    EditText etDWaistColor;
+    @BindView(R.id.tvDWaistColor)
+    TextView tvDWaistColor;
+
+    @BindView(R.id.spnPhotesType)
+    Spinner spnPhotesType;
+    @BindView(R.id.tvPhotesType)
+    TextView tvPhotesType;
+    @BindView(R.id.etPhotoesName)
+    EditText etPhotoesName;
+    @BindView(R.id.tvPhotoesName)
+    TextView tvPhotoesName;
+
+    @BindView(R.id.spnSPDivision)
+    Spinner spnSPDivision;
+    @BindView(R.id.tvSPDivision)
+    TextView tvSPDivision;
+
+    @BindView(R.id.spnLostistrict)
+    Spinner spnLostistrict;
+    @BindView(R.id.tvLostistrict)
+    TextView tvLostistrict;
+    @BindView(R.id.spnLostThana)
+    Spinner spnLostThana;
+    @BindView(R.id.tvLostThana)
+    TextView tvLostThana;
+    @BindView(R.id.etLostVillage)
+    EditText etLostVillage;
+    @BindView(R.id.tvLostVillage)
+    TextView tvLostVillage;
+    @BindView(R.id.etLostAddressDetails)
+    EditText etLostAddressDetails;
+    @BindView(R.id.tvLostAddressDetails)
+    TextView tvLostAddressDetails;
+    @BindView(R.id.etVehicleDate)
+    EditText etVehicleDate;
+    @BindView(R.id.tvVehicleDate)
+    TextView tvVehicleDate;
+    @BindView(R.id.etVehicleTime)
+    EditText etVehicleTime;
+    @BindView(R.id.tvVehicleTime)
+    TextView tvVehicleTime;
 
     //date picker
     SimpleDateFormat formatter;
@@ -534,18 +669,66 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
             tvName.setText(etName.getText().toString());
             tvFathersName.setText(etFathersName.getText().toString());
             tvSpouseName.setText(etSpouseName.getText().toString());
+            tvAge.setText(etAge.getText().toString());
             tvNidNum.setText(etNidNum.getText().toString());
+            tvDocType.setText(spnDocType.getSelectedItem().toString());
+            tvNumberType.setText(spnNumberType.getSelectedItem().toString());
+            tvNum.setText(etNum.getText().toString());
+
             tvReligion.setText(spnReligion.getSelectedItem().toString());
             tvGender.setText(spnGender.getSelectedItem().toString());
             tvBloodGroup.setText(spnBloodGroup.getSelectedItem().toString());
             tvMaritalStatus.setText(spnMaritalStatus.getSelectedItem().toString());
             tvOcupation.setText(spnOcupation.getSelectedItem().toString());
 
-            tvHair.setText(spnHair.getSelectedItem().toString());
-            tvNose.setText(spnNose.getSelectedItem().toString());
-            tvHeight.setText(spnHeight_feet.getSelectedItem().toString());
+            tvccp.setText(ccp.getSelectedCountryName());
+            tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
+            tvSPThana.setText(spnSPThana.getSelectedItem().toString());
+            tvVillage.setText(etVillage.getText().toString());
+            tvAddressDetails.setText(etAddressDetails.getText().toString());
+            tvAddressType.setText(spnAddressType.getSelectedItem().toString());
+            tvOneLineAddress.setText(etOneLineAddress.getText().toString());
+
             tvEye.setText(spnEye.getSelectedItem().toString());
+            tvNose.setText(spnNose.getSelectedItem().toString());
+            tvHair.setText(spnHair.getSelectedItem().toString());
+            tvForhead.setText(spnForhead.getSelectedItem().toString());
+            tvBeard.setText(spnBeard.getSelectedItem().toString());
+            tvWeight.setText(etWeight.getText().toString());
+            tvBodyStucture.setText(spnBodyStucture.getSelectedItem().toString());
+            tvFaceShape.setText(spnFaceShape.getSelectedItem().toString());
+            tvChin.setText(spnChin.getSelectedItem().toString());
+            tvSkinColor.setText(spnSkinColor.getSelectedItem().toString());
+            tvMustache.setText(spnMustache.getSelectedItem().toString());
+            tvMustache.setText(spnEar.getSelectedItem().toString());
+            tvNeck.setText(spnNeck.getSelectedItem().toString());
+            tvHeight_feet.setText(spnHeight_feet.getSelectedItem().toString());
+            tvHeight_Inch.setText(spnHeight_Inch.getSelectedItem().toString());
+            tvIdentityficationMark.setText(etIdentityficationMark.getText().toString());
+            tvTeeth.setText(etTeeth.getText().toString());
+            tvSpecial_physical_description.setText(etSpecial_physical_description.getText().toString());
+            //tvHeight.setText(spnHeight_feet.getSelectedItem().toString());
             //tvColor.setText(etColor.getText().toString());
+
+            tvDHead.setText(etDHead.getText().toString());
+            tvDHeadColor.setText(etDHeadColor.getText().toString());
+            tvDEye.setText(tvDEye.getText().toString());
+            tvDEyeColor.setText(etDEyeColor.getText().toString());
+            tvDThroat.setText(etDThroat.getText().toString());
+            tvDThroatColor.setText(etDThroatColor.getText().toString());
+            tvDBody.setText(etDBody.getText().toString());
+            tvDBodyColor.setText(etDBodyColor.getText().toString());
+            tvDWaist.setText(etDWaist.getText().toString());
+            tvDWaistColor.setText(etDWaistColor.getText().toString());
+            tvPhotesType.setText(spnPhotesType.getSelectedItem().toString());
+            tvPhotoesName.setText(etPhotoesName.getText().toString());
+
+            tvLostistrict.setText(spnLostistrict.getSelectedItem().toString());
+            tvLostistrict.setText(spnLostThana.getSelectedItem().toString());
+            tvLostVillage.setText(etLostVillage.getText().toString());
+            tvLostAddressDetails.setText(etLostAddressDetails.getText().toString());
+            tvVehicleDate.setText(etVehicleDate.getText().toString());
+            tvVehicleTime.setText(etVehicleTime.getText().toString());
 
 
         } catch (Exception e) {
@@ -609,8 +792,8 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         gdInformationModel.setSpouseName(tvSpouseName.getText().toString());
         gdInformationModel.setManIdentityNo(tvNidNum.getText().toString());
         gdInformationModel.setReligion(tvReligion.getText().toString());
-        gdInformationModel.setHeightTo(tvHeight.getText().toString());
-        gdInformationModel.setColor(tvColor.getText().toString());
+        //gdInformationModel.setHeightTo(tvHeight.getText().toString());
+        //gdInformationModel.setColor(tvColor.getText().toString());
         gdInformationModel.setEye(tvEye.getText().toString());
         gdInformationModel.setHeir(tvHair.getText().toString());
       /*  gdInformationModel.setMadeIn(etMadeIn.getText().toString());
