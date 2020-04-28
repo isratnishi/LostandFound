@@ -73,6 +73,7 @@
     <string name="status">Status</string>
     <string name="report">Report</string>
     <string name="doc_type">Document Type</string>
+    <string name="doc_type_if_found">Document Type (If Found)</string>
     <string name="entry_code">Your entry is complete save the code below</string>
     <string name="entry_code1">Thanks for the information entry You\'ll be contacted later</string>
     <string name="entry_code2">Bangladesh Police is always deployed with your help</string>
@@ -81,8 +82,12 @@
     <string name="thana">Thana</string>
     <string name="village">Village</string>
     <string name="name">Name</string>
+    <string name="name_if_found">Name (If found)</string>
+
     <string name="father_s_name">Father\'s Name</string>
+    <string name="father_s_name_if_found">Father\'s Name (If found)</string>
     <string name="husband_wife_name">Husband/Wife Name</string>
+    <string name="husband_wife_name_if_found">Husband/Wife Name (If found)</string>
     <string name="religion">Religion</string>
     <string name="gender">Gender</string>
     <string name="occupation">Occupation</string>
@@ -117,6 +122,7 @@
     <string name="fill_the_information_of_the_person">Fill the information of the person</string>
     <string name="number">Number</string>
     <string name="doc_number">Document Number</string>
+    <string name="doc_number_if_found">Document Number (If Found)</string>
     <string name="mobile_no">Mobile Number</string>
     <string name="attachment">Attachment</string>
     <string name="blue_book">Blue Book</string>
@@ -130,8 +136,10 @@
     <string name="person_address">Person Address</string>
 
     <string name="age">Age</string>
+    <string name="approximate_age">Approximate Age</string>
 
-
+    <string name="image_type">Image Type</string>
+    <string name="image_name">Image Name</string>
     <string name="select_list">Select List</string>
     <string name="number_type">Number Type</string>
     <string name="country">Country</string>
@@ -158,6 +166,14 @@
         <item>Cristian</item>
         <item>Buddhist</item>
         <item>Others</item>
+
+    </string-array>
+   <string-array name="ImageType">
+        <item>@string/select_option</item>
+        <item>Right Side</item>
+        <item>Left Side</item>
+        <item>Front Side</item>
+        <item>Back Side</item>
 
     </string-array>
 
@@ -459,6 +475,9 @@
         <item>ইঞ্জিন নং</item>
         <item>চেসিস নং</item>
     </string>
+    <string name="deadbody_condition">DeadBody Condition</string>
+    <string name="date_of_death">Date of death</string>
+    <string name="deadbody_location">The location of the corpse</string>
 
 
     <string-array name="address_type">

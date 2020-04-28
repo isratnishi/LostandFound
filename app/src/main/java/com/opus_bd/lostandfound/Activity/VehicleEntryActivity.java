@@ -40,6 +40,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 import com.hbb20.CountryCodePicker;
 import com.opus_bd.lostandfound.Adapter.CustomAdapter;
+import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
 import com.opus_bd.lostandfound.Adapter.CustomSpinnerAdapter;
 import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
@@ -841,15 +842,17 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     public void addColorSpinnerData(final List<Colors> body) {
         List<String> colorList = new ArrayList<>();
+        List<String> colorCode = new ArrayList<>();
         colorList.add(0,selectOne);
+        colorCode.add(0,"#FFFFFF");
         for (int i = 0; i < body.size(); i++) {
-            colorList.add(i+1,body.get(i).getColorName());
+            colorList.add(i+1,(body.get(i).getColorName()+" ("+body.get(i).getColorNameBn()+")"));
+            colorCode.add(i+1,body.get(i).getColorCode());
         }
 
 
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, colorList);
-        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnColor.setAdapter(dataAdapter2);
+        CustomColorAdapter customAdapter=new CustomColorAdapter(getApplicationContext(),colorList,colorCode);
+        spnColor.setAdapter(customAdapter);
         spnColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

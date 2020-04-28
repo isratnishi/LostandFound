@@ -373,17 +373,13 @@
                                     android:gravity="center"
                                     android:orientation="vertical">
 
-                                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                    <ImageView
                                         android:id="@+id/fabTheft1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
+                                        android:layout_width="45dp"
+                                        android:layout_height="45dp"
                                         android:clickable="true"
-                                        android:src="@drawable/robbery"
-                                        android:tint="@android:color/white"
-                                        app:backgroundTint="@color/blue_400"
-                                        app:elevation="0dp"
-                                        app:fabSize="mini"
-                                        app:rippleColor="@android:color/white" />
+                                        android:src="@drawable/ic_human_db"
+                                        />
 
                                     <TextView
                                         android:layout_width="wrap_content"

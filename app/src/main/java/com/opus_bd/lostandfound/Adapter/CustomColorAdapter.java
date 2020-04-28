@@ -1,6 +1,7 @@
 package com.opus_bd.lostandfound.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,10 +44,10 @@ public class CustomColorAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflter.inflate(R.layout.custom_spinner, null);
+        view = inflter.inflate(R.layout.custom_color_spinner, null);
         ImageView icon = (ImageView) view.findViewById(R.id.imageView);
         TextView names = (TextView) view.findViewById(R.id.textView);
-        icon.setBackgroundColor(Integer.parseInt(ColorCode.get(i)));
+        icon.setBackgroundColor(Color.parseColor(ColorCode.get(i)));
 /*        icon.setImageResource(flags[i]);*/
         /*try{
             Glide.with(context).load("http://103.134.88.13:1022/"+iconList.get(i)).into(icon);
