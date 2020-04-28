@@ -146,7 +146,6 @@
     <string name="one_line_address">One Line Address</string>
     <string name="address_type">Address Type</string>
 
-
     <string-array name="purpose_of_visit">
         <item>@string/select_option</item>
         <item>Purpose of Visit</item>
@@ -325,7 +324,15 @@
         <item> Paralysis </item>
         <item> Hang </item>
     </string-array>
-
+    <string-array name="array_ear">
+        <item>@string/select_option</item>
+        <item>Width</item>
+        <item>Long</item>
+        <item>Short</item>
+        <item>Loti kata</item>
+        <item>Kula</item>
+        <item>Round</item>
+    </string-array>
     <string-array name="array_eye">
         <item>@string/select_option</item>
         <item>Inside</item>
@@ -455,6 +462,31 @@
         <item>Mobile</item>
     </string-array>
 
+    <string-array name="array_height_feet">
+        <item>@string/select_option</item>
+        <item>3 feet</item>
+        <item>4 feet</item>
+        <item>5 feet</item>
+        <item>6 feet</item>
+        <item>7 feet</item>
+        <item>8 feet</item>
+    </string-array>
+
+    <string-array name="array_height_inch">
+        <item>@string/select_option</item>
+        <item>1 Inch</item>
+        <item>2 Inch</item>
+        <item>3 Inch</item>
+        <item>4 Inch</item>
+        <item>5 Inch</item>
+        <item>6 Inch</item>
+        <item>7 Inch</item>
+        <item>8 Inch</item>
+        <item>9 Inch</item>
+        <item>10 Inch</item>
+        <item>11 Inch</item>
+    </string-array>
+
     <string-array name="array_measurement_type">
         <item>@string/select_option</item>
         <item>কেজি</item>
@@ -498,7 +530,15 @@
     <string name="description_of_teeth">Description of teeth</string>
     <string name="special_physical_description">Special physical description</string>
     <string name="identification_mark">Identification mark</string>
-
+    <string name="dress_descrioption">Dress Descrioption</string>
+    <string name="dhead">Head</string>
+    <string name="dcolor">Color</string>
+    <string name="deye">Eye</string>
+    <string name="dthroat">In the throat</string>
+    <string name="dbody">In the body</string>
+    <string name="dwaist">In the waist</string>
+    <string name="dlegs">Legs</string>
+    <string name="person_identification_info">Person identification information</string>
 
     <string-array name="address_type">
         <item> @string/select_list </item>
