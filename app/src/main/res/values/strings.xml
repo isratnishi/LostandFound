@@ -178,12 +178,12 @@
     </string-array>
 
 
-    <string name="array_gender">
+    <string-array name="array_gender">
         <item>@string/select_option</item>
         <item>মহিলা</item>
         <item>পুরুষ</item>
         <item>হিজরা</item>
-    </string>
+    </string-array>
     <string-array name="blood_groups">
         <item>@string/select_option</item>
         <item>A+</item>
@@ -276,7 +276,7 @@
     <string name="select_option">Select One</string>
 
 
-    <string name="array_care_type">
+    <string-array name="array_care_type">
         <item>@string/select_option</item>
         <item> Wife </item>
         <item> Government Office </item>
@@ -288,18 +288,18 @@
         <item> Husband </item>
         <item> Collaborators </item>
         <item> Educational Institutions </item>
-    </string>
+    </string-array>
 
-    <string name="array_complextion">
+    <string-array name="array_complextion">
         <item>@string/select_option</item>
         <item>Bright</item>
         <item>Brass</item>
         <item>rtret</item>
         <item>Cream</item>
         <item>Bronze</item>
-    </string>
+    </string-array>
 
-    <string name="array_cust">
+    <string-array name="array_cust">
         <item>@string/select_option</item>
         <item>Jew</item>
         <item> Roman Catholic </item>
@@ -311,9 +311,9 @@
         <item> Shikh </item>
         <item> Sunni </item>
         <item> Jain </item>
-    </string>
+    </string-array>
 
-    <string name="array_death_type">
+    <string-array name="array_death_type">
         <item>@string/select_option</item>
         <item> Snake bite </item>
         <item> Other </item>
@@ -324,9 +324,9 @@
         <item> Submerged in water </item>
         <item> Paralysis </item>
         <item> Hang </item>
-    </string>
+    </string-array>
 
-    <string name="array_eye">
+    <string-array name="array_eye">
         <item>@string/select_option</item>
         <item>Inside</item>
         <item>Bright Colour</item>
@@ -340,25 +340,25 @@
         <item>Twin</item>
         <item>Black eyris</item>
         <item>oo</item>
-    </string>
+    </string-array>
 
-    <string name="array_face_shape">
+    <string-array name="array_face_shape">
         <item>@string/select_option</item>
         <item>Flat</item>
         <item>Normal</item>
         <item>Long</item>
         <item>Round</item>
-    </string>
+    </string-array>
 
-    <string name="array_forehead">
+    <string-array name="array_forehead">
         <item>@string/select_option</item>
         <item>Wide</item>
         <item>Straight</item>
         <item>Stand</item>
-    </string>
+    </string-array>
 
 
-    <string name="array_hair">
+    <string-array name="array_hair">
         <item>@string/select_option</item>
         <item>White-Ripe</item>
         <item>Blad</item>
@@ -368,25 +368,25 @@
         <item>Grey-White</item>
         <item>Curl</item>
         <item>Black</item>
-    </string>
+    </string-array>
 
-    <string name="array_head">
+    <string-array name="array_head">
         <item>@string/select_option</item>
         <item>Long</item>
         <item>Short</item>
         <item>Round</item>
-    </string>
+    </string-array>
 
-    <string name="array_material_condition">
+    <string-array name="array_material_condition">
         <item>@string/select_option</item>
         <item>ইনটেক অবস্থা</item>
         <item>ধ্বংস প্রাপ্ত</item>
         <item>নষ্ট</item>
         <item>পরিত্যক্ত</item>
         <item>অন্যান্য</item>
-    </string>
+    </string-array>
 
-    <string name="array_marital_status">
+    <string-array name="array_marital_status">
         <item>@string/select_option</item>
 
 <item> Divorced </item>
@@ -395,18 +395,18 @@
         <item> Multiple marriages </item>
         <item> Widow </item>
         <item> Married </item>
-    </string>
+    </string-array>
 
-    <string name="array_moustache">
+    <string-array name="array_moustache">
         <item>@string/select_option</item>
         <item>ছোট</item>
         <item>সাদা</item>
         <item>কালো</item>
         <item>কালো সাদা</item>
         <item>বড়</item>
-    </string>
+    </string-array>
 
-    <string name="array_mouth">
+    <string-array name="array_mouth">
         <item>@string/select_option</item>
         <item>Thick Lips</item>
         <item>Big</item>
@@ -415,26 +415,26 @@
         <item>Black Lips</item>
         <item>Teath ahead</item>
         <item>Thin Lips</item>
-    </string>
+    </string-array>
 
-    <string name="array_neck">
+    <string-array name="array_neck">
         <item>@string/select_option</item>
         <item>Thin</item>
         <item>ছোট</item>
         <item>লম্বা</item>
         <item>মোটা</item>
-    </string>
+    </string-array>
 
-    <string name="array_nose">
+    <string-array name="array_nose">
         <item>@string/select_option</item>
         <item>Long</item>
         <item>Fat</item>
         <item>Short</item>
         <item>Flat</item>
         <item>Curve</item>
-    </string>
+    </string-array>
 
-    <string name="array_religion">
+    <string-array name="array_religion">
         <item>@string/select_option</item>
         <item>ইসলাম</item>
 
@@ -443,9 +443,9 @@
 
         <item>খ্রীস্টান</item>
          <item>অন্যান্য</item>
-    </string>
+    </string-array>
 
-    <string name="array_number_type">
+    <string-array name="array_number_type">
         <item>@string/select_option</item>
         <item>টেলিফোন</item>
         <item>Driveing Lisence</item>
@@ -453,9 +453,9 @@
         <item>পাসপোর্ট</item>
         <item>অন্যান্য</item>
         <item>Mobile</item>
-    </string>
+    </string-array>
 
-    <string name="array_measurement_type">
+    <string-array name="array_measurement_type">
         <item>@string/select_option</item>
         <item>কেজি</item>
         <item>ফুট</item>
@@ -466,19 +466,38 @@
         <item>মিলি মিটার</item>
         <item>গ্রাম</item>
         <item>ভরি</item>
-    </string>
+    </string-array>
 
-    <string name="array_given_type">
+    <string-array name="array_given_type">
         <item>@string/select_option</item>
         <item>অন্যান্য</item>
         <item>IME নং</item>
         <item>ইঞ্জিন নং</item>
         <item>চেসিস নং</item>
-    </string>
+    </string-array>
     <string name="deadbody_condition">DeadBody Condition</string>
     <string name="date_of_death">Date of death</string>
     <string name="deadbody_location">The location of the corpse</string>
     <string name="physical_details">Physical Details</string>
+    <string name="eye">Eye</string>
+    <string name="nose">Nose</string>
+    <string name="hair">Hair</string>
+    <string name="forehead">Forehead</string>
+    <string name="beard">Beard</string>
+    <string name="weight_kg">Weight (kg)</string>
+    <string name="physical_constitution">Physical constitution</string>
+    <string name="shape_of_face">Shape of face</string>
+    <string name="chin">Chin</string>
+    <string name="skin_color">Skin color</string>
+    <string name="mustache">Mustache</string>
+    <string name="ears">Ears</string>
+    <string name="neck">Neck</string>
+    <string name="height">Height</string>
+    <string name="feet">(Feet)</string>
+    <string name="inches">(Inches)</string>
+    <string name="description_of_teeth">Description of teeth</string>
+    <string name="special_physical_description">Special physical description</string>
+    <string name="identification_mark">Identification mark</string>
 
 
     <string-array name="address_type">

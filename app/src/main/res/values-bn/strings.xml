@@ -242,7 +242,7 @@
 
     <string name="address_type">ঠিকানার ধরণ</string>
 
-    <string name="array_care_type">
+    <string-array name="array_care_type">
         <item>@string/select_option</item>
         <item>Wife</item>
         <item>Government office</item>
@@ -254,18 +254,18 @@
         <item>স্বামী</item>
         <item>সহযোগী</item>
         <item>শিক্ষা প্রতিষ্ঠান</item>
-    </string>
+    </string-array>
 
-    <string name="array_complextion">
+    <string-array name="array_complextion">
         <item>@string/select_option</item>
         <item>উজ্জ্বল</item>
         <item>পিতল</item>
         <item>কাল</item>
         <item>শ্যামলা</item>
         <item>তামাটে</item>
-    </string>
+    </string-array>
 
-    <string name="array_cust">
+    <string-array name="array_cust">
         <item>@string/select_option</item>
         <item>ইহুদী</item>
         <item>রোমান ক্যাথলিক</item>
@@ -277,9 +277,9 @@
         <item>শিখ</item>
         <item>সুন্নি</item>
         <item>জৈন</item>
-    </string>
+    </string-array>
 
-    <string name="array_death_type">
+    <string-array name="array_death_type">
         <item>@string/select_option</item>
         <item>সাপের কামড়</item>
         <item>অন্যান্য</item>
@@ -290,9 +290,9 @@
         <item>পানিতে ডুবিয়া</item>
         <item>পক্ষাঘাত</item>
         <item>ফাঁসি</item>
-    </string>
+    </string-array>
 
-    <string name="array_eye">
+    <string-array name="array_eye">
         <item>@string/select_option</item>
         <item>কোটরাগত</item>
         <item>রঙ্গিন</item>
@@ -306,15 +306,15 @@
         <item>জোড়া ভুরু</item>
         <item>কালোমনি</item>
         <item>ঘন ভুরু</item>
-    </string>
+    </string-array>
 
-    <string name="array_face_shape">
+    <string-array name="array_face_shape">
         <item>@string/select_option</item>
         <item>চ্যাপটা</item>
         <item>স্বাভাবিক</item>
         <item>লম্বাটে</item>
 
-    </string>
+    </string-array>
 
     <string-array name="religion">
         <item>@string/select_option</item>
@@ -325,21 +325,21 @@
         <item>Others</item>
 
     </string-array>
-    <string name="array_forehead">
+    <string-array name="array_forehead">
         <item>@string/select_option</item>
         <item>প্রশস্থ</item>
         <item>চওড়া</item>
         <item>খাড়া</item>
-    </string>
+    </string-array>
 
-    <string name="array_gender">
+    <string-array name="array_gender">
         <item>@string/select_option</item>
         <item>মহিলা</item>
         <item>পুরুষ</item>
         <item>হিজরা</item>
-    </string>
+    </string-array>
 
-    <string name="array_hair">
+    <string-array name="array_hair">
         <item>@string/select_option</item>
         <item>সাদা-পাকা</item>
         <item>টাক</item>
@@ -348,25 +348,25 @@
         <item>বাদামী</item>
         <item>কোঁকড়ানো</item>
         <item>কালো-লম্বা</item>
-    </string>
+    </string-array>
 
-    <string name="array_head">
+    <string-array name="array_head">
         <item>@string/select_option</item>
         <item>লম্বা</item>
         <item>খাটো</item>
         <item>গোল</item>
-    </string>
+    </string-array>
 
-    <string name="array_material_condition">
+    <string-array name="array_material_condition">
         <item>@string/select_option</item>
         <item>ইনটেক অবস্থা</item>
         <item>ধ্বংস প্রাপ্ত</item>
         <item>নষ্ট</item>
         <item>পরিত্যক্ত</item>
         <item>অন্যান্য</item>
-    </string>
+    </string-array>
 
-    <string name="array_marital_status">
+    <string-array name="array_marital_status">
         <item>@string/select_option</item>
         <item>তালাক প্রাপ্ত</item>
         <item>বিপত্নীক</item>
@@ -374,18 +374,18 @@
         <item>একাধিক বিবাহ</item>
         <item>বিধবা</item>
         <item>বিবাহিত</item>
-    </string>
+    </string-array>
 
-    <string name="array_moustache">
+    <string-array name="array_moustache">
         <item>@string/select_option</item>
         <item>ছোট</item>
         <item>সাদা</item>
         <item>কালো</item>
         <item>কালো সাদা</item>
         <item>বড়</item>
-    </string>
+    </string-array>
 
-    <string name="array_mouth">
+    <string-array name="array_mouth">
         <item>@string/select_option</item>
         <item>মোটা ঠোট</item>
         <item>বড়</item>
@@ -394,35 +394,35 @@
         <item>কালচে ঠোট</item>
         <item>সামনে দাঁত বের হওয়া</item>
         <item>পাতলা ঠোট</item>
-    </string>
+    </string-array>
 
-    <string name="array_neck">
+    <string-array name="array_neck">
         <item>@string/select_option</item>
         <item>সরু</item>
         <item>ছোট</item>
         <item>লম্বা</item>
         <item>মোটা</item>
-    </string>
+    </string-array>
 
-    <string name="array_nose">
+    <string-array name="array_nose">
         <item>@string/select_option</item>
         <item>লম্বা</item>
         <item>মোটা</item>
         <item>খাটো</item>
         <item>চ্যাপটা</item>
         <item>বাঁকানো</item>
-    </string>
+    </string-array>
 
-    <string name="array_religion">
+    <string-array name="array_religion">
         <item>@string/select_option</item>
         <item>অন্যান্য</item>
         <item>হিন্দু</item>
         <item>বৌদ্ধ</item>
         <item>ইসলাম</item>
         <item>খ্রীস্টান</item>
-    </string>
+    </string-array>
 
-    <string name="array_number_type">
+    <string-array name="array_number_type">
         <item>@string/select_option</item>
         <item>টেলিফোন</item>
         <item>ড্রাইভিং লাইসেন্স</item>
@@ -430,9 +430,9 @@
         <item>পাসপোর্ট</item>
         <item>অন্যান্য</item>
         <item>মোবাইল</item>
-    </string>
+    </string-array>
 
-    <string name="array_measurement_type">
+    <string-array name="array_measurement_type">
         <item>@string/select_option</item>
         <item>কেজি</item>
         <item>ফুট</item>
@@ -443,25 +443,49 @@
         <item>মিলি মিটার</item>
         <item>গ্রাম</item>
         <item>ভরি</item>
-    </string>
+    </string-array>
 
-    <string name="array_given_type">
+    <string-array name="array_given_type">
         <item>@string/select_option</item>
         <item>অন্যান্য</item>
         <item>IME নং</item>
         <item>ইঞ্জিন নং</item>
         <item>চেসিস নং</item>
-    </string>
+    </string-array>
     <string name="deadbody_condition">মৃতদেহের অবস্থা</string>
     <string name="date_of_death">মৃত্যুর তারিখ</string>
     <string name="image_type">ফটোর ধরণ</string>
     <string name="image_name">ফটোর নাম</string>
     <string name="deadbody_location">মৃতদেহের প্রাপ্তিস্থান </string>
     <string name="physical_details">দৈহিক বিবরণ যোগ</string>
+    <string name="eye">চোখ</string>
+    <string name="nose">নাক</string>
+    <string name="hair">চুল</string>
+    <string name="forehead">কপাল</string>
+    <string name="beard">দাঁড়ি</string>
+    <string name="weight_kg">ওজন (কেজি)</string>
+    <string name="physical_constitution">শারিরিক গড়ন</string>
+    <string name="shape_of_face">মুখের আকার</string>
+    <string name="chin">চিবুক</string>
+    <string name="skin_color">গায়ের রং</string>
+    <string name="mustache">গোঁফ</string>
+    <string name="ears">কান</string>
+    <string name="neck">গলা</string>
+    <string name="height">উচ্চতা </string>
+    <string name="feet">(ফুট)</string>
+    <string name="inches">(ইঞ্চি)</string>
+    <string name="description_of_teeth">দাঁতের বর্ণনা</string>
+    <string name="special_physical_description">বিশেষ শারিরিক বর্ণনা</string>
+    <string name="identification_mark">সনাক্তকারী চিহ্ন</string>
     <string-array name="ImageType">
     <item>@string/select_option</item>
     <item>Right Side</item>
     <item>Left Side</item>
     <item>Front Side</item>
         <item>Back Side</item></string-array>
+
+
+
+
+
 </resources>
