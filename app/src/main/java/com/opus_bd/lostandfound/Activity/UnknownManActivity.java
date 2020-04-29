@@ -445,7 +445,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         mYear = calendar.get(Calendar.YEAR);
         mMonth = calendar.get(Calendar.MONTH);
         mDay = calendar.get(Calendar.DAY_OF_MONTH);
-        formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
         etVehicleDate.setText(formatter.format(calendar.getTime()));
 
         etVehicleDate.setOnClickListener(new View.OnClickListener() {
