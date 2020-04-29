@@ -20,7 +20,6 @@
             android:id="@+id/ivItemLogo"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@color/black"
             android:layout_gravity="center_horizontal"
             />
 
