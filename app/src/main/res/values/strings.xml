@@ -578,4 +578,52 @@
         <item>Partially Melted</item>
         <item>Skeleton</item>
     </string-array>
+
+    <string-array name="array_in_the_head">
+        <item> @string/select_list </item>
+        <item>ওড়না</item>
+        <item>হিজাব</item>
+        <item>রুমাল</item>
+        <item>টুপি</item>
+        <item>পাগড়ী</item>
+    </string-array>
+
+    <string-array name="array_in_the_eye">
+        <item> @string/select_list </item>
+        <item>চশমা</item>
+        <item>সানগ্লাস</item>
+    </string-array>
+
+    <string-array name="array_in_the_throt">
+        <item> @string/select_list </item>
+        <item>ওড়না</item>
+        <item>গামছা</item>
+        <item>তোয়ালে</item>
+        <item>মাফ্লার</item>
+    </string-array>
+
+    <string-array name="array_in_the_body">
+        <item> @string/select_list </item>
+        <item>কামিজ</item>
+        <item>গেনজি</item>
+        <item>ট্রি-শার্ট</item>
+        <item>ব্লেজার</item>
+        <item>সোয়েটার</item>
+    </string-array>
+
+    <string-array name="array_in_the_waist">
+        <item> @string/select_list </item>
+        <item>লুঙ্গি</item>
+        <item>ধুতি</item>
+        <item>প্যান্ট</item>
+        <item>সালোয়ার</item>
+    </string-array>
+    <string-array name="array_in_the_legs">
+        <item> @string/select_list </item>
+        <item>জুতা</item>
+        <item>বুট</item>
+        <item>সু</item>
+        <item>সেন্ডেল</item>
+    </string-array>
+
 </resources>
