@@ -802,22 +802,23 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     public void addVehicleMadyBySpinnerData(final List<VehicleModel> body) {
         List<String> vehicleMadyBy = new ArrayList<>();
         List<String> vehicleIcon = new ArrayList<>();
+        vehicleMadyBy.add(0,selectOne);
+        vehicleIcon.add(0,"");
         for (int i = 0; i < body.size(); i++) {
-            vehicleMadyBy.add(body.get(i).getModelName());
-            vehicleIcon.add(body.get(i).getImagePath());
+            vehicleMadyBy.add(i+1,body.get(i).getModelName());
+            vehicleIcon.add(i+1,body.get(i).getImagePath());
         }
         CustomAdapter customAdapter=new CustomAdapter(getApplicationContext(),vehicleIcon,vehicleMadyBy);
         spnMadeBy.setAdapter(customAdapter);
         spnMadeBy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i >= 0) {
+                if (i >= 1) {
                     SELECTED_VEHICLEMODEL_Name = body.get(i).getModelName();
                 } else {
                     SELECTED_VEHICLEMODEL_Name = "";
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 

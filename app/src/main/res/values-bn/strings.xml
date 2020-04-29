@@ -520,6 +520,7 @@
     <string name="missingpersonlevel">নিখোঁজ ব্যক্তির তথ্য</string>
     <string name="othersitemlevel">অন্য আইটেম</string>
     <string name="unknowndeadbody">অজ্ঞাতনামা মৃতদেহ</string>
+    <string name="marital_status">বৈবাহিক অৱস্থা</string>
 
     <string-array name="ImageType">
         <item>@string/select_option</item>

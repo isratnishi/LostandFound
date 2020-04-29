@@ -36,6 +36,7 @@ import com.hbb20.CountryCodePicker;
 import com.opus_bd.lostandfound.Adapter.CustomAdapter;
 import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
+import com.opus_bd.lostandfound.Model.Documentaion.Occupation;
 import com.opus_bd.lostandfound.Model.GlobalData.District;
 import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 import com.opus_bd.lostandfound.R;
@@ -286,12 +287,12 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     Spinner spnNeck;
     @BindView(R.id.tvNeck)
     TextView tvNeck;
-    @BindView(R.id.spnHeight_feet)
-    Spinner spnHeight_feet;
+    @BindView(R.id.etHeight_feet)
+    EditText etHeight_feet;
     @BindView(R.id.tvHeight_feet)
     TextView tvHeight_feet;
-    @BindView(R.id.spnHeight_Inch)
-    Spinner spnHeight_Inch;
+    @BindView(R.id.etHeight_Inch)
+    EditText etHeight_Inch;
     @BindView(R.id.tvHeight_Inch)
     TextView tvHeight_Inch;
     @BindView(R.id.etIdentityficationMark)
@@ -401,10 +402,12 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     List<String> ColorCode;
     ArrayList<District> districtArrayList = new ArrayList<>();
     ArrayList<Thana> thanaArrayList = new ArrayList<>();
+    ArrayList<Occupation> occupationArrayList = new ArrayList<>();
     public int SELECTED_DISTRICT_ID;
     public int SELECTED_DISTRICT_ID_LP;
     public int SELECTED_THANA_ID;
     public int SELECTED_THANA_ID_LP;
+    public int SELECTED_OCCUPATION_ID;
     String selectOne;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -423,6 +426,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         //date picker
         initializeVariables();
         selectOne=getResources().getString(R.string.select_option);
+        getOccupation();
         getDistrict();
         //Color
        // initializeColor();
@@ -702,8 +706,8 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
             tvMustache.setText(spnMustache.getSelectedItem().toString());
             tvMustache.setText(spnEar.getSelectedItem().toString());
             tvNeck.setText(spnNeck.getSelectedItem().toString());
-            tvHeight_feet.setText(spnHeight_feet.getSelectedItem().toString());
-            tvHeight_Inch.setText(spnHeight_Inch.getSelectedItem().toString());
+            tvHeight_feet.setText(etHeight_feet.getText().toString());
+            tvHeight_Inch.setText(etHeight_Inch.getText().toString());
             tvIdentityficationMark.setText(etIdentityficationMark.getText().toString());
             tvTeeth.setText(etTeeth.getText().toString());
             tvSpecial_physical_description.setText(etSpecial_physical_description.getText().toString());
@@ -1060,6 +1064,65 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
                     SELECTED_THANA_ID_LP = body.get(i).getId();
                 } else {
                     SELECTED_THANA_ID_LP = 0;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+
+    public void getOccupation( ) {
+
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<Occupation>> occupations = retrofitService.GetOccupationInfo();
+        occupations.enqueue(new Callback<List<Occupation>>() {
+            @Override
+            public void onResponse(Call<List<Occupation>> call, Response<List<Occupation>> response) {
+
+                if (response.body() != null) {
+
+                    occupationArrayList.clear();
+                    occupationArrayList.addAll(response.body());
+
+                    addOccupationSpinnerData(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Occupation>> call, Throwable t) {
+                Toast.makeText(UnknownManActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void addOccupationSpinnerData(final List<Occupation> body) {
+        List<String> occupationList = new ArrayList<>();
+        occupationList.add(0,selectOne);
+        for (int i = 0; i < body.size(); i++) {
+            occupationList.add(i+1,body.get(i).getName());
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, occupationList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnOcupation.setAdapter(dataAdapter2);
+        spnOcupation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_OCCUPATION_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_OCCUPATION_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+
                 }
             }
 
