@@ -395,8 +395,7 @@
 
     <string-array name="array_marital_status">
         <item>@string/select_option</item>
-
-<item> Divorced </item>
+        <item> Divorced </item>
         <item> Widow </item>
         <item> Unmarried </item>
         <item> Multiple marriages </item>
@@ -539,6 +538,7 @@
     <string name="dwaist">In the waist</string>
     <string name="dlegs">Legs</string>
     <string name="person_identification_info">Person identification information</string>
+    <string name="marital_status">Marital Status</string>
 
     <string-array name="address_type">
         <item> @string/select_list </item>

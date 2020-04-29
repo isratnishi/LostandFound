@@ -521,6 +521,7 @@
     <string name="dwaist">কোমরে</string>
     <string name="dlegs">পায়ে</string>
     <string name="person_identification_info">ব্যাক্তির সনাক্তকরণের তথ্য</string>
+    <string name="marital_status">বৈবাহিক অৱস্থা</string>
 
     <string-array name="ImageType">s
         <item>@string/select_option</item>

@@ -7,6 +7,7 @@ import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.Model.Documentaion.MetroAreaModel;
 import com.opus_bd.lostandfound.Model.Documentaion.NationalIdentityTypesModel;
+import com.opus_bd.lostandfound.Model.Documentaion.Occupation;
 import com.opus_bd.lostandfound.Model.Documentaion.RegistrationLevelModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
@@ -82,5 +83,8 @@ public interface RetrofitService {
 
     @GET("api/VehicleMaster/GetAllRegistrationLevel")
     Call<List<RegistrationLevelModel>> GetAllRegistrationLevel();
+
+    @GET("api/DocumentMaster/GetOccupationInfo")
+    Call<List<Occupation>> GetOccupationInfo();
 
 }
