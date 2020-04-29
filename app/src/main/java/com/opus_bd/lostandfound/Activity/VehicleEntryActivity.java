@@ -857,7 +857,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         colorList.add(0,selectOne);
         colorCode.add(0,"#FFFFFF");
         for (int i = 0; i < body.size(); i++) {
-            colorList.add(i+1,(body.get(i).getColorName()+" ("+body.get(i).getColorNameBn()+")"));
+            colorList.add(i+1,body.get(i).getColorName());
             colorCode.add(i+1,body.get(i).getColorCode());
         }
 

@@ -382,8 +382,8 @@
 
                                 <ImageView
                                     android:id="@+id/fabVihecal"
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
+                                    android:layout_width="65dp"
+                                    android:layout_height="65dp"
                                     android:clickable="true"
                                     android:src="@drawable/ic_vehicle"/>
 
@@ -392,7 +392,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/spacing_medium"
                                     android:text="@string/vehicle"
-                                    android:textSize="15dp"
+                                    android:textSize="18dp"
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                                     android:textColor="@color/grey_40" />
 
@@ -410,8 +410,8 @@
                                 <ImageView
 
                                     android:id="@+id/fabMan"
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
+                                    android:layout_width="65dp"
+                                    android:layout_height="65dp"
                                     android:clickable="true"
                                     android:src="@drawable/ic_human_db" />
 
@@ -420,7 +420,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/spacing_medium"
                                     android:text="@string/man"
-                                    android:textSize="15dp"
+                                    android:textSize="18dp"
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                                     android:textColor="@color/grey_40" />
                             </LinearLayout>
@@ -436,8 +436,8 @@
                                 <ImageView
 
                                     android:id="@+id/fabVivid"
-                                    android:layout_width="55dp"
-                                    android:layout_height="55dp"
+                                    android:layout_width="65dp"
+                                    android:layout_height="65dp"
                                     android:clickable="true"
                                     android:src="@drawable/ic_other_entry" />
 
@@ -447,7 +447,7 @@
                                     android:layout_marginTop="@dimen/spacing_medium"
                                     android:text="@string/others"
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-                                    android:textSize="15dp"
+                                    android:textSize="18dp"
                                     android:textColor="@color/grey_40" />
                             </LinearLayout>
 

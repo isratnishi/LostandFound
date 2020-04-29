@@ -22,20 +22,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.DeadBodyFoundActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".Activity.DeadBodyFoundActivity"
+            android:label="@string/unknowndeadbody">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activity.CodeGenerateActivity" />
-        <activity android:name=".Activity.OthersItemEntryActivity" />
+        <activity android:name=".Activity.OthersItemEntryActivity"
+            android:label="@string/othersitemlevel"/>
         <activity android:name=".Activity.VehicleEntryActivity"></activity>
         <activity android:name=".LostInformationEntryActivity" />
         <activity
             android:name=".Activity.UnknownManActivity"
-            android:label="Man Information Entry" />
+            android:label="@string/missingpersonlevel" />
         <activity android:name=".Activity.LostManActivity" />
         <activity android:name=".RegTrialActivity" />
         <activity android:name=".Activity.RegistrationProcessActivity" />
@@ -62,7 +60,11 @@
         <activity
             android:name=".Activity.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

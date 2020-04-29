@@ -163,6 +163,14 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
+  @OnClick({R.id.ivFound, R.id.llFound})
+    public void ivFound() {
+        Constants.ENTRY_TYPE_ID = Constants.FOUND;
+        Intent intent = new Intent(DashboardActivity.this, InformationEntryActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

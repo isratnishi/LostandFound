@@ -85,7 +85,7 @@
     <string name="name_if_found">Name (If found)</string>
 
     <string name="father_s_name">Father\'s Name</string>
-    <string name="father_s_name_if_found">Father\'s Name (If found)</string>
+    <string name="if_found">(If found)</string>
     <string name="husband_wife_name">Husband/Wife Name</string>
     <string name="husband_wife_name_if_found">Husband/Wife Name (If found)</string>
     <string name="religion">Religion</string>
@@ -145,7 +145,41 @@
     <string name="country">Country</string>
     <string name="one_line_address">One Line Address</string>
     <string name="address_type">Address Type</string>
-
+    <string name="deadbody_condition">DeadBody Condition</string>
+    <string name="date_of_death">Date of death</string>
+    <string name="deadbody_location">The location of the corpse</string>
+    <string name="physical_details">Physical Details</string>
+    <string name="eye">Eye</string>
+    <string name="nose">Nose</string>
+    <string name="hair">Hair</string>
+    <string name="forehead">Forehead</string>
+    <string name="beard">Beard</string>
+    <string name="weight_kg">Weight (kg)</string>
+    <string name="physical_constitution">Physical constitution</string>
+    <string name="shape_of_face">Shape of face</string>
+    <string name="chin">Chin</string>
+    <string name="skin_color">Skin color</string>
+    <string name="mustache">Mustache</string>
+    <string name="ears">Ears</string>
+    <string name="neck">Neck</string>
+    <string name="height">Height</string>
+    <string name="feet">(Feet)</string>
+    <string name="inches">(Inches)</string>
+    <string name="description_of_teeth">Description of teeth</string>
+    <string name="special_physical_description">Special physical description</string>
+    <string name="identification_mark">Identification mark</string>
+    <string name="dress_descrioption">Dress Descrioption</string>
+    <string name="dhead">Head</string>
+    <string name="dcolor">Color</string>
+    <string name="deye">Eye</string>
+    <string name="dthroat">In the throat</string>
+    <string name="dbody">In the body</string>
+    <string name="dwaist">In the waist</string>
+    <string name="dlegs">Legs</string>
+    <string name="person_identification_info">Person identification information</string>
+    <string name="missingpersonlevel">Information of the missing person</string>
+    <string name="othersitemlevel">Others Item</string>
+    <string name="unknowndeadbody">Anonymous corpses</string>
     <string-array name="purpose_of_visit">
         <item>@string/select_option</item>
         <item>Purpose of Visit</item>
@@ -167,7 +201,7 @@
         <item>Others</item>
 
     </string-array>
-   <string-array name="ImageType">
+    <string-array name="ImageType">
         <item>@string/select_option</item>
         <item>Right Side</item>
         <item>Left Side</item>
@@ -395,8 +429,7 @@
 
     <string-array name="array_marital_status">
         <item>@string/select_option</item>
-
-<item> Divorced </item>
+        <item> Divorced </item>
         <item> Widow </item>
         <item> Unmarried </item>
         <item> Multiple marriages </item>
@@ -449,7 +482,7 @@
         <item>বৌদ্ধ</item>
 
         <item>খ্রীস্টান</item>
-         <item>অন্যান্য</item>
+        <item>অন্যান্য</item>
     </string-array>
 
     <string-array name="array_number_type">
@@ -507,66 +540,40 @@
         <item>ইঞ্জিন নং</item>
         <item>চেসিস নং</item>
     </string-array>
-    <string name="deadbody_condition">DeadBody Condition</string>
-    <string name="date_of_death">Date of death</string>
-    <string name="deadbody_location">The location of the corpse</string>
-    <string name="physical_details">Physical Details</string>
-    <string name="eye">Eye</string>
-    <string name="nose">Nose</string>
-    <string name="hair">Hair</string>
-    <string name="forehead">Forehead</string>
-    <string name="beard">Beard</string>
-    <string name="weight_kg">Weight (kg)</string>
-    <string name="physical_constitution">Physical constitution</string>
-    <string name="shape_of_face">Shape of face</string>
-    <string name="chin">Chin</string>
-    <string name="skin_color">Skin color</string>
-    <string name="mustache">Mustache</string>
-    <string name="ears">Ears</string>
-    <string name="neck">Neck</string>
-    <string name="height">Height</string>
-    <string name="feet">(Feet)</string>
-    <string name="inches">(Inches)</string>
-    <string name="description_of_teeth">Description of teeth</string>
-    <string name="special_physical_description">Special physical description</string>
-    <string name="identification_mark">Identification mark</string>
-    <string name="dress_descrioption">Dress Descrioption</string>
-    <string name="dhead">Head</string>
-    <string name="dcolor">Color</string>
-    <string name="deye">Eye</string>
-    <string name="dthroat">In the throat</string>
-    <string name="dbody">In the body</string>
-    <string name="dwaist">In the waist</string>
-    <string name="dlegs">Legs</string>
-    <string name="person_identification_info">Person identification information</string>
+
 
     <string-array name="address_type">
         <item> @string/select_list </item>
         <item> Obtained from other sources </item>
-        <item> Secret Workplace </item>
         <item> Possible addresses </item>
-        <item> given to the police </item>
-        <item> provided by the accused </item>
         <item> Current </item>
-        <item> Other </item>
         <item> Permanent </item>
-        <item> Chat </item>
         <item> Workplace Address </item>
+        <item> Other </item>
     </string-array>
-
-
-    <string-array name="ColorName">
+    <string-array name="special_body_condition">
         <item> @string/select_list </item>
-        <item> White </item>
-        <item> Black </item>
-        <item> Blue </item>
+        <item> Lame legs </item>
+        <item> The toes are low </item>
+        <item>Pairing the toes </item>
+        <item> More toes </item>
+        <item> Hands clasped </item>
+        <item> More fingers </item>
+        <item> fingers of the hand are low </item>
+        <item>Pair of fingers </item>
+
     </string-array>
-
-
-    <string-array name="ColorCode">
-        <item>@color/white</item>
-        <item>@color/white</item>
-        <item>@color/black</item>
-        <item>@color/blue</item>
+    <string-array name="array_teeth">
+        <item> @string/select_list </item>
+        <item>Fake teeth</item>
+        <item>Broken teeth</item>
+    </string-array>
+    <string-array name="array_deadbody_condition">
+        <item> @string/select_list </item>
+        <item>Intact</item>
+        <item>Hemispherical</item>
+        <item>Melted</item>
+        <item>Partially Melted</item>
+        <item>Skeleton</item>
     </string-array>
 </resources>

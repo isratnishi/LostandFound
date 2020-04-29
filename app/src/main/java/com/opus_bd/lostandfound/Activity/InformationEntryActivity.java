@@ -85,7 +85,7 @@ public class InformationEntryActivity extends AppCompatActivity {
         cvItems.setVisibility(View.GONE);
         LLInputForOthers.setVisibility(View.GONE);
         iv1.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
-        if (Constants.ENTRY_TYPE_ID == Constants.LOST) {
+        if (Constants.ENTRY_TYPE_ID != Constants.THEFT) {
             llVMan.setVisibility(View.VISIBLE);
         }
     }
@@ -164,10 +164,18 @@ public class InformationEntryActivity extends AppCompatActivity {
         v3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         iv3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         v2.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
-        Intent intent = new Intent(InformationEntryActivity.this, UnknownManActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+       if(Constants.ENTRY_TYPE_ID==Constants.LOST){
+           Intent intent = new Intent(InformationEntryActivity.this, UnknownManActivity.class);
+           intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+           startActivity(intent);
+       }
+       else {
+           Intent intent = new Intent(InformationEntryActivity.this, DeadBodyFoundActivity.class);
+           intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+           startActivity(intent);
+       }
 
     }
 

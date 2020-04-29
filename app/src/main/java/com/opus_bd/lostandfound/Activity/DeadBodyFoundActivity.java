@@ -107,8 +107,8 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
     Spinner spnNumberType;
     @BindView(R.id.etNum)
     EditText etNum;
-    @BindView(R.id.etDeadBodyCondition)
-    EditText etDeadBodyCondition;
+    @BindView(R.id.spnDeadBodyCondition)
+    Spinner spnDeadBodyCondition;
     @BindView(R.id.etDateofdeath)
     EditText etDateofdeath;
     @BindView(R.id.spnImageType)
@@ -118,8 +118,7 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
 
 
     /* (Location)*/
-    @BindView(R.id.ccp)
-    CountryCodePicker ccp;
+
     @BindView(R.id.spnSPDistrict)
     Spinner spnSPDistrict;
     @BindView(R.id.spnSPThana)
@@ -208,8 +207,7 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
     TextView tvImageName;
 
     /* (Location)*/
-    @BindView(R.id.tvCountry)
-    TextView tvCountry;
+
     @BindView(R.id.tvSPDistrict)
     TextView tvSPDistrict;
     @BindView(R.id.tvSPThana)
@@ -423,15 +421,18 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
             tvNumberType.setText(spnNumberType.getSelectedItem().toString());
             tvGender.setText(spnGender.getSelectedItem().toString());
             tvNum.setText(etNum.getText().toString());
-            tvDeadBodyCondition.setText(etDeadBodyCondition.getText().toString());
+            tvDeadBodyCondition.setText(spnDeadBodyCondition.getSelectedItem().toString());
             tvDateofdeath.setText(etDateofdeath.getText().toString());
             tvImageType.setText(spnImageType.getSelectedItem().toString());
             tvImageName.setText(etImageName.getText().toString());
 
+        } catch (Exception e) {
+            Utilities.showLogcatMessage(" Expetion 1: "+e.toString());
+        }
 
+        try{
             /* (Location)*/
-            tvCountry.setText(ccp.getSelectedCountryName().toString());
-            tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
+             tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
             tvSPThana.setText(spnSPThana.getSelectedItem().toString());
             tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
             tvSPThana.setText(spnSPThana.getSelectedItem().toString());
@@ -442,8 +443,11 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
             tvfoundDate.setText(etfoundDate.getText().toString());
             tvfoundTime.setText(etfoundTime.getText().toString());
 
+        } catch (Exception e) {
+Utilities.showLogcatMessage(" Expetion 2: "+e.toString());
+        }
 
-
+try{
             /*(Physical Description)*/
             tvEye.setText(spnEye.getSelectedItem().toString());
             tvNose.setText(spnNose.getSelectedItem().toString());
@@ -468,10 +472,9 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
             tvIdentityficationMark.setText(etIdentityficationMark.getText().toString());
 
 
-        } catch (Exception e) {
-
-        }
-
+} catch (Exception e) {
+    Utilities.showLogcatMessage(" Expetion 3: "+e.toString());
+}
 
 
        /* Intent intent = new Intent(DeadBodyFoundActivity.this, CodeGenerateActivity.class);

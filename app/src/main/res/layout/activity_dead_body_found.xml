@@ -79,7 +79,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/name_if_found" />
+                                        android:text="@string/name" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -87,6 +87,7 @@
 
                                     <EditText
                                         android:id="@+id/etName"
+                                        android:hint="@string/if_found"
                                         style="@style/InformationEntryEditText" />
                                 </TableRow>
 
@@ -113,7 +114,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/father_s_name_if_found" />
+                                        android:text="@string/father_s_name" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -121,6 +122,7 @@
 
                                     <EditText
                                         android:id="@+id/etFathersName"
+                                        android:hint="@string/if_found"
                                         style="@style/InformationEntryEditText" />
                                 </TableRow>
 
@@ -131,7 +133,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/husband_wife_name_if_found" />
+                                        android:text="@string/husband_wife_name" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -139,6 +141,7 @@
 
                                     <EditText
                                         android:id="@+id/etSpouseName"
+                                        android:hint="@string/if_found"
                                         style="@style/InformationEntryEditText" />
                                 </TableRow>
 
@@ -148,7 +151,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/doc_type_if_found" />
+                                        android:text="@string/doc_type" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -166,7 +169,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/doc_number_if_found" />
+                                        android:text="@string/doc_number" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -175,6 +178,7 @@
 
                                     <EditText
                                         android:id="@+id/etNidNum"
+                                        android:hint="@string/if_found"
                                         style="@style/InformationEntryEditText" />
                                 </TableRow>
 
@@ -227,8 +231,9 @@
                                         android:text=":" />
 
 
-                                    <EditText
-                                        android:id="@+id/etDeadBodyCondition"
+                                    <Spinner
+                                        android:id="@+id/spnDeadBodyCondition"
+                                        android:entries="@array/array_deadbody_condition"
                                         style="@style/InformationEntryEditText" />
                                 </TableRow>
 
@@ -357,29 +362,6 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/country" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-
-                                    <com.hbb20.CountryCodePicker
-                                        android:id="@+id/ccp"
-                                        style="@style/InformationEntryEditText"
-                                        android:background="@android:color/white"
-                                        android:hint="Country Code"
-                                        app:ccpDialog_showFlag="false"
-                                        app:ccp_showFullName="true"
-                                        app:ccp_showNameCode="false"
-                                        app:ccp_showPhoneCode="false" />
-                                </TableRow>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
                                         android:text="@string/district" />
 
                                     <TextView
@@ -469,7 +451,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/addressDetails" />
+                                        android:text="@string/one_line_address" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -917,7 +899,7 @@
                                     <Spinner
                                         android:id="@+id/spndescription_of_teeth"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_nose" />
+                                        android:entries="@array/array_teeth" />
 
                                 </TableRow>
 
@@ -936,7 +918,7 @@
                                     <Spinner
                                         android:id="@+id/spnspecial_physical_description"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_body_structure" />
+                                        android:entries="@array/special_body_condition" />
 
                                 </TableRow>
 

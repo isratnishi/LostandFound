@@ -83,7 +83,7 @@
     <string name="name">নাম</string>
     <string name="name_if_found">নাম (যদি পাওয়া যায়)</string>
     <string name="father_s_name">পিতার নাম</string>
-    <string name="father_s_name_if_found">পিতার নাম (যদি পাওয়া যায়)</string>
+    <string name="if_found">(যদি পাওয়া যায়)</string>
     <string name="husband_wife_name">স্বামী / স্ত্রীর নাম</string>
     <string name="husband_wife_name_if_found">স্বামী / স্ত্রীর নাম  (যদি পাওয়া যায়)</string>
     <string name="religion">ধর্ম</string>
@@ -131,7 +131,25 @@
     <string name="image">ছবি</string>
 
     <string name="select_list">Select List</string>
+    <string name="gender">লিঙ্গ</string>
+    <string name="doc_number">ডকুমেন্ট নম্বর</string>
+    <string name="doc_number_if_found">ডকুমেন্ট নম্বর (যদি পাওয়া যায়)</string>
+    <string name="applicant">আবেদনকারী</string>
+    <string name="notification">প্রজ্ঞাপন</string>
+    <string name="insurance_paper">বীমা কাগজ</string>
+    <string name="person_information">ব্যক্তির প্রাথমিক তথ্য</string>
+    <string name="age">বয়স </string>
+    <string name="approximate_age">আনুমানিক বয়স</string>
+    <string name="number_type">নম্বরের প্রকার</string>
+    <string name="person_address">ব্যক্তির ঠিকানা</string>
+    <string name="country">Country</string>
+    <string name="one_line_address">One Line Address</string>
 
+    <!--
+        <string name="select_option">নির্বাচন করুন</string>-->
+    <string name="select_option">Select List</string>
+
+    <string name="address_type">ঠিকানার ধরণ</string>
 
     <string-array name="purpose_of_visit">
         <item>@string/select_list</item>
@@ -165,33 +183,17 @@
     <string-array name="address_type">
         <item>@string/select_list</item>
         <item> অন্যান্য উৎস হতে প্রাপ্ত</item>
-        <item>গোপন কর্মস্থল </item>
         <item>সম্ভাব্য ঠিকানা</item>
-        <item>পুলিশকে প্রদত্ত</item>
-        <item>অভিযুক্ত কতৃক প্রদত্ত</item>
         <item>বর্তমান</item>
-        <item>অন্যান্য</item>
         <item>স্থায়ী</item>
-        <item>আড্ডাস্থল</item>
         <item>কর্মক্ষেত্রের ঠিকানা</item>
+        <item>অন্যান্য</item>
     </string-array>
 
 
 
 
-    <string name="gender">লিঙ্গ</string>
-    <string name="doc_number">ডকুমেন্ট নম্বর</string>
-    <string name="doc_number_if_found">ডকুমেন্ট নম্বর (যদি পাওয়া যায়)</string>
-    <string name="applicant">আবেদনকারী</string>
-    <string name="notification">প্রজ্ঞাপন</string>
-    <string name="insurance_paper">বীমা কাগজ</string>
-    <string name="person_information">ব্যক্তির প্রাথমিক তথ্য</string>
-    <string name="age">বয়স </string>
-    <string name="approximate_age">আনুমানিক বয়স</string>
-    <string name="number_type">নম্বরের প্রকার</string>
-    <string name="person_address">ব্যক্তির ঠিকানা</string>
-    <string name="country">Country</string>
-    <string name="one_line_address">One Line Address</string>
+
 
 
 
@@ -235,12 +237,6 @@
     </string-array>
 
 
-
-<!--
-    <string name="select_option">নির্বাচন করুন</string>-->
-    <string name="select_option">Select List</string>
-
-    <string name="address_type">ঠিকানার ধরণ</string>
 
     <string-array name="array_care_type">
         <item>@string/select_option</item>
@@ -521,8 +517,11 @@
     <string name="dwaist">কোমরে</string>
     <string name="dlegs">পায়ে</string>
     <string name="person_identification_info">ব্যাক্তির সনাক্তকরণের তথ্য</string>
+    <string name="missingpersonlevel">নিখোঁজ ব্যক্তির তথ্য</string>
+    <string name="othersitemlevel">অন্য আইটেম</string>
+    <string name="unknowndeadbody">অজ্ঞাতনামা মৃতদেহ</string>
 
-    <string-array name="ImageType">s
+    <string-array name="ImageType">
         <item>@string/select_option</item>
         <item>Right Side</item>
         <item>Left Side</item>
@@ -531,6 +530,29 @@
     </string-array>
 
 
+    <string-array name="special_body_condition">
+    <item> @string/select_list </item>
+    <item> পা খোঁড়া </item>
+    <item> পায়ের আঙুল কম </item>
+    <item> পায়ের আঙুল জোড়া লাগানো </item>
+    <item> পায়ের আঙুল বেশি </item>
+    <item> হাত খোড়া </item>
+    <item> হাতের আঙ্গুল বেশি </item>
+    <item> হাতের আঙ্গুল কম </item>
+        <item> হাতের আঙ্গুল জোড়া লাগানো </item></string-array>
+    <string-array name="array_teeth">
+        <item> @string/select_list </item>
+        <item>নকল দাঁত</item>
+        <item>ভাঙা দাঁত</item>
+    </string-array> <string-array name="array_deadbody_condition">
+        <item> @string/select_list </item>
+        <item>অক্ষত</item>
+        <item>অর্ধগলিত</item>
+        <item>গলিত</item>
+        <item>আংশিক গলিত</item>
+        <item>কঙ্কাল</item>
+
+    </string-array>
 
 
 

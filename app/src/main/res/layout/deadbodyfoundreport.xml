@@ -54,7 +54,7 @@
 
                                   <TextView
                                       style="@style/InformationEntryTextView"
-                                      android:text="@string/name_if_found" />
+                                      android:text="@string/name" />
 
                                   <TextView
                                       style="@style/InformationEntryTextViewColon"
@@ -62,6 +62,8 @@
 
                                   <TextView
                                       android:id="@+id/tvName"
+                                      android:gravity="start|center_vertical"
+                                      android:hint="@string/if_found"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
 
@@ -78,6 +80,7 @@
                                       android:text=":" />
 
                                   <TextView
+                                      android:gravity="start|center_vertical"
                                       android:id="@+id/tvAge"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
@@ -88,14 +91,17 @@
 
                                   <TextView
                                       style="@style/InformationEntryTextView"
-                                      android:text="@string/father_s_name_if_found" />
+                                      android:text="@string/father_s_name" />
 
                                   <TextView
                                       style="@style/InformationEntryTextViewColon"
                                       android:text=":" />
 
                                   <TextView
+
                                       android:id="@+id/tvFathersName"
+                                      android:gravity="start|center_vertical"
+                                      android:hint="@string/if_found"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
 
@@ -106,7 +112,7 @@
 
                                   <TextView
                                       style="@style/InformationEntryTextView"
-                                      android:text="@string/husband_wife_name_if_found" />
+                                      android:text="@string/husband_wife_name" />
 
                                   <TextView
                                       style="@style/InformationEntryTextViewColon"
@@ -114,6 +120,8 @@
 
                                   <TextView
                                       android:id="@+id/tvSpouseName"
+                                      android:gravity="start|center_vertical"
+                                      android:hint="@string/if_found"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
 
@@ -123,7 +131,7 @@
 
                                   <TextView
                                       style="@style/InformationEntryTextView"
-                                      android:text="@string/doc_type_if_found" />
+                                      android:text="@string/doc_type" />
 
                                   <TextView
                                       style="@style/InformationEntryTextViewColon"
@@ -131,8 +139,10 @@
 
                                   <TextView
                                       android:id="@+id/tvDocType"
+                                      android:gravity="start|center_vertical"
+                                      android:hint="@string/if_found"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/doc_type" />
+                                      />
                               </TableRow>
 
                               <TableRow
@@ -141,7 +151,7 @@
 
                                   <TextView
                                       style="@style/InformationEntryTextView"
-                                      android:text="@string/doc_number_if_found" />
+                                      android:text="@string/doc_number" />
 
                                   <TextView
                                       style="@style/InformationEntryTextViewColon"
@@ -150,6 +160,8 @@
 
                                   <TextView
                                       android:id="@+id/tvNidNum"
+                                      android:gravity="start|center_vertical"
+                                      android:hint="@string/if_found"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
 
@@ -168,7 +180,8 @@
                                   <TextView
                                       android:id="@+id/tvNumberType"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/NUMBERTYPE" />
+                                      android:gravity="start|center_vertical"
+                                       />
                               </TableRow>
 
                               <TableRow
@@ -186,6 +199,7 @@
 
                                   <TextView
                                       android:id="@+id/tvNum"
+                                      android:gravity="start|center_vertical"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
 
@@ -204,6 +218,7 @@
 
                                   <TextView
                                       android:id="@+id/tvDeadBodyCondition"
+                                      android:gravity="start|center_vertical"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
 
@@ -222,6 +237,7 @@
 
                                   <TextView
                                       android:id="@+id/tvDateofdeath"
+                                      android:gravity="start|center_vertical"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
 
@@ -240,6 +256,7 @@
 
                                   <TextView
                                       android:id="@+id/tvImageType"
+                                      android:gravity="start|center_vertical"
                                       style="@style/InformationEntryTextView"
                                       />
                               </TableRow>
@@ -259,6 +276,7 @@
 
                                   <TextView
                                       android:id="@+id/tvImageName"
+                                      android:gravity="start|center_vertical"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
                           </TableLayout>
@@ -304,21 +322,7 @@
                               android:layout_width="match_parent"
                               android:layout_height="wrap_content">
 
-                              <TableRow
-                                  android:layout_width="match_parent"
-                                  android:layout_height="wrap_content">
 
-                                  <TextView
-                                      style="@style/InformationEntryTextView"
-                                      android:text="@string/country" />
-
-                                  <TextView
-                                      style="@style/InformationEntryTextViewColon"
-                                      android:text=":" />
-                                  <TextView
-                                      android:id="@+id/tvCountry"
-                                      style="@style/InformationEntryTextView" />
-                              </TableRow>
 
                               <TableRow
                                   android:layout_width="match_parent"
@@ -334,6 +338,7 @@
 
                                   <TextView
                                       android:id="@+id/tvSPDistrict"
+                                      android:gravity="start|center_vertical"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
 
@@ -352,6 +357,7 @@
 
                                   <TextView
                                       android:id="@+id/tvSPThana"
+                                      android:gravity="start|center_vertical"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
 
@@ -369,6 +375,7 @@
 
                                   <TextView
                                       android:id="@+id/tvVillage"
+                                      android:gravity="start|center_vertical"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
 
@@ -387,6 +394,7 @@
 
                                   <TextView
                                       android:id="@+id/tvAddressDetails"
+                                      android:gravity="start|center_vertical"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
 
@@ -405,7 +413,7 @@
                                   <TextView
                                       android:id="@+id/tvAddressType"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/address_type" />
+                                      android:gravity="start|center_vertical" />
                               </TableRow>
 
                               <TableRow
@@ -414,7 +422,7 @@
 
                                   <TextView
                                       style="@style/InformationEntryTextView"
-                                      android:text="@string/addressDetails" />
+                                      android:text="@string/one_line_address" />
 
                                   <TextView
                                       style="@style/InformationEntryTextViewColon"
@@ -424,7 +432,7 @@
                                   <TextView
                                       android:id="@+id/tvOneLineAddress"
                                       style="@style/InformationEntryTextView"
-                                      android:hint="@string/one_line_address" />
+                                      android:gravity="start|center_vertical" />
                               </TableRow>
                               <TableRow
                                   android:layout_width="match_parent"
@@ -442,7 +450,7 @@
                                   <TextView
                                        android:id="@+id/tvfoundDate"
                                       style="@style/InformationEntryTextView"
-                                      android:hint="@string/date"
+                                      android:gravity="start|center_vertical"
                                       />
                               </TableRow>
                               <TableRow
@@ -460,15 +468,13 @@
 
                                   <TextView
                                     android:id="@+id/tvfoundTime"
+                                      android:gravity="start|center_vertical"
                                       style="@style/InformationEntryTextView"
                                       android:hint="@string/time"
                                       />
                               </TableRow>
                           </TableLayout>
 
-                          <Button
-                              android:id="@+id/btnNext2"
-                              style="@style/BtnNext" />
 
                       </LinearLayout>
                   </LinearLayout>
@@ -526,7 +532,7 @@
                                   <TextView
                                       android:id="@+id/tvEye"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_eye" />
+                                      android:gravity="start|center_vertical" />
 
                               </TableRow>
 
@@ -545,7 +551,7 @@
                                   <TextView
                                       android:id="@+id/tvNose"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_nose" />
+                                      android:gravity="start|center_vertical"/>
 
                               </TableRow>
 
@@ -564,7 +570,7 @@
                                   <TextView
                                       android:id="@+id/tvHair"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_hair" />
+                                      android:gravity="start|center_vertical" />
 
                               </TableRow>
 
@@ -584,7 +590,7 @@
                                   <TextView
                                       android:id="@+id/tvforehead"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_forehead" />
+                                      android:gravity="start|center_vertical" />
 
                               </TableRow>
 
@@ -603,7 +609,7 @@
                                   <TextView
                                       android:id="@+id/tvbeard"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_beard" />
+                                      android:gravity="start|center_vertical" />
 
                               </TableRow>
 
@@ -622,7 +628,7 @@
                                   <TextView
                                       android:id="@+id/tvWeightkg"
                                       style="@style/InformationEntryTextView"
-                                      android:inputType="number" />
+                                      android:gravity="start|center_vertical" />
 
                               </TableRow>
 
@@ -641,7 +647,7 @@
                                   <TextView
                                       android:id="@+id/tvgender"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_gender" />
+                                      android:gravity="start|center_vertical" />
 
                               </TableRow>
 
@@ -658,10 +664,10 @@
                                       android:text=":" />
 
                                   <TextView
-                                      android:gravity="left"
+
                                       android:id="@+id/tvphysical_constitution"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_body_structure" />
+                                      android:gravity="start|center_vertical" />
 
                               </TableRow>
 
@@ -680,7 +686,7 @@
                                   <TextView
                                       android:id="@+id/tvshape_of_face"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_face_shape" />
+                                      android:gravity="start|center_vertical"/>
 
                               </TableRow>
 
@@ -699,7 +705,7 @@
                                   <TextView
                                       android:id="@+id/tvchin"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_body_Chin" />
+                                      android:gravity="start|center_vertical" />
 
                               </TableRow>
 
@@ -717,8 +723,7 @@
 
                                   <TextView
                                       android:id="@+id/tvskin_color"
-                                      style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_body_color" />
+                                      style="@style/InformationEntryTextView"  android:gravity="start|center_vertical" />
 
                               </TableRow>
 
@@ -737,7 +742,7 @@
                                   <TextView
                                       android:id="@+id/tvmustache"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_moustache" />
+                                      android:gravity="start|center_vertical" />
 
                               </TableRow>
 
@@ -756,7 +761,7 @@
                                   <TextView
                                       android:id="@+id/tvears"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_ear" />
+                                      android:gravity="start|center_vertical"/>
 
                               </TableRow>
 
@@ -775,7 +780,7 @@
                                   <TextView
                                       android:id="@+id/tvneck"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_neck" />
+                                      android:gravity="start|center_vertical" />
 
                               </TableRow>
 
@@ -794,6 +799,7 @@
                                   <LinearLayout
                                       style="@style/InformationEntryTextView"
                                       android:entries="@array/array_face_shape"
+                                      android:gravity="start|center_vertical"
                                       android:orientation="horizontal">
 
                                       <TextView
@@ -834,7 +840,7 @@
                                   <TextView
                                       android:id="@+id/tvdescription_of_tetvh"
                                       style="@style/InformationEntryTextView"
-                                  />
+                                      android:gravity="start|center_vertical"  />
 
                               </TableRow>
 
@@ -853,7 +859,7 @@
                                   <TextView
                                       android:id="@+id/tvspecial_physical_description"
                                       style="@style/InformationEntryTextView"
-                                      android:entries="@array/array_body_structure" />
+                                      android:gravity="start|center_vertical"/>
 
                               </TableRow>
 
@@ -871,16 +877,13 @@
 
                                   <TextView
                                       android:id="@+id/tvidentification_mark"
-                                      style="@style/InformationEntryTextView" />
+                                      style="@style/InformationEntryTextView"  android:gravity="start|center_vertical" />
 
                               </TableRow>
 
 
                           </TableLayout>
 
-                          <Button
-                              android:id="@+id/btnNext3"
-                              style="@style/BtnNext" />
 
                       </LinearLayout>
                   </LinearLayout>
