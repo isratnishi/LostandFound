@@ -541,38 +541,7 @@
         <item>চেসিস নং</item>
     </string-array>
 
-    <string name="deadbody_condition">DeadBody Condition</string>
-    <string name="date_of_death">Date of death</string>
-    <string name="deadbody_location">The location of the corpse</string>
-    <string name="physical_details">Physical Details</string>
-    <string name="eye">Eye</string>
-    <string name="nose">Nose</string>
-    <string name="hair">Hair</string>
-    <string name="forehead">Forehead</string>
-    <string name="beard">Beard</string>
-    <string name="weight_kg">Weight (kg)</string>
-    <string name="physical_constitution">Physical constitution</string>
-    <string name="shape_of_face">Shape of face</string>
-    <string name="chin">Chin</string>
-    <string name="skin_color">Skin color</string>
-    <string name="mustache">Mustache</string>
-    <string name="ears">Ears</string>
-    <string name="neck">Neck</string>
-    <string name="height">Height</string>
-    <string name="feet">(Feet)</string>
-    <string name="inches">(Inches)</string>
-    <string name="description_of_teeth">Description of teeth</string>
-    <string name="special_physical_description">Special physical description</string>
-    <string name="identification_mark">Identification mark</string>
-    <string name="dress_descrioption">Dress Descrioption</string>
-    <string name="dhead">Head</string>
-    <string name="dcolor">Color</string>
-    <string name="deye">Eye</string>
-    <string name="dthroat">In the throat</string>
-    <string name="dbody">In the body</string>
-    <string name="dwaist">In the waist</string>
-    <string name="dlegs">Legs</string>
-    <string name="person_identification_info">Person identification information</string>
+
     <string name="marital_status">Marital Status</string>
 
     <string-array name="address_type">
