@@ -190,14 +190,6 @@
         <item>অন্যান্য</item>
     </string-array>
 
-
-
-
-
-
-
-
-
     <string-array name="array_body_color">
         <item>@string/select_option</item>
         <item>কাল</item>
