@@ -240,7 +240,23 @@
                                       android:gravity="start|center_vertical"
                                       style="@style/InformationEntryTextView" />
                               </TableRow>
+                              <TableRow
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content">
 
+                                  <TextView
+                                      style="@style/InformationEntryTextView"
+                                      android:text="@string/religion" />
+
+                                  <TextView
+                                      style="@style/InformationEntryTextViewColon"
+                                      android:text=":" />
+
+                                  <TextView
+                                      android:id="@+id/tvReligion"
+                                      style="@style/InformationEntryEditText"
+                                      />
+                              </TableRow>
                               <TableRow
                                   android:layout_width="match_parent"
                                   android:layout_height="wrap_content">
@@ -887,7 +903,203 @@
 
                       </LinearLayout>
                   </LinearLayout>
+                  Person Lost Dress Information-->
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:background="@android:color/white"
+                      android:orientation="vertical">
 
+                      <RelativeLayout
+                          android:id="@+id/rlRDressDescription"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:background="@color/grey_10"
+                          android:padding="5dp">
+
+                          <TextView
+                              android:id="@+id/tvRDressDescription"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_alignParentLeft="true"
+                              android:layout_marginLeft="10dp"
+                              android:gravity="center_vertical"
+                              android:text="@string/dress_descrioption"
+                              android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
+                              android:textColor="@color/colorPrimaryDark"
+                              android:textStyle="bold" />
+
+
+                      </RelativeLayout>
+
+                      <LinearLayout
+                          android:id="@+id/llRDressDescription"
+                          android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:orientation="vertical"
+                          android:padding="10dp">
+
+                          <TableLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content">
+
+                              <TableRow
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content">
+
+                                  <TextView
+                                      style="@style/InformationEntryTextView"
+                                      android:text="@string/dhead" />
+
+                                  <TextView
+                                      style="@style/InformationEntryTextViewColon"
+                                      android:text=":" />
+
+                                  <TextView
+                                      android:id="@+id/tvDHead"
+                                      style="@style/InformationEntryEditText"
+                                      />
+                                  <TextView
+                                      style="@style/InformationEntryTextView"
+                                      android:text="@string/dcolor" />
+
+                                  <TextView
+                                      style="@style/InformationEntryTextViewColon"
+                                      android:text=":" />
+
+                                  <TextView
+                                      android:id="@+id/tvDHeadColor"
+                                      style="@style/InformationEntryEditText"
+                                      />
+                              </TableRow>
+                              <TableRow
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content">
+
+                                  <TextView
+                                      style="@style/InformationEntryTextView"
+                                      android:text="@string/deye" />
+
+                                  <TextView
+                                      style="@style/InformationEntryTextViewColon"
+                                      android:text=":" />
+
+                                  <TextView
+                                      android:id="@+id/tvDEye"
+                                      style="@style/InformationEntryEditText"
+                                      />
+                                  <TextView
+                                      style="@style/InformationEntryTextView"
+                                      android:text="@string/dcolor" />
+
+                                  <TextView
+                                      style="@style/InformationEntryTextViewColon"
+                                      android:text=":" />
+
+                                  <TextView
+                                      android:id="@+id/tvDEyeColor"
+                                      style="@style/InformationEntryEditText"
+                                      />
+                              </TableRow>
+
+                              <TableRow
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content">
+
+                                  <TextView
+                                      style="@style/InformationEntryTextView"
+                                      android:text="@string/dthroat" />
+
+                                  <TextView
+                                      style="@style/InformationEntryTextViewColon"
+                                      android:text=":" />
+
+                                  <TextView
+                                      android:id="@+id/tvDThroat"
+                                      style="@style/InformationEntryEditText"
+                                      />
+                                  <TextView
+                                      style="@style/InformationEntryTextView"
+                                      android:text="@string/dcolor" />
+
+                                  <TextView
+                                      style="@style/InformationEntryTextViewColon"
+                                      android:text=":" />
+
+                                  <TextView
+                                      android:id="@+id/tvDThroatColor"
+                                      style="@style/InformationEntryEditText"
+                                      />
+                              </TableRow>
+
+                              <TableRow
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content">
+
+                                  <TextView
+                                      style="@style/InformationEntryTextView"
+                                      android:text="@string/dbody" />
+
+                                  <TextView
+                                      style="@style/InformationEntryTextViewColon"
+                                      android:text=":" />
+
+                                  <TextView
+                                      android:id="@+id/tvDBody"
+                                      style="@style/InformationEntryEditText"
+                                      />
+                                  <TextView
+                                      style="@style/InformationEntryTextView"
+                                      android:text="@string/dcolor" />
+
+                                  <TextView
+                                      style="@style/InformationEntryTextViewColon"
+                                      android:text=":" />
+
+                                  <TextView
+                                      android:id="@+id/tvDBodyColor"
+                                      style="@style/InformationEntryEditText"
+                                      />
+                              </TableRow>
+
+                              <TableRow
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content">
+
+                                  <TextView
+                                      style="@style/InformationEntryTextView"
+                                      android:text="@string/dwaist" />
+
+                                  <TextView
+                                      style="@style/InformationEntryTextViewColon"
+                                      android:text=":" />
+
+                                  <TextView
+                                      android:id="@+id/tvDWaist"
+                                      style="@style/InformationEntryEditText"
+                                      />
+                                  <TextView
+                                      style="@style/InformationEntryTextView"
+                                      android:text="@string/dcolor" />
+
+                                  <TextView
+                                      style="@style/InformationEntryTextViewColon"
+                                      android:text=":" />
+
+                                  <TextView
+                                      android:id="@+id/tvDWaistColor"
+                                      style="@style/InformationEntryEditText"
+                                      />
+                              </TableRow>
+
+
+                          </TableLayout>
+
+
+
+                      </LinearLayout>
+
+                  </LinearLayout>
                   <!--Edit Button-->
                   <RelativeLayout
                       android:layout_width="match_parent"

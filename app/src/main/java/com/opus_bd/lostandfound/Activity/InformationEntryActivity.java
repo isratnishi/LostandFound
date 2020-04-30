@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Utils.Constants;
@@ -69,7 +70,8 @@ public class InformationEntryActivity extends AppCompatActivity {
     @BindView(R.id.fabOther)
     ImageView fabOther;
     @BindView(R.id.fabMan)
-    ImageView fabMan;
+    ImageView fabMan;    @BindView(R.id.tvMan)
+    TextView tvMan;
     @BindView(R.id.llVMan)
     LinearLayout llVMan;  @BindView(R.id.tvDocType)
     TextView tvDocType;@BindView(R.id.spnDocumentType)
@@ -87,6 +89,12 @@ public class InformationEntryActivity extends AppCompatActivity {
         iv1.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         if (Constants.ENTRY_TYPE_ID != Constants.THEFT) {
             llVMan.setVisibility(View.VISIBLE);
+        }
+
+        if (Constants.ENTRY_TYPE_ID == Constants.FOUND) {
+
+            tvMan.setText(getResources().getText(R.string.unknown_dead_body));
+            Glide.with(this).load(R.drawable.ic_deadbody).into(fabMan);
         }
     }
 

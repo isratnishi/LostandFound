@@ -298,7 +298,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 //Multiple Image add
 
     private Button btn;
-    int PICK_IMAGE_MULTIPLE = 1;
+    int PICK_IMAGE_MULTIPLE = 27;
     String imageEncoded;
     List<String> imagesEncodedList;
     private GridView gvGallery, gvGallery1;
@@ -430,11 +430,16 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             @Override
             public void onClick(View v) {
                 //ImagePicker();
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_MULTIPLE);
+               try {
+                   Intent intent = new Intent();
+                   intent.setType("image/*");
+                   intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                   intent.setAction(Intent.ACTION_GET_CONTENT);
+                   startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_MULTIPLE);
+               }
+               catch (Exception e){
+                   Utilities.showLogcatMessage(" etImage.setOnClickListener "+e.toString());
+               }
             }
         });
     }
@@ -447,7 +452,109 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         else
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
+    //Multiple image
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        try {
 
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+        catch (Exception e)
+        {
+            Utilities.showLogcatMessage("onActivityResult "+e.toString());
+        }
+       /* Utilities.showLogcatMessage("requestCode "+requestCode);
+        Utilities.showLogcatMessage("resultCode "+resultCode);
+        Utilities.showLogcatMessage("data "+data);*/
+        try {
+            // When an Image is picked
+            if (requestCode == PICK_IMAGE_MULTIPLE && resultCode == RESULT_OK
+                    && null != data) {
+                // Get the Image from data
+
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                imagesEncodedList = new ArrayList<String>();
+                if (data.getData() != null) {
+
+                    Uri mImageUri = data.getData();
+
+                    // Get the cursor
+                    Cursor cursor = getContentResolver().query(mImageUri,
+                            filePathColumn, null, null, null);
+                    // Move to first row
+                    cursor.moveToFirst();
+
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    imageEncoded = cursor.getString(columnIndex);
+                    cursor.close();
+
+                    ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
+                    mArrayUri.add(mImageUri);
+                    galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
+                    gvGallery.setAdapter(galleryAdapter);
+                    gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
+                    ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
+                            .getLayoutParams();
+                    mlp.setMargins(0, gvGallery.getHorizontalSpacing(), 0, 0);
+
+
+                    gvGallery1.setAdapter(galleryAdapter);
+                    gvGallery1.setVerticalSpacing(gvGallery1.getHorizontalSpacing());
+                    ViewGroup.MarginLayoutParams mlp1 = (ViewGroup.MarginLayoutParams) gvGallery1
+                            .getLayoutParams();
+                    mlp1.setMargins(0, gvGallery1.getHorizontalSpacing(), 0, 0);
+                    tvPhoto.setText("Selected Images " + mArrayUri.size());
+
+                } else {
+                    if (data.getClipData() != null) {
+                        ClipData mClipData = data.getClipData();
+                        ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
+                        for (int i = 0; i < mClipData.getItemCount(); i++) {
+
+                            ClipData.Item item = mClipData.getItemAt(i);
+                            Uri uri = item.getUri();
+                            mArrayUri.add(uri);
+                            // Get the cursor
+                            Cursor cursor = getContentResolver().query(uri, filePathColumn, null, null, null);
+                            // Move to first row
+                            cursor.moveToFirst();
+
+                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                            imageEncoded = cursor.getString(columnIndex);
+                            imagesEncodedList.add(imageEncoded);
+                            cursor.close();
+
+                            galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
+                            gvGallery.setAdapter(galleryAdapter);
+                            gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
+                            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
+                                    .getLayoutParams();
+                            mlp.setMargins(0, gvGallery.getHorizontalSpacing(), 0, 0);
+
+
+                            gvGallery1.setAdapter(galleryAdapter);
+                            gvGallery1.setVerticalSpacing(gvGallery1.getHorizontalSpacing());
+                            ViewGroup.MarginLayoutParams mlp1 = (ViewGroup.MarginLayoutParams) gvGallery1
+                                    .getLayoutParams();
+                            mlp1.setMargins(0, gvGallery1.getHorizontalSpacing(), 0, 0);
+
+                        }
+                        Log.v("LOG_TAG", "Selected Images" + mArrayUri.size());
+                        tvPhoto.setText("Selected Images " + mArrayUri.size());
+                    }
+                }
+            } else {
+                Toast.makeText(this, "You haven't picked Image",
+                        Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG)
+                    .show();
+            Utilities.showLogcatMessage(" "+e.getLocalizedMessage());
+        }
+
+
+    }
     @OnClick(R.id.ivVehicleInformation)
     public void ivVehicleInformation() {
         if (isllVehicleEntryChecked) {

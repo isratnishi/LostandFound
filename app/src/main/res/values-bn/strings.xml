@@ -136,7 +136,7 @@
     <string name="doc_number_if_found">ডকুমেন্ট নম্বর (যদি পাওয়া যায়)</string>
     <string name="applicant">আবেদনকারী</string>
     <string name="notification">প্রজ্ঞাপন</string>
-    <string name="insurance_paper">বীমা কাগজ</string>
+    <string name="insurance_paper">ইন্সুরেন্সের কাগজ</string>
     <string name="person_information">ব্যক্তির প্রাথমিক তথ্য</string>
     <string name="age">বয়স </string>
     <string name="approximate_age">আনুমানিক বয়স</string>
@@ -596,5 +596,8 @@
     </string-array>
 
 
+    <string name="unknown_dead_body">অসনাক্তকৃত মৃতদেহ</string>
+    <string name="dress">পোশাক</string>
+    <string name="position">অবস্থান</string>
 
 </resources>

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.opus_bd.lostandfound.R;
+import com.opus_bd.lostandfound.Utils.Utilities;
 
 import java.util.List;
 
@@ -47,12 +48,19 @@ public class CustomColorAdapter extends BaseAdapter {
         view = inflter.inflate(R.layout.custom_color_spinner, null);
         ImageView icon = (ImageView) view.findViewById(R.id.imageView);
         TextView names = (TextView) view.findViewById(R.id.textView);
-        icon.setBackgroundColor(Color.parseColor(ColorCode.get(i)));
-/*        icon.setImageResource(flags[i]);*/
-        /*try{
-            Glide.with(context).load("http://103.134.88.13:1022/"+iconList.get(i)).into(icon);
+        if(i>0){
+            icon.setVisibility(View.VISIBLE);
+            try{
+                icon.setBackgroundColor(Color.parseColor(ColorCode.get(i)));
+            }
+            catch (Exception e){
+                Utilities.showLogcatMessage("setBackgroundColor "+e.toString());
+            }
         }
-        catch (Exception e){}*/
+        else {
+            icon.setVisibility(View.GONE);
+        }
+
         names.setText(ColorList.get(i));
         return view;
     }

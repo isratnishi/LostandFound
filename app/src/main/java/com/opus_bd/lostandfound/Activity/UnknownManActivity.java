@@ -36,6 +36,7 @@ import com.hbb20.CountryCodePicker;
 import com.opus_bd.lostandfound.Adapter.CustomAdapter;
 import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
+import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.Occupation;
 import com.opus_bd.lostandfound.Model.GlobalData.District;
 import com.opus_bd.lostandfound.Model.GlobalData.Thana;
@@ -299,53 +300,53 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     EditText etIdentityficationMark;
     @BindView(R.id.tvIdentityficationMark)
     TextView tvIdentityficationMark;
-    @BindView(R.id.etTeeth)
-    EditText etTeeth;
+    @BindView(R.id.spndescription_of_teeth)
+    Spinner spndescription_of_teeth;
     @BindView(R.id.tvTeeth)
     TextView tvTeeth;
-    @BindView(R.id.etSpecial_physical_description)
-    EditText etSpecial_physical_description;
+    @BindView(R.id.spnspecial_physical_description)
+    Spinner spnspecial_physical_description;
     @BindView(R.id.tvSpecial_physical_description)
     TextView tvSpecial_physical_description;
 
-    @BindView(R.id.etDHead)
-    EditText etDHead;
+    @BindView(R.id.spnDHead)
+    Spinner etDHead;
     @BindView(R.id.tvDHead)
     TextView tvDHead;
-    @BindView(R.id.etDHeadColor)
-    EditText etDHeadColor;
+    @BindView(R.id.spnDHeadColor)
+    Spinner etDHeadColor;
     @BindView(R.id.tvDHeadColor)
     TextView tvDHeadColor;
-    @BindView(R.id.etDEye)
-    EditText etDEye;
+    @BindView(R.id.spnDEye)
+    Spinner etDEye;
     @BindView(R.id.tvDEye)
     TextView tvDEye;
-    @BindView(R.id.etDEyeColor)
-    EditText etDEyeColor;
+    @BindView(R.id.spnDEyeColor)
+    Spinner etDEyeColor;
     @BindView(R.id.tvDEyeColor)
     TextView tvDEyeColor;
-    @BindView(R.id.etDThroat)
-    EditText etDThroat;
+    @BindView(R.id.spnDThroat)
+    Spinner etDThroat;
     @BindView(R.id.tvDThroat)
     TextView tvDThroat;
-    @BindView(R.id.etDThroatColor)
-    EditText etDThroatColor;
+    @BindView(R.id.spnDThroatColor)
+    Spinner etDThroatColor;
     @BindView(R.id.tvDThroatColor)
     TextView tvDThroatColor;
-    @BindView(R.id.etDBody)
-    EditText etDBody;
+    @BindView(R.id.spnDBody)
+    Spinner etDBody;
     @BindView(R.id.tvDBody)
     TextView tvDBody;
-    @BindView(R.id.etDBodyColor)
-    EditText etDBodyColor;
+    @BindView(R.id.spnDBodyColor)
+    Spinner etDBodyColor;
     @BindView(R.id.tvDBodyColor)
     TextView tvDBodyColor;
-    @BindView(R.id.etDWaist)
-    EditText etDWaist;
+    @BindView(R.id.spnDWaist)
+    Spinner etDWaist;
     @BindView(R.id.tvDWaist)
     TextView tvDWaist;
-    @BindView(R.id.etDWaistColor)
-    EditText etDWaistColor;
+    @BindView(R.id.spnDWaistColor)
+    Spinner etDWaistColor;
     @BindView(R.id.tvDWaistColor)
     TextView tvDWaistColor;
 
@@ -409,6 +410,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     public int SELECTED_THANA_ID_LP;
     public int SELECTED_OCCUPATION_ID;
     String selectOne;
+    ArrayList<Colors> colorArrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -428,6 +430,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         selectOne=getResources().getString(R.string.select_option);
         getOccupation();
         getDistrict();
+        getAllColor();
         //Color
        // initializeColor();
 
@@ -629,7 +632,65 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
     }
 
+    public void getAllColor() {
 
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<Colors>> colors = retrofitService.GetColors();
+        colors.enqueue(new Callback<List<Colors>>() {
+            @Override
+            public void onResponse(Call<List<Colors>> call, Response<List<Colors>> response) {
+
+                if (response.body() != null) {
+
+                    colorArrayList.clear();
+                    colorArrayList.addAll(response.body());
+
+                    addColorSpinnerData(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Colors>> call, Throwable t) {
+                Toast.makeText(UnknownManActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void addColorSpinnerData(final List<Colors> body) {
+        List<String> colorList = new ArrayList<>();
+        List<String> colorCode = new ArrayList<>();
+        colorList.add(0,selectOne);
+        colorCode.add(0,"#FFFFFF");
+        for (int i = 0; i < body.size(); i++) {
+            colorList.add(i+1,body.get(i).getColorName());
+            colorCode.add(i+1,body.get(i).getColorCode());
+        }
+
+
+        CustomColorAdapter customAdapter=new CustomColorAdapter(getApplicationContext(),colorList,colorCode);
+        etDBodyColor.setAdapter(customAdapter);
+        etDEyeColor.setAdapter(customAdapter);
+        etDHeadColor.setAdapter(customAdapter);
+        etDWaistColor.setAdapter(customAdapter);
+        etDThroatColor.setAdapter(customAdapter);
+        etDBodyColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 1) {
+                  //  SELECTED_COLOR_ID = body.get(i).getId();
+                } else {
+                   // SELECTED_COLOR_ID = 0;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
 
     public void customDialog() {
         final Dialog dialog = new Dialog(UnknownManActivity.this);
@@ -666,7 +727,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     }
 
     @OnClick(R.id.btnNext5)
-    public void btnNext2() {
+    public void ReportShown() {
         llInput.setVisibility(View.GONE);
         mcvReport.setVisibility(View.VISIBLE);
         try {
@@ -709,21 +770,21 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
             tvHeight_feet.setText(etHeight_feet.getText().toString());
             tvHeight_Inch.setText(etHeight_Inch.getText().toString());
             tvIdentityficationMark.setText(etIdentityficationMark.getText().toString());
-            tvTeeth.setText(etTeeth.getText().toString());
-            tvSpecial_physical_description.setText(etSpecial_physical_description.getText().toString());
+            tvTeeth.setText(spndescription_of_teeth.getSelectedItem().toString());
+            tvSpecial_physical_description.setText(spnspecial_physical_description.getSelectedItem().toString());
             //tvHeight.setText(spnHeight_feet.getSelectedItem().toString());
             //tvColor.setText(etColor.getText().toString());
 
-            tvDHead.setText(etDHead.getText().toString());
-            tvDHeadColor.setText(etDHeadColor.getText().toString());
+            tvDHead.setText(etDHead.getSelectedItem().toString());
+            tvDHeadColor.setText(etDHeadColor.getSelectedItem().toString());
             tvDEye.setText(tvDEye.getText().toString());
-            tvDEyeColor.setText(etDEyeColor.getText().toString());
-            tvDThroat.setText(etDThroat.getText().toString());
-            tvDThroatColor.setText(etDThroatColor.getText().toString());
-            tvDBody.setText(etDBody.getText().toString());
-            tvDBodyColor.setText(etDBodyColor.getText().toString());
-            tvDWaist.setText(etDWaist.getText().toString());
-            tvDWaistColor.setText(etDWaistColor.getText().toString());
+            tvDEyeColor.setText(etDEyeColor.getSelectedItem().toString());
+            tvDThroat.setText(etDThroat.getSelectedItem().toString());
+            tvDThroatColor.setText(etDThroatColor.getSelectedItem().toString());
+            tvDBody.setText(etDBody.getSelectedItem().toString());
+            tvDBodyColor.setText(etDBodyColor.getSelectedItem().toString());
+            tvDWaist.setText(etDWaist.getSelectedItem().toString());
+            tvDWaistColor.setText(etDWaistColor.getSelectedItem().toString());
             tvPhotesType.setText(spnPhotesType.getSelectedItem().toString());
             tvPhotoesName.setText(etPhotoesName.getText().toString());
 

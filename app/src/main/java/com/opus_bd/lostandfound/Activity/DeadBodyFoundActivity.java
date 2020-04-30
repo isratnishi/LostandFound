@@ -28,7 +28,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 import com.hbb20.CountryCodePicker;
+import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
+import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.GlobalData.District;
 import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 import com.opus_bd.lostandfound.R;
@@ -88,6 +90,15 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
     ImageView ivTPersonAddress;
 
 
+    boolean isllDressDescriptionChecked = true;
+    @BindView(R.id.mcvDressDescription)
+    MaterialCardView mcvDressDescription;
+    @BindView(R.id.llDressDescription)
+    LinearLayout llDressDescription;
+    @BindView(R.id.ivDressDescription)
+    ImageView ivDressDescription;
+
+
     //input field
 
     /*    (Person Information)*/
@@ -111,11 +122,10 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
     Spinner spnDeadBodyCondition;
     @BindView(R.id.etDateofdeath)
     EditText etDateofdeath;
-    @BindView(R.id.spnImageType)
-    Spinner spnImageType;
-    @BindView(R.id.etImageName)
-    EditText etImageName;
 
+
+    @BindView(R.id.spnReligion)
+    Spinner spnReligion;
 
     /* (Location)*/
 
@@ -177,7 +187,28 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
     @BindView(R.id.etidentification_mark)
     EditText etIdentityficationMark;
 
+    /*Dress*/
 
+    @BindView(R.id.spnDHead)
+    Spinner etDHead;
+    @BindView(R.id.spnDHeadColor)
+    Spinner etDHeadColor;
+    @BindView(R.id.spnDEye)
+    Spinner etDEye;
+    @BindView(R.id.spnDEyeColor)
+    Spinner etDEyeColor;
+    @BindView(R.id.spnDThroat)
+    Spinner etDThroat;
+    @BindView(R.id.spnDThroatColor)
+    Spinner etDThroatColor;
+    @BindView(R.id.spnDBody)
+    Spinner etDBody;
+    @BindView(R.id.spnDBodyColor)
+    Spinner etDBodyColor;
+    @BindView(R.id.spnDWaist)
+    Spinner etDWaist;
+    @BindView(R.id.spnDWaistColor)
+    Spinner etDWaistColor;
     //ReportView
 
     /*    (Person Information)*/
@@ -203,9 +234,9 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
     TextView tvDateofdeath;
     @BindView(R.id.tvImageType)
     TextView tvImageType;
-    @BindView(R.id.tvImageName)
-    TextView tvImageName;
 
+    @BindView(R.id.tvReligion)
+    TextView tvReligion;
     /* (Location)*/
 
     @BindView(R.id.tvSPDistrict)
@@ -265,7 +296,29 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
     TextView tvspecial_physical_description;
     @BindView(R.id.tvidentification_mark)
     TextView tvIdentityficationMark;
+    /*Dress*/
 
+
+    @BindView(R.id.tvDHead)
+    TextView tvDHead;
+    @BindView(R.id.tvDHeadColor)
+    TextView tvDHeadColor;
+    @BindView(R.id.tvDEye)
+    TextView tvDEye;
+    @BindView(R.id.tvDEyeColor)
+    TextView tvDEyeColor;
+    @BindView(R.id.tvDThroat)
+    TextView tvDThroat;
+    @BindView(R.id.tvDThroatColor)
+    TextView tvDThroatColor;
+    @BindView(R.id.tvDBody)
+    TextView tvDBody;
+    @BindView(R.id.tvDBodyColor)
+    TextView tvDBodyColor;
+    @BindView(R.id.tvDWaist)
+    TextView tvDWaist;
+    @BindView(R.id.tvDWaistColor)
+    TextView tvDWaistColor;
 
     //date picker
     SimpleDateFormat formatter;
@@ -278,6 +331,8 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
 
     ArrayList<District> districtArrayList = new ArrayList<>();
     ArrayList<Thana> thanaArrayList = new ArrayList<>();
+
+    ArrayList<Colors> colorArrayList = new ArrayList<>();
     public int SELECTED_DISTRICT_ID;
     public int SELECTED_DISTRICT_ID_LP;
     public int SELECTED_THANA_ID;
@@ -294,12 +349,13 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
         Glide.with(this).load(R.drawable.ic_drop_up).into(ivTPersonInfromation);
         mcvPersonPhysical.setVisibility(View.GONE);
         mcvPersonAddress.setVisibility(View.GONE);
+        mcvDressDescription.setVisibility(View.GONE);
         //date picker
         initializeVariables();
         selectOne = getResources().getString(R.string.select_option);
         getDistrict();
 
-
+        getAllColor();
     }
 
 //Date Picker
@@ -407,7 +463,29 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
 
     }
 
-    @OnClick(R.id.btnNext3)
+    @OnClick({R.id.ivDressDescription, R.id.btnNext3})
+    public void ivDressDescription() {
+        if (isllDressDescriptionChecked) {
+            // show password
+            llPersonPhysical.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivTPersonPhysical);
+            isllPersonPhysicalChecked = true;
+
+            mcvDressDescription.setVisibility(View.VISIBLE);
+            llDressDescription.setVisibility(View.VISIBLE);
+            Glide.with(this).load(R.drawable.ic_drop_up).into(ivDressDescription);
+            isllDressDescriptionChecked = false;
+
+        } else {
+            // hide password
+            llDressDescription.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivDressDescription);
+            isllDressDescriptionChecked = true;
+        }
+
+    }
+
+    @OnClick(R.id.btnNext4)
     public void ReportShown() {
         llInput.setVisibility(View.GONE);
         mcvReport.setVisibility(View.VISIBLE);
@@ -423,16 +501,17 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
             tvNum.setText(etNum.getText().toString());
             tvDeadBodyCondition.setText(spnDeadBodyCondition.getSelectedItem().toString());
             tvDateofdeath.setText(etDateofdeath.getText().toString());
-            tvImageType.setText(spnImageType.getSelectedItem().toString());
-            tvImageName.setText(etImageName.getText().toString());
+            tvReligion.setText(spnReligion.getSelectedItem().toString());
+
+
 
         } catch (Exception e) {
-            Utilities.showLogcatMessage(" Expetion 1: "+e.toString());
+            Utilities.showLogcatMessage(" Expetion 1: " + e.toString());
         }
 
-        try{
+        try {
             /* (Location)*/
-             tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
+            tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
             tvSPThana.setText(spnSPThana.getSelectedItem().toString());
             tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
             tvSPThana.setText(spnSPThana.getSelectedItem().toString());
@@ -444,10 +523,10 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
             tvfoundTime.setText(etfoundTime.getText().toString());
 
         } catch (Exception e) {
-Utilities.showLogcatMessage(" Expetion 2: "+e.toString());
+            Utilities.showLogcatMessage(" Expetion 2: " + e.toString());
         }
 
-try{
+        try {
             /*(Physical Description)*/
             tvEye.setText(spnEye.getSelectedItem().toString());
             tvNose.setText(spnNose.getSelectedItem().toString());
@@ -472,9 +551,26 @@ try{
             tvIdentityficationMark.setText(etIdentityficationMark.getText().toString());
 
 
-} catch (Exception e) {
-    Utilities.showLogcatMessage(" Expetion 3: "+e.toString());
-}
+        } catch (Exception e) {
+            Utilities.showLogcatMessage(" Expetion 3: " + e.toString());
+        }
+        try {
+            /*(Dress Description)*/
+            tvDHead.setText(etDHead.getSelectedItem().toString());
+            tvDHeadColor.setText(etDHeadColor.getSelectedItem().toString());
+            tvDEye.setText(tvDEye.getText().toString());
+            tvDEyeColor.setText(etDEyeColor.getSelectedItem().toString());
+            tvDThroat.setText(etDThroat.getSelectedItem().toString());
+            tvDThroatColor.setText(etDThroatColor.getSelectedItem().toString());
+            tvDBody.setText(etDBody.getSelectedItem().toString());
+            tvDBodyColor.setText(etDBodyColor.getSelectedItem().toString());
+            tvDWaist.setText(etDWaist.getSelectedItem().toString());
+            tvDWaistColor.setText(etDWaistColor.getSelectedItem().toString());
+
+
+        } catch (Exception e) {
+            Utilities.showLogcatMessage(" Expetion 4: " + e.toString());
+        }
 
 
        /* Intent intent = new Intent(DeadBodyFoundActivity.this, CodeGenerateActivity.class);
@@ -590,6 +686,65 @@ try{
         });
     }
 
+    public void getAllColor() {
+
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<Colors>> colors = retrofitService.GetColors();
+        colors.enqueue(new Callback<List<Colors>>() {
+            @Override
+            public void onResponse(Call<List<Colors>> call, Response<List<Colors>> response) {
+
+                if (response.body() != null) {
+
+                    colorArrayList.clear();
+                    colorArrayList.addAll(response.body());
+
+                    addColorSpinnerData(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Colors>> call, Throwable t) {
+                Toast.makeText(DeadBodyFoundActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void addColorSpinnerData(final List<Colors> body) {
+        List<String> colorList = new ArrayList<>();
+        List<String> colorCode = new ArrayList<>();
+        colorList.add(0, selectOne);
+        colorCode.add(0, "#FFFFFF");
+        for (int i = 0; i < body.size(); i++) {
+            colorList.add(i + 1, body.get(i).getColorName());
+            colorCode.add(i + 1, body.get(i).getColorCode());
+        }
+
+
+        CustomColorAdapter customAdapter = new CustomColorAdapter(getApplicationContext(), colorList, colorCode);
+        etDBodyColor.setAdapter(customAdapter);
+        etDEyeColor.setAdapter(customAdapter);
+        etDHeadColor.setAdapter(customAdapter);
+        etDWaistColor.setAdapter(customAdapter);
+        etDThroatColor.setAdapter(customAdapter);
+        etDBodyColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 1) {
+                    //  SELECTED_COLOR_ID = body.get(i).getId();
+                } else {
+                    // SELECTED_COLOR_ID = 0;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
 
     //InformationEntryActivity
     @Override
