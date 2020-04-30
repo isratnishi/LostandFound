@@ -506,7 +506,7 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
 
 
         } catch (Exception e) {
-            Utilities.showLogcatMessage(" Expetion 1: " + e.toString());
+           /* Utilities.showLogcatMessage(" Expetion 1: " + e.toString());*/
         }
 
         try {
