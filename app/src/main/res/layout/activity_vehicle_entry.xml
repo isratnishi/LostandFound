@@ -277,13 +277,22 @@
                                         android:hint="@string/madeDate" />
                                 </TableRow>
 
+
+
                             </TableLayout>
 
                             <Button
                                 android:id="@+id/btnNext1"
                                 style="@style/BtnNext" />
 
+                            <WebView
+                                android:id="@+id/chatBot"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+
                         </LinearLayout>
+
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
