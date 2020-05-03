@@ -191,8 +191,15 @@ public class LoginActivity extends AppCompatActivity {
         }
     } @OnClick(R.id.btnSupport)
     public void btnSupport() {
-
-       customDialog();
+        try {
+            Intent intent = new Intent(LoginActivity.this, ChatBotActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } catch (Exception e) {
+            Utilities.showLogcatMessage("Exception " + e.toString());
+        }
+//       customDialog();
     }
 
 

@@ -30,6 +30,10 @@
         <activity
             android:name=".Activity.DeadBodyFoundActivity"
             android:label="@string/unknowndeadbody" />
+        <activity android:name=".Activity.ChatBotActivity" />
+        <activity
+            android:name=".Activity.DeadBodyFoundActivity"
+            android:label="@string/unknowndeadbody"></activity>
         <activity android:name=".Activity.CodeGenerateActivity" />
         <activity
             android:name=".Activity.OthersItemEntryActivity"
