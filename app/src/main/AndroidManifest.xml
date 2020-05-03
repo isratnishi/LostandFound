@@ -23,15 +23,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.DeadBodyFoundActivity"
-            android:label="@string/unknowndeadbody">
-
-
-        </activity>
+        <activity android:name=".Activity.ChatBotActivity" />
+        <activity
+            android:name=".Activity.DeadBodyFoundActivity"
+            android:label="@string/unknowndeadbody"></activity>
         <activity android:name=".Activity.CodeGenerateActivity" />
-        <activity android:name=".Activity.OthersItemEntryActivity"
-            android:label="@string/othersitemlevel"/>
-        <activity android:name=".Activity.VehicleEntryActivity"></activity>
+        <activity
+            android:name=".Activity.OthersItemEntryActivity"
+            android:label="@string/othersitemlevel" />
+        <activity android:name=".Activity.VehicleEntryActivity" />
         <activity android:name=".LostInformationEntryActivity" />
         <activity
             android:name=".Activity.UnknownManActivity"

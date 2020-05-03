@@ -625,10 +625,9 @@
         <item>সু</item>
         <item>সেন্ডেল</item>
     </string-array>
-<string name="unknown_dead_body">Unknown DeadBody</string>
+    <string name="unknown_dead_body">Unknown DeadBody</string>
     <string name="dress">Dress</string>
     <string name="position">Position</string>
-
 
 
 </resources>
