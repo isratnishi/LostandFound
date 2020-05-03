@@ -73,7 +73,23 @@
                             <TableLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/relation_with_lost_person" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnRelationWith"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/NUMBERTYPE" />
+                                </TableRow>
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
@@ -108,6 +124,23 @@
                                         android:id="@+id/etAge"
                                         style="@style/InformationEntryEditText"
                                         />
+                                </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/age_period" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnAgeperiod"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/Ageperiod" />
                                 </TableRow>
 
                                 <TableRow
@@ -1376,7 +1409,7 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="10dp"
                                 android:gravity="center_vertical"
-                                android:text="@string/placeAndTimeInfo"
+                                android:text="@string/lostplaceAndTimeInfo"
                                 android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />
@@ -2764,7 +2797,7 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="10dp"
                                 android:gravity="center_vertical"
-                                android:text="@string/placeAndTimeInfo"
+                                android:text="@string/lostplaceAndTimeInfo"
                                 android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />

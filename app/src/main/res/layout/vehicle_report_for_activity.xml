@@ -480,7 +480,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="10dp"
                     android:gravity="center_vertical"
-                    android:text="@string/placeAndTimeInfo"
+                    android:text="@string/theftplaceAndTimeInfo"
                     android:textAppearance="@style/TextAppearance.CastIntroOverlay.Button"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />

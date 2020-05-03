@@ -113,7 +113,9 @@
     <string name="documentType">Document Type</string>
 
     <!--    vehicle space and time info-->
-    <string name="placeAndTimeInfo">Lost/ Theft Place And Times Information</string>
+    <string name="theftplaceAndTimeInfo">Theft Place And Times Information</string>
+    <string name="lostplaceAndTimeInfo">Lost Place And Times Information</string>
+    <string name="lostplaceAndTimeInfo1">Lost Place And Times Information</string>
     <string name="division">Division</string>
     <string name="addressDetails">Address Details</string>
     <string name="time">Time</string>
@@ -625,9 +627,21 @@
         <item>সু</item>
         <item>সেন্ডেল</item>
     </string-array>
+
+
+    <string-array name="Ageperiod">
+        <item>@string/select_list </item>
+        <item> Newborn (0–2) years </item>
+        <item> Children (3–12) years </item>
+        <item> Teenagers (13–19) </item>
+        <item> Young (20–35) </item>
+        <item> Elderly (36–60) </item>
+        <item> Older (over 61) </item>
+    </string-array>
     <string name="unknown_dead_body">Unknown DeadBody</string>
     <string name="dress">Dress</string>
     <string name="position">Position</string>
-
-
+    <string name="vehicle_information">Vehicle Information</string>
+    <string name="relation_with_lost_person">Relation with Lost Person</string>
+    <string name="age_period">Age period</string>
 </resources>

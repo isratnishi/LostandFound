@@ -77,6 +77,10 @@ dependencies {
     //Spinner date Picker
     implementation 'com.github.drawers:SpinnerDatePicker:2.0.1'
 
+    //Currency Picker
+
+
+    implementation 'com.github.midorikocak:currency-picker-android:1.2.1'
 /*    //Image Picker
 
     implementation  'com.fxn769:pix:1.5.3'*/

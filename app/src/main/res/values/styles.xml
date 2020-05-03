@@ -108,7 +108,7 @@
         <item name="android:layout_marginBottom">@dimen/spacing_medium</item>
         <!--  <item name="android:layout_margin">@dimen/spacing_medium</item>-->
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
-        <item name="android:fontFamily"></item>
+        <item name="android:fontFamily">sans-serif-condensed-light</item>
     </style>
 
 

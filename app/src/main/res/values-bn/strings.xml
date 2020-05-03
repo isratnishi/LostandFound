@@ -115,7 +115,9 @@
     <string name="documentType">ডকুমেন্ট এর ধরণ</string>
 
     <!--    vehicle space and time info-->
-    <string name="placeAndTimeInfo">নিখোঁজ / চুরি স্থানের ও সময়ের  বিবরণ</string>
+    <string name="theftplaceAndTimeInfo"> চুরি স্থানের ও সময়ের  বিবরণ</string>
+    <string name="lostplaceAndTimeInfo">নিখোঁজ স্থানের ও সময়ের  বিবরণ</string>
+    <string name="lostplaceAndTimeInfo1">হারানোর স্থান ও সময়ের  বিবরণ</string>
     <string name="division">বিভাগ</string>
     <string name="addressDetails">স্থানের বিবরণ</string>
     <string name="time">সময়</string>
@@ -594,10 +596,22 @@
         <item>সু</item>
         <item>সেন্ডেল</item>
     </string-array>
+    <string-array name="Ageperiod">
+        <item> @string/select_list </item>
+        <item> নবজাতক (০-২)বছর</item>
+        <item>শিশু (৩-১২)বছর</item>
+        <item>কিশোর (১৩-১৯)</item>
+        <item>যুবক (২০-৩৫)</item>
+        <item>বয়োবৃদ্ধ (৩৬-৬০)</item>
+        <item>বৃদ্ধ (৬১-তদুর্ধ)</item>
+    </string-array>
 
 
     <string name="unknown_dead_body">অসনাক্তকৃত মৃতদেহ</string>
     <string name="dress">পোশাক</string>
     <string name="position">অবস্থান</string>
+    <string name="vehicle_information">যানবাহন তথ্য</string>
+    <string name="relation_with_lost_person">হারানো ব্যক্তির সাথে সম্পর্ক</string>
+    <string name="age_period">বয়স কাল</string>
 
 </resources>

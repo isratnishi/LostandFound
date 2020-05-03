@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.opus_bd.lostandfound.Activity.OtherItem.CategoryListActivity;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Utils.Utilities;
@@ -86,10 +87,9 @@ public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAd
             llRoot.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*Intent intent = new Intent(context, CurrentFebricDetailsActivity.class);
-                  *//*  intent.putExtra("Item getId", id);
-                    Utilities.showLogcatMessage(" Item Id " + id);*//*
-                    context.startActivity(intent);*/
+                    Intent intent = new Intent(context, CategoryListActivity.class);
+
+                    context.startActivity(intent);
                 }
             });
 

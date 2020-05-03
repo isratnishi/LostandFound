@@ -157,8 +157,6 @@ public class InformationEntryActivity extends AppCompatActivity {
         iv3.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         v2.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
         Intent intent = new Intent(InformationEntryActivity.this, VehicleEntryActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
     }
@@ -206,8 +204,7 @@ public class InformationEntryActivity extends AppCompatActivity {
     @OnClick(R.id.fab)
     public void fab() {
         Intent intent = new Intent(InformationEntryActivity.this, DashboardActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
         startActivity(intent);
 
     }
