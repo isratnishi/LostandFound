@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.OtherItem.CategoryListActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
+        style="@style/HomeItemCard"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="8dp"
+        app:layout_columnWeight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/card11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_rowWeight="1">
+
+        <LinearLayout
+            android:id="@+id/llRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivItemLogo"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/i1"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/tvItemName"
+                style="@style/HomeTextStyle"
+                android:gravity="center_horizontal"
+                android:text="Desktop"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card11"
+        style="@style/HomeItemCard"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="8dp"
+        app:layout_columnWeight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/card1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_rowWeight="1">
+
+        <LinearLayout
+            android:id="@+id/llRoot1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivItemLogo1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/i1"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/tvItemName1"
+                style="@style/HomeTextStyle"
+                android:gravity="center_horizontal"
+                android:text="Laptop"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card12"
+        style="@style/HomeItemCard"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="8dp"
+        app:layout_columnWeight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/card13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card1"
+        app:layout_rowWeight="1">
+
+        <LinearLayout
+            android:id="@+id/llRoot2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivItemLogo2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/i3"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/tvItemName2"
+                style="@style/HomeTextStyle"
+                android:gravity="center_horizontal"
+                android:text="Hybrid"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card13"
+        style="@style/HomeItemCard"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="8dp"
+        app:layout_columnWeight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/card12"
+        app:layout_constraintTop_toBottomOf="@id/card1"
+        app:layout_rowWeight="1">
+
+        <LinearLayout
+            android:id="@+id/llRoot3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivItemLogo3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/i4"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/tvItemName3"
+                style="@style/HomeTextStyle"
+                android:gravity="center_horizontal"
+                android:text="NetBook"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

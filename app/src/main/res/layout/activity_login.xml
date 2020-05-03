@@ -139,6 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                android:buttonTint="@android:color/black"
+                android:checked="true"
                 android:text="@string/remember_password"/>
 
             <LinearLayout
