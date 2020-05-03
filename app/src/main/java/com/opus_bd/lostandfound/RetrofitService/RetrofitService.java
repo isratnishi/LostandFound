@@ -4,6 +4,7 @@ package com.opus_bd.lostandfound.RetrofitService;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformation;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
+import com.opus_bd.lostandfound.Model.Documentaion.DocumentCategory;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.Model.Documentaion.MetroAreaModel;
 import com.opus_bd.lostandfound.Model.Documentaion.NationalIdentityTypesModel;
@@ -44,6 +45,9 @@ public interface RetrofitService {
 
     @GET("api/DocumentMaster/GetAllDocumentType")
     Call<List<DocumentType>> GetAllDocumentType();
+
+    @GET("api/DocumentMaster/GetDocumentCategoryByTypeId/{id}")
+    Call<List<DocumentCategory>> GetDocumentCategoryByTypeId(@Path("id") int id);
 
 
     //Dashboard

@@ -17,6 +17,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -295,6 +296,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     @BindView(R.id.tvBlueBook)
     TextView tvBlueBook;
 
+    @BindView(R.id.chatBot)
+    WebView chatBot;
+
 //Multiple Image add
 
     private Button btn;
@@ -305,6 +309,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     private GalleryAdapter galleryAdapter;
 
     String selectOne,engNoString,chesisNoString;
+    String html = "<iframe src=\"http://103.134.88.13:120/CustoomChatBox#totaMessagesContainerLast\" id=\"chatbot-chat-frame\" style=\"pointer-events: all; background: none; border: 0px; float: none; border:none; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; width: 100%; height: 100%; margin: 0px; padding: 0px;\"></iframe>";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -328,7 +335,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         GetAllMetropolitanArea();
         getDistrict();
         GetAllRegistrationLevel();
-
+        chatBot.loadData(html, "text/html", null);
         //date picker
         initializeVariables();
         etRegNoName.addTextChangedListener(new TextWatcher() {
