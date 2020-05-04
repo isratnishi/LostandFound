@@ -8,35 +8,29 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.DhcpInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.opus_bd.lostandfound.Model.Dashboard.GDInformation;
 import com.opus_bd.lostandfound.R;
-import com.opus_bd.lostandfound.RetrofitService.RetrofitAPIInstance;
-import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
-import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
 import com.opus_bd.lostandfound.Utils.Utilities;
-import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 
 import java.io.IOException;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class HardwareInformationActivity extends AppCompatActivity {
     @BindView(R.id.IMEINumber)
@@ -50,7 +44,10 @@ public class HardwareInformationActivity extends AppCompatActivity {
     @BindView(R.id.WiFiMACAddress)
     TextView WiFiMACAddress;    @BindView(R.id.OperatorName)
     TextView OperatorName; @BindView(R.id.CountryCode)
-    TextView CountryCode;
+    TextView CountryCode;@BindView(R.id.DNSAddress)
+    TextView DNSAddress;@BindView(R.id.MotherBoard)
+    TextView MotherBoard;@BindView(R.id.Processor)
+    TextView Processor;
     TelephonyManager telephonyManager;
     private String url = "https://api.ipify.org";
 
@@ -61,8 +58,8 @@ public class HardwareInformationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hardware_information);
         ButterKnife.bind(this);
-        //getDataFromUrl();
-        //getAllInfo();
+        MotherBoard.setText(Build.BOARD);
+
         try{
             WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
             assert wm != null;
@@ -70,13 +67,13 @@ public class HardwareInformationActivity extends AppCompatActivity {
             Utilities.showLogcatMessage("wifi"+wm.getConnectionInfo().getMacAddress());
          /*   String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
             String wifi = Formatter.formatIpAddress(Integer.parseInt(wm.getConnectionInfo().getMacAddress()));*/
-            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-            String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getNetworkId());
+
+            String ipAddress = Formatter.formatIpAddress(wm.getConnectionInfo().getNetworkId());
 
 
             WiFiMACAddress.setText(String.valueOf(wm.getConnectionInfo().getMacAddress()));
-            IPAddress.setText(String.valueOf(Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress())));
-        }
+            IPAddress.setText(String.valueOf(Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress())));
+            DhcpInfo info = wm.getDhcpInfo();  }
         catch (Exception e){
            Utilities.showLogcatMessage("wifi"+e.toString());
         }
@@ -84,12 +81,80 @@ public class HardwareInformationActivity extends AppCompatActivity {
         telephonyManager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
         Ids();
 
+        ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Service.CONNECTIVITY_SERVICE);
+
+        /* you can print your active network via using below */
+        Log.i("myNetworkType: ", connectivityManager.getActiveNetworkInfo().getTypeName());
+        WifiManager wifiManager= (WifiManager) getApplicationContext().getSystemService(getApplicationContext().WIFI_SERVICE);
+
+
+       /* Log.i("routes ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getRoutes().toString());
+        Log.i("domains ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDomains().toString());
+        Log.i("ip address ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getLinkAddresses().toString());
+        Log.i("dns address ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
+     */   DNSAddress.setText(connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
+
+
+        if(connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI) {
+            DNSAddress.setText(connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
+
+            Log.i("myType ", "wifi");
+            DhcpInfo d =wifiManager.getDhcpInfo();
+            Log.i("info", d.toString()+"");
+        }
+        else if(connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_ETHERNET) {
+            /* there is no EthernetManager class, there is only WifiManager. so, I used this below trick to get my IP range, dns, gateway address etc */
+            DNSAddress.setText(connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
+
+            Log.i("myType ", "Ethernet");
+            Log.i("routes ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getRoutes().toString());
+            Log.i("domains ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDomains().toString());
+            Log.i("ip address ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getLinkAddresses().toString());
+            Log.i("dns address ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
+
+        }
+        else {
+
+        }
+
 
 
         //	getDataFromUrl(); // Connect url from the main thread for get data this will throw NetworkOnMainThreadExcection
 
        // new GetJSONTask().execute(url); //execute asynctask object this will resolve NetworkOnMainThreadExcection
+        Processor.setText(getInfo());
     }
+
+    private String getInfo() {
+        StringBuffer sb = new StringBuffer();
+        sb.append(Build.CPU_ABI).append("\n");
+       /* if (new File("/proc/cpuinfo").exists()) {
+            try {
+                BufferedReader br = new BufferedReader(
+                        new FileReader(new File("/proc/cpuinfo")));
+                String aLine;
+                while ((aLine = br.readLine()) != null) {
+                    String[] data = aLine.split (":");
+
+                    if (data.length > 1) {
+
+                        String key = data[0].trim ().replace (" ", "_");
+                        if (key.equals ("model_name")) key = "cpu_model";
+
+                        sb.append(data[1].trim ());
+
+                    }
+                }
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }*/
+        return sb.toString();
+    }
+
 
     private void getDataFromUrl() {
         try {

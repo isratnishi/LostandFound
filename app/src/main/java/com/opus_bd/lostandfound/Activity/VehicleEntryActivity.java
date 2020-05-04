@@ -294,7 +294,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     @BindView(R.id.tvColor)
     TextView tvColor;
     @BindView(R.id.tvBlueBook)
-    TextView tvBlueBook;
+    TextView tvBlueBook; @BindView(R.id.tvVSATInfo)
+    TextView tvVSATInfo;@BindView(R.id.reportPlaceTv)
+    TextView reportPlaceTv;
 
     @BindView(R.id.chatBot)
     WebView chatBot;
@@ -323,10 +325,12 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         mcvVehicleAttachment.setVisibility(View.GONE);
         mcvVehiclePlaceTimeInformation.setVisibility(View.GONE);
         mcvReport.setVisibility(View.GONE);
-        Utilities.showLogcatMessage("Activity Open ");
+        if(Constants.ENTRY_TYPE_ID==Constants.LOST){
+            tvVSATInfo.setText(getResources().getText(R.string.lostplaceAndTimeInfo1));
+            reportPlaceTv.setText(getResources().getText(R.string.lostplaceAndTimeInfo1));
+        }
         selectOne=getResources().getString(R.string.select_option);
-      /*  getMatropolitonName();
-        getRegiSerial();*/
+
         //Spinner
         getAllDocument();
         getAllVehicleType();

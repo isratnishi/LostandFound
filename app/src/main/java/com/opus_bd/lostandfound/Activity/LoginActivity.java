@@ -243,7 +243,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<UserAuthModel> call, Throwable t) {
                 // Utilities.hideProgress(LoginActivity.this);
                 Toast.makeText(LoginActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
-
+Utilities.showLogcatMessage(""+ t.toString());
             }
         });
     }
@@ -302,7 +302,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent;
                 try {
-                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.police.gov.bd/en/criminal_investigation_department"));
+                    intent = new Intent(LoginActivity.this,ChatBotActivity.class);
                     startActivity(intent);
                 } catch (ActivityNotFoundException e) {
                     // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
@@ -335,36 +335,63 @@ public class LoginActivity extends AppCompatActivity {
         });ivEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
+
+                String mailto = "mailto:Juelrananatore@gmail.com" +
+                        "?cc=" + "" +
+                        "&subject=" + Uri.encode("Lost and Found Support") /*+
+                        "?body=" + Uri.encode(bodyText)*/;
+
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                emailIntent.setData(Uri.parse(mailto));
+
                 try {
-                    intent = new Intent(Intent.ACTION_SEND);
+                    startActivity(emailIntent);
+                } catch (ActivityNotFoundException e) {
+                    //TODO: Handle case where no email app is available
+                }
+                /*Intent intent;
+                try {
+                    intent = new Intent(Intent.ACTION_SENDTO);
                     intent.setType("text/plain");
                     intent.putExtra(Intent.EXTRA_EMAIL, "Juelrananatore@gmail.com");
                     intent.putExtra(Intent.EXTRA_SUBJECT, "Lost and Found Support");
-                    startActivity(Intent.createChooser(intent, "Send Email"));/*
+                    startActivity(Intent.createChooser(intent, "Send Email"));*//*
                     intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
 
-                    startActivity(Intent.createChooser(intent, "Send Email"));*/
+                    startActivity(Intent.createChooser(intent, "Send Email"));*//*
                 } catch (ActivityNotFoundException e) {
                     // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });cvEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
+                String mailto = "mailto:Juelrananatore@gmail.com" +
+                        "?cc=" + "" +
+                        "&subject=" + Uri.encode("Lost and Found Support") /*+
+                        "?body=" + Uri.encode(bodyText)*/;
+
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                emailIntent.setData(Uri.parse(mailto));
+
+                try {
+                    startActivity(emailIntent);
+                } catch (ActivityNotFoundException e) {
+                    //TODO: Handle case where no email app is available
+                }
+               /* Intent intent;
                 try {
                     intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/plain");
                     intent.putExtra(Intent.EXTRA_EMAIL, "Juelrananatore@gmail.com");
                     intent.putExtra(Intent.EXTRA_SUBJECT, "Lost and Found Support");
-                    startActivity(Intent.createChooser(intent, "Send Email"));/*
+                    startActivity(Intent.createChooser(intent, "Send Email"));*//*
                     intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
 
-                 */
+                 *//*
                 } catch (ActivityNotFoundException e) {
                     // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
 

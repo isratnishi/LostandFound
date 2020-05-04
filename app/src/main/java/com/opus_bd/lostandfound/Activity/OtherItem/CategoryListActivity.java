@@ -18,7 +18,7 @@ public class CategoryListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category_list);
         ButterKnife.bind(this);
     }
-    @OnClick(R.id.llRoot)
+    @OnClick({R.id.llRoot,R.id.llRoot1})
     public void llRoot(){
         Intent intent = new Intent(this, ComputerActivity.class);
 startActivity(intent);
