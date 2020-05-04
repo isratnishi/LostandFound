@@ -91,4 +91,6 @@ public interface RetrofitService {
     @GET("api/DocumentMaster/GetOccupationInfo")
     Call<List<Occupation>> GetOccupationInfo();
 
+
+
 }

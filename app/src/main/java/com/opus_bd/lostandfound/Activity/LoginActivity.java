@@ -191,23 +191,23 @@ public class LoginActivity extends AppCompatActivity {
         }
     } @OnClick(R.id.btnSupport)
     public void btnSupport() {
-        try {
+       /* try {
             Intent intent = new Intent(LoginActivity.this, ChatBotActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } catch (Exception e) {
             Utilities.showLogcatMessage("Exception " + e.toString());
-        }
-//       customDialog();
+        }*/
+  customDialog();
     }
 
 
     private void submitToServer() {
 //        Utilities.showProgress(this);
         SharedPrefManager.getInstance(LoginActivity.this).clearToken();
-       // final UserLoginModel userModel = new UserLoginModel(etUserName.getText().toString(), etPassword.getText().toString());
-        final UserLoginModel userModel = new UserLoginModel("suza", "123456");
+       final UserLoginModel userModel = new UserLoginModel(etUserName.getText().toString(), etPassword.getText().toString());
+       // final UserLoginModel userModel = new UserLoginModel("Police", "Police");
 
         //SharedPrefManager.getInstance(this).saveUserName(etUserName.getText().toString());
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
@@ -290,7 +290,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent;
 
                 try {
-                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.police.gov.bd/en/criminal_investigation_department"));
+                    intent = new Intent(LoginActivity.this,ChatBotActivity.class);
                     startActivity(intent);
                 } catch (ActivityNotFoundException e) {
                     // Toast.makeText(dialog, "Please install browser to continue", Toast.LENGTH_SHORT).show();
@@ -340,7 +340,7 @@ public class LoginActivity extends AppCompatActivity {
                     intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/plain");
                     intent.putExtra(Intent.EXTRA_EMAIL, "Juelrananatore@gmail.com");
-                    intent.putExtra(Intent.EXTRA_SUBJECT, "Support");
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Lost and Found Support");
                     startActivity(Intent.createChooser(intent, "Send Email"));/*
                     intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
 
@@ -357,7 +357,7 @@ public class LoginActivity extends AppCompatActivity {
                     intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/plain");
                     intent.putExtra(Intent.EXTRA_EMAIL, "Juelrananatore@gmail.com");
-                    intent.putExtra(Intent.EXTRA_SUBJECT, "Support");
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Lost and Found Support");
                     startActivity(Intent.createChooser(intent, "Send Email"));/*
                     intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
 
