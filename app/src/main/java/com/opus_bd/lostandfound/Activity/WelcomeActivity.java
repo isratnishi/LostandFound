@@ -167,7 +167,7 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
     public void onLocationChanged(Location location) {
         mylocation = location;
         if(mylocation != null){
-            Intent i = new Intent(WelcomeActivity.this, LoginActivity.class);
+            Intent i = new Intent(WelcomeActivity.this, HardwareInformationActivity.class);
             startActivity(i);
 
 
