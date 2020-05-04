@@ -11,9 +11,15 @@ import android.view.ViewGroup;
 import com.opus_bd.lostandfound.R;
 
 
-public class OTPFragment extends Fragment {
+public class FPOTPFragment extends Fragment {
+    int inputID, passId, view;
+    public void setInputID(int inputID) {
+        this.inputID = inputID;
+    }
 
-
+    public void setPassId(int passId) {
+        this.passId = passId;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

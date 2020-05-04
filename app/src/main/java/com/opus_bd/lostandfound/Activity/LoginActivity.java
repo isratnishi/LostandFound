@@ -5,7 +5,6 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.Manifest;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -24,7 +23,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -32,7 +30,6 @@ import com.bumptech.glide.Glide;
 import com.opus_bd.lostandfound.Model.User.UserAuthModel;
 import com.opus_bd.lostandfound.Model.User.UserLoginModel;
 import com.opus_bd.lostandfound.R;
-import com.opus_bd.lostandfound.RegTrialActivity;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
 import com.opus_bd.lostandfound.Utils.Constants;
@@ -167,6 +164,18 @@ public class LoginActivity extends AppCompatActivity {
     public void tvResigtration() {
         try {
             Intent intent = new Intent(LoginActivity.this, RegistrationProcessActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } catch (Exception e) {
+            Utilities.showLogcatMessage("Exception " + e.toString());
+        }
+    }
+
+    @OnClick(R.id.tvForgetPassword)
+    public void tvForgetPassword() {
+        try {
+            Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);

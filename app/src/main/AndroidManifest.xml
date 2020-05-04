@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_PROFILE"/>
+    <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -26,16 +26,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.HardwareInformationActivity">
-
-        </activity>
+        <activity android:name=".Activity.ForgetPasswordActivity"></activity>
+        <activity android:name=".Activity.HardwareInformationActivity"></activity>
         <activity android:name=".Activity.OtherItem.CategoryListActivity" />
-        <activity android:name=".Activity.OtherItem.ComputerActivity"></activity>
+        <activity android:name=".Activity.OtherItem.ComputerActivity" />
         <activity
             android:name=".Activity.DeadBodyFoundActivity"
             android:label="@string/unknowndeadbody" />
         <activity android:name=".Activity.ChatBotActivity" />
-
         <activity android:name=".Activity.CodeGenerateActivity" />
         <activity
             android:name=".Activity.OthersItemEntryActivity"
