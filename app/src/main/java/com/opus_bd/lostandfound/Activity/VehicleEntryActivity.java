@@ -38,6 +38,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.card.MaterialCardView;
 import com.hbb20.CountryCodePicker;
 import com.opus_bd.lostandfound.Adapter.CustomAdapter;
@@ -219,6 +220,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     ArrayList<Colors> colorArrayList = new ArrayList<>();
     ArrayList<MetroAreaModel> metroAreaModelArrayList = new ArrayList<>();
     ArrayList<RegistrationLevelModel> registrationLevelModels = new ArrayList<>();
+    ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
     public int SELECTED_DOCUMENT_ID;
     public int SELECTED_VEHICLETYPE_ID;
     public String SELECTED_VEHICLEMODEL_Name;
@@ -437,22 +439,6 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         gvGallery = (GridView) findViewById(R.id.gv);
         gvGallery1 = (GridView) findViewById(R.id.gv1);
 
-        etImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //ImagePicker();
-               try {
-                   Intent intent = new Intent();
-                   intent.setType("image/*");
-                   intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                   intent.setAction(Intent.ACTION_GET_CONTENT);
-                   startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_MULTIPLE);
-               }
-               catch (Exception e){
-                   Utilities.showLogcatMessage(" etImage.setOnClickListener "+e.toString());
-               }
-            }
-        });
     }
 
     protected void attachBaseContext(Context base) {
@@ -464,6 +450,21 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
     //Multiple image
+    @OnClick(R.id.etImage)
+    public void ImageAdd(){
+        ImagePicker();
+    }
+
+    //ImagePicker
+
+    public void ImagePicker(){
+        ImagePicker.Companion.with(this)
+                .crop()//Crop image(Optional), Check Customization for more option
+                .galleryOnly()
+                .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                .start();
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         try {
@@ -474,97 +475,30 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         {
             Utilities.showLogcatMessage("onActivityResult "+e.toString());
         }
-       /* Utilities.showLogcatMessage("requestCode "+requestCode);
-        Utilities.showLogcatMessage("resultCode "+resultCode);
-        Utilities.showLogcatMessage("data "+data);*/
-        try {
-            // When an Image is picked
-            if (requestCode == PICK_IMAGE_MULTIPLE && resultCode == RESULT_OK
-                    && null != data) {
-                // Get the Image from data
+        if (resultCode == Activity.RESULT_OK) {
+            //Image Uri will not be null for RESULT_OK
+            Uri fileUri = data.getData();
+            // ivImage.setImageURI(fileUri);
 
-                String[] filePathColumn = {MediaStore.Images.Media.DATA};
-                imagesEncodedList = new ArrayList<String>();
-                if (data.getData() != null) {
+            //You can get File object from intent
+            File file = ImagePicker.Companion.getFile(data);
 
-                    Uri mImageUri = data.getData();
-
-                    // Get the cursor
-                    Cursor cursor = getContentResolver().query(mImageUri,
-                            filePathColumn, null, null, null);
-                    // Move to first row
-                    cursor.moveToFirst();
-
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    imageEncoded = cursor.getString(columnIndex);
-                    cursor.close();
-
-                    ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
-                    mArrayUri.add(mImageUri);
-                    galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
-                    gvGallery.setAdapter(galleryAdapter);
-                    gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
-                    ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
-                            .getLayoutParams();
-                    mlp.setMargins(0, gvGallery.getHorizontalSpacing(), 0, 0);
+            //You can also get File Path from intent
+            String filePath = ImagePicker.Companion.getFilePath(data);
 
 
-                    gvGallery1.setAdapter(galleryAdapter);
-                    gvGallery1.setVerticalSpacing(gvGallery1.getHorizontalSpacing());
-                    ViewGroup.MarginLayoutParams mlp1 = (ViewGroup.MarginLayoutParams) gvGallery1
-                            .getLayoutParams();
-                    mlp1.setMargins(0, gvGallery1.getHorizontalSpacing(), 0, 0);
-                    tvPhoto.setText("Selected Images " + mArrayUri.size());
-
-                } else {
-                    if (data.getClipData() != null) {
-                        ClipData mClipData = data.getClipData();
-                        ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
-                        for (int i = 0; i < mClipData.getItemCount(); i++) {
-
-                            ClipData.Item item = mClipData.getItemAt(i);
-                            Uri uri = item.getUri();
-                            mArrayUri.add(uri);
-                            // Get the cursor
-                            Cursor cursor = getContentResolver().query(uri, filePathColumn, null, null, null);
-                            // Move to first row
-                            cursor.moveToFirst();
-
-                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                            imageEncoded = cursor.getString(columnIndex);
-                            imagesEncodedList.add(imageEncoded);
-                            cursor.close();
-
-                            galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
-                            gvGallery.setAdapter(galleryAdapter);
-                            gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
-                            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
-                                    .getLayoutParams();
-                            mlp.setMargins(0, gvGallery.getHorizontalSpacing(), 0, 0);
-
-
-                            gvGallery1.setAdapter(galleryAdapter);
-                            gvGallery1.setVerticalSpacing(gvGallery1.getHorizontalSpacing());
-                            ViewGroup.MarginLayoutParams mlp1 = (ViewGroup.MarginLayoutParams) gvGallery1
-                                    .getLayoutParams();
-                            mlp1.setMargins(0, gvGallery1.getHorizontalSpacing(), 0, 0);
-
-                        }
-                        Log.v("LOG_TAG", "Selected Images" + mArrayUri.size());
-                        tvPhoto.setText("Selected Images " + mArrayUri.size());
-                    }
-                }
-            } else {
-                Toast.makeText(this, "You haven't picked Image",
-                        Toast.LENGTH_LONG).show();
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG)
-                    .show();
-            Utilities.showLogcatMessage(" "+e.getLocalizedMessage());
+            mArrayUri.add(fileUri);
+            galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
+            gvGallery.setAdapter(galleryAdapter);
+           /* gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
+            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
+                    .getLayoutParams();
+            mlp.setMargins(0, gvGallery.getHorizontalSpacing(), 0, 0);*/
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, ImagePicker.Companion.getError(data), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
         }
-
-
     }
     @OnClick(R.id.ivVehicleInformation)
     public void ivVehicleInformation() {

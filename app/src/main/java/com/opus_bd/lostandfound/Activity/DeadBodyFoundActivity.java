@@ -1,14 +1,17 @@
 package com.opus_bd.lostandfound.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -26,9 +29,11 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.card.MaterialCardView;
 import com.hbb20.CountryCodePicker;
 import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
+import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.GlobalData.District;
@@ -44,6 +49,7 @@ import com.tsongkha.spinnerdatepicker.DatePicker;
 import com.tsongkha.spinnerdatepicker.DatePickerDialog;
 import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -329,6 +335,8 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
     int mHour, mMin, mSec;
 
 
+
+
     ArrayList<District> districtArrayList = new ArrayList<>();
     ArrayList<Thana> thanaArrayList = new ArrayList<>();
 
@@ -338,6 +346,19 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
     public int SELECTED_THANA_ID;
     public int SELECTED_THANA_ID_LP;
     String selectOne;
+//Image
+
+    @BindView(R.id.ivFront)
+    ImageView ivFront;   @BindView(R.id.ivBack)
+    ImageView ivBack;   @BindView(R.id.ivRight)
+    ImageView ivRight;   @BindView(R.id.ivLeft)
+    ImageView ivLeft;
+
+ImageView imageView;
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1026,5 +1047,72 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
+    }
+
+
+    // Image set
+
+    @OnClick(R.id.ivFront)
+    public void ivFront(){
+       setImageView(ivFront);
+        ImagePicker();
+    }  @OnClick(R.id.ivBack)
+    public void ivBack(){
+       setImageView(ivBack);
+        ImagePicker();
+    }  @OnClick(R.id.ivRight)
+    public void ivRight(){
+       setImageView(ivRight);
+        ImagePicker();
+    }  @OnClick(R.id.ivLeft)
+    public void ivLeft(){
+       setImageView(ivLeft);
+        ImagePicker();
+    }
+
+    //ImagePicker
+
+    public void ImagePicker(){
+        ImagePicker.Companion.with(this)
+                .crop()	    			//Crop image(Optional), Check Customization for more option
+                .cameraOnly()
+                .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                .start();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        try {
+
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+        catch (Exception e)
+        {
+            Utilities.showLogcatMessage("onActivityResult "+e.toString());
+        }
+        if (resultCode == Activity.RESULT_OK) {
+            //Image Uri will not be null for RESULT_OK
+            Uri fileUri = data.getData();
+           imageView.setImageURI(fileUri);
+
+            //You can get File object from intent
+            File file = ImagePicker.Companion.getFile(data);
+
+            //You can also get File Path from intent
+            String filePath = ImagePicker.Companion.getFilePath(data);
+
+
+           /* mArrayUri.add(fileUri);
+            galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
+            gvGallery.setAdapter(galleryAdapter);*/
+           /* gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
+            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
+                    .getLayoutParams();
+            mlp.setMargins(0, gvGallery.getHorizontalSpacing(), 0, 0);*/
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, ImagePicker.Companion.getError(data), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
+        }
     }
 }

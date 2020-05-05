@@ -172,14 +172,10 @@ public class InformationEntryActivity extends AppCompatActivity {
         v2.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
        if(Constants.ENTRY_TYPE_ID==Constants.LOST){
            Intent intent = new Intent(InformationEntryActivity.this, UnknownManActivity.class);
-           intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
            startActivity(intent);
        }
        else {
            Intent intent = new Intent(InformationEntryActivity.this, DeadBodyFoundActivity.class);
-           intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
            startActivity(intent);
        }
 

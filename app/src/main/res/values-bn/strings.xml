@@ -670,5 +670,6 @@
     <string name="relation_with_lost_person">নিখোঁজ ব্যক্তির সাথে সম্পর্ক</string>
     <string name="age_period">বয়স কাল</string>
     <string name="add">Add</string>
+    <string name="add_image">Add Images</string>
 
 </resources>

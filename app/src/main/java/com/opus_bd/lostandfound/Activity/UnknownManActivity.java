@@ -1,5 +1,6 @@
 package com.opus_bd.lostandfound.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
@@ -20,12 +22,14 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -34,12 +38,14 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.card.MaterialCardView;
 import com.hbb20.CountryCodePicker;
 import com.opus_bd.lostandfound.Adapter.CustomAdapter;
 import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
 import com.opus_bd.lostandfound.Adapter.Documentation.OthersItemListAdapter;
 import com.opus_bd.lostandfound.Adapter.Extra.AddressListAdapter;
+import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.Occupation;
@@ -57,6 +63,7 @@ import com.tsongkha.spinnerdatepicker.DatePicker;
 import com.tsongkha.spinnerdatepicker.DatePickerDialog;
 import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -365,12 +372,10 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     @BindView(R.id.tvDWaistColor)
     TextView tvDWaistColor;
 
-    @BindView(R.id.spnPhotesType)
-    Spinner spnPhotesType;
+
     @BindView(R.id.tvPhotesType)
     TextView tvPhotesType;
-    @BindView(R.id.etPhotoesName)
-    EditText etPhotoesName;
+
     @BindView(R.id.tvPhotoesName)
     TextView tvPhotoesName;
 
@@ -419,6 +424,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     ArrayList<District> districtArrayList = new ArrayList<>();
     ArrayList<Thana> thanaArrayList = new ArrayList<>();
     ArrayList<Occupation> occupationArrayList = new ArrayList<>();
+    ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
     public int SELECTED_DISTRICT_ID;
     public int SELECTED_DISTRICT_ID_LP;
     public int SELECTED_THANA_ID;
@@ -433,8 +439,10 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     AddressListAdapter addressListAdapter;
 
     @BindView(R.id.rvAddressList)
-    RecyclerView rvAddressList;
-
+    RecyclerView rvAddressList;@BindView(R.id.ivImage)
+    ImageView ivImage;@BindView(R.id.gv)
+    GridView gvGallery;
+    private GalleryAdapter galleryAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -837,8 +845,8 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
             tvDBodyColor.setText(etDBodyColor.getSelectedItem().toString());
             tvDWaist.setText(etDWaist.getSelectedItem().toString());
             tvDWaistColor.setText(etDWaistColor.getSelectedItem().toString());
-            tvPhotesType.setText(spnPhotesType.getSelectedItem().toString());
-            tvPhotoesName.setText(etPhotoesName.getText().toString());
+          /*  tvPhotesType.setText(spnPhotesType.getSelectedItem().toString());
+            tvPhotoesName.setText(etPhotoesName.getText().toString());*/
 
             tvLostistrict.setText(spnLostistrict.getSelectedItem().toString());
             tvLostistrict.setText(spnLostThana.getSelectedItem().toString());
@@ -1306,5 +1314,56 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
+    }
+
+
+    @OnClick(R.id.btnAddPhotoes)
+    public void ImageAdd(){
+        ImagePicker();
+    }
+
+    //ImagePicker
+
+    public void ImagePicker(){
+        ImagePicker.Companion.with(this)
+                .crop()	    			//Crop image(Optional), Check Customization for more option
+                .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                .start();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        try {
+
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+        catch (Exception e)
+        {
+            Utilities.showLogcatMessage("onActivityResult "+e.toString());
+        }
+        if (resultCode == Activity.RESULT_OK) {
+            //Image Uri will not be null for RESULT_OK
+            Uri fileUri = data.getData();
+           // ivImage.setImageURI(fileUri);
+
+            //You can get File object from intent
+            File file = ImagePicker.Companion.getFile(data);
+
+            //You can also get File Path from intent
+            String filePath = ImagePicker.Companion.getFilePath(data);
+
+
+            mArrayUri.add(fileUri);
+            galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
+            gvGallery.setAdapter(galleryAdapter);
+           /* gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
+            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
+                    .getLayoutParams();
+            mlp.setMargins(0, gvGallery.getHorizontalSpacing(), 0, 0);*/
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, ImagePicker.Companion.getError(data), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
+        }
     }
 }

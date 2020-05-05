@@ -702,4 +702,5 @@
     <string name="relation_with_lost_person">Relation with Lost Person</string>
     <string name="age_period">Age period</string>
     <string name="add">Add</string>
+    <string name="add_image">Add Images</string>
 </resources>
