@@ -60,7 +60,7 @@ public class DocumentSubmitFragment extends Fragment {
         ForgetPasswordActivity.Step=1;
 
         EventBus.getDefault().post(new MessageEvent(true));
-        setView(iid);
+        //setView(iid);
         return v;
     }
 
@@ -134,7 +134,7 @@ public class DocumentSubmitFragment extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         if (event.isUpdate()) {
-            Utilities.showLogcatMessage(" id " + RegistrationActivity.id);
+            Utilities.showLogcatMessage(" id " + ForgetPasswordActivity.UserName);
         }
     }
 
