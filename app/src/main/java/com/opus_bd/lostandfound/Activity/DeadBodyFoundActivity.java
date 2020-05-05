@@ -95,7 +95,6 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
     @BindView(R.id.ivTPersonAddress)
     ImageView ivTPersonAddress;
 
-
     boolean isllDressDescriptionChecked = true;
     @BindView(R.id.mcvDressDescription)
     MaterialCardView mcvDressDescription;
@@ -104,6 +103,13 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
     @BindView(R.id.ivDressDescription)
     ImageView ivDressDescription;
 
+    boolean isllDNAProfileChecked = true;
+    @BindView(R.id.mcvDNAProfile)
+    MaterialCardView mcvDNAProfile;
+    @BindView(R.id.llDNAProfile)
+    LinearLayout llDNAProfile;
+    @BindView(R.id.ivDNAProfile)
+    ImageView ivDNAProfile;
 
     //input field
 
@@ -507,7 +513,29 @@ ImageView imageView;
 
     }
 
-    @OnClick(R.id.btnNext4)
+    @OnClick({R.id.ivDNAProfile, R.id.btnNext4})
+    public void ivDNAProfile() {
+        if (isllDNAProfileChecked) {
+            // show password
+            llDressDescription.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivDressDescription);
+            isllDressDescriptionChecked = true;
+
+            mcvDNAProfile.setVisibility(View.VISIBLE);
+            llDNAProfile.setVisibility(View.VISIBLE);
+            Glide.with(this).load(R.drawable.ic_drop_up).into(ivDNAProfile);
+            isllDNAProfileChecked = false;
+
+        } else {
+            // hide password
+            llDNAProfile.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivDNAProfile);
+            isllDNAProfileChecked = true;
+        }
+
+    }
+
+    @OnClick(R.id.btnDNA)
     public void ReportShown() {
         llInput.setVisibility(View.GONE);
         mcvReport.setVisibility(View.VISIBLE);

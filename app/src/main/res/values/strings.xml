@@ -189,6 +189,72 @@
     <string name="watch_Information">Watch Information</string>
     <string name="watch_type">Watch Type</string>
     <string name="mobilePhone_information">Mobile/Phone Information</string>
+    <string name="keys_information">Keys Information</string>
+    <string name="umbrella_information">Umbrella Information</string>
+    <string name="dna_profile">DNA Profile</string>
+
+    <string-array name="array_umbrella_model">
+        <item>@string/select_option</item>
+
+    </string-array>
+    <string-array name="array_umbrella_brand">
+        <item>@string/select_option</item>
+
+    </string-array>
+
+    <string-array name="array_umbrella_type">
+        <item>@string/select_option</item>
+        <item>Straight Umbrella </item>
+        <item>Folded Umbrella </item>
+        <item>Dubble Folded Umbrella </item>
+        <item>Wind Resistant Umbrella  </item>
+        <item>Automatic Umbrella </item>
+        <item>Golf Umbrella</item>
+    </string-array>
+
+    <string-array name="array_keys_type">
+        <item>@string/select_option</item>
+        <item>Mechanical Type</item>
+        <item>Automatic Type</item>
+    </string-array>
+
+    <string-array name="array_phone_model">
+        <item>@string/select_option</item>
+        <item>iPhone SE (2nd generation)</item>
+        <item>iPhone 11 Pro</item>
+        <item>iPhone 11 Pro Max</item>
+        <item>iPhone 11</item>
+        <item>iPhone XS</item>
+        <item>iPhone XS Max</item>
+        <item>Nokia 8.3 5G</item>
+        <item>Nokia 7.2</item>
+        <item>Nokia 5310</item>
+        <item>Nokia 3310 3G</item>
+        <item>Samsung Galaxy M21</item>
+        <item>Samsung Galaxy S20+</item>
+        <item>Samsung Galaxy M31</item>
+        <item>Samsung Galaxy S10 Lite</item>
+    </string-array>
+
+    <string-array name="array_phone_brand">
+        <item>@string/select_option</item>
+        <item>i-Phone</item>
+        <item>Nokia</item>
+        <item>Sumsung</item>
+        <item>VIVO</item>
+        <item>Motorola</item>
+        <item>OPPO</item>
+        <item>Xiaomi</item>
+        <item>Huawei</item>
+    </string-array>
+
+    <string-array name="array_phone_type">
+        <item>@string/select_option</item>
+        <item>Tap Phone</item>
+        <item>Smart Phone</item>
+        <item>Codeless Phone</item>
+        <item>TNT Phone</item>
+    </string-array>
 
     <string-array name="array_watch_type">
         <item>@string/select_option</item>
