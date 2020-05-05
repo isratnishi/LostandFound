@@ -48,7 +48,7 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="10dp"
                                 android:gravity="center_vertical"
-                                android:text="@string/watch_Information"
+                                android:text="@string/mobilePhone_information"
                                 android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />
@@ -178,22 +178,22 @@
                                         />
                                 </TableRow>
                                 <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="Price" />
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Price" />
 
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-                                <EditText
-                                    android:id="@+id/etWatchPrice"
-                                    android:inputType="numberSigned"
-                                    style="@style/InformationEntryEditText"
-                                    />
-                            </TableRow>
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+                                    <EditText
+                                        android:id="@+id/etWatchPrice"
+                                        android:inputType="numberSigned"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
 
                                 <TableRow
                                     android:layout_width="match_parent"

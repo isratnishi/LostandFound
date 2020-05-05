@@ -5,17 +5,11 @@ import android.os.Bundle;
 
 import com.opus_bd.lostandfound.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-import com.opus_bd.lostandfound.R;
-
-public class OtherItemDetailsActivity extends AppCompatActivity {
+public class MobilePhoneActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_other_item_details);
-        ButterKnife.bind(this);
+        setContentView(R.layout.activity_mobile_phone);
     }
 }
