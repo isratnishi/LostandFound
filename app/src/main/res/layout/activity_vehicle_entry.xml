@@ -141,32 +141,31 @@
                                     <TextView
 
                                         style="@style/InformationEntryTextViewColon"
+                                        android:paddingRight="0dp"
                                         android:text=":" />
 
 
                                     <LinearLayout
                                         style="@style/InformationEntryEditText"
-
                                         android:orientation="horizontal">
 
                                         <Spinner
                                             android:id="@+id/spnRegNoName1"
-                                            android:layout_width="100dp"
+                                            android:layout_width="90dp"
                                             android:layout_height="match_parent"
                                             android:spinnerMode="dialog"
                                             android:fadingEdge="horizontal"
                                             android:background="@android:color/transparent"/>
                                         <Spinner
                                             android:id="@+id/spnRegNoName2"
-                                            android:layout_width="wrap_content"
+                                            android:layout_width="50dp"
                                             android:layout_height="match_parent"
                                             android:background="@android:color/transparent"/>
                                         <EditText
                                             android:id="@+id/etRegNoName"
                                             android:inputType="number"
-
                                             android:maxLength="7"
-                                            style="@style/InformationEntryEditText"
+                                            style="@style/absltEditText"
                                             android:hint="XX-XXXX" />
                                     </LinearLayout>
                                 </TableRow>

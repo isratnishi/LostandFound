@@ -146,6 +146,8 @@
     <string name="number_type">Number Type</string>
     <string name="country">Country</string>
     <string name="one_line_address">One Line Address</string>
+    <string name="habit">Habit</string>
+    <string name="speech">Speech</string>
     <string name="address_type">Address Type</string>
     <string name="deadbody_condition">DeadBody Condition</string>
     <string name="date_of_death">Date of death</string>
@@ -182,6 +184,61 @@
     <string name="missingpersonlevel">Information of the missing person</string>
     <string name="othersitemlevel">Others Item</string>
     <string name="unknowndeadbody">Anonymous corpses</string>
+    <string name="newpassword">New Password</string>
+
+    <string-array name="array_habit">
+        <item>@string/select_list</item>
+        <item>BRAGGING</item>
+        <item>CHEWS BETAL/PAN</item>
+        <item>CHEWS GUM  </item>
+        <item>CHEWPS PAN MASALA</item>
+        <item>CHEWS SUPARI</item>
+        <item>CHEWS TOBACCO</item>
+        <item>CHEWS CRAZY</item>
+        <item>DRINKS LIQUOR</item>
+        <item>DRUG ADDICT</item>
+        <item>EYES BLINKING</item>
+        <item>EYES SHIFTING</item>
+        <item>GAMBLER</item>
+        <item>HOMOSEXUAL</item>
+        <item>LIP BITING</item>
+        <item>LOTTERY PLAYER</item>
+        <item>MOUSTACHE TWISTING</item>
+        <item>NAIL BITING</item>
+        <item>PROSTITUTE MONGER</item>
+        <item>RACE-GORE</item>
+        <item>SMOKER</item>
+        <item>SNUFF TAKER</item>
+        <item>STRETCHING</item>
+        <item>OTHERS</item>
+        <item>GUTKA</item>
+        <item>NO HABIT</item>
+        <item>NO PECULIARITY</item>
+    </string-array>
+
+    <string-array name="array_speech">
+        <item>@string/select_list</item>
+        <item>NORMAL</item>
+        <item>FAST</item>
+        <item>SLOW</item>
+        <item>STAMMERING</item>
+        <item>LOUD</item>
+        <item>SOFT</item>
+        <item>DEEP-HEAVY</item>
+        <item>NASAL</item>
+        <item>FEMININE(FOR MALE)</item>
+        <item>MASCULINE (FOR FEMALE)</item>
+        <item>STAGGERING</item>
+        <item>Old Dhaka Regionalism</item>
+        <item>Chittagong Regionalism</item>
+        <item>Barisal Regionalism</item>
+        <item>Khulna Regionalism</item>
+        <item>Mymensingh Regionalism</item>
+        <item>Rajshahi Regionalism</item>
+        <item>Rangpur Regionalism</item>
+        <item>Sylhet Regionalism</item>
+        <item>Noakhali Regionalism</item>
+    </string-array>
     <string-array name="purpose_of_visit">
         <item>@string/select_option</item>
         <item>Purpose of Visit</item>

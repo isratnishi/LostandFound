@@ -142,7 +142,23 @@
                                         style="@style/InformationEntryEditText"
                                         android:entries="@array/Ageperiod" />
                                 </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/gender" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnGender"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_gender" />
+                                </TableRow>
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
@@ -408,6 +424,44 @@
                                         android:id="@+id/spnMaritalStatus"
                                         style="@style/InformationEntryEditText"
                                         android:entries="@array/array_marital_status" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/habit" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+
+                                    <Spinner
+                                        android:id="@+id/spnHabits"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_habit" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/speech" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+
+                                    <Spinner
+                                        android:id="@+id/spnSpeech"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_speech" />
                                 </TableRow>
 
                             </TableLayout>
@@ -794,23 +848,7 @@
                                         />
                                 </TableRow>
 
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
 
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="@string/gender" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-
-                                    <Spinner
-                                        android:id="@+id/spnGender"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_gender" />
-                                </TableRow>
 
                                 <TableRow
                                     android:layout_width="match_parent"
@@ -1676,7 +1714,23 @@
                                         style="@style/InformationEntryEditText"
                                         />
                                 </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/gender" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+                                    <TextView
+                                        android:id="@+id/tvGender2"
+                                        style="@style/InformationEntryEditText"
+                                        />
+
+                                </TableRow>
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
@@ -1921,6 +1975,42 @@
                                         android:id="@+id/tvMaritalStatus"
                                         style="@style/InformationEntryEditText"
                                         android:entries="@array/marital_status" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/habit" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+
+                                    <TextView
+                                        android:id="@+id/tvHabits"
+                                        style="@style/InformationEntryEditText" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/speech" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+
+                                    <TextView
+                                        android:id="@+id/tvSpeech"
+                                        style="@style/InformationEntryEditText" />
                                 </TableRow>
 
                             </TableLayout>
@@ -2248,23 +2338,7 @@
 
                                 </TableRow>
 
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
 
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="@string/gender" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-                                    <TextView
-                                        android:id="@+id/tvGender2"
-                                        style="@style/InformationEntryEditText"
-                                        />
-
-                                </TableRow>
 
                                 <TableRow
                                     android:layout_width="match_parent"

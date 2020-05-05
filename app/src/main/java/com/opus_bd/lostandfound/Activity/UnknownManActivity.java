@@ -206,6 +206,15 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     @BindView(R.id.tvMaritalStatus)
     TextView tvMaritalStatus;
 
+    @BindView(R.id.spnHabits)
+    Spinner spnHabits;
+    @BindView(R.id.tvHabits)
+    TextView tvHabits;
+    @BindView(R.id.spnSpeech)
+    Spinner spnSpeech;
+    @BindView(R.id.tvSpeech)
+    TextView tvSpeech;
+
     @BindView(R.id.ccp)
     CountryCodePicker ccp;
     @BindView(R.id.tvccp)
@@ -786,6 +795,8 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
             tvBloodGroup.setText(spnBloodGroup.getSelectedItem().toString());
             tvMaritalStatus.setText(spnMaritalStatus.getSelectedItem().toString());
             tvOcupation.setText(spnOcupation.getSelectedItem().toString());
+            tvHabits.setText(spnHabits.getSelectedItem().toString());
+            tvSpeech.setText(spnSpeech.getSelectedItem().toString());
 
             tvccp.setText(ccp.getSelectedCountryName());
             tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());

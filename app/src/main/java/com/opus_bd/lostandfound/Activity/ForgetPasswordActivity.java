@@ -48,7 +48,6 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     @BindView(R.id.ivfp4)
     ImageView ivfp4;
 
-
     @BindView(R.id.vfp1)
     View vfp1;
     @BindView(R.id.vfp2)

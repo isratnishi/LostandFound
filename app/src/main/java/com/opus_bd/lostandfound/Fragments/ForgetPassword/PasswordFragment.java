@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.opus_bd.lostandfound.Activity.DashboardActivity;
 import com.opus_bd.lostandfound.Activity.ForgetPasswordActivity;
+import com.opus_bd.lostandfound.Activity.LoginActivity;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Utils.MessageEvent;
 
@@ -38,7 +39,7 @@ public class PasswordFragment extends Fragment {
 
     @OnClick(R.id.textNext)
     public void btnLogIn() {
-        Intent intent = new Intent(getContext(), DashboardActivity.class);
+        Intent intent = new Intent(getContext(), LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         // submitToServer();

@@ -115,8 +115,8 @@
     <string name="documentType">ডকুমেন্ট এর ধরণ</string>
 
     <!--    vehicle space and time info-->
-    <string name="theftplaceAndTimeInfo"> চুরির স্থান ও সময়ের  বিবরণ</string>
-    <string name="lostplaceAndTimeInfo">নিখোঁজ স্থানের ও সময়ের  বিবরণ</string>
+    <string name="theftplaceAndTimeInfo"> চুরির স্থান ও সময়ের বিবরণ</string>
+    <string name="lostplaceAndTimeInfo">নিখোঁজ এর স্থান ও সময়ের বিবরণ</string>
     <string name="lostplaceAndTimeInfo1">হারানোর স্থান ও সময়ের  বিবরণ</string>
     <string name="division">বিভাগ</string>
     <string name="addressDetails">স্থানের বিবরণ</string>
@@ -146,12 +146,68 @@
     <string name="person_address">ব্যক্তির ঠিকানা</string>
     <string name="country">Country</string>
     <string name="one_line_address">One Line Address</string>
-
+    <string name="habit">অভ্যাস</string>
+    <string name="speech">ভাষা</string>
+    <string name="newpassword">নতুন পাসওয়ার্ড</string>
     <!--
         <string name="select_option">নির্বাচন করুন</string>-->
     <string name="select_option">Select List</string>
 
     <string name="address_type">ঠিকানার ধরণ</string>
+
+    <string-array name="array_habit">
+        <item>@string/select_list</item>
+        <item>BRAGGING</item>
+        <item>CHEWS BETAL/PAN</item>
+        <item>CHEWS GUM  </item>
+        <item>CHEWPS PAN MASALA</item>
+        <item>CHEWS SUPARI</item>
+        <item>CHEWS TOBACCO</item>
+        <item>CHEWS CRAZY</item>
+        <item>DRINKS LIQUOR</item>
+        <item>DRUG ADDICT</item>
+        <item>EYES BLINKING</item>
+        <item>EYES SHIFTING</item>
+        <item>GAMBLER</item>
+        <item>HOMOSEXUAL</item>
+        <item>LIP BITING</item>
+        <item>LOTTERY PLAYER</item>
+        <item>MOUSTACHE TWISTING</item>
+        <item>NAIL BITING</item>
+        <item>PROSTITUTE MONGER</item>
+        <item>RACE-GORE</item>
+        <item>SMOKER</item>
+        <item>SNUFF TAKER</item>
+        <item>STRETCHING</item>
+        <item>OTHERS</item>
+        <item>GUTKA</item>
+        <item>NO HABIT</item>
+        <item>NO PECULIARITY</item>
+    </string-array>
+
+    <string-array name="array_speech">
+        <item>@string/select_list</item>
+        <item>স্বাভাবিক</item>
+        <item>দ্রুত</item>
+        <item>ধীর</item>
+        <item>তোতলামি</item>
+        <item>অট্ট</item>
+        <item>নরম</item>
+        <item>গুরুগম্ভীর</item>
+        <item>নাকি</item>
+        <item>মেয়েলি(পুরুষ)</item>
+        <item>পুরুষালী (মহিলা)</item>
+        <item>বিস্ময়কর</item>
+        <item>পোরান ঢাকা আঞ্চলিকতা</item>
+        <item>চট্টগ্রাম আঞ্চলিকতা</item>
+        <item>বরিশাল আঞ্চলিকতা</item>
+        <item>খুলনা আঞ্চলিকতা</item>
+        <item>ময়মেনসিংহ আঞ্চলিকতা</item>
+        <item>রাজশাহী আঞ্চলিকতা</item>
+        <item>রংপুর আঞ্চলিকতা</item>
+        <item>সিলেট আঞ্চলিকতা</item>
+        <item>নোয়াখালী আঞ্চলিকতা</item>
+    </string-array>
 
     <string-array name="purpose_of_visit">
         <item>@string/select_list</item>
@@ -611,7 +667,7 @@
     <string name="dress">পোশাক</string>
     <string name="position">অবস্থান</string>
     <string name="vehicle_information">যানবাহন তথ্য</string>
-    <string name="relation_with_lost_person">হারানো ব্যক্তির সাথে সম্পর্ক</string>
+    <string name="relation_with_lost_person">নিখোঁজ ব্যক্তির সাথে সম্পর্ক</string>
     <string name="age_period">বয়স কাল</string>
     <string name="add">Add</string>
 
