@@ -184,6 +184,7 @@
     <string name="missingpersonlevel">Information of the missing person</string>
     <string name="othersitemlevel">Others Item</string>
     <string name="unknowndeadbody">Anonymous corpses</string>
+    <string name="newpassword">New Password</string>
 
     <string-array name="array_habit">
         <item>@string/select_list</item>

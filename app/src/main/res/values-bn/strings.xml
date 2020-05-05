@@ -148,7 +148,7 @@
     <string name="one_line_address">One Line Address</string>
     <string name="habit">অভ্যাস</string>
     <string name="speech">ভাষা</string>
-
+    <string name="newpassword">নতুন পাসওয়ার্ড</string>
     <!--
         <string name="select_option">নির্বাচন করুন</string>-->
     <string name="select_option">Select List</string>
