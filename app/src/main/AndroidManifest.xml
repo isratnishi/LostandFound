@@ -42,11 +42,7 @@
         <activity
             android:name=".Activity.DeadBodyFoundActivity"
             android:label="@string/unknowndeadbody" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activity.ChatBotActivity" />
         <activity android:name=".Activity.CodeGenerateActivity" />
@@ -84,7 +80,11 @@
         <activity
             android:name=".Activity.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

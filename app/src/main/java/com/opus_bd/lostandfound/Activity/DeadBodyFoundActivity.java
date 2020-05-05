@@ -378,6 +378,7 @@ ImageView imageView;
         mcvPersonPhysical.setVisibility(View.GONE);
         mcvPersonAddress.setVisibility(View.GONE);
         mcvDressDescription.setVisibility(View.GONE);
+        mcvDNAProfile.setVisibility(View.GONE);
         //date picker
         initializeVariables();
         selectOne = getResources().getString(R.string.select_option);

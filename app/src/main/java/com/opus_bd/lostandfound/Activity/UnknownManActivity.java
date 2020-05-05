@@ -155,7 +155,13 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
     @BindView(R.id.ivPersonPhotoes)
     ImageView ivPersonPhotoes;
-
+    boolean isllDNAProfileChecked = true;
+    @BindView(R.id.mcvDNAProfile)
+    MaterialCardView mcvDNAProfile;
+    @BindView(R.id.llDNAProfile)
+    LinearLayout llDNAProfile;
+    @BindView(R.id.ivDNAProfile)
+    ImageView ivDNAProfile;
     //input field
     @BindView(R.id.etName)
     EditText etName;
@@ -458,6 +464,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         mcvPersonLostPlace.setVisibility(View.GONE);
         mcvDressDescription.setVisibility(View.GONE);
         mcvPersonPhotoes.setVisibility(View.GONE);
+        mcvDNAProfile.setVisibility(View.GONE);
         //date picker
         initializeVariables();
         selectOne = getResources().getString(R.string.select_option);
@@ -690,7 +697,27 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         }
 
     }
+    @OnClick({R.id.ivDNAProfile, R.id.btnNext5})
+    public void ivDNAProfile() {
+        if (isllDNAProfileChecked) {
+            // show password
+            llPersonLostPlace.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivTPersonLostPlace);
+            isllPersonLostPlaceChecked = true;
 
+            mcvDNAProfile.setVisibility(View.VISIBLE);
+            llDNAProfile.setVisibility(View.VISIBLE);
+            Glide.with(this).load(R.drawable.ic_drop_up).into(ivDNAProfile);
+            isllDNAProfileChecked = false;
+
+        } else {
+            // hide password
+            llDNAProfile.setVisibility(View.GONE);
+            Glide.with(this).load(R.drawable.ic_drop_down).into(ivDNAProfile);
+            isllDNAProfileChecked = true;
+        }
+
+    }
     public void getAllColor() {
 
 
@@ -786,7 +813,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         dialog.show();
     }
 
-    @OnClick(R.id.btnNext5)
+    @OnClick(R.id.btnDNA)
     public void ReportShown() {
         llInput.setVisibility(View.GONE);
         mcvReport.setVisibility(View.VISIBLE);
