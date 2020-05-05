@@ -154,6 +154,7 @@
     <string name="mobilePhone_information">মোবাইল/ফোন এর তথ্য</string>
     <string name="keys_information">চাবি এর তথ্য</string>
     <string name="umbrella_information">ছাতা এর তথ্য</string>
+    <string name="dna_profile">ডিএনএ প্রোফাইল</string>
 
     <string-array name="array_umbrella_model">
         <item>@string/select_option</item>

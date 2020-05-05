@@ -190,6 +190,7 @@
     <string name="mobilePhone_information">Mobile/Phone Information</string>
     <string name="keys_information">Keys Information</string>
     <string name="umbrella_information">Umbrella Information</string>
+    <string name="dna_profile">DNA Profile</string>
 
     <string-array name="array_umbrella_model">
         <item>@string/select_option</item>
