@@ -84,7 +84,7 @@
                     android:id="@+id/etUserName"
                     android:layout_toRightOf="@id/vuser"
                     android:hint="@string/user_id"
-                    android:text="Police"
+                    android:text="123456"
                     style="@style/EditTextEditText" />
 
             </RelativeLayout>

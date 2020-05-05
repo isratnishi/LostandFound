@@ -115,7 +115,7 @@
     <string name="documentType">ডকুমেন্ট এর ধরণ</string>
 
     <!--    vehicle space and time info-->
-    <string name="theftplaceAndTimeInfo"> চুরি স্থানের ও সময়ের  বিবরণ</string>
+    <string name="theftplaceAndTimeInfo"> চুরির স্থান ও সময়ের  বিবরণ</string>
     <string name="lostplaceAndTimeInfo">নিখোঁজ স্থানের ও সময়ের  বিবরণ</string>
     <string name="lostplaceAndTimeInfo1">হারানোর স্থান ও সময়ের  বিবরণ</string>
     <string name="division">বিভাগ</string>

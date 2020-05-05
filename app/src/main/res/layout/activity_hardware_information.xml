@@ -181,6 +181,56 @@
                                     android:id="@+id/WiFiMACAddress"
                                     style="@style/InformationEntryTextViewColon"
                                     android:text="IMEI Number" />
+                            </TableRow>  <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/InformationEntryTextViewColon"
+                                    android:text="DNS Address" />
+
+                                <TextView
+                                    style="@style/InformationEntryTextViewColon"
+                                    android:text=":" />
+
+                                <TextView
+                                    android:id="@+id/DNSAddress"
+                                    style="@style/InformationEntryTextViewColon"
+                                     />
+                            </TableRow>
+ <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/InformationEntryTextViewColon"
+                                    android:text="MotherBoard" />
+
+                                <TextView
+                                    style="@style/InformationEntryTextViewColon"
+                                    android:text=":" />
+
+                                <TextView
+                                    android:id="@+id/MotherBoard"
+                                    style="@style/InformationEntryTextViewColon"
+                                     />
+                            </TableRow>
+<TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/InformationEntryTextViewColon"
+                                    android:text="Processor" />
+
+                                <TextView
+                                    style="@style/InformationEntryTextViewColon"
+                                    android:text=":" />
+
+                                <TextView
+                                    android:id="@+id/Processor"
+                                    style="@style/InformationEntryTextViewColon"
+                                     />
                             </TableRow>
 
 
