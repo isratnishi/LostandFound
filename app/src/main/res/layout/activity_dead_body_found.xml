@@ -126,7 +126,24 @@
                                         android:hint="@string/if_found" />
                                 </TableRow>
 
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/mothersName" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:hint="@string/if_found"
+
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
@@ -272,7 +289,24 @@
                                         style="@style/InformationEntryEditText"
                                         android:entries="@array/religion" />
                                 </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/gender" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spngender"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_gender" />
+
+                                </TableRow>
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
@@ -302,6 +336,7 @@
                                         android:layout_height="100dp"
                                         android:contentDescription="Front Image"
                                         android:scaleType="fitXY"
+                                        android:layout_margin="5dp"
                                         android:src="@drawable/ic_image_icon" />
 
                                     <ImageView
@@ -309,6 +344,7 @@
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
                                         android:layout_height="100dp"
+                                        android:layout_margin="5dp"
                                         android:contentDescription="Front Image"
                                         android:scaleType="fitXY"
                                         android:src="@drawable/ic_image_icon" />
@@ -320,6 +356,7 @@
                                         android:layout_height="100dp"
                                         android:contentDescription="Front Image"
                                         android:scaleType="fitXY"
+                                        android:layout_margin="5dp"
                                         android:src="@drawable/ic_image_icon" />
 
                                     <ImageView
@@ -327,6 +364,7 @@
                                         android:layout_width="0dp"
                                         android:layout_weight="1"
                                         android:layout_height="100dp"
+                                        android:layout_margin="5dp"
                                         android:contentDescription="Front Image"
                                         android:scaleType="fitXY"
                                         android:src="@drawable/ic_image_icon" />
@@ -764,24 +802,7 @@
 
                                 </TableRow>
 
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
 
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="@string/gender" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-
-                                    <Spinner
-                                        android:id="@+id/spngender"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_gender" />
-
-                                </TableRow>
 
                                 <TableRow
                                     android:layout_width="match_parent"
@@ -1237,7 +1258,30 @@
                                         style="@style/InformationEntryTextViewColon"
                                         android:gravity="start|center_vertical" />
                                 </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text="@string/dlegs" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:entries="@array/array_in_the_legs"
+                                        android:id="@+id/spnDLeg"
+                                        android:gravity="start|center_vertical"
+                                        style="@style/InformationEntryTextViewColon"
+                                        />
+                                    <Spinner
+                                        android:id="@+id/spnDLegColor"
+                                        android:gravity="start|center_vertical"
+                                        style="@style/InformationEntryTextViewColon"
+                                        />
+                                </TableRow>
 
                             </TableLayout>
 

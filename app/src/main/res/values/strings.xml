@@ -135,6 +135,7 @@
     <string name="notification">Notification</string>
     <string name="insurance_paper">Insurance Paper</string>
     <string name="person_information">Person Information</string>
+    <string name="dead_person_information">Dead Person Information</string>
     <string name="person_address">Person Address</string>
 
     <string name="age">Age</string>
@@ -310,9 +311,9 @@
 
     <string-array name="array_gender">
         <item>@string/select_option</item>
-        <item>মহিলা</item>
-        <item>পুরুষ</item>
-        <item>হিজরা</item>
+        <item>Female</item>
+        <item>Male</item>
+        <item>Third Gender</item>
     </string-array>
     <string-array name="blood_groups">
         <item>@string/select_option</item>
@@ -741,4 +742,6 @@
     <string name="age_period">Age period</string>
     <string name="add">Add</string>
     <string name="add_image">Add Images</string>
+    <string name="mothersName">Mother\'s Name</string>
+    <string name="mentally_handicapped">Mentally Handicapped</string>
 </resources>

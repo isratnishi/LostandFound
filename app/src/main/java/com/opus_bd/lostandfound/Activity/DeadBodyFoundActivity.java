@@ -214,7 +214,8 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
     @BindView(R.id.spnDWaist)
     Spinner etDWaist;
     @BindView(R.id.spnDWaistColor)
-    Spinner etDWaistColor;
+    Spinner etDWaistColor;    @BindView(R.id.spnDLegColor)
+    Spinner spnDLegColor;
     //ReportView
 
     /*    (Person Information)*/
@@ -750,6 +751,7 @@ ImageView imageView;
         etDHeadColor.setAdapter(customAdapter);
         etDWaistColor.setAdapter(customAdapter);
         etDThroatColor.setAdapter(customAdapter);
+        spnDLegColor.setAdapter(customAdapter);
         etDBodyColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

@@ -140,12 +140,13 @@
     <string name="notification">প্রজ্ঞাপন</string>
     <string name="insurance_paper">ইন্সুরেন্সের কাগজ</string>
     <string name="person_information">ব্যক্তির প্রাথমিক তথ্য</string>
+    <string name="dead_person_information">মৃতব্যক্তির প্রাথমিক তথ্য</string>
     <string name="age">বয়স </string>
     <string name="approximate_age">আনুমানিক বয়স</string>
     <string name="number_type">নম্বরের প্রকার</string>
     <string name="person_address">ব্যক্তির ঠিকানা</string>
-    <string name="country">Country</string>
-    <string name="one_line_address">One Line Address</string>
+    <string name="country">দেশ</string>
+    <string name="one_line_address">এক লাইন ঠিকানা</string>
     <string name="habit">অভ্যাস</string>
     <string name="speech">ভাষা</string>
     <string name="newpassword">নতুন পাসওয়ার্ড</string>
@@ -429,7 +430,7 @@
         <item>@string/select_option</item>
         <item>মহিলা</item>
         <item>পুরুষ</item>
-        <item>হিজরা</item>
+        <item>তৃতীয় লিঙ্গ</item>
     </string-array>
 
     <string-array name="array_hair">
@@ -603,7 +604,7 @@
     <string name="dbody">দেহে</string>
     <string name="dwaist">কোমরে</string>
     <string name="dlegs">পায়ে</string>
-    <string name="person_identification_info">ব্যাক্তির সনাক্তকরণের তথ্য</string>
+    <string name="person_identification_info">ব্যক্তির সনাক্তকরণের তথ্য</string>
     <string name="missingpersonlevel">নিখোঁজ ব্যক্তির তথ্য</string>
     <string name="othersitemlevel">অন্য আইটেম</string>
     <string name="unknowndeadbody">অজ্ঞাতনামা মৃতদেহ</string>
@@ -706,7 +707,9 @@
     <string name="vehicle_information">যানবাহন তথ্য</string>
     <string name="relation_with_lost_person">নিখোঁজ ব্যক্তির সাথে সম্পর্ক</string>
     <string name="age_period">বয়স কাল</string>
-    <string name="add">Add</string>
-    <string name="add_image">Add Images</string>
+    <string name="add">যুক্ত করুন</string>
+    <string name="add_image">ছবি যুক্ত করুন</string>
+    <string name="mothersName">মায়ের নাম</string>
+    <string name="mentally_handicapped">মানসিক প্রতিবন্ধী</string>
 
 </resources>

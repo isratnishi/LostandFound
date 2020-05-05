@@ -368,7 +368,8 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     @BindView(R.id.tvDWaist)
     TextView tvDWaist;
     @BindView(R.id.spnDWaistColor)
-    Spinner etDWaistColor;
+    Spinner etDWaistColor; @BindView(R.id.spnDLegColor)
+    Spinner spnDLegColor;
     @BindView(R.id.tvDWaistColor)
     TextView tvDWaistColor;
 
@@ -733,6 +734,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         etDHeadColor.setAdapter(customAdapter);
         etDWaistColor.setAdapter(customAdapter);
         etDThroatColor.setAdapter(customAdapter);
+        spnDLegColor.setAdapter(customAdapter);
         etDBodyColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

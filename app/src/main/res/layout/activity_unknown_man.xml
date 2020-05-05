@@ -159,6 +159,42 @@
                                         style="@style/InformationEntryEditText"
                                         android:entries="@array/array_gender" />
                                 </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/mentally_handicapped" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <LinearLayout
+                                        style="@style/InformationEntryEditText"
+                                        android:orientation="horizontal">
+                                        <RadioGroup
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="horizontal">
+                                            <RadioButton
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="@string/yes"
+                                                />
+                                            <RadioButton
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="@string/no"
+                                                />
+                                        </RadioGroup>
+
+                                    </LinearLayout>
+                                </TableRow>
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
@@ -173,6 +209,22 @@
 
                                     <EditText
                                         android:id="@+id/etFathersName"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow> <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/mothersName" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+
                                         style="@style/InformationEntryEditText"
                                         />
                                 </TableRow>
@@ -647,7 +699,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/addressDetails" />
+                                        android:text="@string/one_line_address" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -1305,6 +1357,29 @@
                                         />
                                     <Spinner
                                         android:id="@+id/spnDWaistColor"
+                                        android:gravity="start|center_vertical"
+                                        style="@style/InformationEntryTextViewColon"
+                                        />
+                                </TableRow>  <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text="@string/dlegs" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:entries="@array/array_in_the_legs"
+                                        android:id="@+id/spnDLeg"
+                                        android:gravity="start|center_vertical"
+                                        style="@style/InformationEntryTextViewColon"
+                                        />
+                                    <Spinner
+                                        android:id="@+id/spnDLegColor"
                                         android:gravity="start|center_vertical"
                                         style="@style/InformationEntryTextViewColon"
                                         />
