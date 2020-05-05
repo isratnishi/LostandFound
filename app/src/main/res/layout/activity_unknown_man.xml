@@ -610,6 +610,16 @@
                             </TableLayout>
 
                             <Button
+                                android:id="@+id/btnAddAddress"
+                                style="@style/BtnNext"
+                                android:text="@string/add"/>
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvAddressList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+
+                            <Button
                                 android:id="@+id/btnNext3"
                                 style="@style/BtnNext" />
 

@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.opus_bd.lostandfound"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -32,8 +32,10 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
     implementation 'com.android.support:support-v4:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
@@ -82,7 +84,9 @@ dependencies {
 
 
     implementation 'com.github.midorikocak:currency-picker-android:1.2.1'
-/*    //Image Picker
+    //Image Picker
+    implementation 'com.github.dhaval2404:imagepicker-support:1.7.1'
+/*
 
     implementation  'com.fxn769:pix:1.5.3'*/
 

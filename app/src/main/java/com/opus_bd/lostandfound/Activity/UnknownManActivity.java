@@ -3,6 +3,9 @@ package com.opus_bd.lostandfound.Activity;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -35,9 +38,12 @@ import com.google.android.material.card.MaterialCardView;
 import com.hbb20.CountryCodePicker;
 import com.opus_bd.lostandfound.Adapter.CustomAdapter;
 import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
+import com.opus_bd.lostandfound.Adapter.Documentation.OthersItemListAdapter;
+import com.opus_bd.lostandfound.Adapter.Extra.AddressListAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.Occupation;
+import com.opus_bd.lostandfound.Model.ExtraModel.AdreessList;
 import com.opus_bd.lostandfound.Model.GlobalData.District;
 import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 import com.opus_bd.lostandfound.R;
@@ -113,7 +119,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
     @BindView(R.id.ivTPersonAddress)
     ImageView ivTPersonAddress;
-  boolean isllPersonLostPlaceChecked = true;
+    boolean isllPersonLostPlaceChecked = true;
     @BindView(R.id.mcvPersonLostPlace)
     MaterialCardView mcvPersonLostPlace;
 
@@ -252,7 +258,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     Spinner spnForhead;
     @BindView(R.id.tvForhead)
     TextView tvForhead;
-     @BindView(R.id.spnBeard)
+    @BindView(R.id.spnBeard)
     Spinner spnBeard;
     @BindView(R.id.tvBeard)
     TextView tvBeard;
@@ -411,6 +417,15 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     public int SELECTED_OCCUPATION_ID;
     String selectOne;
     ArrayList<Colors> colorArrayList = new ArrayList<>();
+
+
+    //Address List
+    ArrayList<AdreessList> addressListArrayList = new ArrayList<>();
+    AddressListAdapter addressListAdapter;
+
+    @BindView(R.id.rvAddressList)
+    RecyclerView rvAddressList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -427,24 +442,49 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         mcvPersonPhotoes.setVisibility(View.GONE);
         //date picker
         initializeVariables();
-        selectOne=getResources().getString(R.string.select_option);
+        selectOne = getResources().getString(R.string.select_option);
         getOccupation();
         getDistrict();
         getAllColor();
-        //Color
-       // initializeColor();
-
+        intRecyclerView();
 
 
     }
-    //Color
-   /* public void initializeColor(){
-        ColorName= new ArrayList<String>(R.array.ColorName);
-        ColorCode= new ArrayList<String>(R.array.ColorCode);
 
-        CustomColorAdapter customAdapter=new CustomColorAdapter(getApplicationContext(),ColorName,ColorCode);
-        spnColor1.setAdapter(customAdapter);
-    }*/
+    public void intRecyclerView() {
+        addressListAdapter = new AddressListAdapter(addressListArrayList, this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        rvAddressList.setLayoutManager(layoutManager);
+        rvAddressList.setAdapter(addressListAdapter);
+    }
+
+    @OnClick(R.id.btnAddAddress)
+    public void AddressSave() {
+        AdreessList adreessList = new AdreessList();
+        try {
+            // adreessList.setItemId(addressListArrayList.size()+1);
+            adreessList.setItemId(addressListAdapter.getItemCount()+1);
+            adreessList.setCountryName("" + ccp.getSelectedCountryName());
+            adreessList.setDistrictName("" + spnSPDistrict.getSelectedItem().toString());
+            adreessList.setVillageName("" + spnSPThana.getSelectedItem().toString());
+            adreessList.setVillageName("" + etVillage.getText().toString());
+            adreessList.setAddressName("" + etAddressDetails.getText().toString());
+            adreessList.setAddressType("" + spnAddressType.getSelectedItem().toString());
+            adreessList.setOneLineAddress("" + etOneLineAddress.getText().toString());
+        } catch (Exception e) {
+            Utilities.showLogcatMessage("adreessList " + e.toString());
+        }
+
+        try {
+            addressListArrayList.add(adreessList);
+            //addressListAdapter.notifyItemInserted(addressListAdapter.getItemCount()+1);
+            addressListAdapter.notifyDataSetChanged();
+        } catch (Exception e) {
+            Utilities.showLogcatMessage("notifyDataSetChanged " + e.toString());
+        }
+
+    }
+
 
 //Date Picker
 
@@ -458,7 +498,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         etVehicleDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDate(mYear,mMonth,mDay,R.style.DatePickerSpinner);
+                showDate(mYear, mMonth, mDay, R.style.DatePickerSpinner);
             }
         });
 
@@ -471,6 +511,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
 
     }
+
     protected void attachBaseContext(Context base) {
         SharedPreferences tprefs = base.getSharedPreferences(SharedPrefManager.SHARED_PREF_NAME, MODE_PRIVATE);
         boolean language = tprefs.getBoolean(SharedPrefManager.KEY_State, true);
@@ -661,15 +702,15 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     public void addColorSpinnerData(final List<Colors> body) {
         List<String> colorList = new ArrayList<>();
         List<String> colorCode = new ArrayList<>();
-        colorList.add(0,selectOne);
-        colorCode.add(0,"#FFFFFF");
+        colorList.add(0, selectOne);
+        colorCode.add(0, "#FFFFFF");
         for (int i = 0; i < body.size(); i++) {
-            colorList.add(i+1,body.get(i).getColorName());
-            colorCode.add(i+1,body.get(i).getColorCode());
+            colorList.add(i + 1, body.get(i).getColorName());
+            colorCode.add(i + 1, body.get(i).getColorCode());
         }
 
 
-        CustomColorAdapter customAdapter=new CustomColorAdapter(getApplicationContext(),colorList,colorCode);
+        CustomColorAdapter customAdapter = new CustomColorAdapter(getApplicationContext(), colorList, colorCode);
         etDBodyColor.setAdapter(customAdapter);
         etDEyeColor.setAdapter(customAdapter);
         etDHeadColor.setAdapter(customAdapter);
@@ -679,9 +720,9 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i >= 1) {
-                  //  SELECTED_COLOR_ID = body.get(i).getId();
+                    //  SELECTED_COLOR_ID = body.get(i).getId();
                 } else {
-                   // SELECTED_COLOR_ID = 0;
+                    // SELECTED_COLOR_ID = 0;
                 }
             }
 
@@ -824,6 +865,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);*/
     }
+
     @OnClick(R.id.Submit)
     public void Submit() {
         submitToServer();
@@ -832,6 +874,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);*/
     }
+
     private void submitToServer() {
 
         String token = SharedPrefManager.getInstance(this).getToken();
@@ -914,7 +957,6 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     }
 
 
-
     //InformationEntryActivity
     @Override
     public void onBackPressed() {
@@ -937,7 +979,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
     }
 
-    public void getDistrict( ) {
+    public void getDistrict() {
 
 
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
@@ -966,9 +1008,9 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
     public void addDistrictSpinnerData(final List<District> body) {
         List<String> districtList = new ArrayList<>();
-        districtList.add(0,selectOne);
+        districtList.add(0, selectOne);
         for (int i = 0; i < body.size(); i++) {
-            districtList.add(i+1,body.get(i).getDistrictName());
+            districtList.add(i + 1, body.get(i).getDistrictName());
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, districtList);
@@ -1025,9 +1067,9 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
     public void addThanaSpinnerData(final List<Thana> body) {
         List<String> thanaList = new ArrayList<>();
-        thanaList.add(0,selectOne);
+        thanaList.add(0, selectOne);
         for (int i = 0; i < body.size(); i++) {
-            thanaList.add(i+1,body.get(i).getThanaName());
+            thanaList.add(i + 1, body.get(i).getThanaName());
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, thanaList);
@@ -1052,9 +1094,9 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
     public void addDistrictSpinnerDataLP(final List<District> body) {
         List<String> districtList = new ArrayList<>();
-        districtList.add(0,selectOne);
+        districtList.add(0, selectOne);
         for (int i = 0; i < body.size(); i++) {
-            districtList.add(i+1,body.get(i).getDistrictName());
+            districtList.add(i + 1, body.get(i).getDistrictName());
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, districtList);
@@ -1110,9 +1152,9 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
     public void addThanaSpinnerDataLP(final List<Thana> body) {
         List<String> thanaList = new ArrayList<>();
-        thanaList.add(0,selectOne);
+        thanaList.add(0, selectOne);
         for (int i = 0; i < body.size(); i++) {
-            thanaList.add(i+1,body.get(i).getThanaName());
+            thanaList.add(i + 1, body.get(i).getThanaName());
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, thanaList);
@@ -1136,7 +1178,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     }
 
 
-    public void getOccupation( ) {
+    public void getOccupation() {
 
 
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
@@ -1164,9 +1206,9 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
     public void addOccupationSpinnerData(final List<Occupation> body) {
         List<String> occupationList = new ArrayList<>();
-        occupationList.add(0,selectOne);
+        occupationList.add(0, selectOne);
         for (int i = 0; i < body.size(); i++) {
-            occupationList.add(i+1,body.get(i).getName());
+            occupationList.add(i + 1, body.get(i).getName());
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, occupationList);
@@ -1195,7 +1237,6 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     }
 
 
-
     //TIME AND dATE
     @VisibleForTesting
     void showDate(int year, int monthOfYear, int dayOfMonth, int spinnerTheme) {
@@ -1208,6 +1249,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
                 .build()
                 .show();
     }
+
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         Calendar calendar = new GregorianCalendar(year, monthOfYear, dayOfMonth);
@@ -1218,6 +1260,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
     @OnClick(R.id.etVehicleTime)
     public void etVehicleTime() {
         Calendar mcurrentTime = Calendar.getInstance();
@@ -1230,8 +1273,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 String status = "AM";
 
-                if(hour > 11)
-                {
+                if (hour > 11) {
                     // If the hour is greater than or equal to 12
                     // Then the current AM PM status is PM
                     status = "PM";
@@ -1240,16 +1282,15 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
                 // Initialize a new variable to hold 12 hour format hour value
                 int hour_of_12_hour_format;
 
-                if(hour > 11){
+                if (hour > 11) {
 
                     // If the hour is greater than or equal to 12
                     // Then we subtract 12 from the hour to make it 12 hour format time
                     hour_of_12_hour_format = hour - 12;
-                }
-                else {
+                } else {
                     hour_of_12_hour_format = hour;
                 }
-                etVehicleTime.setText(selectedHour + ":" + selectedMinute+ " "+status);
+                etVehicleTime.setText(selectedHour + ":" + selectedMinute + " " + status);
             }
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
