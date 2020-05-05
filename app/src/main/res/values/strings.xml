@@ -185,6 +185,44 @@
     <string name="othersitemlevel">Others Item</string>
     <string name="unknowndeadbody">Anonymous corpses</string>
     <string name="newpassword">New Password</string>
+    <string name="watch_Information">Watch Information</string>
+    <string name="watch_type">Watch Type</string>
+    <string name="mobilePhone_information">Mobile/Phone Information</string>
+
+    <string-array name="array_watch_type">
+        <item>@string/select_option</item>
+        <item>Brand</item>
+        <item>Non Brand</item>
+        <item>Chines brand</item>
+    </string-array>
+
+    <string-array name="array_watch_brand">
+        <item>@string/select_option</item>
+        <item>Casio</item>
+        <item>Titan</item>
+        <item>Longines</item>
+        <item>Ulysse Nardin</item>
+        <item>Omega</item>
+        <item>Rolex</item>
+        <item>Tissot</item>
+        <item>Citizen</item>
+        <item>Boss</item>
+    </string-array>
+
+    <string-array name="array_watch_body_type">
+        <item>@string/select_option</item>
+        <item>Leather</item>
+        <item>Chain</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="array_watch_structure_type">
+        <item>@string/select_option</item>
+        <item>Simple Dialed Watch</item>
+        <item>Mechanical Watch</item>
+        <item>Chronograph Watch</item>
+        <item>Digital Watch</item>
+        <item>Smart Watch</item>
+    </string-array>
 
     <string-array name="array_habit">
         <item>@string/select_list</item>
