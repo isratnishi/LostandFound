@@ -160,11 +160,12 @@
                                             android:id="@+id/spnRegNoName2"
                                             android:layout_width="wrap_content"
                                             android:layout_height="match_parent"
+                                            android:paddingRight="0sp"
+                                            android:layout_marginRight="0sp"
                                             android:background="@android:color/transparent"/>
                                         <EditText
                                             android:id="@+id/etRegNoName"
                                             android:inputType="number"
-
                                             android:maxLength="7"
                                             style="@style/InformationEntryEditText"
                                             android:hint="XX-XXXX" />

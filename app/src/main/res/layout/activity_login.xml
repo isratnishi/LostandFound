@@ -84,7 +84,7 @@
                     android:id="@+id/etUserName"
                     android:layout_toRightOf="@id/vuser"
                     android:hint="@string/user_id"
-                    android:text="123456"
+                    android:text="Police"
                     style="@style/EditTextEditText" />
 
             </RelativeLayout>
@@ -118,7 +118,7 @@
                    style="@style/EditTextEditText"
                     android:maxLength="6"
                     android:hint="@string/password"
-                    android:text="Police"
+                    android:text="123456"
                     android:inputType="textPassword"/>
                 <ImageView
                     android:id="@+id/ivpassShow"
