@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.opus_bd.lostandfound.Activity.ForgetPasswordActivity;
@@ -31,14 +32,12 @@ import butterknife.OnClick;
 public class DocumentSubmitFragment extends Fragment {
 
     int iid,passid;
-    @BindView(R.id.rlfpd)
-    RelativeLayout rlfpd;
-    @BindView(R.id.textViewfpd)
-    TextView textViewfpd;
     public void setIid(int iid) {
         this.iid = iid;
     }
-
+    @BindView(R.id.tvDocType)
+    TextView tvDocType;@BindView(R.id.spnDocumentType)
+    Spinner spnDocumentType;
     @Override
     public void onStart() {
         super.onStart();
@@ -60,12 +59,12 @@ public class DocumentSubmitFragment extends Fragment {
         ForgetPasswordActivity.Step=1;
 
         EventBus.getDefault().post(new MessageEvent(true));
-        //setView(iid);
+        setView(iid);
         return v;
     }
 
     public void setView(int i) {
-        if (i == 1) {
+     /*   if (i == 1) {
             rlfpd.setVisibility(View.VISIBLE);
             passid=1;
 
@@ -73,12 +72,12 @@ public class DocumentSubmitFragment extends Fragment {
             rlfpd.setVisibility(View.GONE);
             textViewfpd.setText("Select below");
             passid=2;
-        }
+        }*/
     }
 
-    @OnClick({R.id.cvNIDfpd, R.id.textNext})
+    @OnClick({ R.id.textNext})
     public void button1() {
-        InputFragment idFragment = new InputFragment();
+        FPOTPFragment idFragment = new FPOTPFragment();
         //DocumentSubmitFragment.setInputID(1);
         idFragment.setPassId(passid);
         Utilities.showLogcatMessage("passid 1"+passid);
@@ -94,47 +93,17 @@ public class DocumentSubmitFragment extends Fragment {
         ft.commit();
     }
 
-    @OnClick(R.id.cvBIDfpd)
-    public void button2() {
-        FPInputFragment idFragment = new FPInputFragment();
-//        idFragment.setInputID(2);
-//        idFragment.setPassId(passid);
-        Utilities.showLogcatMessage("passid 1"+passid);
-        /*  RegistrationActivity.id=1;
+    @OnClick(R.id.tvDocType)
+    public void tvDocType() {
+        tvDocType.setVisibility(View.GONE);
+        spnDocumentType.setVisibility(View.VISIBLE);
 
-          EventBus.getDefault().post(new MessageEvent(true));
-          ((RegistrationActivity) getActivity()).selectPage(1);*/
-        ForgetPasswordActivity.NationalIdentityType="2";
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.setCustomAnimations(R.animator.fragment_slide_left_enter,
-                R.animator.fragment_slide_left_exit);
-        ft.replace(R.id.fpFregmentContainer, idFragment, "NewFragmentTag");
-        ft.commit();
+
     }
-
-    @OnClick(R.id.cvpassportfpd)
-    public void button3() {
-        InputFragment idFragment = new InputFragment();
-        idFragment.setInputID(3);
-        idFragment.setPassId(passid);
-        Utilities.showLogcatMessage("passid 1"+passid);
-        ForgetPasswordActivity.NationalIdentityType="3";
-        /*  RegistrationActivity.id=1;
-
-          EventBus.getDefault().post(new MessageEvent(true));
-          ((RegistrationActivity) getActivity()).selectPage(1);*/
-
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.setCustomAnimations(R.animator.fragment_slide_left_enter,
-                R.animator.fragment_slide_left_exit);
-        ft.replace(R.id.fpFregmentContainer, idFragment, "NewFragmentTag");
-        ft.commit();
-    }
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         if (event.isUpdate()) {
-            Utilities.showLogcatMessage(" id " + ForgetPasswordActivity.UserName);
+           /// Utilities.showLogcatMessage(" id " + ForgetPasswordActivity.id);
         }
     }
 

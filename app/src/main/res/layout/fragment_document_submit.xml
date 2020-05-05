@@ -7,151 +7,135 @@
     tools:context=".Fragments.Registration.IdFragment">
 
     <LinearLayout
+        android:id="@+id/LLInputForOthers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center"
-        android:layout_margin="20dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/textViewfpd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/id_request"
-            android:gravity="center"
-            android:layout_margin="20dp"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="15dp"/>
+
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="@dimen/spacing_large"
+                android:layout_height="0dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fill the information"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textColor="@android:color/holo_red_dark"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_10" />
+
         <RelativeLayout
-            android:id="@+id/rlfpd"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@id/cvpassport"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView2">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvNIDfpd"
-                style="@style/HomeItemCard"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="10dp"
-                app:layout_columnWeight="1"
-                android:layout_alignParentLeft="true"
-                app:layout_rowWeight="1">
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/white">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
+            <ImageView
+                android:id="@+id/ivuser"
+                style="@style/EditTextIcon"
+                android:src="@drawable/ic_user" />
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_horizontal"
-                        android:tint="@color/colorPrimaryDark"
-                        android:src="@drawable/ic_nid" />
-
-                    <TextView
-                        style="@style/HomeTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/nidnum"
-                        android:textAlignment="center"
-
-                        android:textColor="@android:color/black" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvBIDfpd"
-                style="@style/HomeItemCard"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="10dp"
-                app:layout_columnWeight="1"
-
-                android:layout_alignParentRight="true"
-                app:layout_rowWeight="1">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_horizontal"
-                        android:tint="@color/colorPrimaryDark"
-                        android:src="@drawable/birth" />
-
-                    <TextView
-                        style="@style/HomeTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/binnum"
-                        android:textAlignment="center"
-
-                        android:textColor="@android:color/black" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-        </RelativeLayout>
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvpassportfpd"
-            style="@style/HomeItemCard"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="10dp"
-            app:layout_columnWeight="1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rl"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_rowWeight="1">
-
+            <View
+                android:id="@+id/vuser"
+                style="@style/EditTextView"
+                android:layout_toRightOf="@id/ivuser" />
             <LinearLayout
+                android:layout_toRightOf="@id/vuser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_margin="16dp"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal"
-                    android:tint="@color/colorPrimaryDark"
-                    android:src="@drawable/ic_nationality_select" />
+                android:orientation="horizontal">
 
                 <TextView
-                    style="@style/HomeTextStyle"
+                    android:id="@+id/tvDocType"
+                    style="@style/EditTextEditText"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/passnum"
-                    android:textAlignment="center"
+                    android:layout_marginStart="5dp"
+                    android:hint="@string/doc_type"
+                    android:layout_marginLeft="5dp" />
 
-                    android:textColor="@android:color/black" />
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:visibility="gone"
+                    android:id="@+id/spnDocumentType"
+                    android:layout_width="match_parent"
+                    android:entries="@array/doc_type"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" />
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:id="@+id/ivNumber"
+                style="@style/EditTextIcon"
+                android:src="@drawable/ic_user" />
+
+            <View
+                android:id="@+id/vNumber"
+                style="@style/EditTextView"
+                android:layout_toRightOf="@id/ivNumber" />
+
+            <EditText
+                android:id="@+id/etNumber"
+                style="@style/EditTextEditText"
+                android:layout_toRightOf="@id/vNumber"
+                android:hint="@string/doc_number" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:id="@+id/ivPhnNumber"
+                style="@style/EditTextIcon"
+                android:src="@drawable/ic_user" />
+
+            <View
+                android:id="@+id/vPhnNumber"
+                style="@style/EditTextView"
+                android:layout_toRightOf="@id/ivPhnNumber" />
+
+            <EditText
+                android:id="@+id/etPhnNumber"
+                style="@style/EditTextEditText"
+                android:layout_toRightOf="@id/vPhnNumber"
+                android:hint="@string/mobile_no" />
+
+        </RelativeLayout>
+
+
     </LinearLayout>
     <RelativeLayout
         android:background="@color/colorPrimaryDark"
@@ -163,7 +147,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
         <TextView
-            android:visibility="gone"
+
             android:id="@+id/textNext"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
