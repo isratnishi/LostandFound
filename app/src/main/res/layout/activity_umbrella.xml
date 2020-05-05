@@ -48,7 +48,7 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="10dp"
                                 android:gravity="center_vertical"
-                                android:text="@string/mobilePhone_information"
+                                android:text="@string/umbrella_information"
                                 android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />
@@ -73,7 +73,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Mobile Type" />
+                                        android:text="Umbrella Type" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -82,7 +82,7 @@
                                         android:id="@+id/spnPhoneType"
                                         android:drawSelectorOnTop="true"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_phone_type"/>
+                                        android:entries="@array/array_umbrella_type"/>
 
                                 </TableRow>
 
@@ -101,7 +101,7 @@
                                         android:id="@+id/spnPhoneBrand"
                                         android:drawSelectorOnTop="true"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_phone_brand"/>
+                                        android:entries="@array/array_umbrella_brand"/>
 
                                 </TableRow>
 
@@ -120,7 +120,7 @@
                                         android:id="@+id/spnBeltType"
                                         android:drawSelectorOnTop="true"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_phone_model"/>
+                                        android:entries="@array/array_umbrella_model"/>
 
                                 </TableRow>
                                 <TableRow
@@ -141,23 +141,7 @@
                                         android:entries="@array/array_body_color"/>
 
                                 </TableRow>
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
 
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="IME Number" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-                                    <EditText
-                                        android:id="@+id/etIMENumber"
-                                        style="@style/InformationEntryEditText"
-                                        />
-
-                                </TableRow>
 
                                 <TableRow
                                     android:layout_width="match_parent"
@@ -165,7 +149,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Screen Size" />
+                                        android:text="Size" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -182,7 +166,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Phone Specification" />
+                                        android:text="Umbrella Specification" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"

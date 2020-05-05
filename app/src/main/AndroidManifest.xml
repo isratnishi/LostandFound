@@ -26,8 +26,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.OtherItem.MobilePhoneActivity"></activity>
-        <activity android:name=".Activity.OtherItem.OtherItemDetailsActivity"></activity>
+        <activity android:name=".Activity.OtherItem.UmbrellaActivity"></activity>
+        <activity android:name=".Activity.OtherItem.KeysInformationActivity" />
+        <activity android:name=".Activity.OtherItem.MobilePhoneActivity" />
+        <activity android:name=".Activity.OtherItem.OtherItemDetailsActivity" />
         <activity android:name=".Activity.ForgetPasswordActivity" />
         <activity android:name=".Activity.HardwareInformationActivity" />
         <activity android:name=".Activity.OtherItem.CategoryListActivity" />

@@ -48,7 +48,7 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="10dp"
                                 android:gravity="center_vertical"
-                                android:text="@string/mobilePhone_information"
+                                android:text="@string/keys_information"
                                 android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />
@@ -73,7 +73,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Mobile Type" />
+                                        android:text="Keys Type" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -82,47 +82,11 @@
                                         android:id="@+id/spnPhoneType"
                                         android:drawSelectorOnTop="true"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_phone_type"/>
+                                        android:entries="@array/array_keys_type"/>
 
                                 </TableRow>
 
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
 
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="Brand" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-                                    <Spinner
-                                        android:id="@+id/spnPhoneBrand"
-                                        android:drawSelectorOnTop="true"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_phone_brand"/>
-
-                                </TableRow>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="Model" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-                                    <Spinner
-                                        android:id="@+id/spnBeltType"
-                                        android:drawSelectorOnTop="true"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_phone_model"/>
-
-                                </TableRow>
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
@@ -141,23 +105,7 @@
                                         android:entries="@array/array_body_color"/>
 
                                 </TableRow>
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
 
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="IME Number" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-                                    <EditText
-                                        android:id="@+id/etIMENumber"
-                                        style="@style/InformationEntryEditText"
-                                        />
-
-                                </TableRow>
 
                                 <TableRow
                                     android:layout_width="match_parent"
@@ -165,24 +113,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Screen Size" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-                                    <EditText
-                                        android:id="@+id/etScreenSize"
-                                        style="@style/InformationEntryEditText"
-                                        />
-                                </TableRow>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="Phone Specification" />
+                                        android:text="Keys Specification" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -198,7 +129,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Price" />
+                                        android:text="Size" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"

@@ -14,7 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.opus_bd.lostandfound.Activity.OtherItem.CategoryListActivity;
+import com.opus_bd.lostandfound.Activity.OtherItem.KeysInformationActivity;
+import com.opus_bd.lostandfound.Activity.OtherItem.MobilePhoneActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.OtherItemDetailsActivity;
+import com.opus_bd.lostandfound.Activity.OtherItem.UmbrellaActivity;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Utils.Utilities;
@@ -93,6 +96,15 @@ public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAd
                         context.startActivity(intent);
                     }else if(id==2){
                         Intent intent = new Intent(context, OtherItemDetailsActivity.class);
+                        context.startActivity(intent);
+                    }else if(id==4){
+                        Intent intent = new Intent(context, MobilePhoneActivity.class);
+                        context.startActivity(intent);
+                    }else if(id==5){
+                        Intent intent = new Intent(context, KeysInformationActivity.class);
+                        context.startActivity(intent);
+                    }else if(id==16){
+                        Intent intent = new Intent(context, UmbrellaActivity.class);
                         context.startActivity(intent);
                     }else {
                         Intent intent = new Intent(context, CategoryListActivity.class);
