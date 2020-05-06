@@ -12,6 +12,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
+import com.mynameismidori.currencypicker.CurrencyPicker;
+import com.mynameismidori.currencypicker.CurrencyPickerListener;
 import com.opus_bd.lostandfound.Activity.DashboardActivity;
 import com.opus_bd.lostandfound.Activity.InformationEntryActivity;
 import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
@@ -104,6 +108,9 @@ public class OtherItemDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.etProductTime)
     EditText etProductTime;
+    @BindView(R.id.etIMENumber)
+    EditText etIMENumber;
+
 
     boolean isllCardInformationChecked = true;
     @BindView(R.id.llCardInformation)
@@ -156,6 +163,29 @@ public class OtherItemDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_item_details);
         ButterKnife.bind(this);
+        etIMENumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // if user is typing string one character at a time
+                if (count == 1) {
+                    // auto insert dashes while user typing their ssn
+                    if (start == 2 || start == 6|| start == 10|| start == 14) {
+                        etIMENumber.setText(etIMENumber.getText() + "-");
+                        etIMENumber.setSelection(etIMENumber.getText().length());
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         mcvCardInformation.setVisibility(View.VISIBLE);
         mcvCardtIdendityInformation.setVisibility(View.GONE);
@@ -167,6 +197,22 @@ public class OtherItemDetailsActivity extends AppCompatActivity {
         getDistrict();
         //date picker
         initializeVariables();
+        tvPrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CurrencyPicker picker = CurrencyPicker.newInstance("Select Currency");  // dialog title
+
+                picker.setListener(new CurrencyPickerListener() {
+                    @Override
+                    public void onSelectCurrency(String name, String code, String symbol, int flagDrawableResID) {
+                        // Implement your code here
+                        tvPrice.setText(code);
+                        picker.dismiss();
+                    }
+                });
+                picker.show(getSupportFragmentManager(), "CURRENCY_PICKER");
+            }
+        });
     }
 
     protected void attachBaseContext(Context base) {

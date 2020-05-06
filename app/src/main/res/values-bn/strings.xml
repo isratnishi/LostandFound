@@ -351,9 +351,11 @@
 
     <string-array name="array_watch_type">
         <item>@string/select_option</item>
-        <item>Brand</item>
-        <item>Non Brand</item>
-        <item>Chines brand</item>
+        <item>Wall Clock</item>
+        <item>Stop Watch</item>
+        <item>Smart Watch</item>
+        <item>Fitness Watch</item>
+        <item>Digital Watch</item>
     </string-array>
     <string-array name="array_watch_brand">
         <item>@string/select_option</item>
@@ -919,5 +921,6 @@
     <string name="jewellary_type">Jewellary type</string>
     <string name="jewellary_for">Jewellary For</string>
     <string name="weight">Weight</string>
+    <string name="battery">Battery</string>
 
 </resources>
