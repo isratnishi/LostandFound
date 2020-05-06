@@ -154,7 +154,7 @@
                 android:id="@+id/tvItemName4"
                 style="@style/HomeTextStyle"
                 android:gravity="center_horizontal"
-                android:text="NetBook"
+                android:text="NoteBook"
                 android:textAlignment="center" />
 
         </LinearLayout>

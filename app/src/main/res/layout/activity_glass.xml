@@ -48,7 +48,7 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="10dp"
                                 android:gravity="center_vertical"
-                                android:text="Document Information"
+                                android:text="Glass Information"
                                 android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />
@@ -79,21 +79,53 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/doc_type" />
+                                        android:text="@string/glass_type" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
                                     <Spinner
-                                        android:id="@+id/spnDocType"
+                                        android:id="@+id/spnGlassType"
                                         android:drawSelectorOnTop="true"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/doc_type"/>
+                                        android:entries="@array/array_glasses_type"/>
+
+                                </TableRow>  <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/glass_shape" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+                                    <Spinner
+                                        android:id="@+id/spnGlassShape"
+                                        android:drawSelectorOnTop="true"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_glasses_shape"/>
 
                                 </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/brand" />
 
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+                                    <Spinner
+                                        android:id="@+id/spnbrand"
+                                        android:drawSelectorOnTop="true"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_pet_type"/>
 
+                                </TableRow>
 
 
                                 <TableRow
@@ -102,16 +134,66 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/doc_number" />
+                                        android:text="Color" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+                                    <Spinner
+                                        android:id="@+id/spnColor"
+                                        android:drawSelectorOnTop="true"
+                                        style="@style/InformationEntryEditText"
+                                        />
+
+                                </TableRow>
+
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Size" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
                                     <EditText
-                                        android:id="@+id/etDocNumber"
+                                        android:id="@+id/etSize"
                                         style="@style/InformationEntryEditText"
                                         />
                                 </TableRow> <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/InformationEntryTextView"
+                                    android:text="@string/model" />
+
+                                <TextView
+                                    style="@style/InformationEntryTextViewColon"
+                                    android:text=":" />
+                                <EditText
+                                    android:id="@+id/etModel"
+                                    style="@style/InformationEntryEditText"
+                                    />
+                            </TableRow> <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/InformationEntryTextView"
+                                    android:text="@string/serial_number" />
+
+                                <TextView
+                                    style="@style/InformationEntryTextViewColon"
+                                    android:text=":" />
+                                <EditText
+                                    android:id="@+id/etserial_number"
+                                    style="@style/InformationEntryEditText"
+                                    />
+                            </TableRow>  <TableRow
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
@@ -127,6 +209,8 @@
                                     style="@style/InformationEntryEditText"
                                     />
                             </TableRow>
+
+
 
 
 
@@ -462,5 +546,3 @@
         app:layout_anchor="@id/bar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-

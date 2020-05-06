@@ -828,6 +828,58 @@
         <item> Elderly (36–60) </item>
         <item> Older (over 61) </item>
     </string-array>
+
+    <string-array name="array_glasses_type">
+        <item>@string/select_list </item>
+        <item>Reading Glasses</item>
+        <item>Sun Glasses</item>
+        <item>Lense</item>
+    </string-array>
+
+    <string-array name="array_glasses_shape">
+        <item>@string/select_list </item>
+        <item>Oval face shape.</item>
+        <item>Heart-shaped face.</item>
+        <item>Oblong face shape.</item>
+        <item>Square face shape.</item>
+        <item>Diamond face shape.</item>
+        <item>Round face shape.</item>
+        <item>Base-down triangle.</item>
+    </string-array>
+
+
+    <string-array name="array_bag_type">
+        <item>@string/select_list</item>
+        <item>Hand bag</item>
+        <item>Hobo bag</item>
+        <item>Tote bag</item>
+        <item>Duffle bag</item>
+        <item>Messenger bag</item>
+        <item>Backpack</item>
+        <item>Satchel</item>
+        <item>Doctor’s bag</item>
+        <item>Laptop Bag</item>
+        <item>Bucket bag</item>
+        <item>Bowler bag</item>
+        <item>Wristlet</item>
+        <item>Pouch</item>
+        <item>Clutch</item>
+        <item>Beach Bag</item>
+        <item>Shoulder bag</item>
+        <item>Miniaudiere</item>
+        <item>Shopping/Grocery bag</item>
+        <item>Drawstring bag</item>
+        <item>Make up bags</item>
+        <item>Foldover Bags</item>
+        <item>Phone bag</item>
+        <item>Camera case bags</item>
+        <item>Baguette bags</item>
+        <item>Barrel Bag</item>
+        <item>Basket Bag</item>
+        <item>Fanny Pack</item>
+        <item>Kelly Bag</item>
+        <item>Lunch Bags</item>
+    </string-array>
     <string name="unknown_dead_body">Unknown DeadBody</string>
     <string name="dress">Dress</string>
     <string name="position">Position</string>
@@ -838,4 +890,16 @@
     <string name="add_image">Add Images</string>
     <string name="mothersName">Mother\'s Name</string>
     <string name="mentally_handicapped">Mentally Handicapped</string>
+    <string name="toast_succss">Succesfully Done!</string>
+    <string name="bag_information">Bag Information</string>
+    <string name="brand">Brand</string>
+    <string name="serial_number">Serial Number</string>
+    <string name="model">Model</string>
+    <string name="bag_type">Bag Type</string>
+    <string name="glass_type">Glass Type</string>
+    <string name="glass_shape">Glass Shape</string>
+    <string name="garments_information">Garments Information</string>
+    <string name="jewelry_information">Jewelry Information</string>
+
+
 </resources>

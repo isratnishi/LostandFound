@@ -20,7 +20,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -61,7 +60,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PetActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class DocumentActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
     @BindView(R.id.gv)
     GridView gvGallery;
@@ -121,12 +120,12 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
     ImageView ivProductPlaceTime;
     String selectOne;
 
-    
-    //Input
 
-    @BindView(R.id.spnColor)
+//Input
+
+   /* @BindView(R.id.spnColor)
     Spinner spnColor;
-
+*/
 
 
     /*  Product  Idendity Information*/
@@ -134,7 +133,6 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
 
     @BindView(R.id.etProductIdentitySign)
     EditText etProductIdentitySign;
-
 
 
     /*Product place and time Information*/
@@ -160,7 +158,7 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pet);
+        setContentView(R.layout.activity_document);
         ButterKnife.bind(this);
         mcvPrimaryInformation.setVisibility(View.VISIBLE);
         mcvIdendityInformation.setVisibility(View.GONE);
@@ -168,11 +166,12 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
         mcvReport.setVisibility(View.GONE);
         selectOne = getResources().getString(R.string.select_option);
         //Spinner
-        getAllColor();
+       // getAllColor();
         getDistrict();
         //date picker
         initializeVariables();
     }
+
     protected void attachBaseContext(Context base) {
         SharedPreferences tprefs = base.getSharedPreferences(SharedPrefManager.SHARED_PREF_NAME, MODE_PRIVATE);
         boolean language = tprefs.getBoolean(SharedPrefManager.KEY_State, true);
@@ -181,7 +180,6 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
         else
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
-
 
 
     @OnClick(R.id.ivPrimaryInfromation)
@@ -223,7 +221,6 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
     }
 
 
-
     @OnClick({R.id.ivProductPlaceTime, R.id.btnNext2})
     public void ivProductPlaceTime() {
         if (isllVPATChecked) {
@@ -249,9 +246,9 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
 
     @OnClick(R.id.btnNext3)
     public void ReportShown() {
-        Intent intent=new Intent(this, OthersItemEntryActivity.class);
+        Intent intent = new Intent(this, OthersItemEntryActivity.class);
         startActivity(intent);
-        Toast.makeText(this, R.string.toast_succss,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.toast_succss, Toast.LENGTH_SHORT).show();
       /*  llInput.setVisibility(View.GONE);
         mcvReport.setVisibility(View.VISIBLE);*/
         try {
@@ -284,7 +281,7 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
 
     }
 
-    public void getAllColor() {
+   /* public void getAllColor() {
 
 
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
@@ -304,7 +301,7 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
 
             @Override
             public void onFailure(Call<List<Colors>> call, Throwable t) {
-                Toast.makeText(PetActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DocumentActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -338,7 +335,7 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
 
             }
         });
-    }
+    }*/
 
     public void getDistrict() {
 
@@ -360,7 +357,7 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
 
             @Override
             public void onFailure(Call<List<District>> call, Throwable t) {
-                Toast.makeText(PetActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DocumentActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -418,7 +415,7 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
 
             @Override
             public void onFailure(Call<List<Thana>> call, Throwable t) {
-                Toast.makeText(PetActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DocumentActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -501,7 +498,7 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
     void showDate(int year, int monthOfYear, int dayOfMonth, int spinnerTheme) {
         new SpinnerDatePickerDialogBuilder()
                 .context(this)
-                .callback(PetActivity.this)
+                .callback(DocumentActivity.this)
                 .spinnerTheme(spinnerTheme)
                 .defaultDate(year, monthOfYear, dayOfMonth)
                 .showTitle(true)
@@ -558,28 +555,27 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
     }
 
     @OnClick(R.id.btnAddPhotoes)
-    public void ImageAdd(){
+    public void ImageAdd() {
         ImagePicker();
     }
 
     //ImagePicker
 
-    public void ImagePicker(){
+    public void ImagePicker() {
         ImagePicker.Companion.with(this)
-                .crop()	    			//Crop image(Optional), Check Customization for more option
-                .compress(1024)			//Final image size will be less than 1 MB(Optional)
-                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                .crop()                    //Crop image(Optional), Check Customization for more option
+                .compress(1024)            //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
                 .start();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         try {
 
             super.onActivityResult(requestCode, resultCode, data);
-        }
-        catch (Exception e)
-        {
-            Utilities.showLogcatMessage("onActivityResult "+e.toString());
+        } catch (Exception e) {
+            Utilities.showLogcatMessage("onActivityResult " + e.toString());
         }
         if (resultCode == Activity.RESULT_OK) {
             //Image Uri will not be null for RESULT_OK

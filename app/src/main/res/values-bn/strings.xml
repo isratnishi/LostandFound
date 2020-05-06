@@ -802,5 +802,15 @@
     <string name="add_image">ছবি যুক্ত করুন</string>
     <string name="mothersName">মায়ের নাম</string>
     <string name="mentally_handicapped">মানসিক প্রতিবন্ধী</string>
+    <string name="toast_succss">Succesfully Done!</string>
+    <string name="bag_information">Bag Information</string>
+    <string name="brand">Brand</string>
+    <string name="serial_number">Serial Number</string>
+    <string name="model">Model</string>
+    <string name="bag_type">Bag Type</string>
+    <string name="glass_type">Glass Type</string>
+    <string name="glass_shape">Glass Shape</string>
+    <string name="garments_information">Garments Information</string>
+    <string name="jewelry_information">Jewelry Information</string>
 
 </resources>
