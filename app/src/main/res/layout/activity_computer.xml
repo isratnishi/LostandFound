@@ -204,7 +204,9 @@
                                     <TextView
                                         android:id="@+id/tvPrice"
                                         android:text="BDT"
-                                        android:gravity="start"
+                                        android:drawableEnd="@drawable/ic_drop_down"
+
+                                        android:drawableTint="@color/black" android:gravity="start"
                                         style="@style/InformationEntryTextView"/>
                                 </TableRow>
                             </TableLayout>
@@ -280,7 +282,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="ProductIdentitySign" />
+                                        android:text="@string/identification_mark" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -297,30 +299,27 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/image" />
+                                        android:text="Image" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
 
-
-                                    <TextView
-                                        android:id="@+id/tvImage"
-                                        android:text="Select Images"
+                                    <Button
+                                        android:id="@+id/btnAddPhotoes"
                                         style="@style/InformationEntryEditText"
-                                        android:drawableTint="@color/colorPrimaryDark"
-                                        android:drawableRight="@drawable/ic_attachment"/>
+                                        android:text="@string/add_image" />
                                 </TableRow>
 
 
                             </TableLayout>
+
                             <GridView
+                                android:id="@+id/gv"
                                 android:layout_width="match_parent"
                                 android:layout_height="300dp"
                                 android:minHeight="300dp"
-                                android:id="@+id/gv"
-                                android:numColumns="4">
-                            </GridView>
+                                android:numColumns="3"/>
                             <Button
                                 android:id="@+id/btnNext2"
                                 style="@style/BtnNext" />
