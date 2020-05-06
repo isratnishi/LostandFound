@@ -13,8 +13,12 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.opus_bd.lostandfound.Activity.OtherItem.BagActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.CategoryListActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.DocumentActivity;
+import com.opus_bd.lostandfound.Activity.OtherItem.GarmentsActivity;
+import com.opus_bd.lostandfound.Activity.OtherItem.GlassActivity;
+import com.opus_bd.lostandfound.Activity.OtherItem.JewelryActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.KeysInformationActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.MobilePhoneActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.OtherItemDetailsActivity;
@@ -107,6 +111,18 @@ public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAd
                         context.startActivity(intent);
                     }else if(id==7){
                         Intent intent = new Intent(context, DocumentActivity.class);
+                        context.startActivity(intent);
+                    }else if(id==8){
+                        Intent intent = new Intent(context, BagActivity.class);
+                        context.startActivity(intent);
+                    }else if(id==10){
+                        Intent intent = new Intent(context, JewelryActivity.class);
+                        context.startActivity(intent);
+                    }else if(id==11){
+                        Intent intent = new Intent(context, GlassActivity.class);
+                        context.startActivity(intent);
+                    }else if(id==12){
+                        Intent intent = new Intent(context, GarmentsActivity.class);
                         context.startActivity(intent);
                     }else if(id==15){
                         Intent intent = new Intent(context, PetActivity.class);

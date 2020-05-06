@@ -812,6 +812,12 @@
         <item> Elderly (36–60) </item>
         <item> Older (over 61) </item>
     </string-array>
+ <string-array name="byte_array">
+        <item>@string/select_list </item>
+        <item> MB </item>
+        <item> GB </item>
+        <item> TB </item>
+    </string-array>
 
     <string-array name="array_glasses_type">
         <item>@string/select_list </item>
@@ -864,6 +870,53 @@
         <item>Kelly Bag</item>
         <item>Lunch Bags</item>
     </string-array>
+
+    <string-array name="array_jewelry_type">
+        <item>@string/select_list</item>
+        <item>Enamel Jewelry</item>
+        <item>Quill Jewelry</item>
+        <item>Shellac Jewelry</item>
+        <item>Plastic Jewelry</item>
+        <item>Diamond Jewelry</item>
+        <item>Crystal Jewelry</item>
+        <item>Fashion  jewelry</item>
+        <item>Shell jewelry</item>
+        <item>Leather jewelry</item>
+        <item>Silver jewelry</item>
+        <item>Gold jewelry</item>
+        <item>Resin Jewelry</item>
+        <item>Imitation</item>
+    </string-array>
+
+    <string-array name="array_jewelry_for_type">
+        <item>@string/select_list</item>
+        <item>Hair</item>
+        <item>Neck</item>
+        <item>Hand</item>
+        <item>Finger</item>
+        <item>Feet</item>
+        <item>Arms</item>
+
+
+    </string-array>
+    <string-array name="array_garments_type">
+        <item>@string/select_list</item>
+        <item>Tees</item>
+        <item>Knitwear/Heavy knit</item>
+        <item>Shirts &amp; Light woven Tops(Boluse)</item>
+        <item>Dress and Skirts</item>
+        <item>Jeans</item>
+        <item>Trousers and Shorts</item>
+        <item>Blazers and Waist Coats</item>
+        <item>outwear (Functional)</item>
+        <item>Outwear (Non-Functional)</item>
+        <item>Socks &amp; Stockings</item>
+        <item>Underwear</item>
+        <item>Leggings</item>
+        <item>Nightwear</item>
+        <item>Swimwear</item>
+
+    </string-array>
     <string name="unknown_dead_body">Unknown DeadBody</string>
     <string name="dress">Dress</string>
     <string name="position">Position</string>
@@ -884,6 +937,9 @@
     <string name="glass_shape">Glass Shape</string>
     <string name="garments_information">Garments Information</string>
     <string name="jewelry_information">Jewelry Information</string>
+    <string name="jewellary_type">Jewellary type</string>
+    <string name="jewellary_for">Jewellary For</string>
+    <string name="weight">Weight</string>
 
 
 </resources>

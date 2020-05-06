@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gv"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:rowCount="2"
+    android:columnCount="3"
     tools:context=".Activity.OtherItem.CategoryListActivity">
 
     <androidx.cardview.widget.CardView
@@ -12,11 +16,8 @@
         android:layout_margin="16dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="8dp"
+
         app:layout_columnWeight="1"
-        app:layout_constraintBottom_toTopOf="@id/card4"
-        app:layout_constraintEnd_toStartOf="@id/card2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_rowWeight="1">
 
         <LinearLayout
@@ -31,7 +32,6 @@
                 android:id="@+id/ivItemLogo"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/i1"
                 android:layout_gravity="center_horizontal" />
 
             <TextView
@@ -44,6 +44,7 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card2"
         style="@style/HomeItemCard"
@@ -51,10 +52,6 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="8dp"
         app:layout_columnWeight="1"
-        app:layout_constraintBottom_toTopOf="@id/card4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/card1"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_rowWeight="1">
 
         <LinearLayout
@@ -69,8 +66,8 @@
                 android:id="@+id/ivItemLogo1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/i2"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                 />
 
             <TextView
                 android:id="@+id/tvItemName1"
@@ -82,6 +79,7 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card3"
         style="@style/HomeItemCard"
@@ -89,10 +87,6 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="8dp"
         app:layout_columnWeight="1"
-        app:layout_constraintBottom_toTopOf="@id/card5"
-        app:layout_constraintEnd_toStartOf="@id/card4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card1"
         app:layout_rowWeight="1">
 
         <LinearLayout
@@ -107,8 +101,8 @@
                 android:id="@+id/ivItemLogo2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/i3"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+           />
 
             <TextView
                 android:id="@+id/tvItemName2"
@@ -129,10 +123,6 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="8dp"
         app:layout_columnWeight="1"
-        app:layout_constraintBottom_toTopOf="@id/card6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/card3"
-        app:layout_constraintTop_toBottomOf="@id/card1"
         app:layout_rowWeight="1">
 
         <LinearLayout
@@ -147,8 +137,8 @@
                 android:id="@+id/ivItemLogo4"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/i4"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                />
 
             <TextView
                 android:id="@+id/tvItemName4"
@@ -168,10 +158,6 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="8dp"
         app:layout_columnWeight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/card6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card3"
         app:layout_rowWeight="1">
 
         <LinearLayout
@@ -186,8 +172,8 @@
                 android:id="@+id/ivItemLogo5"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/ic_omni"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                />
 
             <TextView
                 android:id="@+id/tvItemName5"
@@ -207,10 +193,6 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="8dp"
         app:layout_columnWeight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/card5"
-        app:layout_constraintTop_toBottomOf="@id/card3"
         app:layout_rowWeight="1">
 
         <LinearLayout
@@ -225,12 +207,13 @@
                 android:id="@+id/ivItemLogo3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/ic_com_ac"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+               />
 
             <TextView
                 android:id="@+id/tvItemName3"
                 style="@style/HomeTextStyle"
+                android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="computer accesories"
                 android:textAlignment="center" />
@@ -238,4 +221,4 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</GridLayout>

@@ -91,8 +91,6 @@
     <string name="blood_group">রক্তের গ্রুপ</string>
 
 
-
-
     <!--    vehicle information-->
     <string name="vehicleType">যানবাহনের ধরণ</string>
     <string name="vehicleBrand">ব্রান্ডের নাম</string>
@@ -220,7 +218,113 @@
         <item>Xiaomi</item>
         <item>Huawei</item>
     </string-array>
+    <string-array name="byte_array">
+        <item>@string/select_list </item>
+        <item> MB </item>
+        <item> GB </item>
+        <item> TB </item>
+    </string-array>
 
+    <string-array name="array_glasses_type">
+        <item>@string/select_list </item>
+        <item>Reading Glasses</item>
+        <item>Sun Glasses</item>
+        <item>Lense</item>
+    </string-array>
+    <string-array name="array_jewelry_type">
+        <item>@string/select_list</item>
+        <item>Enamel Jewelry</item>
+        <item>Quill Jewelry</item>
+        <item>Shellac Jewelry</item>
+        <item>Plastic Jewelry</item>
+        <item>Diamond Jewelry</item>
+        <item>Crystal Jewelry</item>
+        <item>Fashion  jewelry</item>
+        <item>Shell jewelry</item>
+        <item>Leather jewelry</item>
+        <item>Silver jewelry</item>
+        <item>Gold jewelry</item>
+        <item>Resin Jewelry</item>
+        <item>Imitation</item>
+    </string-array>
+
+    <string-array name="array_jewelry_for_type">
+        <item>@string/select_list</item>
+        <item>Hair</item>
+        <item>Neck</item>
+        <item>Hand</item>
+        <item>Finger</item>
+        <item>Feet</item>
+        <item>Arms</item>
+
+
+    </string-array>
+
+
+    <string-array name="array_garments_type">
+        <item>@string/select_list</item>
+        <item>Tees</item>
+        <item>Knitwear/Heavy knit</item>
+        <item>Shirts &amp; Light woven Tops(Boluse)</item>
+        <item>Dress and Skirts</item>
+        <item>Jeans</item>
+        <item>Trousers and Shorts</item>
+        <item>Blazers and Waist Coats</item>
+        <item>outwear (Functional)</item>
+        <item>Outwear (Non-Functional)</item>
+        <item>Socks &amp; Stockings</item>
+        <item>Underwear</item>
+        <item>Leggings</item>
+        <item>Nightwear</item>
+        <item>Swimwear</item>
+
+    </string-array>
+
+
+    <string-array name="array_glasses_shape">
+        <item>@string/select_list </item>
+        <item>Oval face shape.</item>
+        <item>Heart-shaped face.</item>
+        <item>Oblong face shape.</item>
+        <item>Square face shape.</item>
+        <item>Diamond face shape.</item>
+        <item>Round face shape.</item>
+        <item>Base-down triangle.</item>
+    </string-array>
+
+
+    <string-array name="array_bag_type">
+        <item>@string/select_list</item>
+        <item>Hand bag</item>
+        <item>Hobo bag</item>
+        <item>Tote bag</item>
+        <item>Duffle bag</item>
+        <item>Messenger bag</item>
+        <item>Backpack</item>
+        <item>Satchel</item>
+        <item>Doctor’s bag</item>
+        <item>Laptop Bag</item>
+        <item>Bucket bag</item>
+        <item>Bowler bag</item>
+        <item>Wristlet</item>
+        <item>Pouch</item>
+        <item>Clutch</item>
+        <item>Beach Bag</item>
+        <item>Shoulder bag</item>
+        <item>Miniaudiere</item>
+        <item>Shopping/Grocery bag</item>
+        <item>Drawstring bag</item>
+        <item>Make up bags</item>
+        <item>Foldover Bags</item>
+        <item>Phone bag</item>
+        <item>Camera case bags</item>
+        <item>Baguette bags</item>
+        <item>Barrel Bag</item>
+        <item>Basket Bag</item>
+        <item>Fanny Pack</item>
+        <item>Kelly Bag</item>
+        <item>Lunch Bags</item>
+    </string-array>
     <string-array name="array_phone_type">
         <item>@string/select_option</item>
         <item>Tap Phone</item>
@@ -398,7 +502,6 @@
         <item>মোবাইল</item>
         <item>অন্যান্য</item>
     </string-array>
-
 
 
     <string-array name="array_care_type">
@@ -695,15 +798,16 @@
 
 
     <string-array name="special_body_condition">
-    <item> @string/select_list </item>
-    <item> পা খোঁড়া </item>
-    <item> পায়ের আঙুল কম </item>
-    <item> পায়ের আঙুল জোড়া লাগানো </item>
-    <item> পায়ের আঙুল বেশি </item>
-    <item> হাত খোড়া </item>
-    <item> হাতের আঙ্গুল বেশি </item>
-    <item> হাতের আঙ্গুল কম </item>
-        <item> হাতের আঙ্গুল জোড়া লাগানো </item></string-array>
+        <item> @string/select_list </item>
+        <item> পা খোঁড়া </item>
+        <item> পায়ের আঙুল কম </item>
+        <item> পায়ের আঙুল জোড়া লাগানো </item>
+        <item> পায়ের আঙুল বেশি </item>
+        <item> হাত খোড়া </item>
+        <item> হাতের আঙ্গুল বেশি </item>
+        <item> হাতের আঙ্গুল কম </item>
+        <item> হাতের আঙ্গুল জোড়া লাগানো </item>
+    </string-array>
     <string-array name="array_teeth">
         <item> @string/select_list </item>
         <item>নকল দাঁত</item>
@@ -796,5 +900,8 @@
     <string name="glass_shape">Glass Shape</string>
     <string name="garments_information">Garments Information</string>
     <string name="jewelry_information">Jewelry Information</string>
+    <string name="jewellary_type">Jewellary type</string>
+    <string name="jewellary_for">Jewellary For</string>
+    <string name="weight">Weight</string>
 
 </resources>

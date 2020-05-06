@@ -82,17 +82,17 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/bag_type" />
+                                        android:text="Garments Type" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
 
                                     <Spinner
-                                        android:id="@+id/spnBagType"
+                                        android:id="@+id/spnGarmentsType"
                                         style="@style/InformationEntryEditText"
                                         android:drawSelectorOnTop="true"
-                                        android:entries="@array/array_bag_type" />
+                                        android:entries="@array/array_garments_type" />
 
                                 </TableRow>
 
@@ -203,39 +203,7 @@
                                         style="@style/InformationEntryEditText" />
                                 </TableRow>
 
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
 
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="@string/serial_number" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-
-                                    <EditText
-                                        android:id="@+id/etserial_number"
-                                        style="@style/InformationEntryEditText" />
-                                </TableRow>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="Ammount" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-
-                                    <EditText
-                                        android:id="@+id/etAmmount"
-                                        style="@style/InformationEntryEditText" />
-                                </TableRow>
 
 
                             </TableLayout>

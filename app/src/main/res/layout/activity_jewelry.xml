@@ -82,7 +82,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/bag_type" />
+                                        android:text="@string/jewellary_type" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -92,7 +92,25 @@
                                         android:id="@+id/spnBagType"
                                         style="@style/InformationEntryEditText"
                                         android:drawSelectorOnTop="true"
-                                        android:entries="@array/array_bag_type" />
+                                        android:entries="@array/array_jewelry_type" />
+
+                                </TableRow> <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/jewellary_for" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnjwlaryFor"
+                                        style="@style/InformationEntryEditText"
+                                        android:drawSelectorOnTop="true"
+                                        android:entries="@array/array_jewelry_for_type" />
 
                                 </TableRow>
 
@@ -111,8 +129,7 @@
                                     <Spinner
                                         android:id="@+id/spnbrand"
                                         style="@style/InformationEntryEditText"
-                                        android:drawSelectorOnTop="true"
-                                        android:entries="@array/array_pet_type" />
+                                        android:drawSelectorOnTop="true" />
 
                                 </TableRow>
 
@@ -137,28 +154,6 @@
                                 </TableRow>
 
 
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="Size" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-
-                                    <EditText
-                                        android:id="@+id/etSize"
-                                        style="@style/InformationEntryTextView"
-                                        android:gravity="start" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:gravity="start"
-                                        android:text="@string/inches" />
-                                </TableRow>
 
                                 <TableRow
                                     android:layout_width="match_parent"
@@ -209,7 +204,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/serial_number" />
+                                        android:text="@string/weight" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -226,7 +221,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Ammount" />
+                                        android:text="Carat" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
