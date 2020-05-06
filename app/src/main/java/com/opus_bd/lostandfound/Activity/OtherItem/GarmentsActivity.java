@@ -20,7 +20,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -61,7 +60,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PetActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class GarmentsActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
     @BindView(R.id.gv)
     GridView gvGallery;
@@ -121,7 +120,7 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
     ImageView ivProductPlaceTime;
     String selectOne;
 
-    
+
     //Input
 
     @BindView(R.id.spnColor)
@@ -160,7 +159,7 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pet);
+        setContentView(R.layout.activity_garments);
         ButterKnife.bind(this);
         mcvPrimaryInformation.setVisibility(View.VISIBLE);
         mcvIdendityInformation.setVisibility(View.GONE);
@@ -304,7 +303,7 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
 
             @Override
             public void onFailure(Call<List<Colors>> call, Throwable t) {
-                Toast.makeText(PetActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(GarmentsActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -360,7 +359,7 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
 
             @Override
             public void onFailure(Call<List<District>> call, Throwable t) {
-                Toast.makeText(PetActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(GarmentsActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -418,7 +417,7 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
 
             @Override
             public void onFailure(Call<List<Thana>> call, Throwable t) {
-                Toast.makeText(PetActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(GarmentsActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -501,7 +500,7 @@ public class PetActivity extends AppCompatActivity implements DatePickerDialog.O
     void showDate(int year, int monthOfYear, int dayOfMonth, int spinnerTheme) {
         new SpinnerDatePickerDialogBuilder()
                 .context(this)
-                .callback(PetActivity.this)
+                .callback(GarmentsActivity.this)
                 .spinnerTheme(spinnerTheme)
                 .defaultDate(year, monthOfYear, dayOfMonth)
                 .showTitle(true)

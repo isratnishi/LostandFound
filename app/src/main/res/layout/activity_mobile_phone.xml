@@ -236,8 +236,11 @@
                                     <EditText
                                         android:id="@+id/etScreenSize"
                                         style="@style/InformationEntryEditText" />
-                                </TableRow>
-
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:gravity="start"
+                                        android:text="@string/inches" />   </TableRow>
+                             
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">

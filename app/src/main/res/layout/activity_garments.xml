@@ -11,12 +11,14 @@
         android:layout_marginBottom="@dimen/actionBarSize"
         android:background="@drawable/card_backgound"
         tools:context=".Activity.VehicleEntryActivity">
+
         <LinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="@dimen/spacing_middle">
+
             <LinearLayout
                 android:id="@+id/llInput"
                 android:layout_width="match_parent"
@@ -48,10 +50,11 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="10dp"
                                 android:gravity="center_vertical"
-                                android:text="Document Information"
+                                android:text="@string/garments_information"
                                 android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />
+
                             <ImageView
                                 android:id="@+id/ivPrimaryInfromation"
                                 android:layout_width="45dp"
@@ -79,21 +82,39 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/doc_type" />
+                                        android:text="@string/bag_type" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
+
                                     <Spinner
-                                        android:id="@+id/spnDocType"
-                                        android:drawSelectorOnTop="true"
+                                        android:id="@+id/spnBagType"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/doc_type"/>
+                                        android:drawSelectorOnTop="true"
+                                        android:entries="@array/array_bag_type" />
 
                                 </TableRow>
 
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/brand" />
 
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnbrand"
+                                        style="@style/InformationEntryEditText"
+                                        android:drawSelectorOnTop="true"
+                                        android:entries="@array/array_pet_type" />
+
+                                </TableRow>
 
 
                                 <TableRow
@@ -102,40 +123,128 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/doc_number" />
+                                        android:text="Color" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
-                                    <EditText
-                                        android:id="@+id/etDocNumber"
+
+                                    <Spinner
+                                        android:id="@+id/spnColor"
                                         style="@style/InformationEntryEditText"
-                                        />
-                                </TableRow> <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                        android:drawSelectorOnTop="true" />
 
-                                <TextView
-                                    style="@style/InformationEntryTextView"
-                                    android:text="Ammount" />
+                                </TableRow>
 
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-                                <EditText
-                                    android:id="@+id/etAmmount"
-                                    style="@style/InformationEntryEditText"
-                                    />
-                            </TableRow>
 
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Size" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etSize"
+                                        style="@style/InformationEntryTextView"
+                                        android:gravity="start" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:gravity="start"
+                                        android:text="@string/inches" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Price" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        style="@style/InformationEntryTextView"
+                                        android:gravity="start" />
+
+                                    <TextView
+                                        android:id="@+id/tvPrice"
+                                        style="@style/InformationEntryTextView"
+                                        android:drawableEnd="@drawable/ic_drop_down"
+
+                                        android:drawableTint="@color/black"
+                                        android:gravity="start"
+                                        android:text="BDT" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/model" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etModel"
+                                        style="@style/InformationEntryEditText" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/serial_number" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etserial_number"
+                                        style="@style/InformationEntryEditText" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Ammount" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etAmmount"
+                                        style="@style/InformationEntryEditText" />
+                                </TableRow>
 
 
                             </TableLayout>
+
                             <Button
                                 android:id="@+id/btnNext1"
                                 style="@style/BtnNext"
-                                android:text="@string/next"
-                                android:layout_alignParentRight="true"/>
+                                android:layout_alignParentRight="true"
+                                android:text="@string/next" />
 
                         </LinearLayout>
 
@@ -217,7 +326,6 @@
                                 </TableRow>
 
 
-
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
@@ -244,7 +352,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="300dp"
                                 android:minHeight="300dp"
-                                android:numColumns="3"/>
+                                android:numColumns="3" />
 
                             <Button
                                 android:id="@+id/btnNext2"
@@ -444,6 +552,7 @@
                 layout="@layout/product_report_for_activity" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bar"
         style="@style/Widget.MaterialComponents.BottomAppBar"
@@ -462,5 +571,3 @@
         app:layout_anchor="@id/bar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-

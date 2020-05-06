@@ -28,7 +28,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.OtherItem.DocumentActivity"></activity>
+        <activity android:name=".Activity.OtherItem.GarmentsActivity"></activity>
+        <activity android:name=".Activity.OtherItem.JewelryActivity" />
+        <activity android:name=".Activity.OtherItem.GlassActivity" />
+        <activity android:name=".Activity.OtherItem.BagActivity" />
+        <activity android:name=".Activity.OtherItem.DocumentActivity" />
         <activity android:name=".Activity.OtherItem.PetActivity" />
         <activity android:name=".Activity.OtherItem.UmbrellaActivity" />
         <activity android:name=".Activity.OtherItem.KeysInformationActivity" />

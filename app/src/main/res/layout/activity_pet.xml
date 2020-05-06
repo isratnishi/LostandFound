@@ -22,9 +22,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <!--Vehicle Information-->
+                <!--Primary Information-->
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/mcvOtherItemDetail"
+                    android:id="@+id/mcvPrimaryInformation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="@dimen/spacing_medium">
@@ -35,14 +35,14 @@
                         android:orientation="vertical">
 
                         <RelativeLayout
-                            android:id="@+id/rlMobilePhoneInfromation"
+                            android:id="@+id/rlPrimaryInfromation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/grey_10"
                             android:padding="5dp">
 
                             <TextView
-                                android:id="@+id/tvMobilePhoneInfromation"
+                                android:id="@+id/tvPrimaryInfromation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentLeft="true"
@@ -52,12 +52,18 @@
                                 android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />
-
+                            <ImageView
+                                android:id="@+id/ivPrimaryInfromation"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/ic_drop_down"
+                                android:tint="@color/colorPrimaryDark" />
 
                         </RelativeLayout>
 
                         <LinearLayout
-                            android:id="@+id/llMobilePhoneInfromation"
+                            android:id="@+id/llProductInfromation"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
@@ -99,10 +105,10 @@
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
                                     <Spinner
-                                        android:id="@+id/spnPhoneColor"
+                                        android:id="@+id/spnColor"
                                         android:drawSelectorOnTop="true"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_body_color"/>
+                                        />
 
                                 </TableRow>
 
@@ -159,7 +165,7 @@
 
                 <!--Product  Idendity Information-->
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/mcvProductIdendityInformation"
+                    android:id="@+id/mcvIdendityInformation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_middle"
@@ -237,7 +243,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Phone Image" />
+                                        android:text="@string/image" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"

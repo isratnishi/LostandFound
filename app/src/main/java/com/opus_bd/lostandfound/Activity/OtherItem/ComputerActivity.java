@@ -41,6 +41,7 @@ import com.mynameismidori.currencypicker.CurrencyPickerListener;
 import com.opus_bd.lostandfound.Activity.CodeGenerateActivity;
 import com.opus_bd.lostandfound.Activity.DashboardActivity;
 import com.opus_bd.lostandfound.Activity.InformationEntryActivity;
+import com.opus_bd.lostandfound.Activity.OthersItemEntryActivity;
 import com.opus_bd.lostandfound.Adapter.CustomAdapter;
 import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
 import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
@@ -176,7 +177,6 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
     ArrayList<District> districtArrayList = new ArrayList<>();
     ArrayList<Thana> thanaArrayList = new ArrayList<>();
     ArrayList<Colors> colorArrayList = new ArrayList<>();
-    ArrayList<MetroAreaModel> metroAreaModelArrayList = new ArrayList<>();
 
     public int SELECTED_COLOR_ID;
     public int SELECTED_DISTRICT_ID;
@@ -274,7 +274,6 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
         selectOne = getResources().getString(R.string.select_option);
         //Spinner
         getAllColor();
-        GetAllMetropolitanArea();
         getDistrict();
 
 
@@ -480,8 +479,11 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
 
     @OnClick(R.id.btnNext3)
     public void ReportShown() {
-        llInput.setVisibility(View.GONE);
-        mcvReport.setVisibility(View.VISIBLE);
+     /*   llInput.setVisibility(View.GONE);
+        mcvReport.setVisibility(View.VISIBLE);*/
+        Intent intent=new Intent(this, OthersItemEntryActivity.class);
+        startActivity(intent);
+        Toast.makeText(this, R.string.toast_succss,Toast.LENGTH_SHORT).show();
         try {
        /*     tvProductType.setText(spnProductType.getSelectedItem().toString());
             tvProductDate.setText(etProductDate.getText().toString());
@@ -775,36 +777,6 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
         });
     }
 
-
-    public void GetAllMetropolitanArea() {
-
-
-        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-        Call<List<MetroAreaModel>> colors = retrofitService.GetAllMetropolitanArea();
-        colors.enqueue(new Callback<List<MetroAreaModel>>() {
-            @Override
-            public void onResponse(Call<List<MetroAreaModel>> call, Response<List<MetroAreaModel>> response) {
-
-                if (response.body() != null) {
-
-                    metroAreaModelArrayList.clear();
-                    metroAreaModelArrayList.addAll(response.body());
-
-                    //addMetroAreaSpinnerData(response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<MetroAreaModel>> call, Throwable t) {
-                Toast.makeText(ComputerActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
-
-
-
-
     public void getDistrict() {
 
 
@@ -888,7 +860,6 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
         });
 
     }
-
 
     public void addThanaSpinnerData(final List<Thana> body) {
         List<String> thanaList = new ArrayList<>();
