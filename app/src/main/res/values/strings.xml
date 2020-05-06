@@ -192,6 +192,22 @@
     <string name="keys_information">Keys Information</string>
     <string name="umbrella_information">Umbrella Information</string>
     <string name="dna_profile">DNA Profile</string>
+    <string name="cards_information">Cards Inforamtion</string>
+
+    <string-array name="array_card_type">
+        <item>@string/select_option</item>
+        <item>Electronics Card</item>
+        <item>NID Card</item>
+        <item>ID Card</item>
+    </string-array>
+
+    <string-array name="array_electronic_card_type">
+        <item>@string/select_option</item>
+        <item>Debit Card</item>
+        <item>Credit Card</item>
+        <item>Master Card</item>
+        <item>Nexus Card</item>
+    </string-array>
 
     <string-array name="array_umbrella_model">
         <item>@string/select_option</item>

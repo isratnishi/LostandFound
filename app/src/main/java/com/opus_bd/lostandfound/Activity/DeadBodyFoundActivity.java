@@ -11,6 +11,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -29,9 +31,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.card.MaterialCardView;
-import com.hbb20.CountryCodePicker;
+
 import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
 import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
@@ -1104,7 +1105,7 @@ ImageView imageView;
     //ImagePicker
 
     public void ImagePicker(){
-        ImagePicker.Companion.with(this)
+        com.github.dhaval2404.imagepicker.ImagePicker.Companion.with(this)
                 .crop()	    			//Crop image(Optional), Check Customization for more option
                 .cameraOnly()
                 .compress(1024)			//Final image size will be less than 1 MB(Optional)

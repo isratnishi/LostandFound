@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.opus_bd.lostandfound.Activity.OtherItem.BagActivity;
+import com.opus_bd.lostandfound.Activity.OtherItem.CardsActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.CategoryListActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.DocumentActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.GarmentsActivity;
@@ -123,6 +124,8 @@ public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAd
                         context.startActivity(intent);
                     }else if(id==12){
                         Intent intent = new Intent(context, GarmentsActivity.class);
+                    }else if(id==6){
+                        Intent intent = new Intent(context, CardsActivity.class);
                         context.startActivity(intent);
                     }else if(id==15){
                         Intent intent = new Intent(context, PetActivity.class);

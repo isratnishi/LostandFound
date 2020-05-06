@@ -1,6 +1,7 @@
 package com.opus_bd.lostandfound.Activity.OtherItem;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
@@ -36,6 +37,21 @@ import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.GlobalData.District;
 import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 import com.opus_bd.lostandfound.R;
+import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
+import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
+import com.opus_bd.lostandfound.Utils.Constants;
+import com.opus_bd.lostandfound.Utils.LocaleHelper;
+import com.opus_bd.lostandfound.Utils.Utilities;
+import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
+import com.tsongkha.spinnerdatepicker.DatePicker;
+import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,21 +60,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import com.opus_bd.lostandfound.R;
-import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
-import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
-import com.opus_bd.lostandfound.Utils.Constants;
-import com.opus_bd.lostandfound.Utils.LocaleHelper;
-import com.opus_bd.lostandfound.Utils.Utilities;
-import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
+public class CardsActivity extends AppCompatActivity {
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
-
-public class OtherItemDetailsActivity extends AppCompatActivity {
     @BindView(R.id.llInput)
     LinearLayout llInput;
     @BindView(R.id.mcvReport)
@@ -92,9 +95,6 @@ public class OtherItemDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.spnVilage)
     Spinner spnVilage;
-
-    @BindView(R.id.tvPrice)
-    TextView tvPrice;
 
     @BindView(R.id.etAddressDetails)
     EditText etAddressDetails;
@@ -151,10 +151,11 @@ public class OtherItemDetailsActivity extends AppCompatActivity {
     private GridView gvGallery, gvGallery1;
     private GalleryAdapter galleryAdapter;
     String selectOne,ServiceTag,EMCProductID,ProductNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_other_item_details);
+        setContentView(R.layout.activity_cards);
         ButterKnife.bind(this);
 
         mcvCardInformation.setVisibility(View.VISIBLE);
@@ -299,7 +300,7 @@ public class OtherItemDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Colors>> call, Throwable t) {
-                Toast.makeText(OtherItemDetailsActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CardsActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -355,7 +356,7 @@ public class OtherItemDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<District>> call, Throwable t) {
-                Toast.makeText(OtherItemDetailsActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CardsActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -510,7 +511,7 @@ public class OtherItemDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Thana>> call, Throwable t) {
-                Toast.makeText(OtherItemDetailsActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CardsActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <!--Watch Information-->
+                <!--Cards Information-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/mcvCardInformation"
                     android:layout_width="match_parent"
@@ -35,24 +35,23 @@
                         android:orientation="vertical">
 
                         <RelativeLayout
-                            android:id="@+id/rlVehicleInfromation"
+                            android:id="@+id/rlMobilePhoneInfromation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/grey_10"
                             android:padding="5dp">
 
                             <TextView
-                                android:id="@+id/tvVehicleInfromation"
+                                android:id="@+id/tvCardInformation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="10dp"
                                 android:gravity="center_vertical"
-                                android:text="@string/watch_Information"
+                                android:text="@string/cards_information"
                                 android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />
-
                             <ImageView
                                 android:id="@+id/ivCardInformation"
                                 android:layout_width="45dp"
@@ -60,7 +59,6 @@
                                 android:layout_alignParentRight="true"
                                 android:src="@drawable/ic_drop_down"
                                 android:tint="@color/colorPrimaryDark" />
-
 
                         </RelativeLayout>
 
@@ -81,17 +79,71 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="@string/watch_type" />
+                                        android:text="Card Type" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
                                     <Spinner
-                                        android:id="@+id/spnWatchType"
+                                        android:id="@+id/spnCardType"
                                         android:drawSelectorOnTop="true"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_watch_type"/>
+                                        android:entries="@array/array_card_type"/>
 
+                                </TableRow>
+
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Electronics Card Type" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+                                    <Spinner
+                                        android:id="@+id/spnElectronicCardType"
+                                        android:drawSelectorOnTop="true"
+                                        style="@style/InformationEntryEditText"
+                                        android:entries="@array/array_electronic_card_type"/>
+
+                                </TableRow>
+
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Bank Name" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+                                    <EditText
+                                        android:id="@+id/etBankName"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Card Number" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+                                    <EditText
+                                        android:id="@+id/etCardNumber"
+                                        style="@style/InformationEntryEditText"
+                                        />
                                 </TableRow>
 
                                 <TableRow
@@ -100,17 +152,15 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Brand" />
+                                        android:text="Organization Name" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
-                                    <Spinner
-                                        android:id="@+id/spnWatchBrand"
-                                        android:drawSelectorOnTop="true"
+                                    <EditText
+                                        android:id="@+id/etOrganizationName"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_watch_brand"/>
-
+                                        />
                                 </TableRow>
 
                                 <TableRow
@@ -119,17 +169,15 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Belt Type" />
+                                        android:text="Person Name" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
-                                    <Spinner
-                                        android:id="@+id/spnBeltType"
-                                        android:drawSelectorOnTop="true"
+                                    <EditText
+                                        android:id="@+id/etPersonName"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_watch_body_type"/>
-
+                                        />
                                 </TableRow>
 
                                 <TableRow
@@ -138,19 +186,16 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Structure Type" />
+                                        android:text="Expire Date" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
-                                    <Spinner
-                                        android:id="@+id/spnWatchStructureType"
-                                        android:drawSelectorOnTop="true"
+                                    <EditText
+                                        android:id="@+id/etExpireDate"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_watch_structure_type"/>
-
+                                        />
                                 </TableRow>
-
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
@@ -167,82 +212,6 @@
                                         android:id="@+id/spnColor"
                                         style="@style/InformationEntryEditText"/>
                                 </TableRow>
-
-<!--                                <TableRow-->
-<!--                                    android:layout_width="match_parent"-->
-<!--                                    android:layout_height="wrap_content">-->
-
-<!--                                    <TextView-->
-<!--                                        style="@style/InformationEntryTextView"-->
-<!--                                        android:text="Identitfication Mark" />-->
-
-<!--                                    <TextView-->
-<!--                                        style="@style/InformationEntryTextViewColon"-->
-<!--                                        android:text=":" />-->
-<!--                                    <EditText-->
-<!--                                        android:id="@+id/etWatchIdentitficationMark"-->
-<!--                                        style="@style/InformationEntryEditText"-->
-<!--                                        />-->
-<!--                                </TableRow>-->
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="Price" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-
-                                    <EditText
-                                        android:gravity="start"
-                                        style="@style/InformationEntryTextView"/>
-                                    <TextView
-                                        android:id="@+id/tvPrice"
-                                        android:text="BDT"
-                                        android:drawableEnd="@drawable/ic_drop_down"
-
-                                        android:drawableTint="@color/black" android:gravity="start"
-                                        style="@style/InformationEntryTextView"/>
-                                </TableRow>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="Quantity" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-                                    <EditText
-                                        android:id="@+id/etWatchQuantity"
-                                        android:inputType="numberSigned"
-                                        style="@style/InformationEntryEditText"
-                                        />
-                                </TableRow>
-<!--                                <TableRow-->
-<!--                                    android:layout_width="match_parent"-->
-<!--                                    android:layout_height="wrap_content">-->
-
-<!--                                    <TextView-->
-<!--                                        style="@style/InformationEntryTextView"-->
-<!--                                        android:text="Attachment" />-->
-
-<!--                                    <TextView-->
-<!--                                        style="@style/InformationEntryTextViewColon"-->
-<!--                                        android:text=":" />-->
-
-<!--                                    <EditText-->
-<!--                                        android:id="@+id/etWatchAttachment"-->
-<!--                                        android:drawableTint="@color/colorPrimaryDark"-->
-<!--                                        android:drawableRight="@drawable/ic_attachment"-->
-<!--                                        style="@style/InformationEntryEditText"/>-->
-<!--                                </TableRow>-->
 
                             </TableLayout>
 
