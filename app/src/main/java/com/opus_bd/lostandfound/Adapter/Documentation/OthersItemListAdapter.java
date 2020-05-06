@@ -46,6 +46,7 @@ public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAd
         this.context = context;
     }
 
+
     @Override
     public TransactionViewHolder onCreateViewHolder(ViewGroup parent,
                                                     int viewType) {
