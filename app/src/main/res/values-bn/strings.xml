@@ -155,6 +155,45 @@
     <string name="umbrella_information">ছাতা এর তথ্য</string>
     <string name="dna_profile">ডিএনএ প্রোফাইল</string>
     <string name="cards_information">কার্ড এর তথ্য</string>
+    <string name="money_information">অর্থের তথ্য</string>
+    <string name="shoes_information">জুতার তথ্য</string>
+    <string name="electronics_information">ইলেকট্রনিক্স সমূহের তথ্য</string>
+    <string-array name="array_electronics_brand">
+        <item>@string/select_option</item>
+        <item>Philips</item>
+        <item>Rangs</item>
+        <item>Sony</item>
+    </string-array>
+    <string-array name="array_electronics_type">
+        <item>@string/select_option</item>
+        <item>Home Appearance</item>
+        <item>Kitchen appearance</item>
+        <item>Small Appearance</item>
+    </string-array>
+    <string-array name="array_home_appearnce_type">
+        <item>@string/select_option</item>
+        <item>Television</item>
+        <item>Refrigerator</item>
+        <item>Microwave Oven</item>
+        <item>Air Condition</item>
+        <item>Washing Machine</item>
+        <item>Hair Drier</item>
+        <item>Iron Machine</item>
+    </string-array>
+    <string-array name="array_shoes_model">
+        <item>@string/select_option</item>
+    </string-array>
+    <string-array name="array_shoes_brand">
+        <item>@string/select_option</item>
+    </string-array>
+    <string-array name="array_shoes_type">
+        <item>@string/select_option</item>
+        <item>Snikers</item>
+        <item>Converse</item>
+        <item>Casual Shoe</item>
+        <item>Office Shoe</item>
+        <item>Loffer</item>
+    </string-array>
 
     <string-array name="array_card_type">
         <item>@string/select_option</item>

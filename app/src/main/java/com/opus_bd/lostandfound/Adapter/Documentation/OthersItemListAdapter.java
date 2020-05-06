@@ -20,10 +20,13 @@ import com.opus_bd.lostandfound.Activity.OtherItem.DocumentActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.GarmentsActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.GlassActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.JewelryActivity;
+import com.opus_bd.lostandfound.Activity.OtherItem.ElectronicsActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.KeysInformationActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.MobilePhoneActivity;
+import com.opus_bd.lostandfound.Activity.OtherItem.MoneyActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.OtherItemDetailsActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.PetActivity;
+import com.opus_bd.lostandfound.Activity.OtherItem.ShoesActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.UmbrellaActivity;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.R;
@@ -104,6 +107,9 @@ public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAd
                     }else if(id==2){
                         Intent intent = new Intent(context, OtherItemDetailsActivity.class);
                         context.startActivity(intent);
+                    }else if(id==3){
+                        Intent intent = new Intent(context, ElectronicsActivity.class);
+                        context.startActivity(intent);
                     }else if(id==4){
                         Intent intent = new Intent(context, MobilePhoneActivity.class);
                         context.startActivity(intent);
@@ -126,6 +132,12 @@ public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAd
                         Intent intent = new Intent(context, GarmentsActivity.class);
                     }else if(id==6){
                         Intent intent = new Intent(context, CardsActivity.class);
+                        context.startActivity(intent);
+                    }else if(id==9){
+                        Intent intent = new Intent(context, MoneyActivity.class);
+                        context.startActivity(intent);
+                    }else if(id==13){
+                        Intent intent = new Intent(context, ShoesActivity.class);
                         context.startActivity(intent);
                     }else if(id==15){
                         Intent intent = new Intent(context, PetActivity.class);
