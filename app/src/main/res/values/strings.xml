@@ -193,6 +193,58 @@
     <string name="umbrella_information">Umbrella Information</string>
     <string name="dna_profile">DNA Profile</string>
     <string name="cards_information">Cards Inforamtion</string>
+    <string name="money_information">Money Inforamtion</string>
+    <string name="shoes_information">Shoes Inforamtion</string>
+    <string name="electronics_information">Electronics Inforamtion</string>
+
+    <string-array name="array_electronics_brand">
+        <item>@string/select_option</item>
+        <item>Philips</item>
+        <item>Rangs</item>
+        <item>Sony</item>
+    </string-array>
+    <string-array name="array_electronics_type">
+        <item>@string/select_option</item>
+        <item>Home Appearance</item>
+        <item>Kitchen appearance</item>
+        <item>Small Appearance</item>
+    </string-array>
+    <string-array name="array_home_appearnce_type">
+        <item>@string/select_option</item>
+        <item>Television</item>
+        <item>Refrigerator</item>
+        <item>Microwave Oven</item>
+        <item>Air Condition</item>
+        <item>Washing Machine</item>
+        <item>Hair Drier</item>
+        <item>Iron Machine</item>
+    </string-array>
+    <string-array name="array_shoes_model">
+        <item>@string/select_option</item>
+    </string-array>
+    <string-array name="array_shoes_brand">
+        <item>@string/select_option</item>
+    </string-array>
+    <string-array name="array_shoes_brand_type">
+        <item>@string/select_option</item>
+        <item>Brand</item>
+        <item>Non-Brand</item>
+    </string-array>
+    <string-array name="array_shoes_type">
+        <item>@string/select_option</item>
+        <item>Snikers</item>
+        <item>Converse</item>
+        <item>Casual Shoe</item>
+        <item>Office Shoe</item>
+        <item>Loffer</item>
+    </string-array>
+
+    <string-array name="array_penny_type">
+        <item>@string/select_option</item>
+        <item>Stile Made</item>
+        <item>Bronge  Made</item>
+        <item>Hybrade type</item>
+    </string-array>
 
     <string-array name="array_card_type">
         <item>@string/select_option</item>

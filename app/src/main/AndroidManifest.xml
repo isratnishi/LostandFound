@@ -28,7 +28,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.OtherItem.GarmentsActivity"></activity>
+        <activity android:name=".Activity.OtherItem.ElectronicsActivity"></activity>
+        <activity android:name=".Activity.OtherItem.ShoesActivity" />
+        <activity android:name=".Activity.OtherItem.MoneyActivity" />
+        <activity android:name=".Activity.OtherItem.GarmentsActivity" />
+        <activity android:name=".Activity.OtherItem.CardsActivity" />
         <activity android:name=".Activity.OtherItem.JewelryActivity" />
         <activity android:name=".Activity.OtherItem.GlassActivity" />
         <activity android:name=".Activity.OtherItem.BagActivity" />
