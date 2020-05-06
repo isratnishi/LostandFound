@@ -212,6 +212,18 @@
         <item>Golf Umbrella</item>
     </string-array>
 
+    <string-array name="array_pet_type">
+        <item>@string/select_option</item>
+        <item>Cow </item>
+        <item>Goat</item>
+        <item>Lamb</item>
+        <item>Dog </item>
+        <item>Cat</item>
+        <item>Rabbit</item>
+        <item>Hen</item>
+        <item>Duck</item>
+    </string-array>
+
     <string-array name="array_keys_type">
         <item>@string/select_option</item>
         <item>Mechanical Type</item>

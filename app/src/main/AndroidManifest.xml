@@ -12,26 +12,25 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature
         android:name="android.hardware.location.gps"
         android:required="true" />
-    <!-- This attribute is "false" by default on apps targeting
-         Android 10 or higher. -->
 
     <application
-        android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:noHistory="true"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.OtherItem.UmbrellaActivity"></activity>
+        <activity android:name=".Activity.OtherItem.DocumentActivity"></activity>
+        <activity android:name=".Activity.OtherItem.PetActivity" />
+        <activity android:name=".Activity.OtherItem.UmbrellaActivity" />
         <activity android:name=".Activity.OtherItem.KeysInformationActivity" />
         <activity android:name=".Activity.OtherItem.MobilePhoneActivity" />
         <activity android:name=".Activity.OtherItem.OtherItemDetailsActivity" />
@@ -41,9 +40,7 @@
         <activity android:name=".Activity.OtherItem.ComputerActivity" />
         <activity
             android:name=".Activity.DeadBodyFoundActivity"
-            android:label="@string/unknowndeadbody" >
-
-        </activity>
+            android:label="@string/unknowndeadbody" />
         <activity android:name=".Activity.ChatBotActivity" />
         <activity android:name=".Activity.CodeGenerateActivity" />
         <activity
