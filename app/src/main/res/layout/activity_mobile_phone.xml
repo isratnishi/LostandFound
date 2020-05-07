@@ -26,7 +26,7 @@
                 android:orientation="vertical">
                 <!--Product Information-->
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/mcvOtherItemDetail"
+                    android:id="@+id/mcvCardInformation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="@dimen/spacing_medium">
@@ -55,11 +55,19 @@
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />
 
+                            <ImageView
+                                android:id="@+id/ivCardInformation"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/ic_drop_down"
+                                android:tint="@color/colorPrimaryDark" />
+
 
                         </RelativeLayout>
 
                         <LinearLayout
-                            android:id="@+id/llMobilePhoneInfromation"
+                            android:id="@+id/llCardInformation"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
@@ -86,6 +94,27 @@
                                         style="@style/InformationEntryEditText"
                                         android:drawSelectorOnTop="true"
                                         android:entries="@array/array_phone_type" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/trPhoneAccessories"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Accessories Type" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnPhoneAccessoriesType"
+                                        style="@style/InformationEntryEditText"
+                                        android:drawSelectorOnTop="true"
+                                        android:entries="@array/array_phone_accessories_type" />
 
                                 </TableRow>
 
@@ -384,10 +413,9 @@
                             </TableLayout>
 
                             <Button
-                                android:id="@+id/btnWatchSubmit"
+                                android:id="@+id/btnNext1"
                                 style="@style/BtnNext"
-                                android:layout_alignParentRight="true"
-                                android:text="Submit" />
+                                android:layout_height="37dp" />
 
                         </LinearLayout>
 
@@ -397,7 +425,7 @@
 
                 <!--Product  Idendity Information-->
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/mcvProductIdendityInformation"
+                    android:id="@+id/mcvCardtIdendityInformation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_middle"
@@ -430,7 +458,7 @@
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:id="@+id/ivProductIdentityInfo"
+                                android:id="@+id/ivCardtIdendityInformation"
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
                                 android:layout_alignParentRight="true"
@@ -439,7 +467,7 @@
                         </RelativeLayout>
 
                         <LinearLayout
-                            android:id="@+id/llProductIdentityInfo"
+                            android:id="@+id/llCardtIdendityInformation"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
@@ -542,7 +570,7 @@
 
                 <!--Product place and time Information-->
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/mcvProductPlaceTimeInformation"
+                    android:id="@+id/mcvLostPlaceTimeInformation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_middle"
@@ -575,7 +603,7 @@
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:id="@+id/ivProductPlaceTime"
+                                android:id="@+id/ivLostPlaceTimeInformation"
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
                                 android:layout_alignParentRight="true"
@@ -584,7 +612,7 @@
                         </RelativeLayout>
 
                         <LinearLayout
-                            android:id="@+id/llProductPlaceTime"
+                            android:id="@+id/llLostPlaceTimeInformation"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"

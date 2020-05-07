@@ -273,6 +273,22 @@
         <item>Xiaomi</item>
         <item>Huawei</item>
     </string-array>
+
+    <string-array name="array_phone_accessories_type">
+        <item>@string/select_option</item>
+        <item>Headphone</item>
+        <item>Charger</item>
+        <item>Bluetooth</item>
+        <item>Cases And Covers</item>
+        <item>Screen protectors</item>
+        <item>Power banks</item>
+        <item>Data cables</item>
+        <item>Mass storage</item>
+        <item>Selfie stick</item>
+        <item>Smartphone tripod mount</item>
+        <item>External batteries</item>
+        <item>@string/spn_others</item>
+    </string-array>
     <string-array name="byte_array">
         <item>@string/select_list </item>
         <item> MB </item>
@@ -476,6 +492,8 @@
         <item>Smart Phone</item>
         <item>Codeless Phone</item>
         <item>TNT Phone</item>
+        <item>Phone Accessories</item>
+        <item>@string/spn_others</item>
     </string-array>
 
     <string-array name="array_watch_type">
