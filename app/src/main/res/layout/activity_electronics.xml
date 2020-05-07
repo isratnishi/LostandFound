@@ -85,14 +85,29 @@
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
                                     <Spinner
-                                        android:id="@+id/spnCardType"
+                                        android:id="@+id/spnElectronicType"
                                         android:drawSelectorOnTop="true"
                                         style="@style/InformationEntryEditText"
                                         android:entries="@array/array_electronics_type"/>
 
                                 </TableRow>
 
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="Electronic Name" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+                                    <Spinner
+                                        android:id="@+id/spnElectronicName"
+                                        android:drawSelectorOnTop="true"
+                                        style="@style/InformationEntryEditText"/>
+                                </TableRow>
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
@@ -111,24 +126,6 @@
                                         android:entries="@array/array_shoes_brand_type"/>
 
                                 </TableRow>
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="Electronic Name" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-                                    <Spinner
-                                        android:id="@+id/spnElectronicName"
-                                        android:drawSelectorOnTop="true"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_home_appearnce_type"/>
-                                </TableRow>
-
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">

@@ -209,6 +209,7 @@
         <item>Kitchen appearance</item>
         <item>Small Appearance</item>
         <item>Self Appearance</item>
+        <item>@string/spn_others</item>
     </string-array>
     <string-array name="array_home_appearnce_type">
         <item>@string/select_option</item>
@@ -223,10 +224,29 @@
     </string-array>
     <string-array name="array_kitchen_appearnce_type">
         <item>@string/select_option</item>
-        <item>Camera</item>
-        <item>Play Station</item>
-        <item>Joystick</item>
-        <item>Calculator</item>
+        <item>Blender and Juicer</item>
+        <item>Chooper</item>
+        <item>Coffee Maker</item>
+        <item>Cook ware</item>
+        <item>Electric Kettle</item>
+        <item>Electric Oven</item>
+        <item>Food Processor</item>
+        <item>Gas Burner</item>
+        <item>Induction Cooker</item>
+        <item>Mixer Grinder</item>
+        <item>@string/spn_others</item>
+    </string-array>
+    <string-array name="array_small_appearnce_type">
+        <item>@string/select_option</item>
+        <item>Baby Care</item>
+        <item>Beauty And Health</item>
+        <item>Iron</item>
+        <item>Room Heater</item>
+        <item>Sewing Mechine</item>
+        <item>Thermopot</item>
+        <item>V-Guard Water Heater</item>
+        <item>Vacuum Cleaner</item>
+        <item>Water Purifier</item>
         <item>@string/spn_others</item>
     </string-array>
     <string-array name="array_self_appearnce_type">
