@@ -133,6 +133,14 @@ public class ElectronicsActivity extends AppCompatActivity {
     public int SELECTED_DISTRICT_ID;
     public int SELECTED_THANA_ID;
 
+    //data
+    @BindView(R.id.spnElectronicType)
+    Spinner spnElectronicType;
+
+    @BindView(R.id.spnElectronicName)
+    Spinner spnElectronicName;
+
+    String[] electronicsApp;
 
     //date picker
     SimpleDateFormat formatter;
@@ -164,6 +172,40 @@ public class ElectronicsActivity extends AppCompatActivity {
         getDistrict();
         //date picker
         initializeVariables();
+        spnElectronicType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+
+
+
+                if(selectedItem.equals("Home Appearance"))
+                {
+                    electronicsApp=getResources().getStringArray(R.array.array_home_appearnce_type);
+                }else if(selectedItem.equals("Kitchen appearance")){
+                    electronicsApp=getResources().getStringArray(R.array.array_kitchen_appearnce_type);
+                }else if(selectedItem.equals("Kitchen appearance")){
+                    electronicsApp=getResources().getStringArray(R.array.array_kitchen_appearnce_type);
+                }else if(selectedItem.equals("Small Appearance")){
+                    electronicsApp=getResources().getStringArray(R.array.array_small_appearnce_type);
+                }else if(selectedItem.equals("Self Appearance")){
+                    electronicsApp=getResources().getStringArray(R.array.array_self_appearnce_type);
+                }else {
+                    electronicsApp=getResources().getStringArray(R.array.array_home_appearnce_type);
+                }
+                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,electronicsApp);
+                spinnerArrayAdapter.setDropDownViewResource(android.R.layout
+                        .simple_spinner_dropdown_item);
+                spnElectronicName.setAdapter(spinnerArrayAdapter);
+//                ArrayAdapter<String> adapter=new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, electronicsApp);
+//                spnElectronicName.setAdapter(adapter);
+            } // to close the onItemSelected
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+        });
     }
 
     protected void attachBaseContext(Context base) {
