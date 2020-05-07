@@ -618,6 +618,19 @@
         <item>Passport </item>
     </string-array>
 
+    <string-array name = "array_doc_type">
+        <item> @string/select_list </item>
+        <item> National Identity Card </item>
+        <item> @string/edu_certificate </item>
+        <item> Birth Certificate </item>
+        <item> Passport </item>
+        <item> Student ID Card </item>
+        <item> Office ID </item>
+        <item> Banking paper </item>
+        <item> Invoice </item>
+        <item> @string/spn_others </item>
+    </string-array>
+<string name="edu_certificate">Certificate of Education</string>
 
     <string-array name="array_beard">
         <item>@string/select_option</item>
@@ -1102,7 +1115,7 @@
     <string name="mothersName">Mother\'s Name</string>
     <string name="mentally_handicapped">Mentally Handicapped</string>
     <string name="toast_succss">Successfully Done!</string>
-    <string name="bag_information">Bag Information</string>
+    <string name="bag_information">Bag\'s Information</string>
     <string name="brand">Brand</string>
     <string name="serial_number">Serial Number</string>
     <string name="model">Model</string>
@@ -1121,6 +1134,21 @@
     <string name="visible_tattoos">Visible Tattoos</string>
     <string name="special_birthmarks">Special Birthmarks</string>
     <string name="description_of_circumcision">Description of Circumcision</string>
+    <string name="price">Price</string>
+    <string name="computer_accessories">Computer Accessories</string>
+    <string name="product_brand">Product Brand</string>
+    <string name="service_tag_serial_number">Service Tag/ Serial Number</string>
+    <string name="emc_product_id">EMC Product ID</string>
+    <string name="product_number_express_service_code">Product Number/ Express Service Code</string>
+    <string name="document_information">Document Information</string>
+    <string name="registration_number">Registration Number</string>
+    <string name="roll_number">Roll Number</string>
+    <string name="product_information">Product Information</string>
+    <string name="pet_information">Pet Information</string>
+    <string name="pet_type">Pet Type</string>
+    <string name="size">Size</string>
+    <string name="carat">Carat</string>
+    <string name="glass_information">Glass Information</string>
 
 
 </resources>

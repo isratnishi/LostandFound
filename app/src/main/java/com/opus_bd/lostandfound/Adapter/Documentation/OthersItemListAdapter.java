@@ -138,6 +138,7 @@ public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAd
                         context.startActivity(intent);
                     }else if(id==12){
                         Intent intent = new Intent(context, GarmentsActivity.class);
+                        context.startActivity(intent);
                     }else if(id==13){
                         Intent intent = new Intent(context, ShoesActivity.class);
                         context.startActivity(intent);

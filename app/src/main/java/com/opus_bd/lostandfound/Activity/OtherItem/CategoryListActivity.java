@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.opus_bd.lostandfound.R;
+import com.opus_bd.lostandfound.Utils.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,6 +45,12 @@ public class CategoryListActivity extends AppCompatActivity {
 
     @OnClick({R.id.llRoot, R.id.llRoot1})
     public void llRoot() {
+        Constants.COMPUTER_TYPE_ID=Constants.COMOthers;
+        Intent intent = new Intent(this, ComputerActivity.class);
+        startActivity(intent);
+    }@OnClick(R.id.llRoot3)
+    public void llRoot3() {
+        Constants.COMPUTER_TYPE_ID=Constants.COMACCESORIES;
         Intent intent = new Intent(this, ComputerActivity.class);
         startActivity(intent);
     }

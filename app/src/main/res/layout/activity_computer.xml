@@ -49,7 +49,7 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="10dp"
                                 android:gravity="center_vertical"
-                                android:text="Product Information"
+                                android:text="@string/product_information"
                                 android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />
@@ -77,12 +77,31 @@
 
 
                                 <TableRow
+                                    android:visibility="gone"
+                                    android:id="@+id/rowComAssesories"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Product Brand" />
+                                        android:text="@string/computer_accessories" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnComputerAccessories"
+                                        style="@style/InformationEntryEditText" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/product_brand" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -100,7 +119,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Product Model" />
+                                        android:text="@string/model" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -118,7 +137,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Service Tag/ Serial Number" />
+                                        android:text="@string/service_tag_serial_number" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -137,8 +156,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:fontFamily="sans-serif-condensed-light"
-                                        android:text="EMC Product ID" />
+                                        android:text="@string/emc_product_id" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -157,7 +175,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Product Number/ Express Service Code" />
+                                        android:text="@string/product_number_express_service_code" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -192,22 +210,31 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Price" />
+                                        android:text="@string/price" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
 
-                                    <EditText
-                                        android:gravity="start"
-                                        style="@style/InformationEntryTextView"/>
-                                    <TextView
-                                        android:id="@+id/tvPrice"
-                                        android:text="BDT"
-                                        android:drawableEnd="@drawable/ic_drop_down"
+                                    <LinearLayout
+                                        style="@style/InformationEntryEditText"
+                                        android:orientation="horizontal"
+                                        >
+                                        <EditText
+                                            android:id="@+id/etPrice"
+                                            style="@style/InformationEntryLinearTextView"
+                                            />
 
-                                        android:drawableTint="@color/black" android:gravity="start"
-                                        style="@style/InformationEntryTextView"/>
+                                        <TextView
+                                            style="@style/InformationEntryLinearTextView"
+                                            android:id="@+id/tvPrice"
+
+                                            android:drawableEnd="@drawable/ic_drop_down"
+
+                                            android:drawableTint="@color/black"
+                                            android:gravity="start"
+                                            android:text="BDT" />
+                                    </LinearLayout>
                                 </TableRow>
                             </TableLayout>
 
@@ -299,7 +326,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Image" />
+                                        android:text="@string/image" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"

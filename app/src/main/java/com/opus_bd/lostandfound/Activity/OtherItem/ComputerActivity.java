@@ -28,6 +28,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -167,7 +168,8 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
     LinearLayout llProductPlaceTime;
 
     @BindView(R.id.ivProductPlaceTime)
-    ImageView ivProductPlaceTime;
+    ImageView ivProductPlaceTime;    @BindView(R.id.rowComAssesories)
+    TableRow rowComAssesories;
 
    
 
@@ -267,6 +269,10 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_computer);
         ButterKnife.bind(this);
+
+        if(Constants.COMPUTER_TYPE_ID==Constants.COMACCESORIES){
+            rowComAssesories.setVisibility(View.VISIBLE);
+        }
         mcvProductInformation.setVisibility(View.VISIBLE);
         mcvProductIdendityInformation.setVisibility(View.GONE);
         mcvProductPlaceTimeInformation.setVisibility(View.GONE);

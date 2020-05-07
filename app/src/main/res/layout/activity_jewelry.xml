@@ -140,7 +140,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Color" />
+                                        android:text="@string/colorName" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -161,7 +161,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Price" />
+                                        android:text="@string/price" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -221,7 +221,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Carat" />
+                                        android:text="@string/carat" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"

@@ -177,7 +177,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Size" />
+                                        android:text="@string/size" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -204,7 +204,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Price" />
+                                        android:text="@string/price" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"

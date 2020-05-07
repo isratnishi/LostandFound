@@ -1065,5 +1065,35 @@
     <string name="visible_tattoos">দৃশ্যমান ট্যাটু</string>
     <string name="special_birthmarks">বিশেষ জন্মদাগ</string>
     <string name="description_of_circumcision">সুন্নতে খাৎনার বিবরণ</string>
+    <string name="price">মূল্য</string>
+    <string name="computer_accessories">কম্পিউটারের যন্ত্রপাতি</string>
+    <string name="product_brand">প্রোডাক্ট ব্র্যান্ড</string>
+    <string name="service_tag_serial_number">সার্ভিস ট্যাগ/ সিরিয়াল নম্বর</string>
+    <string name="emc_product_id">ইএমসি প্রোডাক্ট  আইডি</string>
+    <string name="product_number_express_service_code">প্রোডাক্ট নম্বর/ এক্সপ্রেস সার্ভিস কোড</string>
+    <string name="document_information">নথি তথ্য</string>
+
+    <string-array name="array_doc_type">
+    <item>@string/select_list</item>
+    <item>জাতীয় পরিচয়পত্র</item>
+    <item>@string/edu_certificate </item>
+    <item>জন্ম সনদ</item>
+    <item>পাসপোর্ট </item>
+    <item>স্টুডেন্ট আইডি কার্ড </item>
+    <item>অফিস আইডি </item>
+    <item>ব্যাংকিং কাগজ </item>
+    <item>চালানপত্র </item>
+    <item>@string/spn_others</item>
+</string-array>
+    <string name="edu_certificate">শিক্ষা  সনদপত্র</string>
+    <string name="registration_number">রেজিস্ট্রেশন নম্বর</string>
+    <string name="roll_number">রোল নম্বর</string>
+    <string name="product_information">প্রোডাক্ট তথ্য</string>
+    <string name="pet_information">পোষা প্রাণী সম্পর্কিত তথ্য</string>
+    <string name="pet_type">পোষা প্রাণীর ধরণ</string>
+    <string name="size">আকার</string>
+    <string name="carat">Carat</string>
+    <string name="glass_information">Glass Information</string>
+
 
 </resources>
