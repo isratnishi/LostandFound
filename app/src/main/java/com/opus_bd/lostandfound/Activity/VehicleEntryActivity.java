@@ -142,9 +142,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     EditText etVehicleDate;
 
     @BindView(R.id.etVehicleTime)
-    EditText etVehicleTime;
-    @BindView(R.id.etImage)
-    EditText etImage;
+    EditText etVehicleTime;    @BindView(R.id.btnAddPhotoes)
+    Button btnAddPhotoes;
+
 
     boolean isllVehicleEntryChecked = true;
     @BindView(R.id.llVehicleInfromation)
@@ -450,7 +450,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
     //Multiple image
-    @OnClick(R.id.etImage)
+    @OnClick(R.id.btnAddPhotoes)
     public void ImageAdd(){
         ImagePicker();
     }

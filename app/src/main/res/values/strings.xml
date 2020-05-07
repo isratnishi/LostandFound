@@ -292,6 +292,99 @@
         <item>Duck</item>
     </string-array>
 
+
+    <string-array name="array_cosmetics_type">
+        <item>@string/select_option</item>
+        <item>Lipstick </item>
+        <item>Lip balm</item>
+        <item>Lip gloss</item>
+        <item>Lip liner</item>
+        <item>Lip plumper</item>
+        <item>Lip conditioner</item>
+        <item>Lip plumper</item>
+        <item>Lip primer</item>
+        <item>Lip boosters</item>
+        <item>Primer</item>
+        <item>Concealer </item>
+        <item>Foundation</item>
+        <item>Face powder</item>
+        <item>Blush</item>
+        <item>Highlighter</item>
+        <item>Mascara</item>
+        <item>Mascara primer</item>
+        <item>eye primers</item>
+        <item>eyelash glue</item>
+        <item>eyelash curler</item>
+        <item>Eyeshadow</item>
+        <item>Perfume</item>
+        <item>Talcom Powders</item>
+        <item>Ointments/ Pastes</item>
+        <item>Lotions </item>
+        <item>Duck </item>
+        <item>Nail polish </item>
+        <item>nail gloss </item>
+        <item>blush powder </item>
+        <item>bronzer </item>
+        <item>setting spray </item>
+        <item>contour powder/cream </item>
+        <item>eyebrow pencils </item>
+        <item>creams </item>
+        <item>waxes </item>
+        <item>gels </item>
+        <item>powders </item>
+        <item>Face Cleanser</item>
+        <item>Body Lotion</item>
+        <item>Tumer</item>
+        <item>Mitt</item>
+        <item>Mirror</item>
+        <item>@string/spn_others</item>
+    </string-array>
+
+
+    <string-array name="array_cosmetics_brand_type">
+        <item>@string/select_option</item>
+        <item>MAC </item>
+        <item>Bobbi Brown</item>
+        <item>L’Oreal</item>
+        <item>Chanel</item>
+        <item>NYX</item>
+        <item>NARS</item>
+        <item>Maybelline</item>
+        <item>Estee Lauder</item>
+        <item>Revlon</item>
+        <item>Lancome</item>
+        <item>Clinique</item>
+        <item>Covergirl</item>
+        <item>Sephora</item>
+        <item>Dior</item>
+        <item>Cover FX</item>
+        <item>bareMinerals</item>
+        <item>Yves Saint Laurent </item>
+        <item>Napoleon Perdis</item>
+        <item>Olay</item>
+        <item>Urban Decay</item>
+        <item>By Terry</item>
+        <item>Mecca</item>
+        <item>Stila Cosmetics</item>
+        <item>Nude by Nature</item>
+        <item>Marc Jacobs Beauty</item>
+        <item>Anastasia Beverly Hills </item>
+        <item>RMS Beauty</item>
+        <item>Avon </item>
+        <item>Make Up For Ever</item>
+        <item>Makeup Revolution </item>
+        <item>The Body Shop</item>
+        <item>Lakme </item>
+        <item>Colorbar</item>
+        <item>L.A. Girl </item>
+        <item>Clinique </item>
+        <item>Revlon </item>
+        <item>PAC </item>
+        <item>theBalm Cosmetics</item>
+        <item>Huda Beauty</item>
+        <item>@string/spn_others</item>
+    </string-array>
+
     <string-array name="array_keys_type">
         <item>@string/select_option</item>
         <item>Mechanical Type</item>
@@ -334,8 +427,9 @@
         <item>Smart Phone</item>
         <item>Codeless Phone</item>
         <item>TNT Phone</item>
+        <item>@string/spn_others</item>
     </string-array>
-
+    <string name="spn_others">Others</string>
     <string-array name="array_watch_type">
         <item>@string/select_option</item>
         <item>Wall Clock</item>
@@ -343,6 +437,13 @@
         <item>Smart Watch</item>
         <item>Fitness Watch</item>
         <item>Digital Watch</item>
+        <item>Samsung Watch</item>
+        <item>Apple Watch</item>
+        <item>Analogue Watch</item>
+        <item>Calculator Watch</item>
+        <item>Alarm Watch</item>
+        <item>Table Watch</item>
+        <item>@string/spn_others</item>
     </string-array>
 
     <string-array name="array_watch_brand">
@@ -356,13 +457,15 @@
         <item>Tissot</item>
         <item>Citizen</item>
         <item>Boss</item>
+        <item>@string/spn_others</item>
     </string-array>
 
     <string-array name="array_watch_body_type">
         <item>@string/select_option</item>
         <item>Leather</item>
         <item>Chain</item>
-        <item>Others</item>
+        <item>@string/spn_others</item>
+
     </string-array>
     <string-array name="array_watch_structure_type">
         <item>@string/select_option</item>
@@ -371,6 +474,7 @@
         <item>Chronograph Watch</item>
         <item>Digital Watch</item>
         <item>Smart Watch</item>
+        <item>@string/spn_others</item>
     </string-array>
 
     <string-array name="array_habit">
@@ -882,7 +986,7 @@
         <item> Elderly (36–60) </item>
         <item> Older (over 61) </item>
     </string-array>
- <string-array name="byte_array">
+    <string-array name="byte_array">
         <item>@string/select_list </item>
         <item> MB </item>
         <item> GB </item>
@@ -997,7 +1101,7 @@
     <string name="add_image">Add Images</string>
     <string name="mothersName">Mother\'s Name</string>
     <string name="mentally_handicapped">Mentally Handicapped</string>
-    <string name="toast_succss">Succesfully Done!</string>
+    <string name="toast_succss">Successfully Done!</string>
     <string name="bag_information">Bag Information</string>
     <string name="brand">Brand</string>
     <string name="serial_number">Serial Number</string>
@@ -1006,11 +1110,17 @@
     <string name="glass_type">Glass Type</string>
     <string name="glass_shape">Glass Shape</string>
     <string name="garments_information">Garments Information</string>
-    <string name="jewelry_information">Jewelry Information</string>
-    <string name="jewellary_type">Jewellary type</string>
-    <string name="jewellary_for">Jewellary For</string>
+    <string name="jewelry_information">Jewellery Information</string>
+    <string name="jewellary_type">Jewellery type</string>
+    <string name="jewellary_for">Jewellery For</string>
     <string name="weight">Weight</string>
     <string name="battery">Battery</string>
+    <string name="cosmetics_information">Cosmetics Information</string>
+    <string name="cosmetics_type">Cosmetics Type</string>
+    <string name="ammount">Amount</string>
+    <string name="visible_tattoos">Visible Tattoos</string>
+    <string name="special_birthmarks">Special Birthmarks</string>
+    <string name="description_of_circumcision">Description of Circumcision</string>
 
 
 </resources>
