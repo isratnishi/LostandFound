@@ -1092,8 +1092,8 @@
     <string name="pet_information">পোষা প্রাণী সম্পর্কিত তথ্য</string>
     <string name="pet_type">পোষা প্রাণীর ধরণ</string>
     <string name="size">আকার</string>
-    <string name="carat">Carat</string>
-    <string name="glass_information">Glass Information</string>
+    <string name="carat">ক্যারেট</string>
+    <string name="glass_information">চশমার তথ্য</string>
 
 
 </resources>

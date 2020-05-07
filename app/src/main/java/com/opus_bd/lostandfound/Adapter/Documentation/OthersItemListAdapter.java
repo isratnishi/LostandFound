@@ -2,6 +2,7 @@ package com.opus_bd.lostandfound.Adapter.Documentation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,9 +39,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.KEY_State;
+import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.SHARED_PREF_NAME;
+
 public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAdapter.TransactionViewHolder> {
     private final Context context;
     private List<DocumentType> items;
+    Boolean languageStatus;
 
     public OthersItemListAdapter(List<DocumentType> items, Context context) {
         this.items = items;
@@ -53,7 +59,12 @@ public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAd
                                                     int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.adapter_others_item_list, parent, false);
+        languageStatus = getSharedPrefValue();
         return new TransactionViewHolder(v);
+    }
+    private boolean getSharedPrefValue() {
+        SharedPreferences tprefs = context.getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        return tprefs.getBoolean(KEY_State, true);
     }
 
     @Override
@@ -89,8 +100,12 @@ public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAd
 
         public void set(final DocumentType item) {
             //UI setting code
+            if (languageStatus) {
+                tvreceiveNo.setText(item.getDocumentTypeNameBn());
+            } else {
+                tvreceiveNo.setText(item.getDocumentTypeName());
+            }
 
-            tvreceiveNo.setText(item.getDocumentTypeName());
           try{
               Glide.with(context).load("http://103.134.88.13:1022/"+item.getImagePath()).into(ivItemLogo);
           }
