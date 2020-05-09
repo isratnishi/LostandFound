@@ -6,6 +6,12 @@ public class Constants {
     public static String ENGLISH = "en";
     public static String BANGLA = "bn";
 
+    //ComputerType
+    public static int COMPUTER_TYPE_ID;
+    public static int COMACCESORIES = 6;
+    public static int COMOthers = 1;
+
+
 
     //GD For
     public static String GDFOR;

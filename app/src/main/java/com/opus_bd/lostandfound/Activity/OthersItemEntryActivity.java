@@ -32,21 +32,27 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.KEY_State;
+import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.SHARED_PREF_NAME;
+
 public class OthersItemEntryActivity extends AppCompatActivity {
     @BindView(R.id.rvItem)
     RecyclerView rvItem;
 
     OthersItemListAdapter othersItemListAdapter;
     private ArrayList<DocumentType> documentTypeArrayList = new ArrayList<>();
+    Boolean languageStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_others_item_entry);
         ButterKnife.bind(this);
+        languageStatus = getSharedPrefValue();
         intRecyclerView();
         getAllOtherItemList();
     }
+
     protected void attachBaseContext(Context base) {
         SharedPreferences tprefs = base.getSharedPreferences(SharedPrefManager.SHARED_PREF_NAME, MODE_PRIVATE);
         boolean language = tprefs.getBoolean(SharedPrefManager.KEY_State, true);
@@ -55,6 +61,12 @@ public class OthersItemEntryActivity extends AppCompatActivity {
         else
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
+
+    private boolean getSharedPrefValue() {
+        SharedPreferences tprefs = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        return tprefs.getBoolean(KEY_State, true);
+    }
+
     public void intRecyclerView() {
         othersItemListAdapter = new OthersItemListAdapter(documentTypeArrayList, this);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
@@ -98,7 +110,6 @@ public class OthersItemEntryActivity extends AppCompatActivity {
         }
 
     }
-
 
 
     //InformationEntryActivity

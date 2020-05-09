@@ -14,7 +14,7 @@ public class DocumentType {
     private String imagePath;
     @SerializedName("documentTypeNameBn")
     @Expose
-    private Object documentTypeNameBn;
+    private String documentTypeNameBn;
     @SerializedName("shortOrder")
     @Expose
     private Object shortOrder;
@@ -53,11 +53,11 @@ public class DocumentType {
         this.documentTypeName = documentTypeName;
     }
 
-    public Object getDocumentTypeNameBn() {
+    public String getDocumentTypeNameBn() {
         return documentTypeNameBn;
     }
 
-    public void setDocumentTypeNameBn(Object documentTypeNameBn) {
+    public void setDocumentTypeNameBn(String documentTypeNameBn) {
         this.documentTypeNameBn = documentTypeNameBn;
     }
 

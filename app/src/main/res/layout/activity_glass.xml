@@ -48,7 +48,7 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="10dp"
                                 android:gravity="center_vertical"
-                                android:text="Glass Information"
+                                android:text="@string/glass_information"
                                 android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />
@@ -134,7 +134,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Color" />
+                                        android:text="@string/colorName" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -154,7 +154,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
-                                        android:text="Size" />
+                                        android:text="@string/size" />
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
@@ -199,7 +199,7 @@
 
                                 <TextView
                                     style="@style/InformationEntryTextView"
-                                    android:text="Ammount" />
+                                    android:text="@string/ammount" />
 
                                 <TextView
                                     style="@style/InformationEntryTextViewColon"

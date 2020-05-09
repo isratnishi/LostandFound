@@ -20,6 +20,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TableRow;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -154,6 +155,12 @@ public class DocumentActivity extends AppCompatActivity implements DatePickerDia
 
     @BindView(R.id.etProductTime)
     EditText etProductTime;
+    @BindView(R.id.spnDocType)
+    Spinner spnDocType;
+    @BindView(R.id.rowRollNumber)
+    TableRow rowRollNumber;
+    @BindView(R.id.rowRegNumber)
+    TableRow rowRegNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,10 +173,30 @@ public class DocumentActivity extends AppCompatActivity implements DatePickerDia
         mcvReport.setVisibility(View.GONE);
         selectOne = getResources().getString(R.string.select_option);
         //Spinner
-       // getAllColor();
+        // getAllColor();
         getDistrict();
         //date picker
         initializeVariables();
+        spnDocType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                if(selectedItem.equals(getResources().getString(R.string.edu_certificate)))
+                {
+                    rowRegNumber.setVisibility(View.VISIBLE);
+                    rowRollNumber.setVisibility(View.VISIBLE);
+                }  else
+                {
+                    rowRegNumber.setVisibility(View.GONE);
+                    rowRollNumber.setVisibility(View.GONE);
+                }
+            } // to close the onItemSelected
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+        });
     }
 
     protected void attachBaseContext(Context base) {

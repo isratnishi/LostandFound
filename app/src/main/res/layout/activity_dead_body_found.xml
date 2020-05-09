@@ -313,6 +313,75 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextView"
+                                        android:text="@string/description_of_circumcision" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <LinearLayout
+                                        style="@style/InformationEntryEditText"
+                                        android:orientation="horizontal">
+                                        <RadioGroup
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="horizontal">
+                                            <RadioButton
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="@string/yes"
+                                                />
+                                            <RadioButton
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="@string/no"
+                                                />
+                                        </RadioGroup>
+
+                                    </LinearLayout>
+                                </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/visible_tattoos" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etVisibleTattoos"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/special_birthmarks" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etSpecialBirthmarks"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
                                         android:text="@string/image_type" />
 
                                     <TextView
@@ -1379,7 +1448,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="D3S1358 " />
 
@@ -1419,7 +1488,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="vWA " />
 
@@ -1459,7 +1528,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="D16S539 " />
 
@@ -1520,7 +1589,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="TPOX " />
 
@@ -1581,7 +1650,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="Amelogenin" />
 
@@ -1619,7 +1688,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="D8S1179" />
 
@@ -1659,7 +1728,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="D21S11" />
 
@@ -1699,7 +1768,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="D18S51" />
 
@@ -1760,7 +1829,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="D2S441" />
 
@@ -1800,7 +1869,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="D19S433" />
 
@@ -1840,7 +1909,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="TH01" />
 
@@ -1880,7 +1949,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="FGA" />
 
@@ -1920,7 +1989,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="D22S1045" />
 
@@ -1960,7 +2029,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="D5S818" />
 
@@ -2000,7 +2069,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="D13S317" />
 
@@ -2040,7 +2109,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:gravity="end|center_vertical"
+                                        
                                         style="@style/InformationEntryTextView"
                                         android:text="D7S820" />
 

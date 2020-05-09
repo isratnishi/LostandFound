@@ -48,7 +48,7 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="10dp"
                                 android:gravity="center_vertical"
-                                android:text="Document Information"
+                                android:text="@string/document_information"
                                 android:textAppearance="@style/TextAppearance.CastIntroOverlay.Title"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold" />
@@ -88,10 +88,9 @@
                                         android:id="@+id/spnDocType"
                                         android:drawSelectorOnTop="true"
                                         style="@style/InformationEntryEditText"
-                                        android:entries="@array/doc_type"/>
+                                        android:entries="@array/array_doc_type"/>
 
                                 </TableRow>
-
 
 
 
@@ -111,13 +110,60 @@
                                         android:id="@+id/etDocNumber"
                                         style="@style/InformationEntryEditText"
                                         />
-                                </TableRow> <TableRow
+                                </TableRow>
+
+
+
+
+                                <TableRow
+                                    android:visibility="gone"
+                                    android:id="@+id/rowRollNumber"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/roll_number" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+                                    <EditText
+                                        android:id="@+id/etRollNumber"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
+
+
+
+
+                                <TableRow
+                                    android:visibility="gone"
+                                    android:id="@+id/rowRegNumber"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/registration_number" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+                                    <EditText
+                                        android:id="@+id/etRegistrationNumber"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
+
+
+                                <TableRow
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
                                 <TextView
                                     style="@style/InformationEntryTextView"
-                                    android:text="Ammount" />
+                                    android:text="@string/ammount" />
 
                                 <TextView
                                     style="@style/InformationEntryTextViewColon"
