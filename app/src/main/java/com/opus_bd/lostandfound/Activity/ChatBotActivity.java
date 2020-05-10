@@ -35,10 +35,10 @@ public class ChatBotActivity extends AppCompatActivity {
         Boolean languageStatus = getSharedPrefValue();
 
         if (languageStatus) {
-            Language=getResources().getString(R.string.english);
+            Language="en";
 
         } else {
-            Language=getResources().getString(R.string.bangla);
+            Language="bn";
 
         }
 
@@ -57,7 +57,7 @@ public class ChatBotActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
 
 
-        webview.loadUrl("http://103.134.88.13:122/CustoomChatBox#totaMessagesContainerLast");
+        webview.loadUrl("http://103.134.88.13:122/CustoomChatBox?lang="+Language+"");
 
 
     }

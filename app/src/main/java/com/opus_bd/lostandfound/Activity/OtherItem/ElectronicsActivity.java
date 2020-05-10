@@ -178,8 +178,6 @@ public class ElectronicsActivity extends AppCompatActivity {
             {
                 String selectedItem = parent.getItemAtPosition(position).toString();
 
-
-
                 if(selectedItem.equals("Home Appearance"))
                 {
                     electronicsApp=getResources().getStringArray(R.array.array_home_appearnce_type);
@@ -198,8 +196,6 @@ public class ElectronicsActivity extends AppCompatActivity {
                 spinnerArrayAdapter.setDropDownViewResource(android.R.layout
                         .simple_spinner_dropdown_item);
                 spnElectronicName.setAdapter(spinnerArrayAdapter);
-//                ArrayAdapter<String> adapter=new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, electronicsApp);
-//                spnElectronicName.setAdapter(adapter);
             } // to close the onItemSelected
             public void onNothingSelected(AdapterView<?> parent)
             {
