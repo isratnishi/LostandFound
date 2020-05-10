@@ -42,6 +42,15 @@ public class ChatBotActivity extends AppCompatActivity {
 
         }
 
+       /* or,
+        if (languageStatus) {
+            Language="en";
+
+        } else {
+            Language="bn";
+
+        }*/
+
 
         Utilities.showLogcatMessage(" LAng"+Language);
         WebSettings webSettings = webview.getSettings();
