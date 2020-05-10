@@ -276,7 +276,7 @@ Utilities.showLogcatMessage(""+ t.toString());
     public void customDialog() {
         final Dialog dialog = new Dialog(LoginActivity.this);
         dialog.setContentView(R.layout.dialog_custom_support);
-        dialog.setTitle("Select one for Support");
+        dialog.setTitle(R.string.select_item_for_support);
         Window window = dialog.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
 

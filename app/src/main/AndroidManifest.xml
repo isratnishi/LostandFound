@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-feature
         android:name="android.hardware.location.gps"
         android:required="true" />
@@ -50,7 +50,8 @@
         <activity
             android:name=".Activity.DeadBodyFoundActivity"
             android:label="@string/unknowndeadbody" />
-        <activity android:name=".Activity.ChatBotActivity" />
+        <activity android:name=".Activity.ChatBotActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Activity.CodeGenerateActivity" />
         <activity
             android:name=".Activity.OthersItemEntryActivity"

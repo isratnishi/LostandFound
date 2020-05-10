@@ -118,6 +118,31 @@
             android:background="@android:color/white">
 
             <ImageView
+                android:id="@+id/ivDOB"
+                style="@style/EditTextIcon"
+                android:src="@drawable/ic_user" />
+
+            <View
+                android:id="@+id/vDOB"
+                style="@style/EditTextView"
+                android:layout_toRightOf="@id/ivDOB" />
+
+            <EditText
+                android:id="@+id/etDOB"
+                style="@style/EditTextEditText"
+                android:layout_toRightOf="@id/vDOB"
+                android:hint="@string/date_of_birth" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/white">
+
+            <ImageView
                 android:id="@+id/ivPhnNumber"
                 style="@style/EditTextIcon"
                 android:src="@drawable/ic_user" />

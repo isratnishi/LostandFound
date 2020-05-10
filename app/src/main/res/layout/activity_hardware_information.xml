@@ -164,24 +164,7 @@
                                     style="@style/InformationEntryTextViewColon"
                                     android:text="IMEI Number" />
                             </TableRow>
-
                             <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text="WiFi MAC Address" />
-
-                                <TextView
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text=":" />
-
-                                <TextView
-                                    android:id="@+id/WiFiMACAddress"
-                                    style="@style/InformationEntryTextViewColon"
-                                    android:text="IMEI Number" />
-                            </TableRow>  <TableRow
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
@@ -196,7 +179,24 @@
                                 <TextView
                                     android:id="@+id/DNSAddress"
                                     style="@style/InformationEntryTextViewColon"
-                                     />
+                                    />
+                            </TableRow>
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/InformationEntryTextViewColon"
+                                    android:text="MAC Address" />
+
+                                <TextView
+                                    style="@style/InformationEntryTextViewColon"
+                                    android:text=":" />
+
+                                <TextView
+                                    android:id="@+id/WiFiMACAddress"
+                                    style="@style/InformationEntryTextViewColon"
+                                    android:text="IMEI Number" />
                             </TableRow>
  <TableRow
                                 android:layout_width="match_parent"
@@ -204,7 +204,7 @@
 
                                 <TextView
                                     style="@style/InformationEntryTextViewColon"
-                                    android:text="MotherBoard" />
+                                    android:text="MotherBoard ID" />
 
                                 <TextView
                                     style="@style/InformationEntryTextViewColon"
@@ -221,7 +221,7 @@
 
                                 <TextView
                                     style="@style/InformationEntryTextViewColon"
-                                    android:text="Processor" />
+                                    android:text="Processor ID" />
 
                                 <TextView
                                     style="@style/InformationEntryTextViewColon"

@@ -46,15 +46,18 @@ import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
 import com.opus_bd.lostandfound.Adapter.CustomSpinnerAdapter;
 import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
-import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.Model.Documentaion.MetroAreaModel;
 import com.opus_bd.lostandfound.Model.Documentaion.RegistrationLevelModel;
-import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
-import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
-import com.opus_bd.lostandfound.Model.GlobalData.District;
-import com.opus_bd.lostandfound.Model.GlobalData.Division;
-import com.opus_bd.lostandfound.Model.GlobalData.Thana;
+import com.opus_bd.lostandfound.Model.Vehichel.Color;
+import com.opus_bd.lostandfound.Model.Vehichel.District;
+import com.opus_bd.lostandfound.Model.Vehichel.Division;
+import com.opus_bd.lostandfound.Model.Vehichel.MetropolitanArea;
+import com.opus_bd.lostandfound.Model.Vehichel.RegistrationLevel;
+import com.opus_bd.lostandfound.Model.Vehichel.Thana;
+import com.opus_bd.lostandfound.Model.Vehichel.VehicleMasterModel;
+import com.opus_bd.lostandfound.Model.Vehichel.VehicleModel;
+import com.opus_bd.lostandfound.Model.Vehichel.VehicleType;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
@@ -126,7 +129,6 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     EditText etCCNo;
 
 
-
     @BindView(R.id.ccp)
     CountryCodePicker ccp;
     @BindView(R.id.etMadeDate)
@@ -142,7 +144,8 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     EditText etVehicleDate;
 
     @BindView(R.id.etVehicleTime)
-    EditText etVehicleTime;    @BindView(R.id.btnAddPhotoes)
+    EditText etVehicleTime;
+    @BindView(R.id.btnAddPhotoes)
     Button btnAddPhotoes;
 
 
@@ -208,7 +211,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     TextView etBlueBook;
 
     String[] metropoliton, regipartTwo;
-    char[] engNoArray,chesisNoArray;
+    char[] engNoArray, chesisNoArray;
     //Address List
     ArrayList<Division> divisionArrayList = new ArrayList<>();
     ArrayList<District> districtArrayList = new ArrayList<>();
@@ -217,9 +220,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     ArrayList<DocumentType> documentTypeArrayList = new ArrayList<>();
     ArrayList<VehicleType> vehicleTypeArrayList = new ArrayList<>();
     ArrayList<VehicleModel> VehicleModelArrayList = new ArrayList<>();
-    ArrayList<Colors> colorArrayList = new ArrayList<>();
-    ArrayList<MetroAreaModel> metroAreaModelArrayList = new ArrayList<>();
-    ArrayList<RegistrationLevelModel> registrationLevelModels = new ArrayList<>();
+    ArrayList<Color> colorArrayList = new ArrayList<>();
+    ArrayList<MetropolitanArea> metroAreaModelArrayList = new ArrayList<>();
+    ArrayList<RegistrationLevel> registrationLevelModels = new ArrayList<>();
     ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
     public int SELECTED_DOCUMENT_ID;
     public int SELECTED_VEHICLETYPE_ID;
@@ -231,7 +234,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     public int SELECTED_DISTRICT_ID;
     public int SELECTED_THANA_ID;
 
-
+    ProgressDialog progress;
     //date picker
     SimpleDateFormat formatter;
     int mYear, mMonth, mDay;
@@ -296,8 +299,10 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     @BindView(R.id.tvColor)
     TextView tvColor;
     @BindView(R.id.tvBlueBook)
-    TextView tvBlueBook; @BindView(R.id.tvVSATInfo)
-    TextView tvVSATInfo;@BindView(R.id.reportPlaceTv)
+    TextView tvBlueBook;
+    @BindView(R.id.tvVSATInfo)
+    TextView tvVSATInfo;
+    @BindView(R.id.reportPlaceTv)
     TextView reportPlaceTv;
 
     @BindView(R.id.chatBot)
@@ -312,9 +317,8 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     private GridView gvGallery, gvGallery1;
     private GalleryAdapter galleryAdapter;
 
-    String selectOne,engNoString,chesisNoString;
+    String selectOne, engNoString, chesisNoString;
     String html = "<iframe src=\"http://103.134.88.13:120/CustoomChatBox#totaMessagesContainerLast\" id=\"chatbot-chat-frame\" style=\"pointer-events: all; background: none; border: 0px; float: none; border:none; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; width: 100%; height: 100%; margin: 0px; padding: 0px;\"></iframe>";
-
 
 
     @Override
@@ -322,25 +326,28 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_entry);
         ButterKnife.bind(this);
+        setProgress();
         mcvVehicleInformation.setVisibility(View.VISIBLE);
         mcvVehicleIdendityInformation.setVisibility(View.GONE);
         mcvVehicleAttachment.setVisibility(View.GONE);
         mcvVehiclePlaceTimeInformation.setVisibility(View.GONE);
         mcvReport.setVisibility(View.GONE);
-        if(Constants.ENTRY_TYPE_ID==Constants.LOST){
+        if (Constants.ENTRY_TYPE_ID == Constants.LOST) {
             tvVSATInfo.setText(getResources().getText(R.string.lostplaceAndTimeInfo1));
             reportPlaceTv.setText(getResources().getText(R.string.lostplaceAndTimeInfo1));
         }
-        selectOne=getResources().getString(R.string.select_option);
+        selectOne = getResources().getString(R.string.select_option);
 
         //Spinner
         getAllDocument();
-        getAllVehicleType();
-        getAllColor();
+        getVehicleMasterData();
+
+       /* getAllVehicleType();
+        getAllColor();*/
         //getDivision();
-        GetAllMetropolitanArea();
+       /* GetAllMetropolitanArea();
         getDistrict();
-        GetAllRegistrationLevel();
+        GetAllRegistrationLevel();*/
         chatBot.loadData(html, "text/html", null);
         //date picker
         initializeVariables();
@@ -373,28 +380,28 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if(etEngineNo.getText().length()==3 ||etEngineNo.getText().length()==6 ||etEngineNo.getText().length()==9 ||etEngineNo.getText().length()==12 ||etEngineNo.getText().length()==15 ||etEngineNo.getText().length()==18 ||etEngineNo.getText().length()==21 ||etEngineNo.getText().length()==24 ||etEngineNo.getText().length()==27)
-                {
-                    engNoString=etEngineNo.getText().toString().toUpperCase()+"-";
-                    char c=engNoString.charAt(engNoString.length()-2);
+                if (etEngineNo.getText().length() == 3 || etEngineNo.getText().length() == 6 || etEngineNo.getText().length() == 9 || etEngineNo.getText().length() == 12 || etEngineNo.getText().length() == 15 || etEngineNo.getText().length() == 18 || etEngineNo.getText().length() == 21 || etEngineNo.getText().length() == 24 || etEngineNo.getText().length() == 27) {
+                    engNoString = etEngineNo.getText().toString().toUpperCase() + "-";
+                    char c = engNoString.charAt(engNoString.length() - 2);
 
-                    if(c!='-')
-                    {
+                    if (c != '-') {
                         engNoArray = engNoString.toCharArray();
-                        engNoArray[engNoString.length()-2]=engNoArray[engNoString.length()-1];
-                        engNoArray[engNoString.length()-1]=c;
+                        engNoArray[engNoString.length() - 2] = engNoArray[engNoString.length() - 1];
+                        engNoArray[engNoString.length() - 1] = c;
 
                         //code to convert charArray back to String..
-                        engNoString=new String(engNoArray);
+                        engNoString = new String(engNoArray);
                         etEngineNo.setText(engNoString);
                         etEngineNo.setSelection(engNoString.length());
-                        engNoString=null;
+                        engNoString = null;
                     }
                 }
             }
+
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -406,28 +413,28 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if(etChesisNo.getText().length()==3 ||etChesisNo.getText().length()==6 ||etChesisNo.getText().length()==9 ||etChesisNo.getText().length()==12 ||etChesisNo.getText().length()==15 ||etChesisNo.getText().length()==18 ||etChesisNo.getText().length()==21 ||etChesisNo.getText().length()==24 ||etChesisNo.getText().length()==27)
-                {
-                    chesisNoString=etChesisNo.getText().toString().toUpperCase()+"-";
-                    char c=chesisNoString.charAt(chesisNoString.length()-2);
+                if (etChesisNo.getText().length() == 3 || etChesisNo.getText().length() == 6 || etChesisNo.getText().length() == 9 || etChesisNo.getText().length() == 12 || etChesisNo.getText().length() == 15 || etChesisNo.getText().length() == 18 || etChesisNo.getText().length() == 21 || etChesisNo.getText().length() == 24 || etChesisNo.getText().length() == 27) {
+                    chesisNoString = etChesisNo.getText().toString().toUpperCase() + "-";
+                    char c = chesisNoString.charAt(chesisNoString.length() - 2);
 
-                    if(c!='-')
-                    {
+                    if (c != '-') {
                         chesisNoArray = chesisNoString.toCharArray();
-                        chesisNoArray[chesisNoString.length()-2]=chesisNoArray[chesisNoString.length()-1];
-                        chesisNoArray[chesisNoString.length()-1]=c;
+                        chesisNoArray[chesisNoString.length() - 2] = chesisNoArray[chesisNoString.length() - 1];
+                        chesisNoArray[chesisNoString.length() - 1] = c;
 
                         //code to convert charArray back to String..
-                        chesisNoString=new String(chesisNoArray);
+                        chesisNoString = new String(chesisNoArray);
                         etChesisNo.setText(chesisNoString);
                         etChesisNo.setSelection(chesisNoString.length());
-                        chesisNoString=null;
+                        chesisNoString = null;
                     }
                 }
             }
+
             @Override
             public void afterTextChanged(Editable s) {
 
@@ -449,31 +456,39 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         else
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
+
+    public void setProgress() {
+        progress = new ProgressDialog(this);
+        progress.setMessage("Loading.... ");
+        progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progress.setIndeterminate(true);
+    }
+
     //Multiple image
     @OnClick(R.id.btnAddPhotoes)
-    public void ImageAdd(){
+    public void ImageAdd() {
         ImagePicker();
     }
 
+
     //ImagePicker
 
-    public void ImagePicker(){
+    public void ImagePicker() {
         ImagePicker.Companion.with(this)
                 .crop()//Crop image(Optional), Check Customization for more option
                 .galleryOnly()
-                .compress(1024)			//Final image size will be less than 1 MB(Optional)
-                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                .compress(1024)            //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
                 .start();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         try {
 
             super.onActivityResult(requestCode, resultCode, data);
-        }
-        catch (Exception e)
-        {
-            Utilities.showLogcatMessage("onActivityResult "+e.toString());
+        } catch (Exception e) {
+            Utilities.showLogcatMessage("onActivityResult " + e.toString());
         }
         if (resultCode == Activity.RESULT_OK) {
             //Image Uri will not be null for RESULT_OK
@@ -500,6 +515,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
         }
     }
+
     @OnClick(R.id.ivVehicleInformation)
     public void ivVehicleInformation() {
         if (isllVehicleEntryChecked) {
@@ -611,9 +627,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             tvVehicleDate.setText(etVehicleDate.getText().toString());
             tvVehicleTime.setText(etVehicleTime.getText().toString());
             //ivrPhoto.setImageResource(ivVehicleAttachment.getSourceLayoutResId());
-            Log.i("reportinfo", "engineno: "+etEngineNo.getText().toString()+",chesisno: "+etChesisNo.getText().toString()+",date: "+etMadeDate.getText().toString()+"");
+            Log.i("reportinfo", "engineno: " + etEngineNo.getText().toString() + ",chesisno: " + etChesisNo.getText().toString() + ",date: " + etMadeDate.getText().toString() + "");
         } catch (Exception e) {
-            Log.e("reportinfo", "btnNext4: ",e );
+            Log.e("reportinfo", "btnNext4: ", e);
         }
 
     }
@@ -714,6 +730,39 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         });
     }
 
+    public void getVehicleMasterData() {
+
+        progress.show();
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<VehicleMasterModel> registrationRequest = retrofitService.GetVehicleMasterData();
+        registrationRequest.enqueue(new Callback<VehicleMasterModel>() {
+            @Override
+            public void onResponse(Call<VehicleMasterModel> call, Response<VehicleMasterModel> response) {
+
+                if (response.body() != null) {
+                    progress.dismiss();
+                    addVehicleTypeNamePresentSpinnerData(response.body().getVehicleTypes());
+                    addVehicleMadyBySpinnerData(response.body().getVehicleModels());
+                    addDistrictSpinnerData(response.body().getDistricts());
+                    addColorSpinnerData(response.body().getColors());
+                    addMetroAreaSpinnerData(response.body().getMetropolitanAreas());
+                    addRegistrationLevelModelSpinnerData(response.body().getRegistrationLevels());
+                    addThanaSpinnerData(response.body().getThanas());
+
+                } else {
+                    progress.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<VehicleMasterModel> call, Throwable t) {
+                progress.dismiss();
+                Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
     public void getAllDocument() {
 
 
@@ -773,7 +822,121 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         });
     }
 
-    public void getAllVehicleType() {
+    public void addVehicleTypeNamePresentSpinnerData(final List<VehicleType> body) {
+        List<String> vehicleList = new ArrayList<>();
+        vehicleList.add(0, selectOne);
+        for (int i = 0; i < body.size(); i++) {
+            vehicleList.add(i + 1, body.get(i).getVehicleTypeName());
+        }
+
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, vehicleList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnVehicleType.setAdapter(dataAdapter2);
+        spnVehicleType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 1) {
+                    SELECTED_VEHICLETYPE_ID = body.get(i).getId();
+                    //  getAllVehicleModel(body.get(i-1).getId());
+                } else {
+                    SELECTED_VEHICLETYPE_ID = 0;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addVehicleMadyBySpinnerData(final List<VehicleModel> body) {
+        List<String> vehicleMadyBy = new ArrayList<>();
+        List<String> vehicleIcon = new ArrayList<>();
+        vehicleMadyBy.add(0, selectOne);
+        vehicleIcon.add(0, "");
+        for (int i = 0; i < body.size(); i++) {
+            vehicleMadyBy.add(i + 1, body.get(i).getModelName());
+            vehicleIcon.add(i + 1, body.get(i).getImagePath());
+        }
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), vehicleIcon, vehicleMadyBy);
+        spnMadeBy.setAdapter(customAdapter);
+        spnMadeBy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 1) {
+                    SELECTED_VEHICLEMODEL_Name = body.get(i).getModelName();
+                } else {
+                    SELECTED_VEHICLEMODEL_Name = "";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addColorSpinnerData(final List<Color> body) {
+        List<String> colorList = new ArrayList<>();
+        List<String> colorCode = new ArrayList<>();
+        colorList.add(0, selectOne);
+        colorCode.add(0, "#FFFFFF");
+        for (int i = 0; i < body.size(); i++) {
+            colorList.add(i + 1, body.get(i).getColorName());
+            colorCode.add(i + 1, body.get(i).getColorCode());
+        }
+
+
+        CustomColorAdapter customAdapter = new CustomColorAdapter(getApplicationContext(), colorList, colorCode);
+        spnColor.setAdapter(customAdapter);
+        spnColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 1) {
+                    SELECTED_COLOR_ID = body.get(i).getId();
+                } else {
+                    SELECTED_COLOR_ID = 0;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addMetroAreaSpinnerData(final List<MetropolitanArea> body) {
+        List<String> colorList = new ArrayList<>();
+        //colorList.add(0,selectOne);
+        for (int i = 0; i < body.size(); i++) {
+            colorList.add(body.get(i).getAreaName());
+        }
+
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, colorList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnRegNoName1.setAdapter(dataAdapter2);
+        spnRegNoName1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i >= 0) {
+                    SELECTED_REGNO_1 = body.get(i).getAreaName();
+                } else {
+                    SELECTED_REGNO_1 = "";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+/*    public void getAllVehicleType() {
 
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
         Call<List<VehicleType>> vehicleTypes = retrofitService.GetVehicleTypes();
@@ -798,34 +961,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     }
 
 
-    public void addVehicleTypeNamePresentSpinnerData(final List<VehicleType> body) {
-        List<String> vehicleList = new ArrayList<>();
-        vehicleList.add(0,selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            vehicleList.add(i+1,body.get(i).getVehicleTypeName());
-        }
 
-
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, vehicleList);
-        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnVehicleType.setAdapter(dataAdapter2);
-        spnVehicleType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i >= 1) {
-                    SELECTED_VEHICLETYPE_ID = body.get(i).getId();
-                    getAllVehicleModel(body.get(i-1).getId());
-                } else {
-                    SELECTED_VEHICLETYPE_ID = 0;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-    }
 
     public void getAllVehicleModel(int id) {
 
@@ -851,32 +987,6 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     }
 
-    public void addVehicleMadyBySpinnerData(final List<VehicleModel> body) {
-        List<String> vehicleMadyBy = new ArrayList<>();
-        List<String> vehicleIcon = new ArrayList<>();
-        vehicleMadyBy.add(0,selectOne);
-        vehicleIcon.add(0,"");
-        for (int i = 0; i < body.size(); i++) {
-            vehicleMadyBy.add(i+1,body.get(i).getModelName());
-            vehicleIcon.add(i+1,body.get(i).getImagePath());
-        }
-        CustomAdapter customAdapter=new CustomAdapter(getApplicationContext(),vehicleIcon,vehicleMadyBy);
-        spnMadeBy.setAdapter(customAdapter);
-        spnMadeBy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i >= 1) {
-                    SELECTED_VEHICLEMODEL_Name = body.get(i).getModelName();
-                } else {
-                    SELECTED_VEHICLEMODEL_Name = "";
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-    }
 
     public void getAllColor() {
 
@@ -902,41 +1012,13 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             }
         });
 
-    }
-
-    public void addColorSpinnerData(final List<Colors> body) {
-        List<String> colorList = new ArrayList<>();
-        List<String> colorCode = new ArrayList<>();
-        colorList.add(0,selectOne);
-        colorCode.add(0,"#FFFFFF");
-        for (int i = 0; i < body.size(); i++) {
-            colorList.add(i+1,body.get(i).getColorName());
-            colorCode.add(i+1,body.get(i).getColorCode());
-        }
-
-
-        CustomColorAdapter customAdapter=new CustomColorAdapter(getApplicationContext(),colorList,colorCode);
-        spnColor.setAdapter(customAdapter);
-        spnColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i >= 1) {
-                    SELECTED_COLOR_ID = body.get(i).getId();
-                } else {
-                    SELECTED_COLOR_ID = 0;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-    }
+    }*/
 
 
 
-    public void GetAllMetropolitanArea() {
+
+
+   /* public void GetAllMetropolitanArea() {
 
 
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
@@ -960,38 +1042,12 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             }
         });
 
-    }
-
-    public void addMetroAreaSpinnerData(final List<MetroAreaModel> body) {
-        List<String> colorList = new ArrayList<>();
-        //colorList.add(0,selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            colorList.add(body.get(i).getAreaName());
-        }
+    }*/
 
 
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, colorList);
-        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnRegNoName1.setAdapter(dataAdapter2);
-        spnRegNoName1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               if (i >= 0) {
-                    SELECTED_REGNO_1 = body.get(i).getAreaName();
-                } else {
-                   SELECTED_REGNO_1 = "";
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-    }
 
 
-    public void GetAllRegistrationLevel() {
+    /*public void GetAllRegistrationLevel() {
 
 
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
@@ -1015,9 +1071,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             }
         });
 
-    }
+    }*/
 
-    public void addRegistrationLevelModelSpinnerData(final List<RegistrationLevelModel> body) {
+    public void addRegistrationLevelModelSpinnerData(final List<RegistrationLevel> body) {
 
         List<String> colorList = new ArrayList<>();
         for (int i = 0; i < body.size(); i++) {
@@ -1031,10 +1087,10 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         spnRegNoName2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               if (i >= 0) {
+                if (i >= 0) {
                     SELECTED_REGNO_2 = body.get(i).getLevelName();
                 } else {
-                   SELECTED_REGNO_2 = "";
+                    SELECTED_REGNO_2 = "";
                 }
             }
 
@@ -1046,7 +1102,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     }
 
 
-    public void getDistrict( ) {
+  /*  public void getDistrict( ) {
 
 
             RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
@@ -1070,13 +1126,13 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
                 }
             });
 
-    }
+    }*/
 
     public void addDistrictSpinnerData(final List<District> body) {
         List<String> districtList = new ArrayList<>();
-        districtList.add(0,selectOne);
+        districtList.add(0, selectOne);
         for (int i = 0; i < body.size(); i++) {
-            districtList.add(i+1,body.get(i).getDistrictName());
+            districtList.add(i + 1, body.get(i).getDistrictName());
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, districtList);
@@ -1088,7 +1144,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
                 try {
                     if (i >= 1) {
                         SELECTED_DISTRICT_ID = body.get(i).getId();
-                        getAllThana(body.get(i).getId());
+                        //getAllThana(body.get(i).getId());
                     } else {
                         SELECTED_DISTRICT_ID = 0;
                     }
@@ -1105,7 +1161,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         });
     }
 
-    public void getAllThana(int id) {
+   /* public void getAllThana(int id) {
 
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
         Call<List<Thana>> thana = retrofitService.GetThanaByDistrictId(id);
@@ -1128,14 +1184,14 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             }
         });
 
-    }
+    }*/
 
 
     public void addThanaSpinnerData(final List<Thana> body) {
         List<String> thanaList = new ArrayList<>();
-        thanaList.add(0,selectOne);
+        thanaList.add(0, selectOne);
         for (int i = 0; i < body.size(); i++) {
-            thanaList.add(i+1,body.get(i).getThanaName());
+            thanaList.add(i + 1, body.get(i).getThanaName());
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, thanaList);
@@ -1157,7 +1213,6 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             }
         });
     }
-
 
 
     //InformationEntryActivity
@@ -1192,14 +1247,14 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         etVehicleDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDate(mYear,mMonth,mDay,R.style.DatePickerSpinner);
+                showDate(mYear, mMonth, mDay, R.style.DatePickerSpinner);
             }
         });
 
         etMadeDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDate(mYear,mMonth,mDay,R.style.DatePickerSpinner);
+                showDate(mYear, mMonth, mDay, R.style.DatePickerSpinner);
             }
         });
 
@@ -1237,8 +1292,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 String status = "AM";
 
-                if(hour > 11)
-                {
+                if (hour > 11) {
                     // If the hour is greater than or equal to 12
                     // Then the current AM PM status is PM
                     status = "PM";
@@ -1247,16 +1301,15 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
                 // Initialize a new variable to hold 12 hour format hour value
                 int hour_of_12_hour_format;
 
-                if(hour > 11){
+                if (hour > 11) {
 
                     // If the hour is greater than or equal to 12
                     // Then we subtract 12 from the hour to make it 12 hour format time
                     hour_of_12_hour_format = hour - 12;
-                }
-                else {
+                } else {
                     hour_of_12_hour_format = hour;
                 }
-                etVehicleTime.setText(selectedHour + ":" + selectedMinute+ " "+status);
+                etVehicleTime.setText(selectedHour + ":" + selectedMinute + " " + status);
             }
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
