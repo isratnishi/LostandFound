@@ -17,9 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:gravity="center_horizontal"
-        android:text="লষ্ট এ্যান্ড ফাউণ্ড অ্যাপস্‌ সংক্রান্ত যেকোন তথ্য বা সহায়তার জন্য অ্যাপস্‌ সাপোর্ট সেন্টারে কর্তব্যরত প্রতিনিধির সাথে নিচের নম্বরে যোগাযোগ করুন-
-+৮৮০১৭৩৭৩৬৬০২৮
-এছাড়া আমাদের সাথে যোগাযোগের জন্য নিচের মাধ্যমগুলো ব্যবহার করতে পারেন"
+        android:text="@string/support_msg"
         android:textColor="@color/blue_400"
         android:textSize="18dp" />
 
@@ -35,10 +33,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvLiveChat"
-            style="@style/HomeItemCard"
+            style="@style/SupportItemCard"
             android:layout_alignParentLeft="true"
             app:cardCornerRadius="10dp"
-            app:cardElevation="8dp"
+            app:cardElevation="4dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
 
@@ -74,10 +72,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvCall"
-            style="@style/HomeItemCard"
+            style="@style/SupportItemCard"
             android:layout_alignParentRight="true"
             app:cardCornerRadius="10dp"
-            app:cardElevation="8dp"
+            app:cardElevation="4dp"
 
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
@@ -135,9 +133,9 @@
     <androidx.cardview.widget.CardView
 
         android:id="@+id/cvEmail"
-        style="@style/HomeItemCard"
+        style="@style/SupportItemCard"
         app:cardCornerRadius="10dp"
-        app:cardElevation="8dp"
+        app:cardElevation="4dp"
         app:layout_columnWeight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -18,6 +18,7 @@ import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.Model.User.UserAuthModel;
 import com.opus_bd.lostandfound.Model.User.UserLoginModel;
+import com.opus_bd.lostandfound.Model.Vehichel.VehicleMasterModel;
 
 import java.util.List;
 
@@ -90,6 +91,10 @@ public interface RetrofitService {
 
     @GET("api/DocumentMaster/GetOccupationInfo")
     Call<List<Occupation>> GetOccupationInfo();
+
+
+    @GET("api/DocumentMaster/GetVehicleMasterData")
+    Call<VehicleMasterModel> GetVehicleMasterData();
 
 
 

@@ -9,15 +9,21 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.app.Service;
+import android.app.admin.DeviceAdminReceiver;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.DhcpInfo;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.telephony.SubscriptionInfo;
+import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 import android.util.Log;
@@ -26,7 +32,15 @@ import android.widget.TextView;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Utils.Utilities;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.net.NetworkInterface;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,11 +56,16 @@ public class HardwareInformationActivity extends AppCompatActivity {
     @BindView(R.id.IPAddress)
     TextView IPAddress;
     @BindView(R.id.WiFiMACAddress)
-    TextView WiFiMACAddress;    @BindView(R.id.OperatorName)
-    TextView OperatorName; @BindView(R.id.CountryCode)
-    TextView CountryCode;@BindView(R.id.DNSAddress)
-    TextView DNSAddress;@BindView(R.id.MotherBoard)
-    TextView MotherBoard;@BindView(R.id.Processor)
+    TextView WiFiMACAddress;
+    @BindView(R.id.OperatorName)
+    TextView OperatorName;
+    @BindView(R.id.CountryCode)
+    TextView CountryCode;
+    @BindView(R.id.DNSAddress)
+    TextView DNSAddress;
+    @BindView(R.id.MotherBoard)
+    TextView MotherBoard;
+    @BindView(R.id.Processor)
     TextView Processor;
     TelephonyManager telephonyManager;
     private String url = "https://api.ipify.org";
@@ -60,22 +79,24 @@ public class HardwareInformationActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         MotherBoard.setText(Build.BOARD);
 
-        try{
+
+        try {
             WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+            //  WifiInfo wifiInfo=wm.getConnectionInfo().getSSID(.;
             assert wm != null;
-            Utilities.showLogcatMessage("ip"+wm.getConnectionInfo().getIpAddress());
-            Utilities.showLogcatMessage("wifi"+wm.getConnectionInfo().getMacAddress());
+            Utilities.showLogcatMessage("ip" + wm.getConnectionInfo().getIpAddress());
+            Utilities.showLogcatMessage("wifi" + wm.getConnectionInfo().getMacAddress());
          /*   String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
             String wifi = Formatter.formatIpAddress(Integer.parseInt(wm.getConnectionInfo().getMacAddress()));*/
 
             String ipAddress = Formatter.formatIpAddress(wm.getConnectionInfo().getNetworkId());
 
 
-            WiFiMACAddress.setText(String.valueOf(wm.getConnectionInfo().getMacAddress()));
+            //  WiFiMACAddress.setText(String.valueOf(wm.getConnectionInfo().getMacAddress()));
             IPAddress.setText(String.valueOf(Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress())));
-            DhcpInfo info = wm.getDhcpInfo();  }
-        catch (Exception e){
-           Utilities.showLogcatMessage("wifi"+e.toString());
+            DhcpInfo info = wm.getDhcpInfo();
+        } catch (Exception e) {
+            Utilities.showLogcatMessage("wifi" + e.toString());
         }
 
         telephonyManager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
@@ -85,24 +106,24 @@ public class HardwareInformationActivity extends AppCompatActivity {
 
         /* you can print your active network via using below */
         Log.i("myNetworkType: ", connectivityManager.getActiveNetworkInfo().getTypeName());
-        WifiManager wifiManager= (WifiManager) getApplicationContext().getSystemService(getApplicationContext().WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(getApplicationContext().WIFI_SERVICE);
 
 
        /* Log.i("routes ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getRoutes().toString());
         Log.i("domains ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDomains().toString());
         Log.i("ip address ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getLinkAddresses().toString());
         Log.i("dns address ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
-     */   DNSAddress.setText(connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
+     */
+        DNSAddress.setText(connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
 
 
-        if(connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI) {
+        if (connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI) {
             DNSAddress.setText(connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
 
             Log.i("myType ", "wifi");
-            DhcpInfo d =wifiManager.getDhcpInfo();
-            Log.i("info", d.toString()+"");
-        }
-        else if(connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_ETHERNET) {
+            DhcpInfo d = wifiManager.getDhcpInfo();
+            Log.i("info", d.toString() + "");
+        } else if (connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_ETHERNET) {
             /* there is no EthernetManager class, there is only WifiManager. so, I used this below trick to get my IP range, dns, gateway address etc */
             DNSAddress.setText(connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
 
@@ -112,36 +133,131 @@ public class HardwareInformationActivity extends AppCompatActivity {
             Log.i("ip address ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getLinkAddresses().toString());
             Log.i("dns address ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
 
-        }
-        else {
+        } else {
 
         }
-
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            List<SubscriptionInfo> subscription = SubscriptionManager.from(getApplicationContext()).getActiveSubscriptionInfoList();
+            for (int i = 0; i < subscription.size(); i++) {
+                SubscriptionInfo info = subscription.get(i);
+                Utilities.showLogcatMessage("number " + info.getSubscriptionId());
+                Utilities.showLogcatMessage("network name : " + info.getCarrierName());
+                Utilities.showLogcatMessage("country iso " + info.getCountryIso());
+            }
+        }
 
         //	getDataFromUrl(); // Connect url from the main thread for get data this will throw NetworkOnMainThreadExcection
 
-       // new GetJSONTask().execute(url); //execute asynctask object this will resolve NetworkOnMainThreadExcection
+        // new GetJSONTask().execute(url); //execute asynctask object this will resolve NetworkOnMainThreadExcection
         Processor.setText(getInfo());
+        DeviceAdminReceiver admin = new DeviceAdminReceiver();
+        DevicePolicyManager devicepolicymanager = admin.getManager(getApplicationContext());
+        ComponentName name1 = admin.getWho(getApplicationContext());
+        if (devicepolicymanager.isAdminActive(name1)) {
+            String mac_address = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                mac_address = devicepolicymanager.getWifiMacAddress(name1);
+                WiFiMACAddress.setText(mac_address);
+            }
+
+
+        } else {
+            WiFiMACAddress.setText(getMacAddr());
+        }
+
+    }
+
+    public static String getMacAddr() {
+        try {
+            List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface nif : all) {
+                if (!nif.getName().equalsIgnoreCase("wlan0")) continue;
+
+                byte[] macBytes = nif.getHardwareAddress();
+                if (macBytes == null) {
+                    return "";
+                }
+
+                StringBuilder res1 = new StringBuilder();
+                for (byte b : macBytes) {
+                    // res1.append(Integer.toHexString(b & 0xFF) + ":");
+                    res1.append(String.format("%02X:", b));
+                }
+
+                if (res1.length() > 0) {
+                    res1.deleteCharAt(res1.length() - 1);
+                }
+                return res1.toString();
+            }
+        } catch (Exception ex) {
+            //handle exception
+        }
+        return "";
+    }
+
+
+    public static Map<String, String> getCPUInfo() throws IOException {
+
+        BufferedReader br = new BufferedReader(new FileReader("/proc/cpuinfo"));
+
+        String str;
+
+        Map<String, String> output = new HashMap<>();
+
+        while ((str = br.readLine()) != null) {
+
+            String[] data = str.split(":");
+
+            if (data.length > 1) {
+
+                String key = data[0].trim().replace(" ", "_");
+                if (key.equals("model_name")) key = "cpu_model";
+                {
+                    output.put(key, data[1].trim());
+
+                }
+
+
+            }
+
+        }
+
+        br.close();
+
+        return output;
+
     }
 
     private String getInfo() {
         StringBuffer sb = new StringBuffer();
-        sb.append(Build.CPU_ABI).append("\n");
-       /* if (new File("/proc/cpuinfo").exists()) {
+         sb.append(Build.CPU_ABI2);/*.append("\n");
+        if (new File("/proc/cpuinfo").exists()) {
             try {
                 BufferedReader br = new BufferedReader(
                         new FileReader(new File("/proc/cpuinfo")));
                 String aLine;
                 while ((aLine = br.readLine()) != null) {
-                    String[] data = aLine.split (":");
+                    String[] data = aLine.split(":");
 
                     if (data.length > 1) {
 
-                        String key = data[0].trim ().replace (" ", "_");
-                        if (key.equals ("model_name")) key = "cpu_model";
+                        String key = data[0].trim().replace(" ", "_");
+                        if (key.equals("model_name")) key = "cpu_model";
 
-                        sb.append(data[1].trim ());
+                        {
+                            sb.append(data[1].trim());
+
+                        }
 
                     }
                 }
@@ -166,10 +282,11 @@ public class HardwareInformationActivity extends AppCompatActivity {
 
 
     @OnClick(R.id.btnNext1)
-    public void btnNext1(){
-        Intent intent=new Intent(HardwareInformationActivity.this,LoginActivity.class);
+    public void btnNext1() {
+        Intent intent = new Intent(HardwareInformationActivity.this, LoginActivity.class);
         startActivity(intent);
     }
+
     // Uses AsyncTask to create a task away from the main UI thread(For Avoid
     // NetworkOnMainThreadException). This task takes a
     // URL string and uses it to create an HttpUrlConnection. Once the
@@ -200,7 +317,6 @@ public class HardwareInformationActivity extends AppCompatActivity {
     }
 
 
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void Ids() {
 
@@ -208,12 +324,11 @@ public class HardwareInformationActivity extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED) {
             // Permission is not granted
             // Ask for permision
-            ActivityCompat.requestPermissions(this,new String[] { Manifest.permission.READ_PHONE_STATE}, 1);
-        }
-        else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
+        } else {
             SubscriberID.setText(telephonyManager.getSubscriberId());
-            IMEINumber.setText(telephonyManager.getDeviceId(0));
-            SIMNumber.setText(telephonyManager.getSimSerialNumber());
+            IMEINumber.setText(telephonyManager.getDeviceId(0) + "\n" + telephonyManager.getDeviceId(1));
+            SIMNumber.setText("" + telephonyManager.getSimSerialNumber());
             OperatorName.setText(telephonyManager.getSimOperatorName());
             String locale = this.getResources().getConfiguration().locale.getDisplayCountry();
             CountryCode.setText(telephonyManager.getNetworkCountryIso());
@@ -232,7 +347,6 @@ public class HardwareInformationActivity extends AppCompatActivity {
         else {
             Utilities.showLogcatMessage(" Not Permited");
         }*/
-
 
 
     }

@@ -44,17 +44,18 @@
     <string name="investigation">তদন্তাধীন</string>
     <string name="disposal">নিষ্পত্তি</string>
     <string name="logout">লগআউট</string>
-    <string name="email">ইমেল</string>
-    <string name="email_op">ইমেল (ঐচ্ছিক)</string>
+    <string name="email">ইমেইল </string>
+    <string name="email_op">ইমেইল (ঐচ্ছিক)</string>
     <string name="field_null_error">এই ক্ষেত্রটি খালি রাখা যাবে না</string>
+
 
     <string name="please_choose_one_of_below">নীচের একটি পছন্দ করুন</string>
     <string name="purpose_of_visit">ভ্রমণের উদ্দেশ্য</string>
     <string name="please_fill_up_your_imigartion_address">আপনার ইমিগ্রেশন ঠিকানা পূরণ করুন</string>
     <string name="support">সাপোর্ট</string>
-    <string name="forget_password">পাসওয়ার্ড ভুলে গেছেন</string>
-    <string name="live_chat">সরাসরি কথোপকথন</string>
-    <string name="live_call">লাইভ কল</string>
+    <string name="forget_password">পাসওয়ার্ড ভুলে গেছেন ?</string>
+    <string name="live_chat">লাইভ চাটিং</string>
+    <string name="live_call">লাইভ কলিং</string>
     <string name="welcome_to_lost_and_found_application">"লস্ট এন্ড ফাউন্ড অ্যাপ্লিকেশনে আপনাকে স্বাগতম                                লস্ট এন্ড ফাউন্ড অ্যাপ্লিকেশনে আপনাকে স্বাগতম "</string>
     <string name="vehicle">যানবাহন</string>
     <string name="information_entry">তথ্য এন্ট্রি</string>
@@ -626,7 +627,7 @@
         <item>মেয়েলি(পুরুষ)</item>
         <item>পুরুষালী (মহিলা)</item>
         <item>বিস্ময়কর</item>
-        <item>পোরান ঢাকা আঞ্চলিকতা</item>
+        <item>পুরান ঢাকা আঞ্চলিকতা</item>
         <item>চট্টগ্রাম আঞ্চলিকতা</item>
         <item>বরিশাল আঞ্চলিকতা</item>
         <item>খুলনা আঞ্চলিকতা</item>
@@ -985,6 +986,7 @@
     <string name="description_of_teeth">দাঁতের বর্ণনা</string>
     <string name="special_physical_description">বিশেষ শারিরিক বর্ণনা</string>
     <string name="identification_mark">সনাক্তকারী চিহ্ন</string>
+    <string name="others_identification_mark">অন্যান্য সনাক্তকারী চিহ্ন</string>
     <string name="dress_descrioption">পোশাকের বিবরণ</string>
     <string name="dhead">মাথায়</string>
     <string name="dcolor">রং</string>
@@ -1150,6 +1152,10 @@
     <string name="size">আকার</string>
     <string name="carat">ক্যারেট</string>
     <string name="glass_information">চশমার তথ্য</string>
+    <string name="thanks">ধন্যবাদ</string>
+    <string name="support_msg">লষ্ট এ্যান্ড ফাউণ্ড অ্যাপস্‌ সংক্রান্ত যেকোন তথ্য বা সহায়তার জন্য অ্যাপস্‌ সাপোর্ট সেন্টারে কর্তব্যরত প্রতিনিধির সাথে নিচের নম্বরে যোগাযোগ করুন- +৮৮০১৭৩৭৩৬৬০২৮ এছাড়া আমাদের সাথে যোগাযোগের জন্য নিচের মাধ্যমগুলো ব্যবহার করতে পারেন</string>
+    <string name="select_item_for_support">একটি নির্বাচন করুন</string>
+    <string name="date_of_birth">Date of Birth</string>
 
 
 </resources>
