@@ -6,15 +6,19 @@ import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentCategory;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
+import com.opus_bd.lostandfound.Model.Documentaion.MDPersonalInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.MetroAreaModel;
 import com.opus_bd.lostandfound.Model.Documentaion.NationalIdentityTypesModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Occupation;
 import com.opus_bd.lostandfound.Model.Documentaion.RegistrationLevelModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
 import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
+import com.opus_bd.lostandfound.Model.DressInfo.MDDressInformationModel;
 import com.opus_bd.lostandfound.Model.GlobalData.District;
 import com.opus_bd.lostandfound.Model.GlobalData.Division;
+import com.opus_bd.lostandfound.Model.GlobalData.MDAddressInforamtionModel;
 import com.opus_bd.lostandfound.Model.GlobalData.Thana;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.MDPhysicalInformationModel;
 import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.Model.User.UserAuthModel;
 import com.opus_bd.lostandfound.Model.User.UserLoginModel;
@@ -96,6 +100,16 @@ public interface RetrofitService {
     @GET("api/DocumentMaster/GetVehicleMasterData")
     Call<VehicleMasterModel> GetVehicleMasterData();
 
+    @GET("api/ExtendMaster/GetDressInformationMasterData")
+    Call<MDDressInformationModel> GetDressInformationMasterData();
 
+    @GET("api/ExtendMaster/GetPhysicalInformationMasterData")
+    Call<MDPhysicalInformationModel> GetPhysicalInformationMasterData();
+
+    @GET("api/ExtendMaster/GetPersonalInformationMasterData")
+    Call<MDPersonalInformationModel> GetPersonalInformationMasterData();
+
+    @GET("api/AddressMaster/GetAddressInformationMasterData")
+    Call<MDAddressInforamtionModel> GetAddressInformationMasterData();
 
 }

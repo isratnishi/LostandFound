@@ -11,7 +11,7 @@ public class ReligionCust {
     private Integer religionId;
     @SerializedName("religion")
     @Expose
-    private Religion_ religion;
+    private Religion religion;
     @SerializedName("custName")
     @Expose
     private String custName;
@@ -48,11 +48,11 @@ public class ReligionCust {
         this.religionId = religionId;
     }
 
-    public Religion_ getReligion() {
+    public Religion getReligion() {
         return religion;
     }
 
-    public void setReligion(Religion_ religion) {
+    public void setReligion(Religion religion) {
         this.religion = religion;
     }
 
