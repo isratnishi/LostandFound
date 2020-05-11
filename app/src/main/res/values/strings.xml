@@ -197,6 +197,9 @@
     <string name="money_information">Money Inforamtion</string>
     <string name="shoes_information">Shoes Inforamtion</string>
     <string name="electronics_information">Electronics Inforamtion</string>
+    <string name="sorothal">Sorothal Report</string>
+    <string name="lostfoundreport">Theft/Lost/Rescue</string>
+    <string name="searchwithphoto">Search for identifiers with photoes</string>
 
     <string-array name="array_electronics_brand">
         <item>@string/select_option</item>
@@ -461,14 +464,14 @@
     </string-array>
 
     <string-array name="array_phone_type">
-    <item>@string/select_option</item>
-    <item>Tap Phone</item>
-    <item>Smart Phone</item>
-    <item>Codeless Phone</item>
-    <item>TNT Phone</item>
-    <item>Phone Accessories</item>
-    <item>@string/spn_others</item>
-</string-array>
+        <item>@string/select_option</item>
+        <item>Tap Phone</item>
+        <item>Smart Phone</item>
+        <item>Codeless Phone</item>
+        <item>TNT Phone</item>
+        <item>Phone Accessories</item>
+        <item>@string/spn_others</item>
+    </string-array>
     <string-array name="array_phone_accessories_type">
         <item>@string/select_option</item>
         <item>Headphone</item>
@@ -673,7 +676,7 @@
         <item>Passport </item>
     </string-array>
 
-    <string-array name = "array_doc_type">
+    <string-array name="array_doc_type">
         <item> @string/select_list </item>
         <item> National Identity Card </item>
         <item> @string/edu_certificate </item>
@@ -685,7 +688,7 @@
         <item> Invoice </item>
         <item> @string/spn_others </item>
     </string-array>
-<string name="edu_certificate">Certificate of Education</string>
+    <string name="edu_certificate">Certificate of Education</string>
 
     <string-array name="array_beard">
         <item>@string/select_option</item>
