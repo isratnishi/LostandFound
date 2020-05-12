@@ -702,7 +702,7 @@
 
     <string-array name="array_body_color">
         <item>@string/select_option</item>
-        <item>Kalo</item>
+        <item>Black</item>
         <item>Bright</item>
         <item>Copper</item>
         <item>Green</item>
