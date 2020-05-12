@@ -22,6 +22,12 @@ public class MDPersonalInformationModel {
     @SerializedName("occupations")
     @Expose
     private List<Occupation> occupations = null;
+    @SerializedName("habits")
+    @Expose
+    private List<Habit> habits = null;
+    @SerializedName("speeches")
+    @Expose
+    private List<Speech> speeches = null;
 
     public List<Religion> getReligions() {
         return religions;
@@ -61,6 +67,22 @@ public class MDPersonalInformationModel {
 
     public void setOccupations(List<Occupation> occupations) {
         this.occupations = occupations;
+    }
+
+    public List<Habit> getHabits() {
+        return habits;
+    }
+
+    public void setHabits(List<Habit> habits) {
+        this.habits = habits;
+    }
+
+    public List<Speech> getSpeeches() {
+        return speeches;
+    }
+
+    public void setSpeeches(List<Speech> speeches) {
+        this.speeches = speeches;
     }
 
 }

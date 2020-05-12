@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -48,10 +49,38 @@ import com.opus_bd.lostandfound.Adapter.Extra.AddressListAdapter;
 import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
+import com.opus_bd.lostandfound.Model.Documentaion.Habit;
+import com.opus_bd.lostandfound.Model.Documentaion.MDPersonalInformationModel;
+import com.opus_bd.lostandfound.Model.Documentaion.MaritalStatus;
 import com.opus_bd.lostandfound.Model.Documentaion.Occupation;
+import com.opus_bd.lostandfound.Model.Documentaion.RelationType;
+import com.opus_bd.lostandfound.Model.Documentaion.Religion;
+import com.opus_bd.lostandfound.Model.Documentaion.Speech;
+import com.opus_bd.lostandfound.Model.DressInfo.InTheBody;
+import com.opus_bd.lostandfound.Model.DressInfo.InTheHead;
+import com.opus_bd.lostandfound.Model.DressInfo.InTheLeg;
+import com.opus_bd.lostandfound.Model.DressInfo.InTheThroat;
+import com.opus_bd.lostandfound.Model.DressInfo.InTheWaist;
+import com.opus_bd.lostandfound.Model.DressInfo.MDDressInformationModel;
 import com.opus_bd.lostandfound.Model.ExtraModel.AdreessList;
-import com.opus_bd.lostandfound.Model.GlobalData.District;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.BeardType;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.BodyChinType;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.BodyColor;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.EarType;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.EyeType;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.FaceShapeType;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.ForeHeadType;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.HairType;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.MDPhysicalInformationModel;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.MoustacheType;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.NeckType;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.NoseType;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.SpecialBodyCondition;
+import com.opus_bd.lostandfound.Model.PhysicalInfo.TeethType;
+import com.opus_bd.lostandfound.Model.Vehichel.District;
 import com.opus_bd.lostandfound.Model.GlobalData.Thana;
+import com.opus_bd.lostandfound.Model.Vehichel.Color;
+import com.opus_bd.lostandfound.Model.Vehichel.VehicleMasterModel;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
@@ -80,6 +109,9 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.KEY_State;
+import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.SHARED_PREF_NAME;
 
 public class UnknownManActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     @BindView(R.id.llInput)
@@ -212,6 +244,9 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     TextView tvBloodGroup;
     @BindView(R.id.spnOcupation)
     Spinner spnOcupation;
+    @BindView(R.id.spnRelationWith)
+    Spinner spnRelationWith;
+
     @BindView(R.id.tvOcupation)
     TextView tvOcupation;
     @BindView(R.id.spnMaritalStatus)
@@ -338,46 +373,52 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     TextView tvSpecial_physical_description;
 
     @BindView(R.id.spnDHead)
-    Spinner etDHead;
+    Spinner spnDHead;
     @BindView(R.id.tvDHead)
     TextView tvDHead;
     @BindView(R.id.spnDHeadColor)
-    Spinner etDHeadColor;
+    Spinner spnDHeadColor;
     @BindView(R.id.tvDHeadColor)
     TextView tvDHeadColor;
     @BindView(R.id.spnDEye)
-    Spinner etDEye;
+    Spinner spnDEye;
     @BindView(R.id.tvDEye)
     TextView tvDEye;
     @BindView(R.id.spnDEyeColor)
-    Spinner etDEyeColor;
+    Spinner spnDEyeColor;
     @BindView(R.id.tvDEyeColor)
     TextView tvDEyeColor;
     @BindView(R.id.spnDThroat)
-    Spinner etDThroat;
+    Spinner spnDThroat;
     @BindView(R.id.tvDThroat)
     TextView tvDThroat;
     @BindView(R.id.spnDThroatColor)
-    Spinner etDThroatColor;
+    Spinner spnDThroatColor;
     @BindView(R.id.tvDThroatColor)
     TextView tvDThroatColor;
     @BindView(R.id.spnDBody)
-    Spinner etDBody;
+    Spinner spnDBody;
     @BindView(R.id.tvDBody)
     TextView tvDBody;
     @BindView(R.id.spnDBodyColor)
-    Spinner etDBodyColor;
+    Spinner spnDBodyColor;
     @BindView(R.id.tvDBodyColor)
     TextView tvDBodyColor;
     @BindView(R.id.spnDWaist)
-    Spinner etDWaist;
+    Spinner spnDWaist;
     @BindView(R.id.tvDWaist)
     TextView tvDWaist;
     @BindView(R.id.spnDWaistColor)
-    Spinner etDWaistColor; @BindView(R.id.spnDLegColor)
+    Spinner spnDWaistColor;
+    @BindView(R.id.spnDLeg)
+    Spinner spnDLeg;
+
+    @BindView(R.id.spnDLegColor)
     Spinner spnDLegColor;
+
     @BindView(R.id.tvDWaistColor)
     TextView tvDWaistColor;
+
 
 
     @BindView(R.id.tvPhotesType)
@@ -431,14 +472,42 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     ArrayList<District> districtArrayList = new ArrayList<>();
     ArrayList<Thana> thanaArrayList = new ArrayList<>();
     ArrayList<Occupation> occupationArrayList = new ArrayList<>();
+    ArrayList<RelationType> relationTypeArrayList = new ArrayList<>();
+    ArrayList<Religion> religionArrayList = new ArrayList<>();
+    ArrayList<MaritalStatus> maritalStatuses = new ArrayList<>();
+    ArrayList<Habit> habitArrayList = new ArrayList<>();
+    ArrayList<Speech> speechArrayList = new ArrayList<>();
+    ArrayList<EyeType> eyeTypeArrayList = new ArrayList<>();
+    ArrayList<NoseType> noseTypeArrayList = new ArrayList<>();
+    ArrayList<HairType> hairTypeArrayList = new ArrayList<>();
+    ArrayList<ForeHeadType> foreHeadTypes = new ArrayList<>();
+    ArrayList<BeardType> beardTypeArrayList = new ArrayList<>();
+    ArrayList<SpecialBodyCondition> specialBodyConditionArrayList = new ArrayList<>();
+    ArrayList<FaceShapeType> faceShapeTypeArrayList = new ArrayList<>();
+    ArrayList<BodyChinType> bodyChinTypeArrayList = new ArrayList<>();
+    ArrayList<BodyColor> bodyColorArrayList = new ArrayList<>();
+    ArrayList<MoustacheType> moustacheTypeArrayList = new ArrayList<>();
+    ArrayList<EarType> earTypeArrayList = new ArrayList<>();
+    ArrayList<NeckType> neckTypeArrayList = new ArrayList<>();
+    ArrayList<TeethType> teethTypeArrayList = new ArrayList<>();
+    ArrayList<InTheHead> inTheHeadArrayList = new ArrayList<>();
     ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
     public int SELECTED_DISTRICT_ID;
     public int SELECTED_DISTRICT_ID_LP;
     public int SELECTED_THANA_ID;
     public int SELECTED_THANA_ID_LP;
     public int SELECTED_OCCUPATION_ID;
+    public int SELECTED_RELATION_TYPE_ID;
+    public int SELECTED_RELIGION_ID;
+    public int SELECTED_MARITAL_STATUS_ID;
+    public int SELECTED_HABIT_ID;
+    public int SELECTED_SPEECH_ID;
+    public int SELECTED_EYE_TYPE_ID,SELECTED_NOSE_TYPE_ID,SELECTED_HAIR_TYPE_ID,SELECTED_FOREHEAD_TYPE_ID,SELECTED_BEARD_TYPE_ID,
+    SELECTED_PHYSICAL_CONDITION_ID,SELECTED_FACE_SHAPE_ID,SELECTED_BODY_CHIN_ID,SELECTED_BODY_COLOR_ID,SELECTED_MOUSTACE_ID,SELECTED_EAR_ID,
+    SELECTED_NECK_ID,SELECTED_TEETH_ID;
+    public int SELECTED_INBODY_ID,SELECTED_INHEAD_ID,SELECTED_INEYE_ID,SELECTED_INTHROAT_ID,SELECTED_INWAIST_ID,SELECTED_INLEGS_ID;
     String selectOne;
-    ArrayList<Colors> colorArrayList = new ArrayList<>();
+    ArrayList<Color> colorArrayList = new ArrayList<>();
 
 
     //Address List
@@ -450,11 +519,22 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     ImageView ivImage;@BindView(R.id.gv)
     GridView gvGallery;
     private GalleryAdapter galleryAdapter;
+    ProgressDialog progress;
+    public String Language,english,bangla;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unknown_man);
         ButterKnife.bind(this);
+        Boolean languageStatus = getSharedPrefValue();
+        english=getResources().getString(R.string.english);
+        bangla=getResources().getString(R.string.bangla);
+        if (languageStatus) {
+            Language=english;
+        } else {
+            Language=bangla;
+        }
+        setProgress();
         mcvReport.setVisibility(View.GONE);
         llPersonInfromation.setVisibility(View.VISIBLE);
         Glide.with(this).load(R.drawable.ic_drop_up).into(ivTPersonInfromation);
@@ -468,11 +548,12 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         //date picker
         initializeVariables();
         selectOne = getResources().getString(R.string.select_option);
-        getOccupation();
-        getDistrict();
-        getAllColor();
         intRecyclerView();
 
+        getMDPersonalInfo();
+        getMDDressInfo();
+        getMDGlobalInfo();
+        getMDPhysicalInfo();
 
     }
 
@@ -544,6 +625,11 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.ENGLISH));
         else
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
+    }
+
+    private boolean getSharedPrefValue() {
+        SharedPreferences tprefs = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        return tprefs.getBoolean(KEY_State, true);
     }
 
     @OnClick(R.id.ivTPersonInfromation)
@@ -718,33 +804,796 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         }
 
     }
-    public void getAllColor() {
 
+    public void setProgress() {
+        progress = new ProgressDialog(this);
+        progress.setMessage("Loading.... ");
+        progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progress.setIndeterminate(true);
+    }
 
+    public void getMDPersonalInfo() {
+
+        progress.show();
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-        Call<List<Colors>> colors = retrofitService.GetColors();
-        colors.enqueue(new Callback<List<Colors>>() {
+        Call<MDPersonalInformationModel> mdPersonalInformationModelCall = retrofitService.GetPersonalInformationMasterData();
+        mdPersonalInformationModelCall.enqueue(new Callback<MDPersonalInformationModel>() {
             @Override
-            public void onResponse(Call<List<Colors>> call, Response<List<Colors>> response) {
+            public void onResponse(Call<MDPersonalInformationModel> call, Response<MDPersonalInformationModel> response) {
 
                 if (response.body() != null) {
-
-                    colorArrayList.clear();
-                    colorArrayList.addAll(response.body());
-
-                    addColorSpinnerData(response.body());
+                    progress.dismiss();
+                    addOccupationSpinnerData(response.body().getOccupations());
+                    addRelationTypeSpinnerData(response.body().getRelationTypes());
+                    addReligionSpinnerData(response.body().getReligions());
+                    addMaritalStatusSpinnerData(response.body().getMaritalStatuses());
+                    addHabitSpinnerData(response.body().getHabits());
+                    addSpeechSpinnerData(response.body().getSpeeches());
+                } else {
+                    progress.dismiss();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Colors>> call, Throwable t) {
+            public void onFailure(Call<MDPersonalInformationModel> call, Throwable t) {
+                progress.dismiss();
                 Toast.makeText(UnknownManActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
-    public void addColorSpinnerData(final List<Colors> body) {
+    public void getMDGlobalInfo() {
+
+        progress.show();
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<VehicleMasterModel> registrationRequest = retrofitService.GetVehicleMasterData();
+        registrationRequest.enqueue(new Callback<VehicleMasterModel>() {
+            @Override
+            public void onResponse(Call<VehicleMasterModel> call, Response<VehicleMasterModel> response) {
+
+                if (response.body() != null) {
+                    progress.dismiss();
+
+                    addDistrictSpinnerData(response.body().getDistricts());
+                    addDistrictSpinnerDataLP(response.body().getDistricts());
+                    addColorSpinnerData(response.body().getColors());
+
+                } else {
+                    progress.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<VehicleMasterModel> call, Throwable t) {
+                progress.dismiss();
+                Toast.makeText(UnknownManActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void getMDPhysicalInfo() {
+        progress.show();
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<MDPhysicalInformationModel> mdPersonalInformationModelCall = retrofitService.GetPhysicalInformationMasterData();
+        mdPersonalInformationModelCall.enqueue(new Callback<MDPhysicalInformationModel>() {
+            @Override
+            public void onResponse(Call<MDPhysicalInformationModel> call, Response<MDPhysicalInformationModel> response) {
+
+                if (response.body() != null) {
+                    progress.dismiss();
+                    addEyeSpinnerData(response.body().getEyeTypes());
+                    addNoseSpinnerData(response.body().getNoseTypes());
+                    addHairSpinnerData(response.body().getHairTypes());
+                    addForeHeadSpinnerData(response.body().getForeHeadTypes());
+                    addBeardSpinnerData(response.body().getBeardTypes());
+                    addFaceShapeSpinnerData(response.body().getFaceShapeTypes());
+                    addBodyChinSpinnerData(response.body().getBodyChinTypes());
+                    addBodyColorSpinnerData(response.body().getBodyColors());
+                    addMustaceSpinnerData(response.body().getMoustacheTypes());
+                    addEarsSpinnerData(response.body().getEarTypes());
+                    addNeckSpinnerData(response.body().getNeckTypes());
+                    addTeethSpinnerData(response.body().getTeethTypes());
+                    addSpecialBodyConditionSpinnerData(response.body().getSpecialBodyConditions());
+                } else {
+                    progress.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MDPhysicalInformationModel> call, Throwable t) {
+                progress.dismiss();
+                Toast.makeText(UnknownManActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void getMDDressInfo() {
+        progress.show();
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<MDDressInformationModel> mdPersonalInformationModelCall = retrofitService.GetDressInformationMasterData();
+        mdPersonalInformationModelCall.enqueue(new Callback<MDDressInformationModel>() {
+            @Override
+            public void onResponse(Call<MDDressInformationModel> call, Response<MDDressInformationModel> response) {
+
+                if (response.body() != null) {
+                    progress.dismiss();
+                    addInHeadSpinnerData(response.body().getInTheHeads());
+                    addInBodySpinnerData(response.body().getInTheBodies());
+                    addInThroadSpinnerData(response.body().getInTheThroats());
+                    addInBodySpinnerData(response.body().getInTheBodies());
+                    addInWestSpinnerData(response.body().getInTheWaists());
+
+                } else {
+                    progress.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MDDressInformationModel> call, Throwable t) {
+                progress.dismiss();
+                Toast.makeText(UnknownManActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void addEyeSpinnerData(final List<EyeType> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnEye.setAdapter(dataAdapter2);
+        spnEye.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_EYE_TYPE_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_EYE_TYPE_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+
+
+    public void addNoseSpinnerData(final List<NoseType> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnNose.setAdapter(dataAdapter2);
+        spnNose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_NOSE_TYPE_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_NOSE_TYPE_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addHairSpinnerData(final List<HairType> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnHair.setAdapter(dataAdapter2);
+        spnHair.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_HAIR_TYPE_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_HAIR_TYPE_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addForeHeadSpinnerData(final List<ForeHeadType> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnForhead.setAdapter(dataAdapter2);
+        spnForhead.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_FOREHEAD_TYPE_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_FOREHEAD_TYPE_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addBeardSpinnerData(final List<BeardType> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnBeard.setAdapter(dataAdapter2);
+        spnBeard.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_BEARD_TYPE_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_BEARD_TYPE_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addFaceShapeSpinnerData(final List<FaceShapeType> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnFaceShape.setAdapter(dataAdapter2);
+        spnFaceShape.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_FACE_SHAPE_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_FACE_SHAPE_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addBodyChinSpinnerData(final List<BodyChinType> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getChinTypeName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getChinTypeNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnChin.setAdapter(dataAdapter2);
+        spnChin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_BODY_CHIN_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_BODY_CHIN_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addBodyColorSpinnerData(final List<BodyColor> body) {
+        List<String> lstData = new ArrayList<>();
+        List<String> colorCode = new ArrayList<>();
+        lstData.add(0, selectOne);
+        colorCode.add(0, "#FFFFFF");
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getColorName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getColorNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnSkinColor.setAdapter(dataAdapter2);
+        spnSkinColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_BODY_COLOR_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_BODY_COLOR_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addMustaceSpinnerData(final List<MoustacheType> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnMustache.setAdapter(dataAdapter2);
+        spnMustache.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_MOUSTACE_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_MOUSTACE_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addEarsSpinnerData(final List<EarType> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnEar.setAdapter(dataAdapter2);
+        spnEar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_EAR_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_EAR_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addNeckSpinnerData(final List<NeckType> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnNeck.setAdapter(dataAdapter2);
+        spnNeck.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_NECK_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_NECK_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addTeethSpinnerData(final List<TeethType> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getTypeNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spndescription_of_teeth.setAdapter(dataAdapter2);
+        spndescription_of_teeth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_TEETH_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_TEETH_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addSpecialBodyConditionSpinnerData(final List<SpecialBodyCondition> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getConditionName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getConditionNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spndescription_of_teeth.setAdapter(dataAdapter2);
+        spndescription_of_teeth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_PHYSICAL_CONDITION_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_PHYSICAL_CONDITION_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addInBodySpinnerData(final List<InTheBody> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnDBody.setAdapter(dataAdapter2);
+        spnDBody.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_INBODY_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_INBODY_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addInHeadSpinnerData(final List<InTheHead> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnDHead.setAdapter(dataAdapter2);
+        spnDHead.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_INHEAD_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_INHEAD_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addInThroadSpinnerData(final List<InTheThroat> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnDThroat.setAdapter(dataAdapter2);
+        spnDThroat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_INTHROAT_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_INTHROAT_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addInWestSpinnerData(final List<InTheWaist> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnDWaist.setAdapter(dataAdapter2);
+        spnDWaist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_INWAIST_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_INWAIST_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addInLegsSpinnerData(final List<InTheLeg> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnDLeg.setAdapter(dataAdapter2);
+        spnDLeg.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_INWAIST_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_INWAIST_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+
+    public void addColorSpinnerData(final List<Color> body) {
         List<String> colorList = new ArrayList<>();
         List<String> colorCode = new ArrayList<>();
         colorList.add(0, selectOne);
@@ -756,13 +1605,13 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
 
         CustomColorAdapter customAdapter = new CustomColorAdapter(getApplicationContext(), colorList, colorCode);
-        etDBodyColor.setAdapter(customAdapter);
-        etDEyeColor.setAdapter(customAdapter);
-        etDHeadColor.setAdapter(customAdapter);
-        etDWaistColor.setAdapter(customAdapter);
-        etDThroatColor.setAdapter(customAdapter);
+        spnDBodyColor.setAdapter(customAdapter);
+        spnDEyeColor.setAdapter(customAdapter);
+        spnDHeadColor.setAdapter(customAdapter);
+        spnDWaistColor.setAdapter(customAdapter);
+        spnDThroatColor.setAdapter(customAdapter);
         spnDLegColor.setAdapter(customAdapter);
-        etDBodyColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spnDBodyColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i >= 1) {
@@ -864,16 +1713,16 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
             //tvHeight.setText(spnHeight_feet.getSelectedItem().toString());
             //tvColor.setText(etColor.getText().toString());
 
-            tvDHead.setText(etDHead.getSelectedItem().toString());
-            tvDHeadColor.setText(etDHeadColor.getSelectedItem().toString());
+            tvDHead.setText(spnDHead.getSelectedItem().toString());
+            tvDHeadColor.setText(spnDHeadColor.getSelectedItem().toString());
             tvDEye.setText(tvDEye.getText().toString());
-            tvDEyeColor.setText(etDEyeColor.getSelectedItem().toString());
-            tvDThroat.setText(etDThroat.getSelectedItem().toString());
-            tvDThroatColor.setText(etDThroatColor.getSelectedItem().toString());
-            tvDBody.setText(etDBody.getSelectedItem().toString());
-            tvDBodyColor.setText(etDBodyColor.getSelectedItem().toString());
-            tvDWaist.setText(etDWaist.getSelectedItem().toString());
-            tvDWaistColor.setText(etDWaistColor.getSelectedItem().toString());
+            tvDEyeColor.setText(spnDEyeColor.getSelectedItem().toString());
+            tvDThroat.setText(spnDThroat.getSelectedItem().toString());
+            tvDThroatColor.setText(spnDThroatColor.getSelectedItem().toString());
+            tvDBody.setText(spnDBody.getSelectedItem().toString());
+            tvDBodyColor.setText(spnDBodyColor.getSelectedItem().toString());
+            tvDWaist.setText(spnDWaist.getSelectedItem().toString());
+            tvDWaistColor.setText(spnDWaistColor.getSelectedItem().toString());
           /*  tvPhotesType.setText(spnPhotesType.getSelectedItem().toString());
             tvPhotoesName.setText(etPhotoesName.getText().toString());*/
 
@@ -1027,32 +1876,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
     }
 
-    public void getDistrict() {
 
-
-        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-        Call<List<District>> divisions = retrofitService.getAllDistricts();
-        divisions.enqueue(new Callback<List<District>>() {
-            @Override
-            public void onResponse(Call<List<District>> call, Response<List<District>> response) {
-
-                if (response.body() != null) {
-
-                    districtArrayList.clear();
-                    districtArrayList.addAll(response.body());
-
-                    addDistrictSpinnerData(response.body());
-                    addDistrictSpinnerDataLP(response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<District>> call, Throwable t) {
-                Toast.makeText(UnknownManActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
 
     public void addDistrictSpinnerData(final List<District> body) {
         List<String> districtList = new ArrayList<>();
@@ -1225,31 +2049,36 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         });
     }
 
+    public void addRelationTypeSpinnerData(final List<RelationType> body) {
+        List<String> relatinoTypeList = new ArrayList<>();
+        relatinoTypeList.add(0, selectOne);
+        for (int i = 0; i < body.size(); i++) {
+            relatinoTypeList.add(i + 1, body.get(i).getRelationName());
+        }
 
-    public void getOccupation() {
-
-
-        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-        Call<List<Occupation>> occupations = retrofitService.GetOccupationInfo();
-        occupations.enqueue(new Callback<List<Occupation>>() {
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, relatinoTypeList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnRelationWith.setAdapter(dataAdapter2);
+        spnRelationWith.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onResponse(Call<List<Occupation>> call, Response<List<Occupation>> response) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_RELATION_TYPE_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_RELATION_TYPE_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
 
-                if (response.body() != null) {
-
-                    occupationArrayList.clear();
-                    occupationArrayList.addAll(response.body());
-
-                    addOccupationSpinnerData(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Occupation>> call, Throwable t) {
-                Toast.makeText(UnknownManActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
-
     }
 
     public void addOccupationSpinnerData(final List<Occupation> body) {
@@ -1270,6 +2099,134 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
                         SELECTED_OCCUPATION_ID = body.get(i).getId();
                     } else {
                         SELECTED_OCCUPATION_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addReligionSpinnerData(final List<Religion> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        for (int i = 0; i < body.size(); i++) {
+            lstData.add(i + 1, body.get(i).getReligionName());
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnReligion.setAdapter(dataAdapter2);
+        spnReligion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_RELIGION_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_RELIGION_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addMaritalStatusSpinnerData(final List<MaritalStatus> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        for (int i = 0; i < body.size(); i++) {
+            lstData.add(i + 1, body.get(i).getName());
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnMaritalStatus.setAdapter(dataAdapter2);
+        spnMaritalStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_MARITAL_STATUS_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_MARITAL_STATUS_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addHabitSpinnerData(final List<Habit> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        for (int i = 0; i < body.size(); i++) {
+            lstData.add(i + 1, body.get(i).getHabitName());
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnHabits.setAdapter(dataAdapter2);
+        spnHabits.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_HABIT_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_HABIT_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void addSpeechSpinnerData(final List<Speech> body) {
+        List<String> lstData = new ArrayList<>();
+        lstData.add(0, selectOne);
+        for (int i = 0; i < body.size(); i++) {
+            lstData.add(i + 1, body.get(i).getSpeechName());
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnSpeech.setAdapter(dataAdapter2);
+        spnSpeech.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_SPEECH_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_SPEECH_ID = 0;
                     }
                 } catch (Exception e) {
                     Utilities.showLogcatMessage(" " + e.toString());
