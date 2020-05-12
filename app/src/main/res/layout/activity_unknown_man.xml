@@ -87,8 +87,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnRelationWith"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/NUMBERTYPE" />
+                                        style="@style/InformationEntryEditText"/>
                                 </TableRow>
                                 <TableRow
                                     android:layout_width="match_parent"
@@ -469,8 +468,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnReligion"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/religion" />
+                                        style="@style/InformationEntryEditText" />
                                 </TableRow>
 
 
@@ -526,8 +524,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnMaritalStatus"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_marital_status" />
+                                        style="@style/InformationEntryEditText" />
                                 </TableRow>
 
                                 <TableRow
@@ -545,8 +542,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnHabits"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_habit" />
+                                        style="@style/InformationEntryEditText" />
                                 </TableRow>
 
                                 <TableRow
@@ -564,8 +560,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnSpeech"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_speech" />
+                                        style="@style/InformationEntryEditText" />
                                 </TableRow>
 
                             </TableLayout>
@@ -853,8 +848,7 @@
                                         android:text=":" />
                                     <Spinner
                                         android:id="@+id/spnEye"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_eye" />
+                                        style="@style/InformationEntryEditText" />
 
                                 </TableRow>
 
@@ -872,8 +866,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnNose"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_nose" />
+                                        style="@style/InformationEntryEditText" />
 
                                 </TableRow>
 
@@ -892,8 +885,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnHair"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_hair" />
+                                        style="@style/InformationEntryEditText" />
                                 </TableRow>
 
                                 <TableRow
@@ -911,8 +903,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnForhead"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_forehead" />
+                                        style="@style/InformationEntryEditText" />
                                 </TableRow>
 
                                 <TableRow
@@ -929,8 +920,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnBeard"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_beard" />
+                                        style="@style/InformationEntryEditText" />
                                 </TableRow>
 
                                 <TableRow
@@ -986,8 +976,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnFaceShape"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_face_shape" />
+                                        style="@style/InformationEntryEditText" />
                                 </TableRow>
 
                                 <TableRow
@@ -1004,8 +993,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnChin"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_body_Chin" />
+                                        style="@style/InformationEntryEditText" />
                                 </TableRow>
 
 
@@ -1023,8 +1011,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnSkinColor"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_body_color" />
+                                        style="@style/InformationEntryEditText" />
 
                                 </TableRow>
 
@@ -1042,8 +1029,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnMustache"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_moustache" />
+                                        style="@style/InformationEntryEditText" />
 
                                 </TableRow>
 
@@ -1061,8 +1047,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnEar"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_ear" />
+                                        style="@style/InformationEntryEditText" />
 
                                 </TableRow>
 
@@ -1080,8 +1065,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnNeck"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_neck" />
+                                        style="@style/InformationEntryEditText" />
 
                                 </TableRow>
 
@@ -1182,8 +1166,7 @@
 
                                     <Spinner
                                         android:id="@+id/spndescription_of_teeth"
-                                        style="@style/InformationEntryEditText"
-                                        android:entries="@array/array_teeth" />
+                                        style="@style/InformationEntryEditText" />
 
                                 </TableRow>
 
@@ -1317,7 +1300,6 @@
 
                                     <Spinner
                                         android:layout_width="wrap_content"
-                                        android:entries="@array/array_in_the_head"
                                         android:id="@+id/spnDHead"
                                         android:gravity="start|center_vertical"
                                         style="@style/InformationEntryTextViewColon"
@@ -1370,7 +1352,6 @@
                                         android:text=":" />
 
                                     <Spinner
-                                        android:entries="@array/array_in_the_throt"
                                         android:id="@+id/spnDThroat"
                                         android:gravity="start|center_vertical"
                                         style="@style/InformationEntryTextViewColon"
@@ -1396,7 +1377,6 @@
                                         android:text=":" />
 
                                     <Spinner
-                                        android:entries="@array/array_in_the_body"
                                         android:id="@+id/spnDBody"
                                         android:gravity="start|center_vertical"
                                         style="@style/InformationEntryTextViewColon"
@@ -1422,7 +1402,6 @@
                                         android:text=":" />
 
                                     <Spinner
-                                        android:entries="@array/array_in_the_waist"
                                         android:id="@+id/spnDWaist"
                                         android:gravity="start|center_vertical"
                                         style="@style/InformationEntryTextViewColon"
@@ -1445,7 +1424,6 @@
                                         android:text=":" />
 
                                     <Spinner
-                                        android:entries="@array/array_in_the_legs"
                                         android:id="@+id/spnDLeg"
                                         android:gravity="start|center_vertical"
                                         style="@style/InformationEntryTextViewColon"

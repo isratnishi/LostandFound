@@ -4,17 +4,14 @@ package com.opus_bd.lostandfound.Model.Documentaion;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Occupation {
+public class Habit {
 
-    @SerializedName("name")
+    @SerializedName("habitName")
     @Expose
-    private String name;
-    @SerializedName("nameBn")
+    private String habitName;
+    @SerializedName("habitNameBn")
     @Expose
-    private String nameBn;
-    @SerializedName("imagePath")
-    @Expose
-    private String imagePath;
+    private String habitNameBn;
     @SerializedName("shortOrder")
     @Expose
     private Object shortOrder;
@@ -37,28 +34,20 @@ public class Occupation {
     @Expose
     private Object updatedBy;
 
-    public String getName() {
-        return name;
+    public String getHabitName() {
+        return habitName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setHabitName(String habitName) {
+        this.habitName = habitName;
     }
 
-    public String getNameBn() {
-        return nameBn;
+    public String getHabitNameBn() {
+        return habitNameBn;
     }
 
-    public void setNameBn(String nameBn) {
-        this.nameBn = nameBn;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setHabitNameBn(String habitNameBn) {
+        this.habitNameBn = habitNameBn;
     }
 
     public Object getShortOrder() {

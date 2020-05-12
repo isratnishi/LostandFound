@@ -1,17 +1,17 @@
 
-package com.opus_bd.lostandfound.Model.Documentaion;
+package com.opus_bd.lostandfound.Model.PhysicalInfo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Occupation {
+public class DeadbodyCondition {
 
-    @SerializedName("name")
+    @SerializedName("conditionName")
     @Expose
-    private String name;
-    @SerializedName("nameBn")
+    private String conditionName;
+    @SerializedName("conditionNameBn")
     @Expose
-    private String nameBn;
+    private String conditionNameBn;
     @SerializedName("imagePath")
     @Expose
     private String imagePath;
@@ -37,20 +37,20 @@ public class Occupation {
     @Expose
     private Object updatedBy;
 
-    public String getName() {
-        return name;
+    public String getConditionName() {
+        return conditionName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setConditionName(String conditionName) {
+        this.conditionName = conditionName;
     }
 
-    public String getNameBn() {
-        return nameBn;
+    public String getConditionNameBn() {
+        return conditionNameBn;
     }
 
-    public void setNameBn(String nameBn) {
-        this.nameBn = nameBn;
+    public void setConditionNameBn(String conditionNameBn) {
+        this.conditionNameBn = conditionNameBn;
     }
 
     public String getImagePath() {

@@ -1,23 +1,23 @@
 
-package com.opus_bd.lostandfound.Model.Documentaion;
+package com.opus_bd.lostandfound.Model.GlobalData;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Occupation {
+public class Country {
 
-    @SerializedName("name")
+    @SerializedName("countryCode")
     @Expose
-    private String name;
-    @SerializedName("nameBn")
+    private String countryCode;
+    @SerializedName("countryName")
     @Expose
-    private String nameBn;
-    @SerializedName("imagePath")
+    private String countryName;
+    @SerializedName("countryNameBn")
     @Expose
-    private String imagePath;
-    @SerializedName("shortOrder")
+    private Object countryNameBn;
+    @SerializedName("shortName")
     @Expose
-    private Object shortOrder;
+    private String shortName;
     @SerializedName("Id")
     @Expose
     private Integer id;
@@ -26,47 +26,47 @@ public class Occupation {
     private Object isDelete;
     @SerializedName("createdAt")
     @Expose
-    private String createdAt;
+    private Object createdAt;
     @SerializedName("updatedAt")
     @Expose
     private Object updatedAt;
     @SerializedName("createdBy")
     @Expose
-    private String createdBy;
+    private Object createdBy;
     @SerializedName("updatedBy")
     @Expose
     private Object updatedBy;
 
-    public String getName() {
-        return name;
+    public String getCountryCode() {
+        return countryCode;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 
-    public String getNameBn() {
-        return nameBn;
+    public String getCountryName() {
+        return countryName;
     }
 
-    public void setNameBn(String nameBn) {
-        this.nameBn = nameBn;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public Object getCountryNameBn() {
+        return countryNameBn;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setCountryNameBn(Object countryNameBn) {
+        this.countryNameBn = countryNameBn;
     }
 
-    public Object getShortOrder() {
-        return shortOrder;
+    public String getShortName() {
+        return shortName;
     }
 
-    public void setShortOrder(Object shortOrder) {
-        this.shortOrder = shortOrder;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
     public Integer getId() {
@@ -85,11 +85,11 @@ public class Occupation {
         this.isDelete = isDelete;
     }
 
-    public String getCreatedAt() {
+    public Object getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Object createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -101,11 +101,11 @@ public class Occupation {
         this.updatedAt = updatedAt;
     }
 
-    public String getCreatedBy() {
+    public Object getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(Object createdBy) {
         this.createdBy = createdBy;
     }
 

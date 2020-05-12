@@ -1,20 +1,20 @@
 
-package com.opus_bd.lostandfound.Model.Documentaion;
+package com.opus_bd.lostandfound.Model.PhysicalInfo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Occupation {
+public class BodyColor {
 
-    @SerializedName("name")
+    @SerializedName("colorName")
     @Expose
-    private String name;
-    @SerializedName("nameBn")
+    private String colorName;
+    @SerializedName("colorNameBn")
     @Expose
-    private String nameBn;
-    @SerializedName("imagePath")
+    private String colorNameBn;
+    @SerializedName("colorCode")
     @Expose
-    private String imagePath;
+    private String colorCode;
     @SerializedName("shortOrder")
     @Expose
     private Object shortOrder;
@@ -37,28 +37,28 @@ public class Occupation {
     @Expose
     private Object updatedBy;
 
-    public String getName() {
-        return name;
+    public String getColorName() {
+        return colorName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setColorName(String colorName) {
+        this.colorName = colorName;
     }
 
-    public String getNameBn() {
-        return nameBn;
+    public String getColorNameBn() {
+        return colorNameBn;
     }
 
-    public void setNameBn(String nameBn) {
-        this.nameBn = nameBn;
+    public void setColorNameBn(String colorNameBn) {
+        this.colorNameBn = colorNameBn;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public String getColorCode() {
+        return colorCode;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setColorCode(String colorCode) {
+        this.colorCode = colorCode;
     }
 
     public Object getShortOrder() {

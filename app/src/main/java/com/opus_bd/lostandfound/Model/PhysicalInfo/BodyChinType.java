@@ -1,17 +1,17 @@
 
-package com.opus_bd.lostandfound.Model.Documentaion;
+package com.opus_bd.lostandfound.Model.PhysicalInfo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Occupation {
+public class BodyChinType {
 
-    @SerializedName("name")
+    @SerializedName("chinTypeName")
     @Expose
-    private String name;
-    @SerializedName("nameBn")
+    private String chinTypeName;
+    @SerializedName("chinTypeNameBn")
     @Expose
-    private String nameBn;
+    private String chinTypeNameBn;
     @SerializedName("imagePath")
     @Expose
     private String imagePath;
@@ -37,20 +37,20 @@ public class Occupation {
     @Expose
     private Object updatedBy;
 
-    public String getName() {
-        return name;
+    public String getChinTypeName() {
+        return chinTypeName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setChinTypeName(String chinTypeName) {
+        this.chinTypeName = chinTypeName;
     }
 
-    public String getNameBn() {
-        return nameBn;
+    public String getChinTypeNameBn() {
+        return chinTypeNameBn;
     }
 
-    public void setNameBn(String nameBn) {
-        this.nameBn = nameBn;
+    public void setChinTypeNameBn(String chinTypeNameBn) {
+        this.chinTypeNameBn = chinTypeNameBn;
     }
 
     public String getImagePath() {

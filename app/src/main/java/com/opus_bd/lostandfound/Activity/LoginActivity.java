@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import com.opus_bd.lostandfound.Activity.PoliceInterface.PoliceMainActivity;
 import com.opus_bd.lostandfound.Model.User.UserAuthModel;
 import com.opus_bd.lostandfound.Model.User.UserLoginModel;
 import com.opus_bd.lostandfound.R;
@@ -229,15 +230,26 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.body() != null) {
 
                         String auth = response.body().getJwt().replace("{\"auth_token\":\"", "");
+                        String userName=response.body().getUserInfo().getUserName();
                         String auth1 = auth.replace("\"}", "");
                         Utilities.showLogcatMessage(" " + auth1);
                         SharedPrefManager.getInstance(LoginActivity.this).saveToken(auth1);
                         SharedPrefManager.getInstance(LoginActivity.this).saveUser(response.body().getUserInfo().getUserName());
+
                         Toast.makeText(LoginActivity.this, "Successfully Logged in!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
+
+                        if(userName=="suza"){
+                            Intent intent = new Intent(LoginActivity.this, PoliceMainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+
 
                     } else {
                         Toast.makeText(LoginActivity.this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();

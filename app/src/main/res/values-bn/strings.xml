@@ -159,6 +159,10 @@
     <string name="money_information">অর্থের তথ্য</string>
     <string name="shoes_information">জুতার তথ্য</string>
     <string name="electronics_information">ইলেকট্রনিক্স সমূহের তথ্য</string>
+    <string name="sorothal">সুরতহাল রিপোর্ট</string>
+    <string name="lostfoundreport">চোরাই/হারানো/উদ্ধার</string>
+    <string name="searchwithphoto">ছবি দিয়ে অসনাক্তকারী ব্যক্তি সার্চ</string>
+
     <string-array name="array_electronics_brand">
         <item>@string/select_option</item>
         <item>Philips</item>

@@ -4,17 +4,20 @@ package com.opus_bd.lostandfound.Model.Documentaion;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Occupation {
+public class ReligionCust {
 
-    @SerializedName("name")
+    @SerializedName("religionId")
     @Expose
-    private String name;
-    @SerializedName("nameBn")
+    private Integer religionId;
+    @SerializedName("religion")
     @Expose
-    private String nameBn;
-    @SerializedName("imagePath")
+    private Religion religion;
+    @SerializedName("custName")
     @Expose
-    private String imagePath;
+    private String custName;
+    @SerializedName("custNameBn")
+    @Expose
+    private String custNameBn;
     @SerializedName("shortOrder")
     @Expose
     private Object shortOrder;
@@ -37,28 +40,36 @@ public class Occupation {
     @Expose
     private Object updatedBy;
 
-    public String getName() {
-        return name;
+    public Integer getReligionId() {
+        return religionId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setReligionId(Integer religionId) {
+        this.religionId = religionId;
     }
 
-    public String getNameBn() {
-        return nameBn;
+    public Religion getReligion() {
+        return religion;
     }
 
-    public void setNameBn(String nameBn) {
-        this.nameBn = nameBn;
+    public void setReligion(Religion religion) {
+        this.religion = religion;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public String getCustName() {
+        return custName;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setCustName(String custName) {
+        this.custName = custName;
+    }
+
+    public String getCustNameBn() {
+        return custNameBn;
+    }
+
+    public void setCustNameBn(String custNameBn) {
+        this.custNameBn = custNameBn;
     }
 
     public Object getShortOrder() {

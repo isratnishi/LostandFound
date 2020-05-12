@@ -4,7 +4,7 @@ package com.opus_bd.lostandfound.Model.Documentaion;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Occupation {
+public class MaritalStatus {
 
     @SerializedName("name")
     @Expose
@@ -12,9 +12,6 @@ public class Occupation {
     @SerializedName("nameBn")
     @Expose
     private String nameBn;
-    @SerializedName("imagePath")
-    @Expose
-    private String imagePath;
     @SerializedName("shortOrder")
     @Expose
     private Object shortOrder;
@@ -51,14 +48,6 @@ public class Occupation {
 
     public void setNameBn(String nameBn) {
         this.nameBn = nameBn;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
 
     public Object getShortOrder() {

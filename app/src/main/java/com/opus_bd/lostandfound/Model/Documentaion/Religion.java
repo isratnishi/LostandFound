@@ -4,14 +4,14 @@ package com.opus_bd.lostandfound.Model.Documentaion;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Occupation {
+public class Religion {
 
-    @SerializedName("name")
+    @SerializedName("religionName")
     @Expose
-    private String name;
-    @SerializedName("nameBn")
+    private String religionName;
+    @SerializedName("religionNameBn")
     @Expose
-    private String nameBn;
+    private String religionNameBn;
     @SerializedName("imagePath")
     @Expose
     private String imagePath;
@@ -37,20 +37,20 @@ public class Occupation {
     @Expose
     private Object updatedBy;
 
-    public String getName() {
-        return name;
+    public String getReligionName() {
+        return religionName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setReligionName(String religionName) {
+        this.religionName = religionName;
     }
 
-    public String getNameBn() {
-        return nameBn;
+    public String getReligionNameBn() {
+        return religionNameBn;
     }
 
-    public void setNameBn(String nameBn) {
-        this.nameBn = nameBn;
+    public void setReligionNameBn(String religionNameBn) {
+        this.religionNameBn = religionNameBn;
     }
 
     public String getImagePath() {
