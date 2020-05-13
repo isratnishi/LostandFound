@@ -2052,8 +2052,14 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     public void addRelationTypeSpinnerData(final List<RelationType> body) {
         List<String> relatinoTypeList = new ArrayList<>();
         relatinoTypeList.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            relatinoTypeList.add(i + 1, body.get(i).getRelationName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                relatinoTypeList.add(i + 1, body.get(i).getRelationName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                relatinoTypeList.add(i + 1, body.get(i).getRelationNameBn());
+            }
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, relatinoTypeList);
@@ -2084,8 +2090,14 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     public void addOccupationSpinnerData(final List<Occupation> body) {
         List<String> occupationList = new ArrayList<>();
         occupationList.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            occupationList.add(i + 1, body.get(i).getName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                occupationList.add(i + 1, body.get(i).getName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                occupationList.add(i + 1, body.get(i).getNameBn());
+            }
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, occupationList);
@@ -2116,8 +2128,14 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     public void addReligionSpinnerData(final List<Religion> body) {
         List<String> lstData = new ArrayList<>();
         lstData.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            lstData.add(i + 1, body.get(i).getReligionName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getReligionName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getReligionNameBn());
+            }
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
@@ -2148,8 +2166,14 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     public void addMaritalStatusSpinnerData(final List<MaritalStatus> body) {
         List<String> lstData = new ArrayList<>();
         lstData.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            lstData.add(i + 1, body.get(i).getName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getNameBn());
+            }
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
@@ -2166,7 +2190,6 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
                     }
                 } catch (Exception e) {
                     Utilities.showLogcatMessage(" " + e.toString());
-
                 }
             }
 
@@ -2180,8 +2203,14 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     public void addHabitSpinnerData(final List<Habit> body) {
         List<String> lstData = new ArrayList<>();
         lstData.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            lstData.add(i + 1, body.get(i).getHabitName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getHabitName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getHabitNameBn());
+            }
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
@@ -2212,8 +2241,14 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     public void addSpeechSpinnerData(final List<Speech> body) {
         List<String> lstData = new ArrayList<>();
         lstData.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            lstData.add(i + 1, body.get(i).getSpeechName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getSpeechName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                lstData.add(i + 1, body.get(i).getSpeechNameBn());
+            }
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
@@ -2230,7 +2265,6 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
                     }
                 } catch (Exception e) {
                     Utilities.showLogcatMessage(" " + e.toString());
-
                 }
             }
 

@@ -1425,6 +1425,7 @@
 
                                     <Spinner
                                         android:id="@+id/spnDLeg"
+                                        android:entries="@array/array_in_the_legs"
                                         android:gravity="start|center_vertical"
                                         style="@style/InformationEntryTextViewColon"
                                         />
