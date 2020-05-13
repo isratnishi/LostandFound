@@ -34,19 +34,25 @@ import com.opus_bd.lostandfound.Utils.Utilities;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileFilter;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.NetworkInterface;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HardwareInformationActivity extends AppCompatActivity {
+
+    private static int sLastCpuCoreCount = -1;
     @BindView(R.id.IMEINumber)
     TextView IMEINumber;
     @BindView(R.id.SubscriberID)
@@ -159,7 +165,10 @@ public class HardwareInformationActivity extends AppCompatActivity {
         //	getDataFromUrl(); // Connect url from the main thread for get data this will throw NetworkOnMainThreadExcection
 
         // new GetJSONTask().execute(url); //execute asynctask object this will resolve NetworkOnMainThreadExcection
-        Processor.setText(getInfo());
+        Processor.setText(Build.CPU_ABI);
+       /* for (int i = 0; i < calcCpuCoreCount(); i++) {
+            Processor.append(takeCurrentCpuFreq(i) +"\n");
+        }*/
         DeviceAdminReceiver admin = new DeviceAdminReceiver();
         DevicePolicyManager devicepolicymanager = admin.getManager(getApplicationContext());
         ComponentName name1 = admin.getWho(getApplicationContext());
@@ -176,7 +185,55 @@ public class HardwareInformationActivity extends AppCompatActivity {
         }
 
     }
+    private static int readIntegerFile(String filePath) {
 
+        try {
+            final BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(new FileInputStream(filePath)), 1000);
+            final String line = reader.readLine();
+            reader.close();
+
+            return Integer.parseInt(line);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    private static int takeCurrentCpuFreq(int coreIndex) {
+        return readIntegerFile("/sys/devices/system/cpu/cpu" + coreIndex + "/cpufreq/scaling_cur_freq");
+    }
+
+    public static int calcCpuCoreCount() {
+
+        if (sLastCpuCoreCount >= 1) {
+            // キャッシュさせる
+            return sLastCpuCoreCount;
+        }
+
+        try {
+            // Get directory containing CPU info
+            final File dir = new File("/sys/devices/system/cpu/");
+            // Filter to only list the devices we care about
+            final File[] files = dir.listFiles(new FileFilter() {
+
+                public boolean accept(File pathname) {
+                    //Check if filename is "cpu", followed by a single digit number
+                    if (Pattern.matches("cpu[0-9]", pathname.getName())) {
+                        return true;
+                    }
+                    return false;
+                }
+            });
+
+            // Return the number of cores (virtual CPU devices)
+            sLastCpuCoreCount = files.length;
+
+        } catch(Exception e) {
+            sLastCpuCoreCount = Runtime.getRuntime().availableProcessors();
+        }
+
+        return sLastCpuCoreCount;
+    }
     public static String getMacAddr() {
         try {
             List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
@@ -240,7 +297,7 @@ public class HardwareInformationActivity extends AppCompatActivity {
 
     private String getInfo() {
         StringBuffer sb = new StringBuffer();
-         sb.append(Build.CPU_ABI2);/*.append("\n");
+         sb.append(Build.CPU_ABI);/*.append("\n");
         if (new File("/proc/cpuinfo").exists()) {
             try {
                 BufferedReader br = new BufferedReader(
