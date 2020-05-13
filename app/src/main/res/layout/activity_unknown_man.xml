@@ -1426,7 +1426,6 @@
 
                                     <Spinner
                                         android:id="@+id/spnDLeg"
-                                        android:entries="@array/array_in_the_legs"
                                         android:gravity="start|center_vertical"
                                         style="@style/InformationEntryTextViewColon"
                                         />
@@ -1442,6 +1441,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:id="@+id/tvDLegSize"
                                         style="@style/InformationEntryTextViewColon"
                                         android:text="@string/in_leg_text" />
 
@@ -1456,7 +1456,7 @@
                                         />
                                     <Spinner
                                         android:id="@+id/spnDLegMT"
-                                        android:entries="array/array_DLeg_size_MT"
+                                        android:entries="@array/array_DLeg_size_MT"
                                         android:gravity="start|center_vertical"
                                         style="@style/InformationEntryTextViewColon"
                                         />

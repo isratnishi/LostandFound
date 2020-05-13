@@ -3,21 +3,15 @@ package com.opus_bd.lostandfound.Activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,13 +20,11 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,21 +35,18 @@ import com.google.android.material.card.MaterialCardView;
 import com.hbb20.CountryCodePicker;
 import com.opus_bd.lostandfound.Adapter.CustomAdapter;
 import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
-import com.opus_bd.lostandfound.Adapter.CustomSpinnerAdapter;
 import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
+import com.opus_bd.lostandfound.Model.Documentaion.Colors;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
-import com.opus_bd.lostandfound.Model.Documentaion.MetroAreaModel;
-import com.opus_bd.lostandfound.Model.Documentaion.RegistrationLevelModel;
-import com.opus_bd.lostandfound.Model.Vehichel.Color;
-import com.opus_bd.lostandfound.Model.Vehichel.District;
-import com.opus_bd.lostandfound.Model.Vehichel.Division;
+import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
+import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
+import com.opus_bd.lostandfound.Model.GlobalData.District;
+import com.opus_bd.lostandfound.Model.GlobalData.Division;
+import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 import com.opus_bd.lostandfound.Model.Vehichel.MetropolitanArea;
 import com.opus_bd.lostandfound.Model.Vehichel.RegistrationLevel;
-import com.opus_bd.lostandfound.Model.Vehichel.Thana;
 import com.opus_bd.lostandfound.Model.Vehichel.VehicleMasterModel;
-import com.opus_bd.lostandfound.Model.Vehichel.VehicleModel;
-import com.opus_bd.lostandfound.Model.Vehichel.VehicleType;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitService;
@@ -70,21 +59,13 @@ import com.tsongkha.spinnerdatepicker.DatePicker;
 import com.tsongkha.spinnerdatepicker.DatePickerDialog;
 import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
 
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.SimpleTimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -92,6 +73,9 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.KEY_State;
+import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.SHARED_PREF_NAME;
 
 public class VehicleEntryActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     // Layout
@@ -220,7 +204,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     ArrayList<DocumentType> documentTypeArrayList = new ArrayList<>();
     ArrayList<VehicleType> vehicleTypeArrayList = new ArrayList<>();
     ArrayList<VehicleModel> VehicleModelArrayList = new ArrayList<>();
-    ArrayList<Color> colorArrayList = new ArrayList<>();
+    ArrayList<Colors> colorArrayList = new ArrayList<>();
     ArrayList<MetropolitanArea> metroAreaModelArrayList = new ArrayList<>();
     ArrayList<RegistrationLevel> registrationLevelModels = new ArrayList<>();
     ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
@@ -305,8 +289,6 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     @BindView(R.id.reportPlaceTv)
     TextView reportPlaceTv;
 
-    @BindView(R.id.chatBot)
-    WebView chatBot;
 
 //Multiple Image add
 
@@ -316,16 +298,22 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     List<String> imagesEncodedList;
     private GridView gvGallery, gvGallery1;
     private GalleryAdapter galleryAdapter;
-
+    public String Language,english,bangla;
     String selectOne, engNoString, chesisNoString;
-    String html = "<iframe src=\"http://103.134.88.13:120/CustoomChatBox#totaMessagesContainerLast\" id=\"chatbot-chat-frame\" style=\"pointer-events: all; background: none; border: 0px; float: none; border:none; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; width: 100%; height: 100%; margin: 0px; padding: 0px;\"></iframe>";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_entry);
         ButterKnife.bind(this);
+        Boolean languageStatus = getSharedPrefValue();
+        english=getResources().getString(R.string.english);
+        bangla=getResources().getString(R.string.bangla);
+        if (languageStatus) {
+            Language=english;
+        } else {
+            Language=bangla;
+        }
         setProgress();
         mcvVehicleInformation.setVisibility(View.VISIBLE);
         mcvVehicleIdendityInformation.setVisibility(View.GONE);
@@ -348,7 +336,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
        /* GetAllMetropolitanArea();
         getDistrict();
         GetAllRegistrationLevel();*/
-        chatBot.loadData(html, "text/html", null);
+
         //date picker
         initializeVariables();
         etRegNoName.addTextChangedListener(new TextWatcher() {
@@ -455,6 +443,11 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.ENGLISH));
         else
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
+    }
+
+    private boolean getSharedPrefValue() {
+        SharedPreferences tprefs = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        return tprefs.getBoolean(KEY_State, true);
     }
 
     public void setProgress() {
@@ -796,8 +789,14 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
     public void addDocumentTypeNamePresentSpinnerData(final List<DocumentType> body) {
         List<String> documentList = new ArrayList<>();
-        for (int i = 0; i < body.size(); i++) {
-            documentList.add(body.get(i).getDocumentTypeName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                documentList.add( body.get(i).getDocumentTypeName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                documentList.add(body.get(i).getDocumentTypeNameBn());
+            }
         }
 
 
@@ -825,10 +824,15 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     public void addVehicleTypeNamePresentSpinnerData(final List<VehicleType> body) {
         List<String> vehicleList = new ArrayList<>();
         vehicleList.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            vehicleList.add(i + 1, body.get(i).getVehicleTypeName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                vehicleList.add(i + 1, body.get(i).getVehicleTypeName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                vehicleList.add(i + 1, body.get(i).getVehicleTypeNameBn());
+            }
         }
-
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, vehicleList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -879,15 +883,23 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         });
     }
 
-    public void addColorSpinnerData(final List<Color> body) {
+    public void addColorSpinnerData(final List<Colors> body) {
         List<String> colorList = new ArrayList<>();
         List<String> colorCode = new ArrayList<>();
         colorList.add(0, selectOne);
         colorCode.add(0, "#FFFFFF");
-        for (int i = 0; i < body.size(); i++) {
-            colorList.add(i + 1, body.get(i).getColorName());
-            colorCode.add(i + 1, body.get(i).getColorCode());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                colorList.add(i + 1, body.get(i).getColorName());
+                colorCode.add(i + 1, body.get(i).getColorCode());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                colorList.add(i + 1, body.get(i).getColorNameBn());
+                colorCode.add(i + 1, body.get(i).getColorCode());
+            }
         }
+
 
 
         CustomColorAdapter customAdapter = new CustomColorAdapter(getApplicationContext(), colorList, colorCode);
@@ -915,7 +927,6 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         for (int i = 0; i < body.size(); i++) {
             colorList.add(body.get(i).getAreaName());
         }
-
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, colorList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -1080,7 +1091,6 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             colorList.add(body.get(i).getLevelName());
         }
 
-
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, colorList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnRegNoName2.setAdapter(dataAdapter2);
@@ -1131,8 +1141,14 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     public void addDistrictSpinnerData(final List<District> body) {
         List<String> districtList = new ArrayList<>();
         districtList.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            districtList.add(i + 1, body.get(i).getDistrictName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                districtList.add(i + 1, body.get(i).getDistrictName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                districtList.add(i + 1, body.get(i).getDistrictNameBn());
+            }
         }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, districtList);
@@ -1190,9 +1206,16 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     public void addThanaSpinnerData(final List<Thana> body) {
         List<String> thanaList = new ArrayList<>();
         thanaList.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            thanaList.add(i + 1, body.get(i).getThanaName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                thanaList.add(i + 1, body.get(i).getThanaName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                thanaList.add(i + 1, body.get(i).getThanaNameBn());
+            }
         }
+
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, thanaList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

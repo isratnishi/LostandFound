@@ -11,7 +11,7 @@ public class RegistrationLevel {
     private String levelName;
     @SerializedName("levelNameBn")
     @Expose
-    private Object levelNameBn;
+    private String levelNameBn;
     @SerializedName("shortOrder")
     @Expose
     private Object shortOrder;
@@ -42,11 +42,11 @@ public class RegistrationLevel {
         this.levelName = levelName;
     }
 
-    public Object getLevelNameBn() {
+    public String getLevelNameBn() {
         return levelNameBn;
     }
 
-    public void setLevelNameBn(Object levelNameBn) {
+    public void setLevelNameBn(String levelNameBn) {
         this.levelNameBn = levelNameBn;
     }
 

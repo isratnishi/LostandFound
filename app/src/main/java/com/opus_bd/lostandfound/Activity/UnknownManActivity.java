@@ -3,12 +3,9 @@ package com.opus_bd.lostandfound.Activity;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -19,11 +16,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -42,9 +36,7 @@ import com.bumptech.glide.Glide;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.card.MaterialCardView;
 import com.hbb20.CountryCodePicker;
-import com.opus_bd.lostandfound.Adapter.CustomAdapter;
 import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
-import com.opus_bd.lostandfound.Adapter.Documentation.OthersItemListAdapter;
 import com.opus_bd.lostandfound.Adapter.Extra.AddressListAdapter;
 import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
@@ -63,6 +55,7 @@ import com.opus_bd.lostandfound.Model.DressInfo.InTheThroat;
 import com.opus_bd.lostandfound.Model.DressInfo.InTheWaist;
 import com.opus_bd.lostandfound.Model.DressInfo.MDDressInformationModel;
 import com.opus_bd.lostandfound.Model.ExtraModel.AdreessList;
+import com.opus_bd.lostandfound.Model.GlobalData.District;
 import com.opus_bd.lostandfound.Model.PhysicalInfo.BeardType;
 import com.opus_bd.lostandfound.Model.PhysicalInfo.BodyChinType;
 import com.opus_bd.lostandfound.Model.PhysicalInfo.BodyColor;
@@ -77,9 +70,7 @@ import com.opus_bd.lostandfound.Model.PhysicalInfo.NeckType;
 import com.opus_bd.lostandfound.Model.PhysicalInfo.NoseType;
 import com.opus_bd.lostandfound.Model.PhysicalInfo.SpecialBodyCondition;
 import com.opus_bd.lostandfound.Model.PhysicalInfo.TeethType;
-import com.opus_bd.lostandfound.Model.Vehichel.District;
 import com.opus_bd.lostandfound.Model.GlobalData.Thana;
-import com.opus_bd.lostandfound.Model.Vehichel.Color;
 import com.opus_bd.lostandfound.Model.Vehichel.VehicleMasterModel;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.RetrofitService.RetrofitClientInstance;
@@ -95,10 +86,7 @@ import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
@@ -419,8 +407,6 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     @BindView(R.id.tvDWaistColor)
     TextView tvDWaistColor;
 
-
-
     @BindView(R.id.tvPhotesType)
     TextView tvPhotesType;
 
@@ -456,6 +442,8 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     EditText etVehicleTime;
     @BindView(R.id.tvVehicleTime)
     TextView tvVehicleTime;
+    @BindView(R.id.tvDLegSize)
+    TextView tvDLegSize;
 
     //date picker
     SimpleDateFormat formatter;
@@ -507,7 +495,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     SELECTED_NECK_ID,SELECTED_TEETH_ID;
     public int SELECTED_INBODY_ID,SELECTED_INHEAD_ID,SELECTED_INEYE_ID,SELECTED_INTHROAT_ID,SELECTED_INWAIST_ID,SELECTED_INLEGS_ID;
     String selectOne;
-    ArrayList<Color> colorArrayList = new ArrayList<>();
+    ArrayList<Colors> colorArrayList = new ArrayList<>();
 
 
     //Address List
@@ -554,6 +542,22 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         getMDDressInfo();
         getMDGlobalInfo();
         getMDPhysicalInfo();
+
+        spnDLeg.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                if(selectedItem!=selectOne){
+                    tvDLegSize.setText(selectedItem+" "+ getResources().getString(R.string.in_leg_text));
+                }
+
+            } // to close the onItemSelected
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+        });
 
     }
 
@@ -923,7 +927,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
                     addInHeadSpinnerData(response.body().getInTheHeads());
                     addInBodySpinnerData(response.body().getInTheBodies());
                     addInThroadSpinnerData(response.body().getInTheThroats());
-                    addInBodySpinnerData(response.body().getInTheBodies());
+                    addInLegsSpinnerData(response.body().getInTheLegs());
                     addInWestSpinnerData(response.body().getInTheWaists());
 
                 } else {
@@ -1577,9 +1581,9 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 try {
                     if (i >= 1) {
-                        SELECTED_INWAIST_ID = body.get(i).getId();
+                        SELECTED_INLEGS_ID = body.get(i).getId();
                     } else {
-                        SELECTED_INWAIST_ID = 0;
+                        SELECTED_INLEGS_ID = 0;
                     }
                 } catch (Exception e) {
                     Utilities.showLogcatMessage(" " + e.toString());
@@ -1593,7 +1597,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     }
 
 
-    public void addColorSpinnerData(final List<Color> body) {
+    public void addColorSpinnerData(final List<Colors> body) {
         List<String> colorList = new ArrayList<>();
         List<String> colorCode = new ArrayList<>();
         colorList.add(0, selectOne);
@@ -1881,9 +1885,16 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     public void addDistrictSpinnerData(final List<District> body) {
         List<String> districtList = new ArrayList<>();
         districtList.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            districtList.add(i + 1, body.get(i).getDistrictName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                districtList.add(i + 1, body.get(i).getDistrictName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                districtList.add(i + 1, body.get(i).getDistrictNameBn());
+            }
         }
+
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, districtList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -1967,9 +1978,18 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     public void addDistrictSpinnerDataLP(final List<District> body) {
         List<String> districtList = new ArrayList<>();
         districtList.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            districtList.add(i + 1, body.get(i).getDistrictName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                districtList.add(i + 1, body.get(i).getDistrictName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                districtList.add(i + 1, body.get(i).getDistrictNameBn());
+            }
         }
+//        for (int i = 0; i < body.size(); i++) {
+//            districtList.add(i + 1, body.get(i).getDistrictName());
+//        }
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, districtList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
