@@ -1411,7 +1411,8 @@
                                         android:gravity="start|center_vertical"
                                         style="@style/InformationEntryTextViewColon"
                                         />
-                                </TableRow>  <TableRow
+                                </TableRow>
+                                <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
@@ -1431,6 +1432,31 @@
                                         />
                                     <Spinner
                                         android:id="@+id/spnDLegColor"
+                                        android:gravity="start|center_vertical"
+                                        style="@style/InformationEntryTextViewColon"
+                                        />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text="@string/in_leg_text" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <EditText
+                                        android:id="@+id/etDLegMes"
+                                        android:gravity="start|center_vertical"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                    <Spinner
+                                        android:id="@+id/spnDLegMT"
+                                        android:entries="array/array_DLeg_size_MT"
                                         android:gravity="start|center_vertical"
                                         style="@style/InformationEntryTextViewColon"
                                         />
