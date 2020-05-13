@@ -2265,7 +2265,6 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
                     }
                 } catch (Exception e) {
                     Utilities.showLogcatMessage(" " + e.toString());
-
                 }
             }
 
