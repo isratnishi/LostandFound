@@ -51,7 +51,7 @@
 
     <string name="please_choose_one_of_below">নীচের একটি পছন্দ করুন</string>
     <string name="purpose_of_visit">ভ্রমণের উদ্দেশ্য</string>
-    <string name="please_fill_up_your_imigartion_address">আপনার ইমিগ্রেশন ঠিকানা পূরণ করুন</string>
+    <string name="please_fill_up_your_imigartion_address">আপনার বাংলাদেশে অবস্থানকালীন ঠিকানাটি পূরন করুন</string>
     <string name="support">সাপোর্ট</string>
     <string name="forget_password">পাসওয়ার্ড ভুলে গেছেন ?</string>
     <string name="live_chat">লাইভ চাটিং</string>
@@ -147,7 +147,7 @@
     <string name="country">দেশ</string>
     <string name="one_line_address">এক লাইন ঠিকানা</string>
     <string name="habit">অভ্যাস</string>
-    <string name="speech">ভাষা</string>
+    <string name="speech">বচন ভঙ্গি</string>
     <string name="newpassword">নতুন পাসওয়ার্ড</string>
     <string name="watch_Information">ঘড়ির তথ্য</string>
     <string name="watch_type">ঘড়ির ধরণ</string>

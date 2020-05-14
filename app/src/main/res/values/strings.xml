@@ -52,7 +52,7 @@
     <string name="field_null_error">This field can not be empty</string>
     <string name="please_choose_one_of_below">Please Choose One of below</string>
     <string name="purpose_of_visit">Purpose of Visit</string>
-    <string name="please_fill_up_your_imigartion_address">Please fill up your imigartion address</string>
+    <string name="please_fill_up_your_imigartion_address">Fill in the address during your stay in Bangladesh</string>
     <string name="support">Support</string>
     <string name="forget_password">Forget Password?</string>
     <string name="live_chat">Live Chat</string>
