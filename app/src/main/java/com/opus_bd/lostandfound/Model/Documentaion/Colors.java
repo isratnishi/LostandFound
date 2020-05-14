@@ -11,7 +11,7 @@ public class Colors {
     private String colorName;
     @SerializedName("colorNameBn")
     @Expose
-    private Object colorNameBn;
+    private String colorNameBn;
     @SerializedName("colorCode")
     @Expose
     private String colorCode;
@@ -45,11 +45,11 @@ public class Colors {
         this.colorName = colorName;
     }
 
-    public Object getColorNameBn() {
+    public String getColorNameBn() {
         return colorNameBn;
     }
 
-    public void setColorNameBn(Object colorNameBn) {
+    public void setColorNameBn(String colorNameBn) {
         this.colorNameBn = colorNameBn;
     }
 

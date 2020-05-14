@@ -1087,6 +1087,14 @@
         <item>সেন্ডেল</item>
         <item>খড়ম</item>
     </string-array>
+    <string name="in_leg_text">মাপ</string>
+    <string-array name="array_DLeg_size_MT">
+    <item> @string/select_list </item>
+    <item>ব্রিটিশ পদ্ধতি</item>
+    <item>ইউ.এস.এ পদ্ধতি</item>
+    <item>ই.ইউ. পদ্ধতি</item>
+    <item>ইঞ্চি</item>
+</string-array>
     <string-array name="Ageperiod">
         <item> @string/select_list </item>
         <item> নবজাতক (০-২)বছর</item>

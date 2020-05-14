@@ -1047,7 +1047,14 @@
         <item> Sandals </item>
         <item> Clogs </item>
     </string-array>
-
+    <string name="in_leg_text">Size</string>
+    <string-array name="array_DLeg_size_MT">
+        <item> @string/select_list </item>
+        <item>British method</item>
+        <item>USA method</item>
+        <item>EU method</item>
+        <item>Inchi</item>
+    </string-array>
 
     <string-array name="Ageperiod">
         <item>@string/select_list </item>

@@ -11,7 +11,7 @@ public class MetropolitanArea {
     private String areaName;
     @SerializedName("areaNameBn")
     @Expose
-    private Object areaNameBn;
+    private String areaNameBn;
     @SerializedName("districtId")
     @Expose
     private Object districtId;
@@ -45,11 +45,11 @@ public class MetropolitanArea {
         this.areaName = areaName;
     }
 
-    public Object getAreaNameBn() {
+    public String getAreaNameBn() {
         return areaNameBn;
     }
 
-    public void setAreaNameBn(Object areaNameBn) {
+    public void setAreaNameBn(String areaNameBn) {
         this.areaNameBn = areaNameBn;
     }
 

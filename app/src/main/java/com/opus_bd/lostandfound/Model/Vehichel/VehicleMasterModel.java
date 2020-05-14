@@ -4,6 +4,11 @@ package com.opus_bd.lostandfound.Model.Vehichel;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.opus_bd.lostandfound.Model.Documentaion.Colors;
+import com.opus_bd.lostandfound.Model.Documentaion.VehicleModel;
+import com.opus_bd.lostandfound.Model.Documentaion.VehicleType;
+import com.opus_bd.lostandfound.Model.GlobalData.District;
+import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 
 public class VehicleMasterModel {
 
@@ -27,7 +32,7 @@ public class VehicleMasterModel {
     private List<Thana> thanas ;
     @SerializedName("colors")
     @Expose
-    private List<Color> colors ;
+    private List<Colors> colors ;
 
     public List<VehicleType> getVehicleTypes() {
         return vehicleTypes;
@@ -77,11 +82,11 @@ public class VehicleMasterModel {
         this.thanas = thanas;
     }
 
-    public List<Color> getColors() {
+    public List<Colors> getColors() {
         return colors;
     }
 
-    public void setColors(List<Color> colors) {
+    public void setColors(List<Colors> colors) {
         this.colors = colors;
     }
 
