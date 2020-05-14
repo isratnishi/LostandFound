@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import com.opus_bd.lostandfound.Activity.PoliceInterface.PoliceMainActivity;
+import com.opus_bd.lostandfound.Activity.PoliceInterface.ContactActivity;
 import com.opus_bd.lostandfound.Model.User.UserAuthModel;
 import com.opus_bd.lostandfound.Model.User.UserLoginModel;
 import com.opus_bd.lostandfound.R;
@@ -239,7 +239,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Successfully Logged in!", Toast.LENGTH_SHORT).show();
 
                         if(userName=="suza"){
-                            Intent intent = new Intent(LoginActivity.this, PoliceMainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, ContactActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
@@ -357,7 +357,7 @@ Utilities.showLogcatMessage(""+ t.toString());
             @Override
             public void onClick(View v) {
 
-                String mailto = "mailto:Juelrananatore@gmail.com" +
+                String mailto = "mailto:lostandfound@police.gov.bd" +
                         "?cc=" + "" +
                         "&subject=" + Uri.encode("Lost and Found Support") /*+
                         "?body=" + Uri.encode(bodyText)*/;
@@ -387,7 +387,7 @@ Utilities.showLogcatMessage(""+ t.toString());
         });cvEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mailto = "mailto:Juelrananatore@gmail.com" +
+                String mailto = "mailto:lostandfound@police.gov.bd" +
                         "?cc=" + "" +
                         "&subject=" + Uri.encode("Lost and Found Support") /*+
                         "?body=" + Uri.encode(bodyText)*/;

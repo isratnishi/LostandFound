@@ -60,9 +60,17 @@ import com.tsongkha.spinnerdatepicker.DatePickerDialog;
 import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
@@ -221,7 +229,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     ProgressDialog progress;
     //date picker
     SimpleDateFormat formatter;
-    int mYear, mMonth, mDay;
+    int mYear, mMonth, mDay,backYear;
     Calendar calendar = Calendar.getInstance();
 
     //time picker
@@ -314,6 +322,8 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         } else {
             Language=bangla;
         }
+        ccp.setDefaultCountryUsingNameCode("JP");
+        ccp.resetToDefaultCountry();
         setProgress();
         mcvVehicleInformation.setVisibility(View.VISIBLE);
         mcvVehicleIdendityInformation.setVisibility(View.GONE);
@@ -1264,9 +1274,23 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         mYear = calendar.get(Calendar.YEAR);
         mMonth = calendar.get(Calendar.MONTH);
         mDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        backYear=calendar.get(Calendar.YEAR)-5;
+
         formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
         etVehicleDate.setText(formatter.format(calendar.getTime()));
-        etMadeDate.setText(formatter.format(calendar.getTime()));
+        Date myDate = null;
+        try {
+            myDate = formatter.parse(formatter.format(calendar.getTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(myDate);
+        calendar.add(Calendar.YEAR, -5);
+        Date newDate = calendar.getTime();
+        String date = formatter.format(newDate);
+        etMadeDate.setText(date);
         etVehicleDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1277,7 +1301,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         etMadeDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDate(mYear, mMonth, mDay, R.style.DatePickerSpinner);
+                showDate(backYear, mMonth, mDay, R.style.DatePickerSpinner);
             }
         });
 

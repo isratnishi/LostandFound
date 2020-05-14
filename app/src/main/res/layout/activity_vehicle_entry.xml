@@ -245,8 +245,8 @@
                                         android:id="@+id/ccp"
                                         style="@style/InformationEntryEditText"
                                         android:background="@android:color/white"
-                                        android:hint="Country Code"
-                                        app:ccp_showFullName="true"
+
+                                    app:ccp_showFullName="true"
                                         app:ccpDialog_showFlag="false"
                                         app:ccp_showNameCode="false"
                                         app:ccp_showPhoneCode="false" />

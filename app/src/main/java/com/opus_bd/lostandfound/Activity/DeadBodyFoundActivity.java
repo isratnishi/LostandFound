@@ -713,7 +713,7 @@ ImageView imageView;
 
     }
 
-    @OnClick({R.id.ivDNAProfile, R.id.btnNext4})
+  /*  @OnClick({R.id.ivDNAProfile, R.id.btnNext4})
     public void ivDNAProfile() {
         if (isllDNAProfileChecked) {
             // show password
@@ -733,9 +733,9 @@ ImageView imageView;
             isllDNAProfileChecked = true;
         }
 
-    }
+    }*/
 
-    @OnClick(R.id.btnDNA)
+    @OnClick(R.id.btnNext4)
     public void ReportShown() {
         llInput.setVisibility(View.GONE);
         mcvReport.setVisibility(View.VISIBLE);

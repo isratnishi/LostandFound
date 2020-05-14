@@ -73,7 +73,7 @@
                                 <TextView
                                     android:id="@+id/IMEINumber"
                                     style="@style/InformationEntryTextViewColon"
-                                    android:text="IMEI Number" />
+                                 />
                             </TableRow>
 
                             <TableRow
@@ -108,7 +108,7 @@
                                 <TextView
                                     android:id="@+id/SIMNumber"
                                     style="@style/InformationEntryTextViewColon"
-                                    android:text="IMEI Number" />
+                                    />
                             </TableRow>
 
                             <TableRow
@@ -126,7 +126,7 @@
                                 <TextView
                                     android:id="@+id/OperatorName"
                                     style="@style/InformationEntryTextViewColon"
-                                    android:text="IMEI Number" />
+                                    />
                             </TableRow>
 
                             <TableRow
@@ -144,7 +144,7 @@
                                 <TextView
                                     android:id="@+id/CountryCode"
                                     style="@style/InformationEntryTextViewColon"
-                                    android:text="IMEI Number" />
+                                    android:layout_height="32dp" />
                             </TableRow>
 
                             <TableRow
@@ -162,7 +162,7 @@
                                 <TextView
                                     android:id="@+id/IPAddress"
                                     style="@style/InformationEntryTextViewColon"
-                                    android:text="IMEI Number" />
+                                     />
                             </TableRow>
                             <TableRow
                                 android:layout_width="match_parent"
@@ -196,7 +196,7 @@
                                 <TextView
                                     android:id="@+id/WiFiMACAddress"
                                     style="@style/InformationEntryTextViewColon"
-                                    android:text="IMEI Number" />
+                                    />
                             </TableRow>
  <TableRow
                                 android:layout_width="match_parent"
@@ -229,6 +229,23 @@
 
                                 <TextView
                                     android:id="@+id/Processor"
+                                    style="@style/InformationEntryTextViewColon"
+                                     />
+                            </TableRow>
+<TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    style="@style/InformationEntryTextViewColon"
+                                    android:text="Device Serial Number" />
+
+                                <TextView
+                                    style="@style/InformationEntryTextViewColon"
+                                    android:text=":" />
+
+                                <TextView
+                                    android:id="@+id/DeviceSerialNumber"
                                     style="@style/InformationEntryTextViewColon"
                                      />
                             </TableRow>
