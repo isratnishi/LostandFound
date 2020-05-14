@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lost And Found</string>
+    <string name="app_name">Lost &amp; Found</string>
     <string name="lost_found_apps"><![CDATA[LOST & FOUND APPS]]></string>
     <string name="welcome_to">Welcome To</string>
 
@@ -38,7 +38,7 @@
     <string name="otp_confirmation_text">Enter the One Time Password code</string>
     <string name="otp_warning">A 4-digit One Time Password code has been sent to your mobile.</string>
     <string name="help">Help</string>
-    <string name="gps_network_not_enabled">gps_network_not_enabled</string>
+    <string name="gps_network_not_enabled">Your Location is not enabled. Please Press YES for Location Update</string>
     <string name="open_location_settings">open_location_settings</string>
     <string name="Cancel">Cancel</string>
     <string name="Cancel_item">Cancel (2)</string>
@@ -1041,10 +1041,11 @@
     </string-array>
     <string-array name="array_in_the_legs">
         <item> @string/select_list </item>
-        <item>জুতা</item>
-        <item>বুট</item>
-        <item>সু</item>
-        <item>সেন্ডেল</item>
+        <item> shoes / su </item>
+        <item> Boot </item>
+        <item> Sneakers </item>
+        <item> Sandals </item>
+        <item> Clogs </item>
     </string-array>
 
 
@@ -1212,6 +1213,7 @@
 You can also use the following media to communicate with us</string>
     <string name="select_item_for_support">Select one for Support</string>
     <string name="date_of_birth">Date of Birth</string>
+    <string name="shoesize">Shoe\'s Size</string>
 
 
 </resources>

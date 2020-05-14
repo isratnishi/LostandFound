@@ -1,20 +1,28 @@
 package com.opus_bd.lostandfound.Activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.app.Service;
 import android.app.admin.DeviceAdminReceiver;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.DhcpInfo;
 import android.net.wifi.WifiInfo;
@@ -22,6 +30,7 @@ import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
@@ -29,6 +38,17 @@ import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Utils.Utilities;
 
@@ -40,6 +60,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.NetworkInterface;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -50,7 +71,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HardwareInformationActivity extends AppCompatActivity {
+import static android.os.Build.*;
+
+public class HardwareInformationActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        LocationListener {
 
     private static int sLastCpuCoreCount = -1;
     @BindView(R.id.IMEINumber)
@@ -72,109 +97,126 @@ public class HardwareInformationActivity extends AppCompatActivity {
     @BindView(R.id.MotherBoard)
     TextView MotherBoard;
     @BindView(R.id.Processor)
-    TextView Processor;
+    TextView Processor; @BindView(R.id.DeviceSerialNumber)
+    TextView DeviceSerialNumber;
     TelephonyManager telephonyManager;
-    private String url = "https://api.ipify.org";
+    ConnectivityManager connectivityManager;
+    List<SubscriptionInfo> subscription;
+    private GoogleApiClient googleApiClient;
+    private final static int REQUEST_CHECK_SETTINGS_GPS = 0x1;
+    private final static int REQUEST_ID_MULTIPLE_PERMISSIONS = 0x2;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @SuppressLint("HardwareIds")
+    private Location mylocation;
+    @Override
+    protected void onRestart() {
+        Utilities.showLogcatMessage(" onRestart");
+      gpsanable();
+        super.onRestart();
+    }
+
+    @Override
+    protected void onPause() {
+        Utilities.showLogcatMessage(" onPause");
+        super.onPause();
+    }
+
+    @RequiresApi(api = VERSION_CODES.LOLLIPOP_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hardware_information);
         ButterKnife.bind(this);
-        MotherBoard.setText(Build.BOARD);
+        setUpGClient();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+    subscription = SubscriptionManager.from(getApplicationContext()).getActiveSubscriptionInfoList();
+        telephony();
+        IPAddress();
+        DNSAddress();
+        WiFiMACAddress();
+        //MotherBoard
+        MotherBoard.setText(BOARD);
+        Processor.setText(CPU_ABI);
+        if (VERSION.SDK_INT >= VERSION_CODES.O) {
+            DeviceSerialNumber.setText(getSerial());
+        }
+
+    }
 
 
+    @RequiresApi(api = VERSION_CODES.LOLLIPOP_MR1)
+    public void telephony() {
+        telephonyManager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        } else {
+
+
+            //IMEINumber
+            if (VERSION.SDK_INT >= VERSION_CODES.M) {
+                IMEINumber.setText(telephonyManager.getDeviceId(0) + "\n" + telephonyManager.getDeviceId(1));
+            }
+            //  SubscriberID
+
+
+            SubscriberID.setText(telephonyManager.getSubscriberId());
+            //SIMNumber
+
+            SIMNumber.setText(telephonyManager.getSimSerialNumber());
+
+            // CountryCode
+            CountryCode.setText(telephonyManager.getNetworkCountryIso());
+        }
+        //OperatorName
+        if (telephonyManager.getSimOperatorName() != null) {
+            OperatorName.setText(telephonyManager.getSimOperatorName());
+        } else {
+            for (int i = 0; i < subscription.size(); i++) {
+                SubscriptionInfo info = subscription.get(i);
+                OperatorName.setText(info.getCarrierName());
+            }
+
+        }
+    }
+
+    public void IPAddress() {
         try {
             WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-            //  WifiInfo wifiInfo=wm.getConnectionInfo().getSSID(.;
             assert wm != null;
-            Utilities.showLogcatMessage("ip" + wm.getConnectionInfo().getIpAddress());
-            Utilities.showLogcatMessage("wifi" + wm.getConnectionInfo().getMacAddress());
-         /*   String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-            String wifi = Formatter.formatIpAddress(Integer.parseInt(wm.getConnectionInfo().getMacAddress()));*/
-
-            String ipAddress = Formatter.formatIpAddress(wm.getConnectionInfo().getNetworkId());
-
-
-            //  WiFiMACAddress.setText(String.valueOf(wm.getConnectionInfo().getMacAddress()));
             IPAddress.setText(String.valueOf(Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress())));
-            DhcpInfo info = wm.getDhcpInfo();
         } catch (Exception e) {
             Utilities.showLogcatMessage("wifi" + e.toString());
         }
+    }
 
-        telephonyManager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-        Ids();
+    @RequiresApi(api = VERSION_CODES.LOLLIPOP)
 
-        ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Service.CONNECTIVITY_SERVICE);
+    public void DNSAddress() {
+        connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Service.CONNECTIVITY_SERVICE);
 
-        /* you can print your active network via using below */
-        Log.i("myNetworkType: ", connectivityManager.getActiveNetworkInfo().getTypeName());
-        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(getApplicationContext().WIFI_SERVICE);
-
-
-       /* Log.i("routes ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getRoutes().toString());
-        Log.i("domains ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDomains().toString());
-        Log.i("ip address ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getLinkAddresses().toString());
-        Log.i("dns address ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
-     */
-        DNSAddress.setText(connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
-
-
-        if (connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI) {
+        if (VERSION.SDK_INT >= VERSION_CODES.M) {
             DNSAddress.setText(connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
+            if (connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI) {
+                DNSAddress.setText(connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
 
-            Log.i("myType ", "wifi");
-            DhcpInfo d = wifiManager.getDhcpInfo();
-            Log.i("info", d.toString() + "");
-        } else if (connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_ETHERNET) {
-            /* there is no EthernetManager class, there is only WifiManager. so, I used this below trick to get my IP range, dns, gateway address etc */
-            DNSAddress.setText(connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
+            } else if (connectivityManager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_ETHERNET) {
+                /* there is no EthernetManager class, there is only WifiManager. so, I used this below trick to get my IP range, dns, gateway address etc */
+                DNSAddress.setText(connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
+            } else {
 
-            Log.i("myType ", "Ethernet");
-            Log.i("routes ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getRoutes().toString());
-            Log.i("domains ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDomains().toString());
-            Log.i("ip address ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getLinkAddresses().toString());
-            Log.i("dns address ", connectivityManager.getLinkProperties(connectivityManager.getActiveNetwork()).getDnsServers().toString());
-
-        } else {
-
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
-            List<SubscriptionInfo> subscription = SubscriptionManager.from(getApplicationContext()).getActiveSubscriptionInfoList();
-            for (int i = 0; i < subscription.size(); i++) {
-                SubscriptionInfo info = subscription.get(i);
-                Utilities.showLogcatMessage("number " + info.getSubscriptionId());
-                Utilities.showLogcatMessage("network name : " + info.getCarrierName());
-                Utilities.showLogcatMessage("country iso " + info.getCountryIso());
             }
         }
+    }
 
-        //	getDataFromUrl(); // Connect url from the main thread for get data this will throw NetworkOnMainThreadExcection
-
-        // new GetJSONTask().execute(url); //execute asynctask object this will resolve NetworkOnMainThreadExcection
-        Processor.setText(Build.CPU_ABI);
-       /* for (int i = 0; i < calcCpuCoreCount(); i++) {
-            Processor.append(takeCurrentCpuFreq(i) +"\n");
-        }*/
+    public void WiFiMACAddress() {
         DeviceAdminReceiver admin = new DeviceAdminReceiver();
         DevicePolicyManager devicepolicymanager = admin.getManager(getApplicationContext());
         ComponentName name1 = admin.getWho(getApplicationContext());
         if (devicepolicymanager.isAdminActive(name1)) {
             String mac_address = null;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            if (VERSION.SDK_INT >= VERSION_CODES.N) {
                 mac_address = devicepolicymanager.getWifiMacAddress(name1);
                 WiFiMACAddress.setText(mac_address);
             }
@@ -183,56 +225,6 @@ public class HardwareInformationActivity extends AppCompatActivity {
         } else {
             WiFiMACAddress.setText(getMacAddr());
         }
-
-    }
-    private static int readIntegerFile(String filePath) {
-
-        try {
-            final BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(new FileInputStream(filePath)), 1000);
-            final String line = reader.readLine();
-            reader.close();
-
-            return Integer.parseInt(line);
-        } catch (Exception e) {
-            return 0;
-        }
-    }
-
-    private static int takeCurrentCpuFreq(int coreIndex) {
-        return readIntegerFile("/sys/devices/system/cpu/cpu" + coreIndex + "/cpufreq/scaling_cur_freq");
-    }
-
-    public static int calcCpuCoreCount() {
-
-        if (sLastCpuCoreCount >= 1) {
-            // キャッシュさせる
-            return sLastCpuCoreCount;
-        }
-
-        try {
-            // Get directory containing CPU info
-            final File dir = new File("/sys/devices/system/cpu/");
-            // Filter to only list the devices we care about
-            final File[] files = dir.listFiles(new FileFilter() {
-
-                public boolean accept(File pathname) {
-                    //Check if filename is "cpu", followed by a single digit number
-                    if (Pattern.matches("cpu[0-9]", pathname.getName())) {
-                        return true;
-                    }
-                    return false;
-                }
-            });
-
-            // Return the number of cores (virtual CPU devices)
-            sLastCpuCoreCount = files.length;
-
-        } catch(Exception e) {
-            sLastCpuCoreCount = Runtime.getRuntime().availableProcessors();
-        }
-
-        return sLastCpuCoreCount;
     }
     public static String getMacAddr() {
         try {
@@ -263,179 +255,207 @@ public class HardwareInformationActivity extends AppCompatActivity {
     }
 
 
-    public static Map<String, String> getCPUInfo() throws IOException {
-
-        BufferedReader br = new BufferedReader(new FileReader("/proc/cpuinfo"));
-
-        String str;
-
-        Map<String, String> output = new HashMap<>();
-
-        while ((str = br.readLine()) != null) {
-
-            String[] data = str.split(":");
-
-            if (data.length > 1) {
-
-                String key = data[0].trim().replace(" ", "_");
-                if (key.equals("model_name")) key = "cpu_model";
-                {
-                    output.put(key, data[1].trim());
-
-                }
-
-
-            }
-
-        }
-
-        br.close();
-
-        return output;
-
-    }
-
-    private String getInfo() {
-        StringBuffer sb = new StringBuffer();
-         sb.append(Build.CPU_ABI);/*.append("\n");
-        if (new File("/proc/cpuinfo").exists()) {
-            try {
-                BufferedReader br = new BufferedReader(
-                        new FileReader(new File("/proc/cpuinfo")));
-                String aLine;
-                while ((aLine = br.readLine()) != null) {
-                    String[] data = aLine.split(":");
-
-                    if (data.length > 1) {
-
-                        String key = data[0].trim().replace(" ", "_");
-                        if (key.equals("model_name")) key = "cpu_model";
-
-                        {
-                            sb.append(data[1].trim());
-
-                        }
-
-                    }
-                }
-                if (br != null) {
-                    br.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
-        return sb.toString();
-    }
-
-
-    private void getDataFromUrl() {
-        try {
-            IPAddress.setText(Utilities.downloadDataFromUrl(url));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     @OnClick(R.id.btnNext1)
     public void btnNext1() {
         Intent intent = new Intent(HardwareInformationActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 
-    // Uses AsyncTask to create a task away from the main UI thread(For Avoid
-    // NetworkOnMainThreadException). This task takes a
-    // URL string and uses it to create an HttpUrlConnection. Once the
-    // connection
-    // has been established, the AsyncTask downloads the contents of the data as
-    // an InputStream. Than, the InputStream is converted into a string, which
-    // is
-    // displayed in the TextView by the AsyncTask's onPostExecute method. Which
-    // called after doInBackgroud Complete
-    private class GetJSONTask extends AsyncTask {
-        private ProgressDialog pd;
 
 
-        @Override
-        protected Object doInBackground(Object[] objects) {
-            return null;
+    public void gpsanable(){
+        LocationManager lm = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+        boolean gps_enabled = false;
+        boolean network_enabled = false;
+
+        try {
+            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch(Exception ex) {}
+
+        try {
+            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        } catch(Exception ex) {}
+
+        if(!gps_enabled && !network_enabled) {
+           // getMyLocation();
+            // notify user
+            new AlertDialog.Builder(this)
+                    .setMessage(R.string.gps_network_not_enabled)
+                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                           // startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                            getMyLocation();
+                        }
+                    }).setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            }).show();
         }
+    }
+    private synchronized void setUpGClient() {
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, 0, HardwareInformationActivity.this)
+                .addConnectionCallbacks(this)
 
-        // onPreExecute called before the doInBackgroud start for display
-        // progress dialog.
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pd = ProgressDialog.show(HardwareInformationActivity.this, "", "Loading", true,
-                    false); // Create and show Progress dialog
-        }
-
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+        googleApiClient.connect();
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void Ids() {
-
-        if (ContextCompat.checkSelfPermission(HardwareInformationActivity.this, Manifest.permission.READ_PHONE_STATE)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
-            // Ask for permision
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
-        } else {
-            SubscriberID.setText(telephonyManager.getSubscriberId());
-            IMEINumber.setText(telephonyManager.getDeviceId(0) + "\n" + telephonyManager.getDeviceId(1));
-            SIMNumber.setText("" + telephonyManager.getSimSerialNumber());
-            OperatorName.setText(telephonyManager.getSimOperatorName());
-            String locale = this.getResources().getConfiguration().locale.getDisplayCountry();
-            CountryCode.setText(telephonyManager.getNetworkCountryIso());
-
-            Utilities.showLogcatMessage(" " + telephonyManager.getDeviceId());
-// Permission has already been granted
-        }
-    /*    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)!= PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this,new String[] { Manifest.permission.READ_PHONE_STATE}, 1);
-            SubscriberID.setText(telephonyManager.getSubscriberId());
-            IMEINumber.setText(telephonyManager.getDeviceSoftwareVersion());
-            SIMNumber.setText(telephonyManager.getSimSerialNumber());
-            Utilities.showLogcatMessage(" " + telephonyManager.getDeviceId());
+    @Override
+    public void onLocationChanged(Location location) {
+        mylocation = location;
+        if(mylocation != null){
+            /*Intent i = new Intent(HardwareInformationActivity.this, LoginActivity.class);
+            startActivity(i);
+            // close this activity
+            finish();*/
         }
         else {
-            Utilities.showLogcatMessage(" Not Permited");
-        }*/
-
+            Utilities.showLogcatMessage(" No Thanks 2");
+            // showDialog();
+            finish();
+        }
 
     }
 
 
-    public void getAllInfo() {
 
-      /*  try (java.util.Scanner s = new java.util.Scanner(new java.net.URL("https://api.ipify.org").openStream(), "UTF-8").useDelimiter("\\A")) {
-            //System.out.println("My current IP address is " + s.next());
-            IPAddress.setText(s.next());
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }*/
-       /* RetrofitService retrofitService = RetrofitAPIInstance.getRetrofitInstance().create(RetrofitService.class);
-        Call<String> listCall = retrofitService.;
-        listCall.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+    private void getMyLocation() {
+        if (googleApiClient != null) {
+            if (googleApiClient.isConnected()) {
+                int permissionLocation = ContextCompat.checkSelfPermission(HardwareInformationActivity.this,
+                        Manifest.permission.ACCESS_FINE_LOCATION);
+                if (permissionLocation == PackageManager.PERMISSION_GRANTED) {
+                    mylocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+                    @SuppressLint("RestrictedApi") LocationRequest locationRequest = new LocationRequest();
+                    locationRequest.setInterval(3000);
+                    locationRequest.setFastestInterval(3000);
+                    locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+                    LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                            .addLocationRequest(locationRequest);
+                    builder.setAlwaysShow(true);
+                    LocationServices.FusedLocationApi
+                            .requestLocationUpdates(googleApiClient, locationRequest, (com.google.android.gms.location.LocationListener) HardwareInformationActivity.this);
+                    PendingResult<LocationSettingsResult> result =
+                            LocationServices.SettingsApi
+                                    .checkLocationSettings(googleApiClient, builder.build());
+                    result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
 
-                if (response.body() != null) {
-
-                    IPAddress.setText(response.body());
-
-
+                        @Override
+                        public void onResult(LocationSettingsResult result) {
+                            final Status status = result.getStatus();
+                            switch (status.getStatusCode()) {
+                                case LocationSettingsStatusCodes.SUCCESS:
+                                    // All location settings are satisfied.
+                                    // You can initialize location requests here.
+                                    int permissionLocation = ContextCompat
+                                            .checkSelfPermission(HardwareInformationActivity.this,
+                                                    Manifest.permission.ACCESS_FINE_LOCATION);
+                                    if (permissionLocation == PackageManager.PERMISSION_GRANTED) {
+                                        mylocation = LocationServices.FusedLocationApi
+                                                .getLastLocation(googleApiClient);
+                                    }
+                                    break;
+                                case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                                    // Location settings are not satisfied.
+                                    // But could be fixed by showing the user a dialog.
+                                    try {
+                                        // Show the dialog by calling startResolutionForResult(),
+                                        // and check the result in onActivityResult().
+                                        // Ask to turn on GPS automatically
+                                        status.startResolutionForResult(HardwareInformationActivity.this,
+                                                REQUEST_CHECK_SETTINGS_GPS);
+                                    } catch (IntentSender.SendIntentException e) {
+                                        // Ignore the error.
+                                    }
+                                    break;
+                                case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                                    // Location settings are not satisfied.
+                                    // However, we have no way
+                                    // to fix the
+                                    // settings so we won't show the dialog.
+                                    // finish();
+                                    break;
+                            }
+                        }
+                    });
                 }
             }
+        }
+    }
 
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(HardwareInformationActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CHECK_SETTINGS_GPS:
+                switch (resultCode) {
+                    case Activity.RESULT_OK:
+                        updateGPSStatus("GPS is Enabled in your device");
+                        getMyLocation();
+                        break;
+                    case Activity.RESULT_CANCELED:
+                       // showDialog();
+                        finish();
+                        break;
+                }
+                break;
+        }
+    }
+
+
+    private void updateGPSStatus(String status) {
+        // gps_status.setText(status);
+    }
+
+
+    private void checkPermissions() {
+        int permissionLocation = ContextCompat.checkSelfPermission(HardwareInformationActivity.this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION);
+        List<String> listPermissionsNeeded = new ArrayList<>();
+        if (permissionLocation != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(android.Manifest.permission.ACCESS_FINE_LOCATION);
+            if (!listPermissionsNeeded.isEmpty()) {
+                ActivityCompat.requestPermissions(this,
+                        listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
             }
-        });*/
+        } else {
+            getMyLocation();
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        int permissionLocation = ContextCompat.checkSelfPermission(HardwareInformationActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permissionLocation == PackageManager.PERMISSION_GRANTED) {
+            getMyLocation();
+        }
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
 
     }
 }

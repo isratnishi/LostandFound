@@ -103,7 +103,7 @@
     <string name="chesisNo">চেসিস নং</string>
     <string name="ccNo">সিসি</string>
 
-    <string name="madeIn">প্রস্তুতকারি দেশ</string>
+    <string name="madeIn">প্রস্তুতকারক দেশ</string>
     <string name="madeDate">উৎপাদন তারিখ</string>
 
     <!--    vehicle document info-->
@@ -713,7 +713,7 @@
         <item>@string/select_list</item>
         <item>টেলিফোন</item>
         <item>ড্রাইভিং লাইসেন্স</item>
-        <item>টিন নাম্বার</item>
+        <item>টি আই এন নাম্বার</item>
         <item>পাসপোর্ট</item>
         <item>মোবাইল</item>
         <item>অন্যান্য</item>
@@ -996,8 +996,8 @@
     <string name="dcolor">রং</string>
     <string name="deye">চোখে</string>
     <string name="dthroat">গলায়</string>
-    <string name="dbody">দেহে</string>
-    <string name="dwaist">কোমরে</string>
+    <string name="dbody">দেহের উর্ধাংশ</string>
+    <string name="dwaist">দেহের নিন্মাংশ</string>
     <string name="dlegs">পায়ে</string>
     <string name="person_identification_info">ব্যক্তির সনাক্তকরণের তথ্য</string>
     <string name="missingpersonlevel">নিখোঁজ ব্যক্তির তথ্য</string>
@@ -1081,10 +1081,11 @@
     </string-array>
     <string-array name="array_in_the_legs">
         <item> @string/select_list </item>
-        <item>জুতা</item>
+        <item>জুতা/সু</item>
         <item>বুট</item>
-        <item>সু</item>
+        <item>কেডস</item>
         <item>সেন্ডেল</item>
+        <item>খড়ম</item>
     </string-array>
     <string-array name="Ageperiod">
         <item> @string/select_list </item>
@@ -1159,7 +1160,8 @@
     <string name="thanks">ধন্যবাদ</string>
     <string name="support_msg">লষ্ট এ্যান্ড ফাউণ্ড অ্যাপস্‌ সংক্রান্ত যেকোন তথ্য বা সহায়তার জন্য অ্যাপস্‌ সাপোর্ট সেন্টারে কর্তব্যরত প্রতিনিধির সাথে নিচের নম্বরে যোগাযোগ করুন- +৮৮০১৭৩৭৩৬৬০২৮ এছাড়া আমাদের সাথে যোগাযোগের জন্য নিচের মাধ্যমগুলো ব্যবহার করতে পারেন</string>
     <string name="select_item_for_support">একটি নির্বাচন করুন</string>
-    <string name="date_of_birth">Date of Birth</string>
+    <string name="date_of_birth">জন্ম তারিখ</string>
+    <string name="shoesize">জুতার মাপ</string>
 
 
 </resources>
