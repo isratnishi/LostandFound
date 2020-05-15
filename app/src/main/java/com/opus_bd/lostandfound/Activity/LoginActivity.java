@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import com.opus_bd.lostandfound.Activity.PoliceInterface.ContactActivity;
+import com.opus_bd.lostandfound.Activity.PoliceInterface.PoliceMainActivity;
 import com.opus_bd.lostandfound.Model.User.UserAuthModel;
 import com.opus_bd.lostandfound.Model.User.UserLoginModel;
 import com.opus_bd.lostandfound.R;
@@ -238,8 +239,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         Toast.makeText(LoginActivity.this, "Successfully Logged in!", Toast.LENGTH_SHORT).show();
 
-                        if(userName=="suza"){
-                            Intent intent = new Intent(LoginActivity.this, ContactActivity.class);
+                        if(userName.equals("suza")){
+                            Intent intent = new Intent(LoginActivity.this, PoliceMainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);

@@ -1057,6 +1057,8 @@
 
                                 </TableRow>
                                 <TableRow
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
@@ -1065,14 +1067,42 @@
                                         android:text="@string/special_birthmarks" />
 
                                     <TextView
+
                                         style="@style/InformationEntryTextViewColon"
+                                        android:paddingRight="0dp"
                                         android:text=":" />
 
-                                    <EditText
-                                        android:id="@+id/etSpecialBirthmarks"
+
+                                    <LinearLayout
                                         style="@style/InformationEntryEditText"
-                                        />
+                                        android:orientation="horizontal">
+                                        <EditText
+                                            android:visibility="gone"
+                                            android:id="@+id/etSpecialBirthmarks"
+                                            style="@style/InformationEntryEditText"
+                                            />
+                                        <Spinner
+                                            android:id="@+id/spnRegNoName1"
+                                            android:entries="@array/array_Special_birthmarks"
+                                            android:layout_width="90dp"
+                                            android:layout_height="match_parent"
+                                            android:background="@android:color/transparent"/>
+                                        <Spinner
+                                            android:id="@+id/spnRegNoName2"
+                                            android:layout_width="70dp"
+                                            android:entries="@array/array_Special_birthmarks_limbs"
+                                            android:layout_height="match_parent"
+                                            android:background="@android:color/transparent"/>
+                                        <Spinner
+                                            android:id="@+id/spnRegNoName3"
+                                            android:layout_width="80dp"
+                                            android:entries="@array/array_birthmarks_position"
+                                            android:layout_height="match_parent"
+                                            android:background="@android:color/transparent"/>
+                                    </LinearLayout>
                                 </TableRow>
+
+
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">

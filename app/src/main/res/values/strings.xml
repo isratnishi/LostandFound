@@ -200,7 +200,15 @@
     <string name="sorothal">Sorothal Report</string>
     <string name="lostfoundreport">Theft/Lost/Rescue</string>
     <string name="searchwithphoto">Search for identifiers with photoes</string>
-
+    <string name="case_description">Case Description</string>
+    <string name="information_type">Inforamtion Type</string>
+    <string name="information_no">Information No</string>
+    <string name="deathperson_description">Death Person Description</string>
+    <string-array name="array_information_type">
+        <item>@string/select_option</item>
+        <item>GD</item>
+        <item>Case</item>
+    </string-array>
     <string-array name="array_electronics_brand">
         <item>@string/select_option</item>
         <item>Philips</item>
@@ -1011,8 +1019,9 @@
 
     <string-array name="array_in_the_eye">
         <item> @string/select_list </item>
-        <item>চশমা</item>
-        <item>সানগ্লাস</item>
+        <item>Glasses</item>
+        <item>Sunglasses</item>
+        <item>Sunglasses</item>
     </string-array>
 
     <string-array name="array_in_the_throt">
@@ -1030,6 +1039,43 @@
         <item>ট্রি-শার্ট</item>
         <item>ব্লেজার</item>
         <item>সোয়েটার</item>
+    </string-array>
+<string name="limbs">Limbs</string>
+<string name="limbs_position">Position</string>
+    <string-array name="array_Special_birthmarks">
+        <item> @string/select_list </item>
+        <item>Sesame</item>
+        <item>Mole</item>
+        <item>Burn marks</item>
+        <item>In the eyes</item>
+        <item>Cut marks</item>
+        <item>Birthmarks</item>
+    </string-array>
+    <string-array name="array_Special_birthmarks_limbs">
+        <item> @string/select_list </item>
+        <item>Legs</item>
+        <item>In hand</item>
+        <item>In the ears</item>
+        <item>In the eyes</item>
+        <item>Cheeks</item>
+        <item>On the lips</item>
+        <item>In the throat</item>
+        <item>On the back</item>
+        <item>In the head</item>
+        <item>Nose</item>
+    </string-array>
+
+    <string-array name="array_birthmarks_position">
+        <item> @string/select_list </item>
+        <item>Right</item>
+        <item>Left </item>
+        <item>Upstairs </item>
+        <item>Down </item>
+        <item>Top right</item>
+        <item>Top left</item>
+        <item>Down right</item>
+        <item>Down left</item>
+        <item>In the middle</item>
     </string-array>
 
     <string-array name="array_in_the_waist">
