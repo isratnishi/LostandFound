@@ -73,8 +73,8 @@
                             android:orientation="horizontal"
                             tools:ignore="DisableBaselineAlignment">
 
-                            <TextView
-                                android:id="@+id/tvsorothal"
+                            <Button
+                                android:id="@+id/btnSorothal"
                                 android:layout_width="match_parent"
                                 android:layout_height="?attr/actionBarSize"
                                 android:gravity="center|center_vertical"
