@@ -10,12 +10,15 @@ import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 
+import butterknife.ButterKnife;
+
 public class SorothalReportActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sorothal_report);
+        ButterKnife.bind(this);
     }
 
     @Override
