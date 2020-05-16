@@ -51,7 +51,7 @@
 
     <string name="please_choose_one_of_below">নীচের একটি পছন্দ করুন</string>
     <string name="purpose_of_visit">ভ্রমণের উদ্দেশ্য</string>
-    <string name="please_fill_up_your_imigartion_address">আপনার ইমিগ্রেশন ঠিকানা পূরণ করুন</string>
+    <string name="please_fill_up_your_imigartion_address">আপনার বাংলাদেশে অবস্থানকালীন ঠিকানাটি পূরন করুন</string>
     <string name="support">সাপোর্ট</string>
     <string name="forget_password">পাসওয়ার্ড ভুলে গেছেন ?</string>
     <string name="live_chat">লাইভ চাটিং</string>
@@ -147,7 +147,7 @@
     <string name="country">দেশ</string>
     <string name="one_line_address">এক লাইন ঠিকানা</string>
     <string name="habit">অভ্যাস</string>
-    <string name="speech">ভাষা</string>
+    <string name="speech">বচন ভঙ্গি</string>
     <string name="newpassword">নতুন পাসওয়ার্ড</string>
     <string name="watch_Information">ঘড়ির তথ্য</string>
     <string name="watch_type">ঘড়ির ধরণ</string>
@@ -162,7 +162,15 @@
     <string name="sorothal">সুরতহাল রিপোর্ট</string>
     <string name="lostfoundreport">চোরাই/হারানো/উদ্ধার</string>
     <string name="searchwithphoto">ছবি দিয়ে অসনাক্তকারী ব্যক্তি সার্চ</string>
-
+    <string name="case_description">ঘটনার বিবরণ</string>
+    <string name="information_type">ইনফরমেশন ধরণ</string>
+    <string name="information_no">ইনফরমেশন নম্বর</string>
+    <string name="deathperson_description">মৃত ব্যক্তির বিবরণ</string>
+    <string-array name="array_information_type">
+        <item>@string/select_option</item>
+        <item>জিডি</item>
+        <item>মামলা</item>
+    </string-array>
     <string-array name="array_electronics_brand">
         <item>@string/select_option</item>
         <item>Philips</item>
@@ -1048,11 +1056,47 @@
         <item>টুপি</item>
         <item>পাগড়ী</item>
     </string-array>
-
+    <string-array name="array_Special_birthmarks">
+        <item> @string/select_list </item>
+        <item>তিল</item>
+        <item>আঁচিল</item>
+        <item>পুড়া দাগ</item>
+        <item>কাঁটা দাগ</item>
+        <item>জন্ম দাগ</item>
+    </string-array>
+    <string-array name="array_Special_birthmarks_limbs">
+        <item> @string/select_list </item>
+        <item>পায়ে</item>
+        <item>হাতে</item>
+        <item>কানে </item>
+        <item>চোখে </item>
+        <item>গালে</item>
+        <item>ঠুটে </item>
+        <item>গলায় </item>
+        <item>পেটে </item>
+        <item>পিঠে </item>
+        <item>মাথায় </item>
+        <item>নাকে</item>
+    </string-array>
+    <string name="limbs">অঙ্গ</string>
+    <string name="limbs_position">অবস্থান</string>
+    <string-array name="array_birthmarks_position">
+        <item> @string/select_list </item>
+        <item>ডানে</item>
+        <item>বামে </item>
+        <item>উপরে </item>
+        <item>নিচে </item>
+        <item>উপরে ডানে</item>
+        <item>উপরে বামে </item>
+        <item>নিচে ডানে</item>
+        <item>পিচে বামে</item>
+        <item>মাঝখানে</item>
+    </string-array>
     <string-array name="array_in_the_eye">
         <item> @string/select_list </item>
         <item>চশমা</item>
         <item>সানগ্লাস</item>
+        <item>Contact lenses</item>
     </string-array>
 
     <string-array name="array_in_the_throt">

@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <uses-feature
         android:name="android.hardware.location.gps"
@@ -30,9 +30,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.PoliceInterface.ContactActivity">
+        <activity android:name=".Activity.PoliceInterface.SorothalReportActivity"></activity>
+        <activity
+            android:name=".Activity.PoliceInterface.PoliceMainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+        <activity android:name=".Activity.PoliceInterface.ContactActivity" />
         <activity android:name=".Activity.OtherItem.CosmeticsActivity" />
         <activity android:name=".Activity.OtherItem.ElectronicsActivity" />
         <activity android:name=".Activity.OtherItem.ShoesActivity" />
@@ -49,9 +53,7 @@
         <activity android:name=".Activity.OtherItem.MobilePhoneActivity" />
         <activity android:name=".Activity.OtherItem.OtherItemDetailsActivity" />
         <activity android:name=".Activity.ForgetPasswordActivity" />
-        <activity android:name=".Activity.HardwareInformationActivity" >
-
-        </activity>
+        <activity android:name=".Activity.HardwareInformationActivity" />
         <activity android:name=".Activity.OtherItem.CategoryListActivity" />
         <activity android:name=".Activity.OtherItem.ComputerActivity" />
         <activity

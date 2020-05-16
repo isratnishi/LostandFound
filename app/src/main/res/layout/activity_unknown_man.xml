@@ -436,23 +436,6 @@
 
                                     </LinearLayout>
                                 </TableRow>
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="@string/visible_tattoos" />
-
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
-
-                                    <EditText
-                                        android:id="@+id/etVisibleTattoos"
-                                        style="@style/InformationEntryEditText"
-                                        />
-                                </TableRow>
 
                                 <TableRow
                                     android:layout_width="match_parent"
@@ -1115,6 +1098,51 @@
                                     </LinearLayout>
 
                                 </TableRow>
+<!--                                <TableRow-->
+<!--                                    android:layout_gravity="center_vertical"-->
+<!--                                    android:gravity="center_vertical"-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="wrap_content">-->
+
+<!--                                    <TextView-->
+<!--                                        style="@style/InformationEntryTextView"-->
+<!--                                        android:text="@string/special_birthmarks" />-->
+
+<!--                                    <TextView-->
+
+<!--                                        style="@style/InformationEntryTextViewColon"-->
+<!--                                        android:paddingRight="0dp"-->
+<!--                                        android:text=":" />-->
+
+
+<!--                                    <LinearLayout-->
+<!--                                        style="@style/InformationEntryEditText"-->
+<!--                                        android:orientation="horizontal">-->
+<!--                                        <EditText-->
+<!--                                            android:visibility="gone"-->
+<!--                                            android:id="@+id/etSpecialBirthmarks"-->
+<!--                                            style="@style/InformationEntryEditText"-->
+<!--                                            />-->
+<!--                                        <Spinner-->
+<!--                                            android:id="@+id/spnRegNoName1"-->
+<!--                                            android:entries="@array/array_Special_birthmarks"-->
+<!--                                            android:layout_width="90dp"-->
+<!--                                            android:layout_height="match_parent"-->
+<!--                                            android:background="@android:color/transparent"/>-->
+<!--                                        <Spinner-->
+<!--                                            android:id="@+id/spnRegNoName2"-->
+<!--                                            android:layout_width="70dp"-->
+<!--                                            android:entries="@array/array_Special_birthmarks_limbs"-->
+<!--                                            android:layout_height="match_parent"-->
+<!--                                            android:background="@android:color/transparent"/>-->
+<!--                                        <Spinner-->
+<!--                                            android:id="@+id/spnRegNoName3"-->
+<!--                                            android:layout_width="80dp"-->
+<!--                                            android:entries="@array/array_birthmarks_position"-->
+<!--                                            android:layout_height="match_parent"-->
+<!--                                            android:background="@android:color/transparent"/>-->
+<!--                                    </LinearLayout>-->
+<!--                                </TableRow>-->
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
@@ -1126,9 +1154,69 @@
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
+                                    <Spinner
+                                        android:id="@+id/spnBirthMark"
+                                        android:entries="@array/array_Special_birthmarks"
+                                        style="@style/InformationEntryEditText" />
+                                    <EditText
+                                        android:visibility="gone"
+                                        android:id="@+id/etSpecialBirthmarks"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/limbs" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnLimbs"
+                                        android:entries="@array/array_Special_birthmarks_limbs"
+                                        style="@style/InformationEntryEditText" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/limbs_position" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <Spinner
+                                        android:id="@+id/spnLimbs_position"
+                                        android:entries="@array/array_birthmarks_position"
+                                        style="@style/InformationEntryEditText" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/visible_tattoos" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
 
                                     <EditText
-                                        android:id="@+id/etSpecialBirthmarks"
+                                        android:id="@+id/etVisibleTattoos"
                                         style="@style/InformationEntryEditText"
                                         />
                                 </TableRow>
@@ -3479,7 +3567,23 @@
                                         />
 
                                 </TableRow>
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
+                                    <TextView
+                                        style="@style/InformationEntryTextView"
+                                        android:text="@string/visible_tattoos" />
+
+                                    <TextView
+                                        style="@style/InformationEntryTextViewColon"
+                                        android:text=":" />
+
+                                    <TextView
+                                        android:id="@+id/tvVisibleTattoos"
+                                        style="@style/InformationEntryEditText"
+                                        />
+                                </TableRow>
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
