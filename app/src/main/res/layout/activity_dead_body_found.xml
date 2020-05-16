@@ -569,8 +569,8 @@
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
 
-                                    <Spinner
-                                        android:id="@+id/spnVillage"
+                                    <EditText
+                                        android:id="@+id/etVillage"
                                         style="@style/InformationEntryEditText" />
                                 </TableRow>
 
@@ -1120,24 +1120,24 @@
                                         style="@style/InformationEntryEditText" />
 
                                 </TableRow>
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+<!--                                <TableRow-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="wrap_content">-->
 
-                                    <TextView
-                                        style="@style/InformationEntryTextView"
-                                        android:text="@string/shoesize" />
+<!--                                    <TextView-->
+<!--                                        style="@style/InformationEntryTextView"-->
+<!--                                        android:text="@string/shoesize" />-->
 
-                                    <TextView
-                                        style="@style/InformationEntryTextViewColon"
-                                        android:text=":" />
+<!--                                    <TextView-->
+<!--                                        style="@style/InformationEntryTextViewColon"-->
+<!--                                        android:text=":" />-->
 
 
-                                    <EditText
-                                        android:id="@+id/etShoeSize"
-                                        android:inputType="number"
-                                        style="@style/InformationEntryEditText" />
-                                </TableRow>
+<!--                                    <EditText-->
+<!--                                        android:id="@+id/etShoeSize"-->
+<!--                                        android:inputType="number"-->
+<!--                                        style="@style/InformationEntryEditText" />-->
+<!--                                </TableRow>-->
 
                             </TableLayout>
 

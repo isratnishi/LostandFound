@@ -173,8 +173,8 @@ public class DeadBodyFoundActivity extends AppCompatActivity implements DatePick
     Spinner spnSPDistrict;
     @BindView(R.id.spnSPThana)
     Spinner spnSPThana;
-    @BindView(R.id.spnVillage)
-    Spinner spnVillage;
+    @BindView(R.id.etVillage)
+    EditText etVillage;
     @BindView(R.id.etAddressDetails)
     EditText etAddressDetails;
     @BindView(R.id.spnAddressType)
@@ -766,7 +766,7 @@ ImageView imageView;
             tvSPDistrict.setText(spnSPDistrict.getSelectedItem().toString());
             tvSPThana.setText(spnSPThana.getSelectedItem().toString());
             tvAddressDetails.setText(etAddressDetails.getText().toString());
-            tvVillage.setText(spnVillage.getSelectedItem().toString());
+            tvVillage.setText(etVillage.getText().toString());
             tvAddressType.setText(spnAddressType.getSelectedItem().toString());
             tvOneLineAddress.setText(etOneLineAddress.getText().toString());
             tvfoundDate.setText(etfoundDate.getText().toString());
