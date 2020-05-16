@@ -90,7 +90,7 @@
                                                         android:text=":" />
 
                                                     <Spinner
-                                                        android:id="@+id/spnLostistrict"
+                                                        android:id="@+id/spnDistrict"
                                                         style="@style/InformationEntryEditText"/>
                                                 </TableRow>
 
@@ -108,7 +108,7 @@
                                                         android:text=":" />
 
                                                     <Spinner
-                                                        android:id="@+id/spnLostThana"
+                                                        android:id="@+id/spnThana"
                                                         style="@style/InformationEntryEditText"/>
                                                 </TableRow>
 
