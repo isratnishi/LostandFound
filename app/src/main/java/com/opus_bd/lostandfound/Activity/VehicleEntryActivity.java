@@ -6,6 +6,8 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -25,6 +27,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -212,7 +215,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     ArrayList<DocumentType> documentTypeArrayList = new ArrayList<>();
     ArrayList<VehicleType> vehicleTypeArrayList = new ArrayList<>();
     ArrayList<VehicleModel> VehicleModelArrayList = new ArrayList<>();
-    ArrayList<Colors> colorArrayList = new ArrayList<>();
+    ArrayList<Color> colorArrayList = new ArrayList<>();
     ArrayList<MetropolitanArea> metroAreaModelArrayList = new ArrayList<>();
     ArrayList<RegistrationLevel> registrationLevelModels = new ArrayList<>();
     ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
@@ -1100,6 +1103,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         for (int i = 0; i < body.size(); i++) {
             colorList.add(body.get(i).getLevelName());
         }
+
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, colorList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
