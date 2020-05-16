@@ -6,6 +6,8 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -298,8 +300,6 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
     @BindView(R.id.reportPlaceTv)
     TextView reportPlaceTv;
 
-    @BindView(R.id.chatBot)
-    WebView chatBot;
 
 //Multiple Image add
 
@@ -896,7 +896,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         });
     }
 
-    public void addColorSpinnerData(final List<Color> body) {
+    public void addColorSpinnerData(final List<Colors> body) {
         List<String> colorList = new ArrayList<>();
         List<String> colorCode = new ArrayList<>();
         colorList.add(0, selectOne);
