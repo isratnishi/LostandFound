@@ -32,6 +32,7 @@ import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class PoliceMainActivity extends AppCompatActivity {
@@ -40,8 +41,7 @@ public class PoliceMainActivity extends AppCompatActivity {
     TextView tvWelcome;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.ivappLogo)
-    ImageView ivappLogo;
+
     @BindView(R.id.mDrawerLayout)
     DrawerLayout mDrawerLayout;
     private MenuItem item;
@@ -49,21 +49,15 @@ public class PoliceMainActivity extends AppCompatActivity {
     @BindView(R.id.btnSorothal)
     Button btnSorothal;
 
-    // First row
-    @BindView(R.id.tvAllegation)
-    TextView tvAllegation;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_police_main2);
-
+        ButterKnife.bind(this);
     }
 
     @OnClick({R.id.btnSorothal})
     public void btnSorothal() {
-        Constants.ENTRY_TYPE_ID = Constants.FOUND;
         Intent intent = new Intent(PoliceMainActivity.this, SorothalReportActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -85,7 +79,6 @@ public class PoliceMainActivity extends AppCompatActivity {
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
 
-
     @Override
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.END)) {
@@ -93,7 +86,6 @@ public class PoliceMainActivity extends AppCompatActivity {
         } else {
         }
     }
-
 
     private void displaySelectedScreen(int itemId) {
 
