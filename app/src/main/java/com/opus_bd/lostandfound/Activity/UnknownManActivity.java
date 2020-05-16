@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -27,6 +28,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -445,6 +447,18 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     @BindView(R.id.tvDLegSize)
     TextView tvDLegSize;
 
+    @BindView(R.id.btnAddHabit)
+    Button btnAddHabit;
+
+    @BindView(R.id.lvHabit_list)
+    ListView lvHabit_list;
+
+    @BindView(R.id.btnAddSpeech)
+    Button btnAddSpeech;
+
+    @BindView(R.id.lvSpeech_list)
+    ListView lvSpeech_list;
+
     //date picker
     SimpleDateFormat formatter;
     int mYear, mMonth, mDay;
@@ -502,6 +516,10 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     ArrayList<AdreessList> addressListArrayList = new ArrayList<>();
     AddressListAdapter addressListAdapter;
 
+    //String[] lstHabit,lstSpeech;
+    ArrayList<String> lstHabit = new ArrayList<String>();
+    ArrayList<String> lstSpeech = new ArrayList<String>();
+
     @BindView(R.id.rvAddressList)
     RecyclerView rvAddressList;@BindView(R.id.ivImage)
     ImageView ivImage;@BindView(R.id.gv)
@@ -509,6 +527,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     private GalleryAdapter galleryAdapter;
     ProgressDialog progress;
     public String Language,english,bangla;
+    public  int counterHabit,counterSpeech=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -561,6 +580,30 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
 
         ccp.setDefaultCountryUsingNameCode("BD");
         ccp.resetToDefaultCountry();
+
+    }
+
+    @OnClick(R.id.btnAddHabit)
+    public void btnAddHabit() {
+        counterHabit++;
+        String habit=spnHabits.getSelectedItem().toString();
+        lstHabit.add(counterHabit+". "+ habit);
+        ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_list_item_1, lstHabit);
+
+        lvHabit_list.setAdapter(adapter);
+
+    }
+
+    @OnClick(R.id.btnAddSpeech)
+    public void btnAddSpeech() {
+        counterSpeech++;
+        String habit=spnSpeech.getSelectedItem().toString();
+        lstSpeech.add(counterSpeech+". "+ habit);
+        ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_list_item_1, lstSpeech);
+
+        lvSpeech_list.setAdapter(adapter);
 
     }
 
