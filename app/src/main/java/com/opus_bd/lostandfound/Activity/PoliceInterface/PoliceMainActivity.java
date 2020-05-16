@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,8 +46,8 @@ public class PoliceMainActivity extends AppCompatActivity {
     DrawerLayout mDrawerLayout;
     private MenuItem item;
 
-    @BindView(R.id.tvsorothal)
-    TextView tvsorothal;
+    @BindView(R.id.btnSorothal)
+    Button btnSorothal;
 
     // First row
     @BindView(R.id.tvAllegation)
@@ -60,8 +61,8 @@ public class PoliceMainActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.tvsorothal, R.id.llsorothal})
-    public void ivFound() {
+    @OnClick({R.id.btnSorothal})
+    public void btnSorothal() {
         Constants.ENTRY_TYPE_ID = Constants.FOUND;
         Intent intent = new Intent(PoliceMainActivity.this, SorothalReportActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
