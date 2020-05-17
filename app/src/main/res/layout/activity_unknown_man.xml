@@ -515,6 +515,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:textColor="@color/black"
                                         android:layout_width="105dp"
                                         android:paddingTop="10dp"
                                         android:paddingLeft="7dp"
@@ -522,6 +523,8 @@
                                         android:text="@string/habit" />
 
                                     <TextView
+                                        android:paddingTop="0dp"
+                                        android:layout_marginTop="0dp"
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
 
@@ -540,6 +543,7 @@
                                     android:layout_height="wrap_content">
 
                                 <TextView
+
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_toLeftOf="@+id/lvHabit_list"/>
@@ -566,12 +570,14 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:textColor="@color/black"
                                         android:layout_width="105dp"
                                         android:paddingTop="10dp"
                                         android:paddingLeft="7dp"
                                         android:text="@string/speech" />
 
                                     <TextView
+                                        android:paddingTop="0dp"
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
 
@@ -1420,6 +1426,7 @@
                                         android:text=":" />
 
                                     <TextView
+
                                         android:layout_width="wrap_content"
                                         android:textStyle="bold"
                                         style="@style/InformationEntryEditText"
@@ -1427,6 +1434,7 @@
 
 
                                     <TextView
+                                        android:paddingLeft="50dp"
                                         android:layout_width="wrap_content"
                                         android:textStyle="bold"
                                         style="@style/InformationEntryEditText"

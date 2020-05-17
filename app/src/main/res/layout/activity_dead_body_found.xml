@@ -1227,6 +1227,7 @@
 
 
                                     <TextView
+                                        android:paddingLeft="50dp"
                                         style="@style/InformationEntryEditText"
                                         android:layout_width="wrap_content"
                                         android:text="@string/colorName"

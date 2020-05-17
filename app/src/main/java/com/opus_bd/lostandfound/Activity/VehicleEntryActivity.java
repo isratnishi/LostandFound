@@ -328,6 +328,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         ccp.setDefaultCountryUsingNameCode("JP");
         ccp.resetToDefaultCountry();
         setProgress();
+        this.setTitle(getResources().getText(R.string.information_entry));
         mcvVehicleInformation.setVisibility(View.VISIBLE);
         mcvVehicleIdendityInformation.setVisibility(View.GONE);
         mcvVehicleAttachment.setVisibility(View.GONE);
