@@ -56,7 +56,7 @@
     <string name="forget_password">পাসওয়ার্ড ভুলে গেছেন ?</string>
     <string name="live_chat">লাইভ চাটিং</string>
     <string name="live_call">লাইভ কলিং</string>
-    <string name="welcome_to_lost_and_found_application">"লস্ট এন্ড ফাউন্ড অ্যাপ্লিকেশনে আপনাকে স্বাগতম                                লস্ট এন্ড ফাউন্ড অ্যাপ্লিকেশনে আপনাকে স্বাগতম "</string>
+    <string name="welcome_to_lost_and_found_application">"লস্ট &amp; ফাউন্ড অ্যাপ্লিকেশনে আপনাকে স্বাগতম                                লস্ট এন্ড ফাউন্ড অ্যাপ্লিকেশনে আপনাকে স্বাগতম "</string>
     <string name="vehicle">যানবাহন</string>
     <string name="information_entry">তথ্য এন্ট্রি</string>
     <string name="theft">চুরি</string>
@@ -1210,7 +1210,7 @@
     <string name="carat">ক্যারেট</string>
     <string name="glass_information">চশমার তথ্য</string>
     <string name="thanks">ধন্যবাদ</string>
-    <string name="support_msg">লষ্ট এ্যান্ড ফাউণ্ড অ্যাপস্‌ সংক্রান্ত যেকোন তথ্য বা সহায়তার জন্য অ্যাপস্‌ সাপোর্ট সেন্টারে কর্তব্যরত প্রতিনিধির সাথে নিচের নম্বরে যোগাযোগ করুন- +৮৮০১৭৩৭৩৬৬০২৮ এছাড়া আমাদের সাথে যোগাযোগের জন্য নিচের মাধ্যমগুলো ব্যবহার করতে পারেন</string>
+    <string name="support_msg">লষ্ট &amp; ফাউণ্ড অ্যাপস্‌ সংক্রান্ত যেকোন তথ্য বা সহায়তার জন্য অ্যাপস্‌ সাপোর্ট সেন্টারে কর্তব্যরত প্রতিনিধির সাথে নিচের নম্বরে যোগাযোগ করুন- +৮৮০১৭৩৭৩৬৬০২৮ এছাড়া আমাদের সাথে যোগাযোগের জন্য নিচের মাধ্যমগুলো ব্যবহার করতে পারেন</string>
     <string name="select_item_for_support">একটি নির্বাচন করুন</string>
     <string name="date_of_birth">জন্ম তারিখ</string>
     <string name="shoesize">জুতার মাপ</string>
