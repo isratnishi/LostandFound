@@ -78,7 +78,7 @@
         <activity android:name=".GeneralPeople.OtherinformationActivity" />
         <activity
             android:name=".Activity.InformationEntryActivity"
-            android:label="Information Entry" />
+            android:label="@string/information_entry" />
         <activity android:name=".GeneralPeople.vehicleActivity" />
         <activity android:name=".GeneralPeople.MobileSearchActivity" />
         <activity android:name=".GeneralPeople.InformationSearchActivity" />

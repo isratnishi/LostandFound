@@ -453,6 +453,9 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     @BindView(R.id.lvHabit_list)
     ListView lvHabit_list;
 
+//    @BindView(R.id.rvHabitList)
+//    RecyclerView rvHabitList;
+
     @BindView(R.id.btnAddSpeech)
     Button btnAddSpeech;
 
@@ -1951,7 +1954,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
                 try {
                     if (i >= 1) {
                         SELECTED_DISTRICT_ID = body.get(i).getId();
-                        getAllThana(body.get(i).getId());
+                        getAllThana(body.get(i-1).getId());
                     } else {
                         SELECTED_DISTRICT_ID = 0;
                     }
@@ -2046,7 +2049,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
                 try {
                     if (i >= 1) {
                         SELECTED_DISTRICT_ID_LP = body.get(i).getId();
-                        getAllThanaLP(body.get(i).getId());
+                        getAllThanaLP(body.get(i-1).getId());
                     } else {
                         SELECTED_DISTRICT_ID_LP = 0;
                     }

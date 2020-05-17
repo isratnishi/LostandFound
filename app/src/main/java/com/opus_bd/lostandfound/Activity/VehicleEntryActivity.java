@@ -748,7 +748,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
                 if (response.body() != null) {
                     progress.dismiss();
                     addVehicleTypeNamePresentSpinnerData(response.body().getVehicleTypes());
-                    addVehicleMadyBySpinnerData(response.body().getVehicleModels());
+                    //addVehicleMadyBySpinnerData(response.body().getVehicleModels());
                     addDistrictSpinnerData(response.body().getDistricts());
                     addColorSpinnerData(response.body().getColors());
                     addMetroAreaSpinnerData(response.body().getMetropolitanAreas());
@@ -834,6 +834,8 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         });
     }
 
+
+
     public void addVehicleTypeNamePresentSpinnerData(final List<VehicleType> body) {
         List<String> vehicleList = new ArrayList<>();
         vehicleList.add(0, selectOne);
@@ -855,7 +857,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i >= 1) {
                     SELECTED_VEHICLETYPE_ID = body.get(i).getId();
-                    //  getAllVehicleModel(body.get(i-1).getId());
+                    getAllVehicleModel(body.get(i-1).getId());
                 } else {
                     SELECTED_VEHICLETYPE_ID = 0;
                 }
@@ -866,6 +868,31 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
             }
         });
+    }
+
+    public void getAllVehicleModel(int id) {
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<VehicleModel>> thana = retrofitService.GetVehicleModelByVehicleId(id);
+        thana.enqueue(new Callback<List<VehicleModel>>() {
+            @Override
+            public void onResponse(Call<List<VehicleModel>> call, Response<List<VehicleModel>> response) {
+
+                if (response.body() != null) {
+
+                    VehicleModelArrayList.clear();
+                    VehicleModelArrayList.addAll(response.body());
+
+                    addVehicleMadyBySpinnerData(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<VehicleModel>> call, Throwable t) {
+                Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     public void addVehicleMadyBySpinnerData(final List<VehicleModel> body) {
@@ -1174,7 +1201,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
                 try {
                     if (i >= 1) {
                         SELECTED_DISTRICT_ID = body.get(i).getId();
-                        //getAllThana(body.get(i).getId());
+                        getAllThana(body.get(i-1).getId());
                     } else {
                         SELECTED_DISTRICT_ID = 0;
                     }
@@ -1191,7 +1218,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         });
     }
 
-   /* public void getAllThana(int id) {
+   public void getAllThana(int id) {
 
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
         Call<List<Thana>> thana = retrofitService.GetThanaByDistrictId(id);
@@ -1214,7 +1241,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             }
         });
 
-    }*/
+    }
 
 
     public void addThanaSpinnerData(final List<Thana> body) {

@@ -537,10 +537,16 @@
                                 </TableRow>
                                 <ListView
                                     android:id="@+id/lvHabit_list"
-                                    android:layout_gravity="right"
-                                    android:layout_width="120dp"
-                                    android:layout_height="120dp" >
+                                    android:paddingLeft="100dp"
+                                    android:paddingBottom="0dp"
+                                    android:layout_width="match_parent"
+                                    android:nestedScrollingEnabled="true"
+                                    android:layout_height="250dp" >
                                 </ListView>
+<!--                                <androidx.recyclerview.widget.RecyclerView-->
+<!--                                    android:id="@+id/rvHabitList"-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="120dp"/>-->
 
                                 <TableRow
                                     android:layout_width="match_parent"
@@ -568,9 +574,11 @@
                                 </TableRow>
                                 <ListView
                                     android:id="@+id/lvSpeech_list"
-                                    android:layout_gravity="right"
+                                    android:paddingLeft="100dp"
+                                    android:paddingBottom="0dp"
                                     android:layout_width="match_parent"
-                                    android:layout_height="120dp" >
+                                    android:nestedScrollingEnabled="true"
+                                    android:layout_height="250dp" >
                                 </ListView>
                             </TableLayout>
 
@@ -1373,14 +1381,13 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         style="@style/InformationEntryTextViewColon"
                                         android:textStyle="bold"
 
                                         android:text="@string/position" />
 
                                     <TextView
-
                                         style="@style/InformationEntryTextViewColon"
                                         android:textStyle="bold"
                                         android:text=":" />
@@ -1388,14 +1395,14 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:textStyle="bold"
-                                        style="@style/InformationEntryTextViewColon"
+                                        style="@style/InformationEntryEditText"
                                         android:text="@string/dress" />
 
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:textStyle="bold"
-                                        style="@style/InformationEntryTextViewColon"
+                                        style="@style/InformationEntryEditText"
                                         android:text="@string/colorName" />
                                 </TableRow>
 
@@ -1567,6 +1574,7 @@
                                     <EditText
                                         android:id="@+id/etDLegMes"
                                         android:gravity="start|center_vertical"
+                                        android:inputType="numberSigned"
                                         style="@style/InformationEntryEditText"
                                         />
                                     <Spinner

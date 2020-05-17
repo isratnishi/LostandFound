@@ -1209,7 +1209,7 @@
 
                                     <TextView
                                         style="@style/InformationEntryTextViewColon"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:text="@string/position"
 
                                         android:textStyle="bold" />
@@ -1221,14 +1221,14 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        style="@style/InformationEntryTextViewColon"
+                                        style="@style/InformationEntryEditText"
                                         android:layout_width="wrap_content"
                                         android:text="@string/dress"
                                         android:textStyle="bold" />
 
 
                                     <TextView
-                                        style="@style/InformationEntryTextViewColon"
+                                        style="@style/InformationEntryEditText"
                                         android:layout_width="wrap_content"
                                         android:text="@string/colorName"
                                         android:textStyle="bold" />
@@ -1395,6 +1395,7 @@
                                     <EditText
                                         android:id="@+id/etDLegMes"
                                         android:gravity="start|center_vertical"
+                                        android:inputType="numberSigned"
                                         style="@style/InformationEntryEditText"
                                         />
                                     <Spinner

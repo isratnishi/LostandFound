@@ -1387,8 +1387,8 @@ ImageView imageView;
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, lstData);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spndescription_of_teeth.setAdapter(dataAdapter2);
-        spndescription_of_teeth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spnspecial_physical_description.setAdapter(dataAdapter2);
+        spnspecial_physical_description.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 try {
@@ -1744,7 +1744,7 @@ ImageView imageView;
                 try {
                     if (i >= 1) {
                         SELECTED_DISTRICT_ID = body.get(i).getId();
-                        getAllThana(body.get(i).getId());
+                        getAllThana(body.get(i-1).getId());
                     } else {
                         SELECTED_DISTRICT_ID = 0;
                     }
@@ -1843,7 +1843,7 @@ ImageView imageView;
                 try {
                     if (i >= 1) {
                         SELECTED_DISTRICT_ID_LP = body.get(i).getId();
-                        getAllThanaLP(body.get(i).getId());
+                        getAllThanaLP(body.get(i-1).getId());
                     } else {
                         SELECTED_DISTRICT_ID_LP = 0;
                     }
