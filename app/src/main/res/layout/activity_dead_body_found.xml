@@ -685,7 +685,6 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
-
                 <!--Person  Physical Information-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/mcvPersonPhysical"

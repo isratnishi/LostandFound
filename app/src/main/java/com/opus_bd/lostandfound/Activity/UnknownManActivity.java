@@ -559,7 +559,7 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
         initializeVariables();
         selectOne = getResources().getString(R.string.select_option);
         intRecyclerView();
-
+        this.setTitle(getResources().getText(R.string.missingpersonlevel));
         getMDPersonalInfo();
         getMDDressInfo();
         getMDGlobalInfo();

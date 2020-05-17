@@ -425,6 +425,7 @@ ImageView imageView;
         } else {
             Language=bangla;
         }
+        setTitle(getResources().getText(R.string.unknowndeadbody));
         setProgress();
         getMDPersonalInfo();
         getMDDressInfo();

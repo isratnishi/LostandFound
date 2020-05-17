@@ -535,14 +535,27 @@
                                         android:text="+" />
 
                                 </TableRow>
-                                <ListView
-                                    android:id="@+id/lvHabit_list"
-                                    android:paddingLeft="100dp"
-                                    android:paddingBottom="0dp"
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                <TextView
                                     android:layout_width="match_parent"
-                                    android:nestedScrollingEnabled="true"
-                                    android:layout_height="250dp" >
-                                </ListView>
+                                    android:layout_height="wrap_content"
+                                    android:layout_toLeftOf="@+id/lvHabit_list"/>
+
+                                    <ListView
+
+                                        android:id="@+id/lvHabit_list"
+                                        android:paddingLeft="100dp"
+                                        android:paddingBottom="0dp"
+                                        android:layout_width="match_parent"
+                                        android:nestedScrollingEnabled="true"
+                                        android:layout_height="180dp" >
+                                    </ListView>
+
+                                </RelativeLayout>
+
 <!--                                <androidx.recyclerview.widget.RecyclerView-->
 <!--                                    android:id="@+id/rvHabitList"-->
 <!--                                    android:layout_width="match_parent"-->
@@ -572,14 +585,28 @@
                                         style="@style/EditTextIcon"
                                         android:text="+" />
                                 </TableRow>
-                                <ListView
-                                    android:id="@+id/lvSpeech_list"
-                                    android:paddingLeft="100dp"
-                                    android:paddingBottom="0dp"
-                                    android:layout_width="match_parent"
-                                    android:nestedScrollingEnabled="true"
-                                    android:layout_height="250dp" >
-                                </ListView>
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toLeftOf="@+id/lvSpeech_list"/>
+
+                                    <ListView
+
+                                        android:id="@+id/lvSpeech_list"
+                                        android:paddingLeft="100dp"
+                                        android:paddingBottom="0dp"
+                                        android:layout_width="match_parent"
+                                        android:nestedScrollingEnabled="true"
+                                        android:layout_height="180dp" >
+                                    </ListView>
+
+                                </RelativeLayout>
+
                             </TableLayout>
 
                             <Button
