@@ -104,7 +104,7 @@
     <string name="ccNo">সিসি</string>
 
     <string name="madeIn">প্রস্তুতকারক দেশ</string>
-    <string name="madeDate">উৎপাদন তারিখ</string>
+    <string name="madeDate">উৎপাদনের তারিখ</string>
 
     <!--    vehicle document info-->
     <string name="identityInfo">সনাক্তকরন তথ্য</string>
