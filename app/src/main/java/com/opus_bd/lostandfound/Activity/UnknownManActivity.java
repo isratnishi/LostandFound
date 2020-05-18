@@ -81,6 +81,7 @@ import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
 import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
+import com.theartofdev.edmodo.cropper.CropImage;
 import com.tsongkha.spinnerdatepicker.DatePicker;
 import com.tsongkha.spinnerdatepicker.DatePickerDialog;
 import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
@@ -2406,9 +2407,36 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+        catch (Exception e)
+        {
+            Utilities.showLogcatMessage("onActivityResult "+e.toString());
+        }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                Uri resultUri = result.getUri();
+                mArrayUri.add(resultUri);
+            galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
+            gvGallery.setAdapter(galleryAdapter);
+
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
+        }
+    }
+
+
     @OnClick(R.id.btnAddPhotoes)
     public void ImageAdd(){
-        ImagePicker();
+        //ImagePicker();
+        CropImage.activity().start(UnknownManActivity.this);
     }
 
     //ImagePicker
@@ -2421,39 +2449,39 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
                 .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
                 .start();
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        try {
-
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-        catch (Exception e)
-        {
-            Utilities.showLogcatMessage("onActivityResult "+e.toString());
-        }
-        if (resultCode == Activity.RESULT_OK) {
-            //Image Uri will not be null for RESULT_OK
-            Uri fileUri = data.getData();
-           // ivImage.setImageURI(fileUri);
-
-            //You can get File object from intent
-            File file = ImagePicker.Companion.getFile(data);
-
-            //You can also get File Path from intent
-            String filePath = ImagePicker.Companion.getFilePath(data);
-
-
-            mArrayUri.add(fileUri);
-            galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
-            gvGallery.setAdapter(galleryAdapter);
-           /* gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
-            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
-                    .getLayoutParams();
-            mlp.setMargins(0, gvGallery.getHorizontalSpacing(), 0, 0);*/
-        } else if (resultCode == ImagePicker.RESULT_ERROR) {
-            Toast.makeText(this, ImagePicker.Companion.getError(data), Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        try {
+//
+//            super.onActivityResult(requestCode, resultCode, data);
+//        }
+//        catch (Exception e)
+//        {
+//            Utilities.showLogcatMessage("onActivityResult "+e.toString());
+//        }
+//        if (resultCode == Activity.RESULT_OK) {
+//            //Image Uri will not be null for RESULT_OK
+//            Uri fileUri = data.getData();
+//           // ivImage.setImageURI(fileUri);
+//
+//            //You can get File object from intent
+//            File file = ImagePicker.Companion.getFile(data);
+//
+//            //You can also get File Path from intent
+//            String filePath = ImagePicker.Companion.getFilePath(data);
+//
+//
+//            mArrayUri.add(fileUri);
+//            galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
+//            gvGallery.setAdapter(galleryAdapter);
+//           /* gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
+//            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
+//                    .getLayoutParams();
+//            mlp.setMargins(0, gvGallery.getHorizontalSpacing(), 0, 0);*/
+//        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+//            Toast.makeText(this, ImagePicker.Companion.getError(data), Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }
