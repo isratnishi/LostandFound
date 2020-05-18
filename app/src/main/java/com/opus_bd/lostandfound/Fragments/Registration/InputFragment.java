@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.hbb20.CountryCodePicker;
 import com.opus_bd.lostandfound.GeneralPeople.RegistrationActivity;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Activity.RegistrationProcessActivity;
@@ -58,6 +60,10 @@ public class InputFragment extends Fragment {
     @BindView(R.id.rrCountryCode)
     RelativeLayout rrCountryCode;
 
+    @BindView(R.id.ccp)
+    CountryCodePicker ccp;
+
+
     int inputID, passId, view;
     int mYear, mMonth, mDay;
     Calendar calendar = Calendar.getInstance();
@@ -90,6 +96,10 @@ public class InputFragment extends Fragment {
 
         ButterKnife.bind(this, v);
         RegistrationProcessActivity.Step = 3;
+
+
+        ccp.setDefaultCountryUsingNameCode("JP");
+        ccp.resetToDefaultCountry();
 
         EventBus.getDefault().post(new MessageEvent(true));
         Utilities.showLogcatMessage(" inputId 1" + RegistrationActivity.inputid);

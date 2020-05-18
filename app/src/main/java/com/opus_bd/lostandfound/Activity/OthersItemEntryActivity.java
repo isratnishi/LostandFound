@@ -49,6 +49,7 @@ public class OthersItemEntryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_others_item_entry);
         ButterKnife.bind(this);
         languageStatus = getSharedPrefValue();
+        this.setTitle(getResources().getText(R.string.othersitemlevel));
         intRecyclerView();
         this.setTitle(getResources().getText(R.string.othersitemlevel));
         getAllOtherItemList();

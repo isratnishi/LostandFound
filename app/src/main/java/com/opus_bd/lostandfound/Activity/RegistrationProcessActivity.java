@@ -116,7 +116,7 @@ public class RegistrationProcessActivity extends AppCompatActivity  {
         //getAllList();
         switchFragment(new CitizenFragment());
         iv1.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
-
+        this.setTitle(getResources().getText(R.string.registration_information));
     }
 
     @Override

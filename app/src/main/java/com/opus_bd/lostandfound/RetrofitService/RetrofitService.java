@@ -4,7 +4,10 @@ package com.opus_bd.lostandfound.RetrofitService;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformation;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
+import com.opus_bd.lostandfound.Model.Documentaion.ComputerAccessoriesBrand;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentCategory;
+import com.opus_bd.lostandfound.Model.Documentaion.DocumentCategoryAccessory;
+import com.opus_bd.lostandfound.Model.Documentaion.DocumentCategoryBrand;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.Model.Documentaion.MDPersonalInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.MetroAreaModel;
@@ -54,6 +57,15 @@ public interface RetrofitService {
     @GET("api/DocumentMaster/GetDocumentCategoryByTypeId/{id}")
     Call<List<DocumentCategory>> GetDocumentCategoryByTypeId(@Path("id") int id);
 
+    @GET("api/DocumentMaster/GetDocumentCategoryBrandByDocumentTypeId/{id}")
+    Call<List<DocumentCategoryBrand>> GetDocumentCategoryBrandByDocumentTypeId(@Path("id") int id);
+
+    @GET("api/DocumentMaster/GetDocumentCategoryAccessoriesByDocumentTypeId/{id}")
+    Call<List<DocumentCategoryAccessory>> GetDocumentCategoryAccessoriesByDocumentTypeId(@Path("id") int id);
+
+    @GET("api/DocumentMaster/GetAllComputerAccessoriesBrand")
+    Call<List<ComputerAccessoriesBrand>> GetAllComputerAccessoriesBrand();
+
 
     //Dashboard
     @POST("api/LostFound/SaveGDInformation")
@@ -82,8 +94,6 @@ public interface RetrofitService {
 
     @GET("api/LostFound/GetGDInformationByUser/{UserName}")
     Call<List<GDInformation>> GetGDInformationByUser(@Header("Authorization") String token,@Path("UserName") String userName);
-
-
 
     @GET("api/DocumentMaster/GetColors")
     Call<List<Colors>> GetColors();

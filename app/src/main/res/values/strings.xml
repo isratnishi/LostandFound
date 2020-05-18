@@ -44,6 +44,9 @@
     <string name="Cancel">Cancel</string>
     <string name="Cancel_item">Cancel (2)</string>
     <string name="allegation">Allegation</string>
+    <string name="registration_information">Registration Information</string>
+    <string name="visa_type">Type Of Visa</string>
+    <string name="country_name">Country Name</string>
 
     <string name="investigation">Investigation (3)</string>
     <string name="disposal">Disposal (2)</string>
@@ -141,6 +144,12 @@
 
     <string name="age">Age</string>
     <string name="approximate_age">Approximate Age</string>
+    <string name="laptop">Laptop</string>
+    <string name="desktop">Desktop</string>
+    <string name="hybrid">Hybrid</string>
+    <string name="omni">Omni</string>
+    <string name="note_book">Note Book</string>
+    <string name="accessories">Computer Accessories</string>
 
     <string name="image_type">Image Type</string>
     <string name="image_name">Image Name</string>
@@ -598,7 +607,7 @@
         <item>Noakhali Regionalism</item>
     </string-array>
     <string-array name="purpose_of_visit">
-        <item>@string/select_option</item>
+        <item>@string/visa_type</item>
         <item>Purpose of Visit</item>
         <item>Tourist visa</item>
         <item>Business visa</item>
@@ -1269,5 +1278,6 @@ You can also use the following media to communicate with us</string>
     <string name="date_of_birth">Date of Birth</string>
     <string name="shoesize">Shoe\'s Size</string>
 
+    <string name="computer_information_entry">Computer Information Entry</string>
 
 </resources>

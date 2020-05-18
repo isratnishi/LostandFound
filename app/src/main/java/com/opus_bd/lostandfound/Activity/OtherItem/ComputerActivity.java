@@ -48,6 +48,9 @@ import com.opus_bd.lostandfound.Adapter.CustomColorAdapter;
 import com.opus_bd.lostandfound.Adapter.GalleryAdapter;
 import com.opus_bd.lostandfound.Model.Dashboard.GDInformationModel;
 import com.opus_bd.lostandfound.Model.Documentaion.Colors;
+import com.opus_bd.lostandfound.Model.Documentaion.ComputerAccessoriesBrand;
+import com.opus_bd.lostandfound.Model.Documentaion.DocumentCategoryAccessory;
+import com.opus_bd.lostandfound.Model.Documentaion.DocumentCategoryBrand;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.Model.Documentaion.MetroAreaModel;
 import com.opus_bd.lostandfound.Model.Documentaion.RegistrationLevelModel;
@@ -81,6 +84,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.KEY_State;
+import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.SHARED_PREF_NAME;
+
 public class ComputerActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     // Layout
     @BindView(R.id.llInput)
@@ -102,6 +108,9 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
     /*  Product Information*/
     @BindView(R.id.spnProductBrand)
     Spinner spnProductBrand;
+
+    @BindView(R.id.spnComputerAccessories)
+    Spinner spnComputerAccessories;
 
     @BindView(R.id.etProductModel)
     EditText etProductModel;
@@ -179,11 +188,14 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
     ArrayList<District> districtArrayList = new ArrayList<>();
     ArrayList<Thana> thanaArrayList = new ArrayList<>();
     ArrayList<Colors> colorArrayList = new ArrayList<>();
+    ArrayList<DocumentCategoryBrand> documentCategoryBrandArrayList = new ArrayList<>();
+    ArrayList<DocumentCategoryAccessory> documentCategoryAccessoryArrayList = new ArrayList<>();
+    ArrayList<ComputerAccessoriesBrand> computerAccessoriesBrandArrayList = new ArrayList<>();
 
     public int SELECTED_COLOR_ID;
     public int SELECTED_DISTRICT_ID;
     public int SELECTED_THANA_ID;
-
+    public int SELECTED_Computer_BRAND_ID,SELECTED_COMPUTER_ACCESSORIES_ID,SELECTED_COMPUTER_ACCESSORIES_BRAND_ID;
 
     //date picker
     SimpleDateFormat formatter;
@@ -259,7 +271,7 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
     @BindView(R.id.tvBlueBook)
     TextView tvBlueBook;*/
 
-
+    public String Language,english,bangla;
     String selectOne,ServiceTag,EMCProductID,ProductNumber;
     //Spinner
 
@@ -269,16 +281,30 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_computer);
         ButterKnife.bind(this);
-
+        Boolean languageStatus = getSharedPrefValue();
+        english=getResources().getString(R.string.english);
+        bangla=getResources().getString(R.string.bangla);
+        if (languageStatus) {
+            Language=english;
+        } else {
+            Language=bangla;
+        }
         if(Constants.COMPUTER_TYPE_ID==Constants.COMACCESORIES){
             rowComAssesories.setVisibility(View.VISIBLE);
+            this.setTitle(getResources().getText(R.string.computer_information_entry));
+            getComputerAccessories();
+            getComputerAccessoriesBrand();
+        }else{
+            this.setTitle(Constants.COMPUTER_TYPE_NAME+ " "+ getResources().getText(R.string.computer_information_entry));
         }
+
         mcvProductInformation.setVisibility(View.VISIBLE);
         mcvProductIdendityInformation.setVisibility(View.GONE);
         mcvProductPlaceTimeInformation.setVisibility(View.GONE);
         mcvReport.setVisibility(View.GONE);
         selectOne = getResources().getString(R.string.select_option);
         //Spinner
+        getComputerBrand();
         getAllColor();
         getDistrict();
 
@@ -418,6 +444,11 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
 
+    private boolean getSharedPrefValue() {
+        SharedPreferences tprefs = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        return tprefs.getBoolean(KEY_State, true);
+    }
+
 
 
     @OnClick(R.id.ivProductInformation)
@@ -518,6 +549,181 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
             Log.e("reportinfo", "btnNext4: ", e);
         }
 
+    }
+
+    public void getComputerBrand() {
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<DocumentCategoryBrand>> listCall = retrofitService.GetDocumentCategoryBrandByDocumentTypeId(1);
+        listCall.enqueue(new Callback<List<DocumentCategoryBrand>>() {
+            @Override
+            public void onResponse(Call<List<DocumentCategoryBrand>> call, Response<List<DocumentCategoryBrand>> response) {
+
+                if (response.body() != null) {
+
+                    documentCategoryBrandArrayList.clear();
+                    documentCategoryBrandArrayList.addAll(response.body());
+
+                    addComputerBrandSpinnerData(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<DocumentCategoryBrand>> call, Throwable t) {
+                Toast.makeText(ComputerActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void addComputerBrandSpinnerData(final List<DocumentCategoryBrand> body) {
+        List<String> arrayList = new ArrayList<>();
+        List<String> arrayListIcon = new ArrayList<>();
+        arrayList.add(0, selectOne);
+        arrayListIcon.add(0, "");
+        for (int i = 0; i < body.size(); i++) {
+            arrayList.add(i + 1, body.get(i).getBrandName());
+            arrayListIcon.add(i + 1, body.get(i).getImagePath());
+        }
+
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), arrayListIcon, arrayList);
+        spnProductBrand.setAdapter(customAdapter);
+        spnProductBrand.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_Computer_BRAND_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_Computer_BRAND_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getComputerAccessories() {
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<DocumentCategoryAccessory>> listCall = retrofitService.GetDocumentCategoryAccessoriesByDocumentTypeId(1);
+        listCall.enqueue(new Callback<List<DocumentCategoryAccessory>>() {
+            @Override
+            public void onResponse(Call<List<DocumentCategoryAccessory>> call, Response<List<DocumentCategoryAccessory>> response) {
+
+                if (response.body() != null) {
+
+                    documentCategoryAccessoryArrayList.clear();
+                    documentCategoryAccessoryArrayList.addAll(response.body());
+
+                    addComputerAccessoriesSpinnerData(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<DocumentCategoryAccessory>> call, Throwable t) {
+                Toast.makeText(ComputerActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void addComputerAccessoriesSpinnerData(final List<DocumentCategoryAccessory> body) {
+        List<String> arrayList = new ArrayList<>();
+        arrayList.add(0, selectOne);
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                arrayList.add(i + 1, body.get(i).getAccessoriesName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                arrayList.add(i + 1, body.get(i).getAccessoriesNameBn());
+            }
+        }
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayList);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnComputerAccessories.setAdapter(dataAdapter2);
+        spnComputerAccessories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_COMPUTER_ACCESSORIES_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_COMPUTER_ACCESSORIES_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getComputerAccessoriesBrand() {
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<ComputerAccessoriesBrand>> listCall = retrofitService.GetAllComputerAccessoriesBrand();
+        listCall.enqueue(new Callback<List<ComputerAccessoriesBrand>>() {
+            @Override
+            public void onResponse(Call<List<ComputerAccessoriesBrand>> call, Response<List<ComputerAccessoriesBrand>> response) {
+
+                if (response.body() != null) {
+
+                    computerAccessoriesBrandArrayList.clear();
+                    computerAccessoriesBrandArrayList.addAll(response.body());
+
+                    addComputerAccessoriesBrandSpinnerData(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ComputerAccessoriesBrand>> call, Throwable t) {
+                Toast.makeText(ComputerActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    public void addComputerAccessoriesBrandSpinnerData(final List<ComputerAccessoriesBrand> body) {
+        List<String> arrayList = new ArrayList<>();
+        List<String> arrayListIcon = new ArrayList<>();
+        arrayList.add(0, selectOne);
+        arrayListIcon.add(0, "");
+        for (int i = 0; i < body.size(); i++) {
+            arrayList.add(i + 1, body.get(i).getBrandName());
+            arrayListIcon.add(i + 1, body.get(i).getImagePath());
+        }
+
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), arrayListIcon, arrayList);
+        spnProductBrand.setAdapter(customAdapter);
+        spnProductBrand.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (i >= 1) {
+                        SELECTED_COMPUTER_ACCESSORIES_BRAND_ID = body.get(i).getId();
+                    } else {
+                        SELECTED_COMPUTER_ACCESSORIES_BRAND_ID = 0;
+                    }
+                } catch (Exception e) {
+                    Utilities.showLogcatMessage(" " + e.toString());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
  /*   @OnClick(R.id.Edit)
@@ -812,9 +1018,16 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
     public void addDistrictSpinnerData(final List<District> body) {
         List<String> districtList = new ArrayList<>();
         districtList.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            districtList.add(i + 1, body.get(i).getDistrictName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                districtList.add(i + 1, body.get(i).getDistrictName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                districtList.add(i + 1, body.get(i).getDistrictNameBn());
+            }
         }
+
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, districtList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -825,7 +1038,7 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
                 try {
                     if (i >= 1) {
                         SELECTED_DISTRICT_ID = body.get(i).getId();
-                        getAllThana(body.get(i).getId());
+                        getAllThana(body.get(i-1).getId());
                     } else {
                         SELECTED_DISTRICT_ID = 0;
                     }
@@ -870,9 +1083,16 @@ public class ComputerActivity extends AppCompatActivity implements DatePickerDia
     public void addThanaSpinnerData(final List<Thana> body) {
         List<String> thanaList = new ArrayList<>();
         thanaList.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            thanaList.add(i + 1, body.get(i).getThanaName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                thanaList.add(i + 1, body.get(i).getThanaName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                thanaList.add(i + 1, body.get(i).getThanaNameBn());
+            }
         }
+
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, thanaList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

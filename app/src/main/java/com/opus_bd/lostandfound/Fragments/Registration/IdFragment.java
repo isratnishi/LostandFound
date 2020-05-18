@@ -72,7 +72,7 @@ public class IdFragment extends Fragment {
 
         } else if (i == 2) {
             rl.setVisibility(View.GONE);
-            textView2.setText("Select below");
+            textView2.setText("");
             passid=2;
         }
     }

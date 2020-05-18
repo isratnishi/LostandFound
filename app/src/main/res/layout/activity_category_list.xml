@@ -38,7 +38,7 @@
                 android:id="@+id/tvItemName"
                 style="@style/HomeTextStyle"
                 android:gravity="center_horizontal"
-                android:text="Desktop"
+                android:text="@string/desktop"
                 android:textAlignment="center" />
 
         </LinearLayout>
@@ -73,7 +73,7 @@
                 android:id="@+id/tvItemName1"
                 style="@style/HomeTextStyle"
                 android:gravity="center_horizontal"
-                android:text="Laptop"
+                android:text="@string/laptop"
                 android:textAlignment="center" />
 
         </LinearLayout>
@@ -108,7 +108,7 @@
                 android:id="@+id/tvItemName2"
                 style="@style/HomeTextStyle"
                 android:gravity="center_horizontal"
-                android:text="Hybrid"
+                android:text="@string/hybrid"
                 android:textAlignment="center" />
 
         </LinearLayout>
@@ -144,7 +144,7 @@
                 android:id="@+id/tvItemName4"
                 style="@style/HomeTextStyle"
                 android:gravity="center_horizontal"
-                android:text="NoteBook"
+                android:text="@string/note_book"
                 android:textAlignment="center" />
 
         </LinearLayout>
@@ -179,7 +179,7 @@
                 android:id="@+id/tvItemName5"
                 style="@style/HomeTextStyle"
                 android:gravity="center_horizontal"
-                android:text="Omni PC"
+                android:text="@string/omni"
                 android:textAlignment="center" />
 
         </LinearLayout>
@@ -215,7 +215,7 @@
                 style="@style/HomeTextStyle"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="computer accesories"
+                android:text="@string/accessories"
                 android:textAlignment="center" />
 
         </LinearLayout>
