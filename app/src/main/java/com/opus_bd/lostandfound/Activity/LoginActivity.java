@@ -23,6 +23,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -300,12 +301,12 @@ Utilities.showLogcatMessage(""+ t.toString());
         ImageView ivLiveChat = (ImageView) dialog.findViewById(R.id.ivLiveChat);
         ImageView ivEmail = (ImageView) dialog.findViewById(R.id.ivEmail);
         ImageView ivCall = (ImageView) dialog.findViewById(R.id.ivCall);
+        TextView tvSupportMsg = (TextView) dialog.findViewById(R.id.tvSupportMsg);
 
 
         CardView cvLiveChat = (CardView) dialog.findViewById(R.id.cvLiveChat);
         CardView cvEmail = (CardView) dialog.findViewById(R.id.cvEmail);
         CardView cvCall = (CardView) dialog.findViewById(R.id.cvCall);
-
         ivLiveChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
