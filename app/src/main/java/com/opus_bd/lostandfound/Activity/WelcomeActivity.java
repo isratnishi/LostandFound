@@ -106,8 +106,8 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
 
     public void showDialog() {
 
-           builder.setMessage("For any information or assistance regarding Lost and Found Apps, contact a representative at the Apps Support Center at: +8801737366028" +
-                "\n \nলষ্ট এ্যান্ড ফাউণ্ড অ্যাপস্\u200C সংক্রান্ত যেকোন তথ্য বা সহায়তার জন্য অ্যাপস্\u200C সাপোর্ট সেন্টারে কর্তব্যরত প্রতিনিধির সাথে নিচের নম্বরে যোগাযোগ করুন-\n" +
+           builder.setMessage("For any information or assistance regarding Lost & Found Apps, contact a representative at the Apps Support Center at: +8801737366028" +
+                "\n \n Lost & Found অ্যাপস্\u200C সংক্রান্ত যেকোন তথ্য বা সহায়তার জন্য অ্যাপস্\u200C সাপোর্ট সেন্টারে কর্তব্যরত প্রতিনিধির সাথে নিচের নম্বরে যোগাযোগ করুন-\n" +
                 "+৮৮০১৭৩৭৩৬৬০২৮")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {

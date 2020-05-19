@@ -701,8 +701,8 @@
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
 
-                                    <Spinner
-                                        android:id="@+id/spnVilage"
+                                    <EditText
+                                        android:id="@+id/etVillage"
                                         style="@style/InformationEntryEditText"/>
                                 </TableRow>
 

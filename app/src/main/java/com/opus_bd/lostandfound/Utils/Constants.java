@@ -8,6 +8,7 @@ public class Constants {
 
     //ComputerType
     public static int COMPUTER_TYPE_ID;
+    public static String COMPUTER_TYPE_NAME;
     public static int COMACCESORIES = 6;
     public static int COMOthers = 1;
 

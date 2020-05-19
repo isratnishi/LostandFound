@@ -3,6 +3,7 @@ package com.opus_bd.lostandfound.Fragments.Registration;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
+import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -12,19 +13,26 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.hbb20.CountryCodePicker;
+import com.opus_bd.lostandfound.Activity.VehicleEntryActivity;
 import com.opus_bd.lostandfound.GeneralPeople.RegistrationActivity;
 import com.opus_bd.lostandfound.R;
 import com.opus_bd.lostandfound.Activity.RegistrationProcessActivity;
 import com.opus_bd.lostandfound.Utils.MessageEvent;
 import com.opus_bd.lostandfound.Utils.Utilities;
+import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -57,6 +65,10 @@ public class InputFragment extends Fragment {
     RelativeLayout rrEmail;
     @BindView(R.id.rrCountryCode)
     RelativeLayout rrCountryCode;
+
+    @BindView(R.id.ccp)
+    CountryCodePicker ccp;
+
 
     int inputID, passId, view;
     int mYear, mMonth, mDay;
@@ -91,6 +103,10 @@ public class InputFragment extends Fragment {
         ButterKnife.bind(this, v);
         RegistrationProcessActivity.Step = 3;
 
+
+        ccp.setDefaultCountryUsingNameCode("JP");
+        ccp.resetToDefaultCountry();
+
         EventBus.getDefault().post(new MessageEvent(true));
         Utilities.showLogcatMessage(" inputId 1" + RegistrationActivity.inputid);
         setView(inputID, passId);
@@ -105,6 +121,31 @@ public class InputFragment extends Fragment {
         mDay = calendar.get(Calendar.DAY_OF_MONTH);
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
        // etExpary.setText(formatter.format(calendar.getTime()));
+        formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        etExpary.setText(formatter.format(calendar.getTime()));
+        Date myDate = null;
+        try {
+            myDate = formatter.parse(formatter.format(calendar.getTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        etExpary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDate(mYear, mMonth, mDay, R.style.DatePickerSpinner);
+            }
+        });
+    }
+
+    @VisibleForTesting
+    void showDate(int year, int monthOfYear, int dayOfMonth, int spinnerTheme) {
+        new SpinnerDatePickerDialogBuilder()
+
+                .spinnerTheme(spinnerTheme)
+                .defaultDate(year, monthOfYear, dayOfMonth)
+                .showTitle(true)
+                .build()
+                .show();
     }
 
     @OnClick(R.id.etExpary)
@@ -185,4 +226,5 @@ public class InputFragment extends Fragment {
 
         }
     }
+
 }

@@ -515,6 +515,7 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:textColor="@color/black"
                                         android:layout_width="105dp"
                                         android:paddingTop="10dp"
                                         android:paddingLeft="7dp"
@@ -522,6 +523,8 @@
                                         android:text="@string/habit" />
 
                                     <TextView
+                                        android:paddingTop="0dp"
+                                        android:layout_marginTop="0dp"
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
 
@@ -535,24 +538,46 @@
                                         android:text="+" />
 
                                 </TableRow>
-                                <ListView
-                                    android:id="@+id/lvHabit_list"
-                                    android:layout_gravity="right"
-                                    android:layout_width="120dp"
-                                    android:layout_height="120dp" >
-                                </ListView>
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                <TextView
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toLeftOf="@+id/lvHabit_list"/>
+
+                                    <ListView
+
+                                        android:id="@+id/lvHabit_list"
+                                        android:paddingLeft="100dp"
+                                        android:paddingBottom="0dp"
+                                        android:layout_width="match_parent"
+                                        android:nestedScrollingEnabled="true"
+                                        android:layout_height="180dp" >
+                                    </ListView>
+
+                                </RelativeLayout>
+
+<!--                                <androidx.recyclerview.widget.RecyclerView-->
+<!--                                    android:id="@+id/rvHabitList"-->
+<!--                                    android:layout_width="match_parent"-->
+<!--                                    android:layout_height="120dp"/>-->
 
                                 <TableRow
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
                                     <TextView
+                                        android:textColor="@color/black"
                                         android:layout_width="105dp"
                                         android:paddingTop="10dp"
                                         android:paddingLeft="7dp"
                                         android:text="@string/speech" />
 
                                     <TextView
+                                        android:paddingTop="0dp"
                                         style="@style/InformationEntryTextViewColon"
                                         android:text=":" />
 
@@ -566,12 +591,28 @@
                                         style="@style/EditTextIcon"
                                         android:text="+" />
                                 </TableRow>
-                                <ListView
-                                    android:id="@+id/lvSpeech_list"
-                                    android:layout_gravity="right"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="120dp" >
-                                </ListView>
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_toLeftOf="@+id/lvSpeech_list"/>
+
+                                    <ListView
+
+                                        android:id="@+id/lvSpeech_list"
+                                        android:paddingLeft="100dp"
+                                        android:paddingBottom="0dp"
+                                        android:layout_width="match_parent"
+                                        android:nestedScrollingEnabled="true"
+                                        android:layout_height="180dp" >
+                                    </ListView>
+
+                                </RelativeLayout>
+
                             </TableLayout>
 
                             <Button
@@ -1373,29 +1414,30 @@
                                     android:layout_height="wrap_content">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         style="@style/InformationEntryTextViewColon"
                                         android:textStyle="bold"
 
                                         android:text="@string/position" />
 
                                     <TextView
-
                                         style="@style/InformationEntryTextViewColon"
                                         android:textStyle="bold"
                                         android:text=":" />
 
                                     <TextView
+
                                         android:layout_width="wrap_content"
                                         android:textStyle="bold"
-                                        style="@style/InformationEntryTextViewColon"
+                                        style="@style/InformationEntryEditText"
                                         android:text="@string/dress" />
 
 
                                     <TextView
+                                        android:paddingLeft="50dp"
                                         android:layout_width="wrap_content"
                                         android:textStyle="bold"
-                                        style="@style/InformationEntryTextViewColon"
+                                        style="@style/InformationEntryEditText"
                                         android:text="@string/colorName" />
                                 </TableRow>
 
@@ -1567,6 +1609,7 @@
                                     <EditText
                                         android:id="@+id/etDLegMes"
                                         android:gravity="start|center_vertical"
+                                        android:inputType="numberSigned"
                                         style="@style/InformationEntryEditText"
                                         />
                                     <Spinner

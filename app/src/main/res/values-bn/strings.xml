@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lost And Found</string>
+    <string name="app_name">Lost &amp; Found</string>
     <string name="lost_found_apps"><![CDATA[LOST & FOUND APPS]]></string>
     <string name="welcome_to">Welcome To bangla</string>
+    <string name="user_name">মো: দেলোয়ার হোসেন মিয়া</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="bangla">বাংলা</string>
@@ -47,16 +48,18 @@
     <string name="email">ইমেইল </string>
     <string name="email_op">ইমেইল (ঐচ্ছিক)</string>
     <string name="field_null_error">এই ক্ষেত্রটি খালি রাখা যাবে না</string>
-
+    <string name="registration_information">রেজিস্ট্রেশন তথ্য</string>
+    <string name="visa_type">ভিসার ধরন</string>
+    <string name="country_name">দেশের নাম</string>
 
     <string name="please_choose_one_of_below">নীচের একটি পছন্দ করুন</string>
     <string name="purpose_of_visit">ভ্রমণের উদ্দেশ্য</string>
-    <string name="please_fill_up_your_imigartion_address">আপনার বাংলাদেশে অবস্থানকালীন ঠিকানাটি পূরন করুন</string>
+    <string name="please_fill_up_your_imigartion_address">বাংলাদেশে অবস্থানকালীন ঠিকানাটি পূরণ করুন</string>
     <string name="support">সাপোর্ট</string>
     <string name="forget_password">পাসওয়ার্ড ভুলে গেছেন ?</string>
     <string name="live_chat">লাইভ চাটিং</string>
     <string name="live_call">লাইভ কলিং</string>
-    <string name="welcome_to_lost_and_found_application">"লস্ট এন্ড ফাউন্ড অ্যাপ্লিকেশনে আপনাকে স্বাগতম                                লস্ট এন্ড ফাউন্ড অ্যাপ্লিকেশনে আপনাকে স্বাগতম "</string>
+    <string name="welcome_to_lost_and_found_application">"লস্ট &amp; ফাউন্ড অ্যাপ্লিকেশনে আপনাকে স্বাগতম                                লস্ট এন্ড ফাউন্ড অ্যাপ্লিকেশনে আপনাকে স্বাগতম "</string>
     <string name="vehicle">যানবাহন</string>
     <string name="information_entry">তথ্য এন্ট্রি</string>
     <string name="theft">চুরি</string>
@@ -91,7 +94,13 @@
     <string name="occupation">পেশা</string>
     <string name="blood_group">রক্তের গ্রুপ</string>
 
-
+    <string name="laptop">ল্যাপটপ</string>
+    <string name="desktop">ডেস্কটপ</string>
+    <string name="hybrid">হাইব্রিড</string>
+    <string name="omni">অমনি</string>
+    <string name="note_book">নোট বুক</string>
+    <string name="accessories">কম্পিউটার একসেসোরিজ</string>
+    <string name="vehicle_entry">যানবাহনের</string>
     <!--    vehicle information-->
     <string name="vehicleType">যানবাহনের ধরণ</string>
     <string name="vehicleBrand">ব্রান্ডের নাম</string>
@@ -651,16 +660,16 @@
     </string-array>
 
     <string-array name="purpose_of_visit">
-        <item>@string/select_list</item>
+        <item>@string/visa_type</item>
         <item>ভ্রমণের উদ্দেশ্য</item>
-        <item> ট্যুরিস্ট ভিসা </item>
-        <item> ব্যবসায় ভিসা </item>
-        <item> শিক্ষার্থী ভিসা </item>
-        <item> কর্মসংস্থান ভিসা </item>
-        <item> কূটনৈতিক / অফিসিয়াল ভিসা </item>
-        <item> বিনিয়োগকারী ভিসা </item>
-        <item> সাংবাদিক ভিসা </item>
-        <item> এনজিও ভিসা </item>
+        <item>ট্যুরিস্ট ভিসা</item>
+        <item>ব্যবসায় ভিসা</item>
+        <item>শিক্ষার্থী ভিসা</item>
+        <item>কর্মসংস্থান ভিসা </item>
+        <item>কূটনৈতিক / অফিসিয়াল ভিসা</item>
+        <item>বিনিয়োগকারী ভিসা</item>
+        <item>সাংবাদিক ভিসা</item>
+        <item>এনজিও ভিসা</item>
     </string-array>
 
     <string-array name="doc_type">
@@ -1009,7 +1018,7 @@
     <string name="dlegs">পায়ে</string>
     <string name="person_identification_info">ব্যক্তির সনাক্তকরণের তথ্য</string>
     <string name="missingpersonlevel">নিখোঁজ ব্যক্তির তথ্য</string>
-    <string name="othersitemlevel">অন্য আইটেম</string>
+    <string name="othersitemlevel">অন্যান্য আইটেম</string>
     <string name="unknowndeadbody">অজ্ঞাতনামা মৃতদেহ</string>
     <string name="marital_status">বৈবাহিক অৱস্থা</string>
 
@@ -1210,10 +1219,10 @@
     <string name="carat">ক্যারেট</string>
     <string name="glass_information">চশমার তথ্য</string>
     <string name="thanks">ধন্যবাদ</string>
-    <string name="support_msg">লষ্ট এ্যান্ড ফাউণ্ড অ্যাপস্‌ সংক্রান্ত যেকোন তথ্য বা সহায়তার জন্য অ্যাপস্‌ সাপোর্ট সেন্টারে কর্তব্যরত প্রতিনিধির সাথে নিচের নম্বরে যোগাযোগ করুন- +৮৮০১৭৩৭৩৬৬০২৮ এছাড়া আমাদের সাথে যোগাযোগের জন্য নিচের মাধ্যমগুলো ব্যবহার করতে পারেন</string>
+    <string name="support_msg">লষ্ট &amp; ফাউণ্ড অ্যাপস্‌ সংক্রান্ত যেকোন তথ্য বা সহায়তার জন্য অ্যাপস্‌ সাপোর্ট সেন্টারে কর্তব্যরত প্রতিনিধির সাথে নিচের নম্বরে যোগাযোগ করুন- +৮৮০১৭৩৭৩৬৬০২৮ এছাড়া আমাদের সাথে যোগাযোগের জন্য নিচের মাধ্যমগুলো ব্যবহার করতে পারেন</string>
     <string name="select_item_for_support">একটি নির্বাচন করুন</string>
     <string name="date_of_birth">জন্ম তারিখ</string>
     <string name="shoesize">জুতার মাপ</string>
-
+    <string name="computer_information_entry">কম্পিউটারের তথ্য এন্ট্রি</string>
 
 </resources>

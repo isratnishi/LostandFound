@@ -32,6 +32,7 @@ import com.opus_bd.lostandfound.Activity.OtherItem.ShoesActivity;
 import com.opus_bd.lostandfound.Activity.OtherItem.UmbrellaActivity;
 import com.opus_bd.lostandfound.Model.Documentaion.DocumentType;
 import com.opus_bd.lostandfound.R;
+import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.Utilities;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAd
     private final Context context;
     private List<DocumentType> items;
     Boolean languageStatus;
-
+    public String Language,english,bangla;
     public OthersItemListAdapter(List<DocumentType> items, Context context) {
         this.items = items;
         this.context = context;
@@ -60,6 +61,12 @@ public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAd
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.adapter_others_item_list, parent, false);
         languageStatus = getSharedPrefValue();
+
+        if (languageStatus) {
+            Language= Constants.ENGLISH;
+        } else {
+            Language=Constants.BANGLA;
+        }
         return new TransactionViewHolder(v);
     }
     private boolean getSharedPrefValue() {
@@ -100,7 +107,8 @@ public class OthersItemListAdapter extends RecyclerView.Adapter<OthersItemListAd
 
         public void set(final DocumentType item) {
             //UI setting code
-            if (languageStatus) {
+
+            if (Language.equals(Constants.BANGLA)) {
                 tvreceiveNo.setText(item.getDocumentTypeNameBn());
             } else {
                 tvreceiveNo.setText(item.getDocumentTypeName());

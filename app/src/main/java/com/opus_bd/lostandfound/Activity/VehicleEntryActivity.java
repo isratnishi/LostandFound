@@ -58,6 +58,7 @@ import com.opus_bd.lostandfound.Utils.Constants;
 import com.opus_bd.lostandfound.Utils.LocaleHelper;
 import com.opus_bd.lostandfound.Utils.Utilities;
 import com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager;
+import com.theartofdev.edmodo.cropper.CropImage;
 import com.tsongkha.spinnerdatepicker.DatePicker;
 import com.tsongkha.spinnerdatepicker.DatePickerDialog;
 import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
@@ -328,6 +329,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         ccp.setDefaultCountryUsingNameCode("JP");
         ccp.resetToDefaultCountry();
         setProgress();
+        this.setTitle(getResources().getText(R.string.vehicle_entry)+" "+ getResources().getText(R.string.information_entry));
         mcvVehicleInformation.setVisibility(View.VISIBLE);
         mcvVehicleIdendityInformation.setVisibility(View.GONE);
         mcvVehicleAttachment.setVisibility(View.GONE);
@@ -470,57 +472,91 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         progress.setIndeterminate(true);
     }
 
-    //Multiple image
-    @OnClick(R.id.btnAddPhotoes)
-    public void ImageAdd() {
-        ImagePicker();
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+        catch (Exception e)
+        {
+            Utilities.showLogcatMessage("onActivityResult "+e.toString());
+        }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                Uri resultUri = result.getUri();
+                mArrayUri.add(resultUri);
+                galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
+                gvGallery.setAdapter(galleryAdapter);
+
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
+        }
     }
+
+
+    @OnClick(R.id.btnAddPhotoes)
+    public void ImageAdd(){
+        //ImagePicker();
+        CropImage.activity().start(VehicleEntryActivity.this);
+    }
+
+
+    //Multiple image
+//    @OnClick(R.id.btnAddPhotoes)
+//    public void ImageAdd() {
+//        ImagePicker();
+//    }
 
 
     //ImagePicker
 
-    public void ImagePicker() {
-        ImagePicker.Companion.with(this)
-                .crop()//Crop image(Optional), Check Customization for more option
-                .galleryOnly()
-                .compress(1024)            //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
-                .start();
-    }
+//    public void ImagePicker() {
+//        ImagePicker.Companion.with(this)
+//                .crop()//Crop image(Optional), Check Customization for more option
+//                .galleryOnly()
+//                .compress(1024)            //Final image size will be less than 1 MB(Optional)
+//                .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
+//                .start();
+//    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        try {
-
-            super.onActivityResult(requestCode, resultCode, data);
-        } catch (Exception e) {
-            Utilities.showLogcatMessage("onActivityResult " + e.toString());
-        }
-        if (resultCode == Activity.RESULT_OK) {
-            //Image Uri will not be null for RESULT_OK
-            Uri fileUri = data.getData();
-            // ivImage.setImageURI(fileUri);
-
-            //You can get File object from intent
-            File file = ImagePicker.Companion.getFile(data);
-
-            //You can also get File Path from intent
-            String filePath = ImagePicker.Companion.getFilePath(data);
-
-
-            mArrayUri.add(fileUri);
-            galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
-            gvGallery.setAdapter(galleryAdapter);
-           /* gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
-            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
-                    .getLayoutParams();
-            mlp.setMargins(0, gvGallery.getHorizontalSpacing(), 0, 0);*/
-        } else if (resultCode == ImagePicker.RESULT_ERROR) {
-            Toast.makeText(this, ImagePicker.Companion.getError(data), Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        try {
+//
+//            super.onActivityResult(requestCode, resultCode, data);
+//        } catch (Exception e) {
+//            Utilities.showLogcatMessage("onActivityResult " + e.toString());
+//        }
+//        if (resultCode == Activity.RESULT_OK) {
+//            //Image Uri will not be null for RESULT_OK
+//            Uri fileUri = data.getData();
+//            // ivImage.setImageURI(fileUri);
+//
+//            //You can get File object from intent
+//            File file = ImagePicker.Companion.getFile(data);
+//
+//            //You can also get File Path from intent
+//            String filePath = ImagePicker.Companion.getFilePath(data);
+//
+//
+//            mArrayUri.add(fileUri);
+//            galleryAdapter = new GalleryAdapter(getApplicationContext(), mArrayUri);
+//            gvGallery.setAdapter(galleryAdapter);
+//           /* gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
+//            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
+//                    .getLayoutParams();
+//            mlp.setMargins(0, gvGallery.getHorizontalSpacing(), 0, 0);*/
+//        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+//            Toast.makeText(this, ImagePicker.Companion.getError(data), Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     @OnClick(R.id.ivVehicleInformation)
     public void ivVehicleInformation() {
@@ -748,7 +784,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
                 if (response.body() != null) {
                     progress.dismiss();
                     addVehicleTypeNamePresentSpinnerData(response.body().getVehicleTypes());
-                    addVehicleMadyBySpinnerData(response.body().getVehicleModels());
+                    //addVehicleMadyBySpinnerData(response.body().getVehicleModels());
                     addDistrictSpinnerData(response.body().getDistricts());
                     addColorSpinnerData(response.body().getColors());
                     addMetroAreaSpinnerData(response.body().getMetropolitanAreas());
@@ -834,6 +870,8 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         });
     }
 
+
+
     public void addVehicleTypeNamePresentSpinnerData(final List<VehicleType> body) {
         List<String> vehicleList = new ArrayList<>();
         vehicleList.add(0, selectOne);
@@ -855,7 +893,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i >= 1) {
                     SELECTED_VEHICLETYPE_ID = body.get(i).getId();
-                    //  getAllVehicleModel(body.get(i-1).getId());
+                    getAllVehicleModel(body.get(i-1).getId());
                 } else {
                     SELECTED_VEHICLETYPE_ID = 0;
                 }
@@ -866,6 +904,31 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
 
             }
         });
+    }
+
+    public void getAllVehicleModel(int id) {
+
+        RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        Call<List<VehicleModel>> thana = retrofitService.GetVehicleModelByVehicleId(id);
+        thana.enqueue(new Callback<List<VehicleModel>>() {
+            @Override
+            public void onResponse(Call<List<VehicleModel>> call, Response<List<VehicleModel>> response) {
+
+                if (response.body() != null) {
+
+                    VehicleModelArrayList.clear();
+                    VehicleModelArrayList.addAll(response.body());
+
+                    addVehicleMadyBySpinnerData(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<VehicleModel>> call, Throwable t) {
+                Toast.makeText(VehicleEntryActivity.this, "Fail to connect " + t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     public void addVehicleMadyBySpinnerData(final List<VehicleModel> body) {
@@ -1174,7 +1237,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
                 try {
                     if (i >= 1) {
                         SELECTED_DISTRICT_ID = body.get(i).getId();
-                        //getAllThana(body.get(i).getId());
+                        getAllThana(body.get(i-1).getId());
                     } else {
                         SELECTED_DISTRICT_ID = 0;
                     }
@@ -1191,7 +1254,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
         });
     }
 
-   /* public void getAllThana(int id) {
+   public void getAllThana(int id) {
 
         RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
         Call<List<Thana>> thana = retrofitService.GetThanaByDistrictId(id);
@@ -1214,7 +1277,7 @@ public class VehicleEntryActivity extends AppCompatActivity implements DatePicke
             }
         });
 
-    }*/
+    }
 
 
     public void addThanaSpinnerData(final List<Thana> body) {

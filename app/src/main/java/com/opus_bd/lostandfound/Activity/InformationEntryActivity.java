@@ -90,7 +90,7 @@ public class InformationEntryActivity extends AppCompatActivity {
         if (Constants.ENTRY_TYPE_ID != Constants.THEFT) {
             llVMan.setVisibility(View.VISIBLE);
         }
-
+        this.setTitle(getResources().getText(R.string.information_entry));
         if (Constants.ENTRY_TYPE_ID == Constants.FOUND) {
 
             tvMan.setText(getResources().getText(R.string.unknown_dead_body));
