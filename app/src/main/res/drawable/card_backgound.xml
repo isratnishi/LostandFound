@@ -24,7 +24,7 @@
     <item
 
         android:top="200dp">
-        <bitmap android:src="@drawable/app_bg"
+        <bitmap android:src="@drawable/app_background"
             android:alpha="0.6"
             />
     </item>
