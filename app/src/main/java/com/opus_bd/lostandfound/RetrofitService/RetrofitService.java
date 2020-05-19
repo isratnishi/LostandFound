@@ -21,6 +21,7 @@ import com.opus_bd.lostandfound.Model.GlobalData.District;
 import com.opus_bd.lostandfound.Model.GlobalData.Division;
 import com.opus_bd.lostandfound.Model.GlobalData.MDAddressInforamtionModel;
 import com.opus_bd.lostandfound.Model.GlobalData.Thana;
+import com.opus_bd.lostandfound.Model.OtherBrand.MDOtherItemInformation;
 import com.opus_bd.lostandfound.Model.PhysicalInfo.MDPhysicalInformationModel;
 import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.Model.User.UserAuthModel;
@@ -121,5 +122,8 @@ public interface RetrofitService {
 
     @GET("api/AddressMaster/GetAddressInformationMasterData")
     Call<MDAddressInforamtionModel> GetAddressInformationMasterData();
+
+    @GET("api/MDOtherBrand/GetOtherBrandInformationMasterData")
+    Call<MDOtherItemInformation> GetOtherBrandInformationMasterData();
 
 }

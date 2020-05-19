@@ -69,7 +69,6 @@ public class IdFragment extends Fragment {
         if (i == 1) {
             rl.setVisibility(View.VISIBLE);
             passid=1;
-
         } else if (i == 2) {
             rl.setVisibility(View.GONE);
             textView2.setText("");
