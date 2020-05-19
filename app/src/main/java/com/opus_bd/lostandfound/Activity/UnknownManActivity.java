@@ -2001,9 +2001,16 @@ public class UnknownManActivity extends AppCompatActivity implements DatePickerD
     public void addThanaSpinnerData(final List<Thana> body) {
         List<String> thanaList = new ArrayList<>();
         thanaList.add(0, selectOne);
-        for (int i = 0; i < body.size(); i++) {
-            thanaList.add(i + 1, body.get(i).getThanaName());
+        if(Language==english){
+            for (int i = 0; i < body.size(); i++) {
+                thanaList.add(i + 1, body.get(i).getThanaName());
+            }
+        }else {
+            for (int i = 0; i < body.size(); i++) {
+                thanaList.add(i + 1, body.get(i).getThanaNameBn());
+            }
         }
+
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, thanaList);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
