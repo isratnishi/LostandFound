@@ -100,7 +100,7 @@
     <string name="omni">অমনি</string>
     <string name="note_book">নোট বুক</string>
     <string name="accessories">কম্পিউটার একসেসোরিজ</string>
-
+    <string name="vehicle_entry">যানবাহনের</string>
     <!--    vehicle information-->
     <string name="vehicleType">যানবাহনের ধরণ</string>
     <string name="vehicleBrand">ব্রান্ডের নাম</string>

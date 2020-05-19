@@ -150,6 +150,7 @@
     <string name="omni">Omni</string>
     <string name="note_book">Note Book</string>
     <string name="accessories">Computer Accessories</string>
+    <string name="vehicle_entry">Vehicle</string>
 
     <string name="image_type">Image Type</string>
     <string name="image_name">Image Name</string>
