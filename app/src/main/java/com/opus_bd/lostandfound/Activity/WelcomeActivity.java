@@ -64,8 +64,7 @@ public class WelcomeActivity extends AppCompatActivity implements GoogleApiClien
     TextView textView;
     double latitude,longitude;
     private Location mylocation;
-    @BindView(R.id.textView1)
-    TextView textView1;
+
 
     @BindView(R.id.ivappLogo)
     ImageView ivappLogo;
