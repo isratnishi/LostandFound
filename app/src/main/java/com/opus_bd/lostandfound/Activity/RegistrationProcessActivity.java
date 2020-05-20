@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,13 +25,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.opus_bd.lostandfound.Fragments.Registration.CitizenFragment;
 import com.opus_bd.lostandfound.Model.Documentaion.NationalIdentityTypesModel;
+import com.opus_bd.lostandfound.Model.GlobalData.District;
+import com.opus_bd.lostandfound.Model.GlobalData.Thana;
 import com.opus_bd.lostandfound.Model.User.RegistrationModel;
 import com.opus_bd.lostandfound.Model.User.UserAuthModel;
 import com.opus_bd.lostandfound.Model.User.UserLoginModel;
@@ -50,6 +56,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -58,6 +65,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.KEY_State;
+import static com.opus_bd.lostandfound.sharedPrefManager.SharedPrefManager.SHARED_PREF_NAME;
+
+public class RegistrationProcessActivity extends AppCompatActivity  {
 public class RegistrationProcessActivity extends AppCompatActivity  implements DatePickerDialog.OnDateSetListener{
 
     int c = 0;
@@ -93,6 +104,7 @@ public class RegistrationProcessActivity extends AppCompatActivity  implements D
     View v6;
 
     public static int Step;
+
 
     public static String citizen, NationalIdentityType, NationalIdentityNo, AddressType, PhoneNumber, UserName, Email, Password, ConfirmPassword;
 
@@ -130,6 +142,8 @@ public class RegistrationProcessActivity extends AppCompatActivity  implements D
         else
             super.attachBaseContext(LocaleHelper.setLocale(base, Constants.BANGLA));
     }
+
+
 
     public void switchFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

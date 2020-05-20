@@ -32,9 +32,6 @@ import butterknife.OnClick;
  */
 public class AddressVerificationFragment extends Fragment{
 
-
-
-
     @BindView(R.id.llnid)
     LinearLayout llnid;
     @BindView(R.id.llnid2)
